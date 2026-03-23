@@ -12,3 +12,9 @@ ECGDatasets is a Python project for working with ECG (electrocardiogram) dataset
 - **Author:** Vajira Thambawita
 - **Remote:** https://github.com/vlbthambawita/ECGDatasets.git
 
+## GitHub Pages
+
+The site lives in `docs/index.html` — a single-file static page (no build step). To enable it on GitHub: go to **Settings → Pages → Source → Deploy from a branch**, select `main` and `/docs`. The live URL will be `https://vlbthambawita.github.io/ECGDatasets/`.
+
+When updating the dataset table, edit both `README.md` and `docs/index.html` to keep them in sync.
+
