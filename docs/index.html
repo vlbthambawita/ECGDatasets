@@ -352,11 +352,12 @@
 
 <!-- ── Stats ── -->
 <section class="stats">
-  <div class="stat-card"><div class="num">33</div><div class="label">Total Datasets</div></div>
-  <div class="stat-card"><div class="num">23</div><div class="label">12-Lead</div></div>
+  <div class="stat-card"><div class="num">48</div><div class="label">Total Datasets</div></div>
+  <div class="stat-card"><div class="num">23</div><div class="label">12-Lead (PhysioNet)</div></div>
+  <div class="stat-card"><div class="num">15</div><div class="label">12-Lead (Other)</div></div>
   <div class="stat-card"><div class="num">10</div><div class="label">1-Lead</div></div>
-  <div class="stat-card"><div class="num">800K+</div><div class="label">Max Records</div></div>
-  <div class="stat-card"><div class="num">11</div><div class="label">Countries</div></div>
+  <div class="stat-card"><div class="num">11M+</div><div class="label">Max Records</div></div>
+  <div class="stat-card"><div class="num">13+</div><div class="label">Countries</div></div>
 </section>
 
 <!-- ── Controls ── -->
@@ -659,6 +660,197 @@
   <div id="no-results">No datasets match your search.</div>
 </div>
 
+<!-- ── Other Repos Section Header ── -->
+<div class="section-header">
+  <h2>12-Lead ECG Datasets (Other Repositories)</h2>
+  <span class="pill">15 datasets</span>
+</div>
+
+<div class="table-wrap">
+  <table id="other-repos-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Dataset</th>
+        <th>Format</th>
+        <th>Patients</th>
+        <th>Records</th>
+        <th>Access</th>
+        <th>Origin</th>
+        <th>Paper</th>
+      </tr>
+    </thead>
+    <tbody id="tbody2">
+
+      <tr data-access="open" data-leads="12" data-text="cpsc 2018 china physiological signal challenge icbeb nanjing arrhythmia matlab">
+        <td class="num-cell">1</td>
+        <td><span class="dataset-name">CPSC 2018 (China Physiological Signal Challenge 2018)</span><a class="dataset-link" href="http://2018.icbeb.org/Challenge.html" target="_blank">icbeb.org ↗</a></td>
+        <td>12-lead · 6–60 s · 500 Hz · MATLAB .mat</td>
+        <td class="count">~6,877</td>
+        <td class="count">6,877</td>
+        <td><span class="tag tag-open">Open</span></td>
+        <td><span class="origin-inst">11 hospitals (ICBEB, Nanjing)</span><br><span class="origin-country">China</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.1166/jmihi.2018.2442" target="_blank">Liu et al., J. Med. Imaging Health Inform., 2018</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="12" data-text="chapman shaoxing ecg figshare arrhythmia 10646 china usa">
+        <td class="num-cell">2</td>
+        <td><span class="dataset-name">Chapman-Shaoxing ECG Database (10,646 patients)</span><a class="dataset-link" href="https://doi.org/10.6084/m9.figshare.c.4560497.v2" target="_blank">figshare.com ↗</a></td>
+        <td>12-lead · 10 s · 500 Hz · CSV</td>
+        <td class="count">10,646</td>
+        <td class="count">10,646</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
+        <td><span class="origin-inst">Chapman University; Shaoxing People's Hospital</span><br><span class="origin-country">China / USA</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.1038/s41597-020-0386-x" target="_blank">Zheng et al., Scientific Data, 2020</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="12" data-text="ningbo first hospital ecg idiopathic ventricular arrhythmia iva figshare china chapman ablation">
+        <td class="num-cell">3</td>
+        <td><span class="dataset-name">Ningbo First Hospital ECG Database (Idiopathic Ventricular Arrhythmia)</span><a class="dataset-link" href="https://doi.org/10.6084/m9.figshare.c.4668086.v2" target="_blank">figshare.com ↗</a></td>
+        <td>12-lead · 10 s · 500 Hz · CSV</td>
+        <td class="count">334</td>
+        <td class="count">334</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
+        <td><span class="origin-inst">Chapman University; Ningbo First Hospital, Zhejiang University</span><br><span class="origin-country">China / USA</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.1038/s41597-020-0440-8" target="_blank">Zheng et al., Scientific Data, 2020</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="12" data-text="shandong provincial hospital sphdb ecg hdf5 figshare china aha multi-label">
+        <td class="num-cell">4</td>
+        <td><span class="dataset-name">Shandong Provincial Hospital ECG Database (SPHDB)</span><a class="dataset-link" href="https://doi.org/10.6084/m9.figshare.c.5779802.v1" target="_blank">figshare.com ↗</a></td>
+        <td>12-lead · 10–60 s · 500 Hz · HDF5</td>
+        <td class="count">24,666</td>
+        <td class="count">25,770</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
+        <td><span class="origin-inst">Shandong Provincial Hospital</span><br><span class="origin-country">China</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.1038/s41597-022-01403-5" target="_blank">Liu et al., Scientific Data, 2022</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="12" data-text="code 15 percent telehealth minas gerais brazil tnmg zenodo hdf5 deep learning ribeiro">
+        <td class="num-cell">5</td>
+        <td><span class="dataset-name">CODE-15% (Telehealth Network of Minas Gerais, 15% subset)</span><a class="dataset-link" href="https://doi.org/10.5281/zenodo.4916206" target="_blank">zenodo.org ↗</a></td>
+        <td>12-lead · ~10 s · 400 Hz · HDF5</td>
+        <td class="count">233,770</td>
+        <td class="count">345,779</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
+        <td><span class="origin-inst">Telehealth Network of Minas Gerais (TNMG)</span><br><span class="origin-country">Brazil</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.1038/s41467-020-15432-4" target="_blank">Ribeiro et al., Nature Communications, 2020</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="12" data-text="code test 827 zenodo hdf5 brazil minas gerais tnmg ribeiro hold-out evaluation">
+        <td class="num-cell">6</td>
+        <td><span class="dataset-name">CODE-test (827-record hold-out test set)</span><a class="dataset-link" href="https://doi.org/10.5281/zenodo.3765780" target="_blank">zenodo.org ↗</a></td>
+        <td>12-lead · 7–10 s · 400 Hz · HDF5</td>
+        <td class="count">827</td>
+        <td class="count">827</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
+        <td><span class="origin-inst">Universidade Federal de Minas Gerais / TNMG</span><br><span class="origin-country">Brazil</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.1038/s41467-020-15432-4" target="_blank">Ribeiro et al., Nature Communications, 2020</a></td>
+      </tr>
+
+      <tr data-access="restricted" data-leads="12" data-text="code full dataset scilifelab figshare brazil tnmg 2 million hdf5 dua">
+        <td class="num-cell">7</td>
+        <td><span class="dataset-name">CODE (Full Dataset, ~2.3M records)</span><a class="dataset-link" href="https://figshare.scilifelab.se/articles/dataset/CODE_dataset/15169716" target="_blank">scilifelab.se ↗</a></td>
+        <td>12-lead · 400 Hz · HDF5</td>
+        <td class="count">~1,676,384</td>
+        <td class="count">~2,322,513</td>
+        <td><span class="tag tag-rest">Restricted</span><br><small style="color:var(--muted)">DUA required</small></td>
+        <td><span class="origin-inst">Telehealth Network of Minas Gerais (TNMG)</span><br><span class="origin-country">Brazil</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.1038/s41467-020-15432-4" target="_blank">Ribeiro et al., Nature Communications, 2020</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="12" data-text="sami trop chagas cardiomyopathy brazil minas gerais zenodo hdf5 mortality age">
+        <td class="num-cell">8</td>
+        <td><span class="dataset-name">SaMi-Trop (Chagas Cardiomyopathy Cohort)</span><a class="dataset-link" href="https://doi.org/10.5281/zenodo.4905618" target="_blank">zenodo.org ↗</a></td>
+        <td>12-lead · 400 Hz · HDF5</td>
+        <td class="count">1,631</td>
+        <td class="count">1,631</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
+        <td><span class="origin-inst">UFMG; Uppsala University; EPFL</span><br><span class="origin-country">Brazil / Sweden / Switzerland</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.1101/2021.02.19.21251232" target="_blank">Lima et al., medRxiv, 2021</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="12" data-text="ikem prague czech republic institute clinical experimental medicine zenodo hdf5 cardiology diabetes">
+        <td class="num-cell">9</td>
+        <td><span class="dataset-name">IKEM Dataset (Institute for Clinical and Experimental Medicine, Prague)</span><a class="dataset-link" href="https://doi.org/10.5281/zenodo.8393007" target="_blank">zenodo.org ↗</a></td>
+        <td>12-lead (stored as 8 reduced leads) · 10 s · 500 Hz · HDF5</td>
+        <td class="count">30,290</td>
+        <td class="count">98,130</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
+        <td><span class="origin-inst">IKEM (Institute for Clinical and Experimental Medicine)</span><br><span class="origin-country">Czech Republic — Prague</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.1016/j.knosys.2023.111014" target="_blank">Seják et al., Knowledge-Based Systems, 2023</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="12" data-text="medalcare xl synthetic simulation electrophysiological zenodo austria germany uk graz kit ptb edinburgh">
+        <td class="num-cell">10</td>
+        <td><span class="dataset-name">MedalCare-XL (Synthetic 12-Lead ECGs from Simulations)</span><a class="dataset-link" href="https://doi.org/10.5281/zenodo.8068944" target="_blank">zenodo.org ↗</a></td>
+        <td>12-lead · 10 s · 500 Hz · CSV (raw/noise/filtered variants)</td>
+        <td class="count-na">0 (synthetic)</td>
+        <td class="count">16,900</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
+        <td><span class="origin-inst">Medical Univ. of Graz; KIT; PTB; Univ. of Edinburgh</span><br><span class="origin-country">Austria / Germany / UK</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.1038/s41597-023-02416-4" target="_blank">Gillette et al., Scientific Data, 2023</a></td>
+      </tr>
+
+      <tr data-access="credentialed" data-leads="12" data-text="harvard emory ecg heedb bdsp aws wfdb massachusetts general hospital mgh emory atlanta usa largest">
+        <td class="num-cell">11</td>
+        <td><span class="dataset-name">Harvard-Emory ECG Database (HEEDB)</span><a class="dataset-link" href="https://bdsp.io/content/heedb/5.0/" target="_blank">bdsp.io ↗</a></td>
+        <td>12-lead · 10 s · 250/500 Hz · WFDB</td>
+        <td class="count">2,167,795</td>
+        <td class="count">11,607,261</td>
+        <td><span class="tag tag-cred">Credentialed</span><br><small style="color:var(--muted)">DUA (BDSP)</small></td>
+        <td><span class="origin-inst">Massachusetts General Hospital; Emory University Hospital</span><br><span class="origin-country">USA — Boston &amp; Atlanta</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.1038/s41597-026-06861-9" target="_blank">Koscova et al., Scientific Data, 2026</a></td>
+      </tr>
+
+      <tr data-access="restricted" data-leads="12" data-text="nightingale bwh brigham women hospital emergency department ecg boston usa numpy cardiac risk">
+        <td class="num-cell">12</td>
+        <td><span class="dataset-name">Nightingale BWH Emergency Dept ECG Dataset</span><a class="dataset-link" href="https://docs.ngsci.org/datasets/ed-bwh-ecg/" target="_blank">ngsci.org ↗</a></td>
+        <td>12-lead · 100 Hz · NumPy arrays</td>
+        <td class="count">30,933</td>
+        <td class="count">103,952</td>
+        <td><span class="tag tag-rest">Restricted</span><br><small style="color:var(--muted)">Institutional credentials</small></td>
+        <td><span class="origin-inst">Brigham and Women's Hospital</span><br><span class="origin-country">USA — Boston, MA</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.1093/qje/qjab046" target="_blank">Mullainathan &amp; Obermeyer, QJE, 2021</a></td>
+      </tr>
+
+      <tr data-access="restricted" data-leads="12" data-text="nightingale ntuh national taiwan university hospital cardiac arrest emergency xml taiwan">
+        <td class="num-cell">13</td>
+        <td><span class="dataset-name">Nightingale NTUH Cardiac Arrest ECG Dataset</span><a class="dataset-link" href="https://docs.ngsci.org/datasets/arrest-ntuh-ecg/" target="_blank">ngsci.org ↗</a></td>
+        <td>12-lead · ~500 Hz · XML/array</td>
+        <td class="count">10,950</td>
+        <td class="count">18,072</td>
+        <td><span class="tag tag-rest">Restricted</span><br><small style="color:var(--muted)">Institutional credentials</small></td>
+        <td><span class="origin-inst">National Taiwan University Hospital, Emergency Dept</span><br><span class="origin-country">Taiwan</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.1038/s41591-022-01804-4" target="_blank">Obermeyer et al., Nature Medicine, 2022</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="12" data-text="gu ecg gazi university turkey ptca ischaemia mendeley high frequency bilkent coronary artery">
+        <td class="num-cell">14</td>
+        <td><span class="dataset-name">GU-ECG (Gazi University, PTCA-induced Ischaemia)</span><a class="dataset-link" href="https://doi.org/10.17632/zhr5zsngtg.1" target="_blank">mendeley.com ↗</a></td>
+        <td>12-lead continuous · 8,800 Hz · 24-bit · .ekg format</td>
+        <td class="count">74</td>
+        <td class="count">222</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
+        <td><span class="origin-inst">Gazi University Faculty of Medicine; Bilkent University</span><br><span class="origin-country">Turkey</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.17632/zhr5zsngtg.1" target="_blank">Dataset DOI</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="12" data-text="zzu pecg zhengzhou pediatric children ecg figshare wfdb china kawasaki myocarditis congenital">
+        <td class="num-cell">15</td>
+        <td><span class="dataset-name">ZZU pECG (Zhengzhou University Pediatric ECG Database)</span><a class="dataset-link" href="https://doi.org/10.6084/m9.figshare.27078763" target="_blank">figshare.com ↗</a></td>
+        <td>12-lead + 9-lead · 5–120 s · 500 Hz · WFDB</td>
+        <td class="count">11,643 children</td>
+        <td class="count">14,190</td>
+        <td><span class="tag tag-open">Open</span></td>
+        <td><span class="origin-inst">First Affiliated Hospital of Zhengzhou University</span><br><span class="origin-country">China</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.1038/s41597-025-05225-z" target="_blank">Scientific Data, 2025</a></td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
 <!-- ── 1-Lead Section Header ── -->
 <div class="section-header">
   <h2>1-Lead ECG Datasets</h2>
@@ -802,7 +994,7 @@
 <script>
   const searchInput = document.getElementById('search');
   const filterBtns = document.querySelectorAll('.filter-btn');
-  const rows = document.querySelectorAll('#tbody tr, #tbody1 tr');
+  const rows = document.querySelectorAll('#tbody tr, #tbody1 tr, #tbody2 tr');
   const noResults = document.getElementById('no-results');
 
   let activeAccess = 'all';
