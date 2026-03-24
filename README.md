@@ -65,6 +65,21 @@ A curated collection of publicly available ECG datasets from [PhysioNet](https:/
 | 9 | Preterm Infant Cardio-Respiratory Signals Database (PICSDB) | [physionet.org](https://physionet.org/content/picsdb/1.0.0/) | 1-lead (single channel from bedside monitor), 20–70 h, 500 Hz | 10 infants | 10 | Open (ODC Attribution) | USA — UMass Memorial Healthcare NICU, Worcester | [Shamout et al., IEEE TBME 2017](https://doi.org/10.1109/TBME.2016.2632746) |
 | 10 | ECG-Capable Smartwatches Dataset | [physionet.org](https://physionet.org/content/ecg-capable-smartwatches/1.0.0/) | 1-lead (Lead I), 10 s (4 smartwatch models + reference device, synthetic signals) | 0 (synthetic) | 915 | Restricted (DUA required) | Spain — Instituto Ramón y Cajal de Investigación Sanitaria | Recas et al. (pending) |
 
+## 2-Lead ECG Datasets
+
+| # | Dataset Name | Link | Format | Patients | Records | Access | Origin | Paper |
+|---|-------------|------|--------|----------|---------|--------|--------|-------|
+| 1 | MIT-BIH Arrhythmia Database | [physionet.org](https://physionet.org/content/mitdb/1.0.0/) | 2-lead (MLII + V1), 30 min, 360 Hz, WFDB | 47 | 48 | Open (ODC Attribution) | USA — Beth Israel Hospital / MIT | [Moody & Mark, IEEE EMBS 2001](https://doi.org/10.13026/C2F305) |
+| 2 | MIT-BIH Atrial Fibrillation Database | [physionet.org](https://physionet.org/content/afdb/1.0.0/) | 2-lead, 10 h, 250 Hz, WFDB | 25 | 25 | Open (ODC Attribution) | USA — Beth Israel Hospital | [Moody & Mark, CinC 1983](https://doi.org/10.13026/C2MW2D) |
+| 3 | Long-Term AF Database (LTAFDB) | [physionet.org](https://physionet.org/content/ltafdb/1.0.0/) | 2-lead, 24–25 h, 128 Hz, WFDB | 84 | 84 | Open (ODC Attribution) | USA/Poland — Northwestern University; MEDICALgorithmics | [Petrutiu et al., Europace 2007](https://doi.org/10.13026/C2QG6Q) |
+| 4 | MIT-BIH Normal Sinus Rhythm Database | [physionet.org](https://physionet.org/content/nsrdb/1.0.0/) | 2-lead, ~24 h, 128 Hz, WFDB | 18 | 18 | Open (ODC Attribution) | USA — Beth Israel Hospital | [Dataset DOI](https://doi.org/10.13026/C2NK5R) |
+| 5 | MIT-BIH Supraventricular Arrhythmia Database | [physionet.org](https://physionet.org/content/svdb/1.0.0/) | 2-lead (MLII + V1), 30 min, 360 Hz, WFDB | — | 78 | Open (ODC Attribution) | USA — MIT / Harvard-MIT HST | [Greenwald, PhD thesis, Harvard-MIT 1990](https://doi.org/10.13026/C2V30W) |
+| 6 | European ST-T Database (EDB) | [physionet.org](https://physionet.org/content/edb/1.0.0/) | 2-lead ambulatory, 2 h, 250 Hz, WFDB | 79 | 90 | Open (ODC Attribution) | Italy — CNR Institute for Clinical Physiology, Pisa; European Society of Cardiology | [Taddei et al., Eur Heart J 1992](https://doi.org/10.13026/C2D59Z) |
+| 7 | BIDMC Congestive Heart Failure Database | [physionet.org](https://physionet.org/content/chfdb/1.0.0/) | 2-lead, ~20 h, 250 Hz, WFDB | 15 | 15 | Open (ODC Attribution) | USA — Beth Israel Deaconess Medical Center | [Baim et al., J Am Coll Cardiol 1986](https://doi.org/10.13026/C29G60) |
+| 8 | Sudden Cardiac Death Holter Database | [physionet.org](https://physionet.org/content/sddb/1.0.0/) | 2-lead, 4–25 h, 250 Hz, WFDB | 23 | 23 | Open (ODC Attribution) | USA — MIT | [Greenwald, MS thesis, MIT 1986](https://doi.org/10.13026/C2W306) |
+| 9 | QT Database (QTDB) | [physionet.org](https://physionet.org/content/qtdb/1.0.0/) | 2-lead, 15 min, various Hz, WFDB | — | 105 | Open (ODC Attribution) | USA — MIT / PhysioNet | [Laguna et al., CinC 1997](https://doi.org/10.13026/C24K53) |
+| 10 | SHDB-AF (Saitama Holter Database — Atrial Fibrillation) | [physionet.org](https://physionet.org/content/shdb-af/1.0.1/) | 2-lead (CC5 + NASA), ~24 h, 125 Hz, WFDB | 122 | 128 | Open (ODC Attribution) | Japan — Saitama Medical University International Medical Center | [Tsutsui et al., Scientific Data 2025](https://doi.org/10.13026/n6yq-fq90) |
+
 > **Access types:**
 > - **Open** — freely downloadable, no registration required (or only basic PhysioNet account)
 > - **Credentialed** — requires PhysioNet credentialing and signing a Data Use Agreement (DUA)

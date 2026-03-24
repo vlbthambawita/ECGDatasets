@@ -337,7 +337,7 @@
 <header>
   <div class="badge">ECG Dataset Index</div>
   <h1>ECG Datasets</h1>
-  <p>A curated index of 48 publicly available electrocardiogram datasets spanning 12-lead clinical, single-lead wearable &amp; ambulatory recordings, sourced from PhysioNet and other open repositories across 13+ countries.</p>
+  <p>A curated index of 58 publicly available electrocardiogram datasets spanning 12-lead clinical, 2-lead ambulatory, and single-lead wearable recordings, sourced from PhysioNet and other open repositories across 13+ countries.</p>
   <div class="links">
     <a href="https://github.com/vlbthambawita/ECGDatasets" target="_blank">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
@@ -356,9 +356,10 @@
 
 <!-- ── Stats ── -->
 <section class="stats">
-  <div class="stat-card"><div class="num">48</div><div class="label">Total Datasets</div></div>
+  <div class="stat-card"><div class="num">58</div><div class="label">Total Datasets</div></div>
   <div class="stat-card"><div class="num">23</div><div class="label">12-Lead (PhysioNet)</div></div>
   <div class="stat-card"><div class="num">15</div><div class="label">12-Lead (Other)</div></div>
+  <div class="stat-card"><div class="num">10</div><div class="label">2-Lead</div></div>
   <div class="stat-card"><div class="num">10</div><div class="label">1-Lead</div></div>
   <div class="stat-card"><div class="num">11M+</div><div class="label">Max Records</div></div>
   <div class="stat-card"><div class="num">13+</div><div class="label">Countries</div></div>
@@ -379,6 +380,7 @@
   <div class="filter-group">
     <button class="filter-btn active" data-filter="all" data-group="leads">All Leads</button>
     <button class="filter-btn" data-filter="12" data-group="leads">12-Lead</button>
+    <button class="filter-btn" data-filter="2" data-group="leads">2-Lead</button>
     <button class="filter-btn" data-filter="1" data-group="leads">1-Lead</button>
   </div>
 </div>
@@ -855,6 +857,142 @@
   </table>
 </div>
 
+<!-- ── 2-Lead Section Header ── -->
+<div class="section-header">
+  <h2>2-Lead ECG Datasets</h2>
+  <span class="pill">10 datasets</span>
+</div>
+
+<div class="table-wrap">
+  <table id="two-lead-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Dataset</th>
+        <th>Format</th>
+        <th>Patients</th>
+        <th>Records</th>
+        <th>Access</th>
+        <th>Origin</th>
+        <th>Paper</th>
+      </tr>
+    </thead>
+    <tbody id="tbody3">
+
+      <tr data-access="open" data-leads="2" data-text="mit-bih arrhythmia usa beth israel hospital mit mlii v1 holter ambulatory benchmark annotations">
+        <td class="num-cell">1</td>
+        <td><span class="dataset-name">MIT-BIH Arrhythmia Database</span><a class="dataset-link" href="https://physionet.org/content/mitdb/1.0.0/" target="_blank">physionet.org ↗</a></td>
+        <td>2-lead (MLII + V1) · 30 min · 360 Hz · WFDB</td>
+        <td class="count">47</td>
+        <td class="count">48</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
+        <td><span class="origin-inst">Beth Israel Hospital / MIT</span><br><span class="origin-country">USA</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.13026/C2F305" target="_blank">Moody &amp; Mark, IEEE EMBS 2001</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="2" data-text="mit-bih atrial fibrillation afdb af flutter usa beth israel hospital holter rhythm">
+        <td class="num-cell">2</td>
+        <td><span class="dataset-name">MIT-BIH Atrial Fibrillation Database</span><a class="dataset-link" href="https://physionet.org/content/afdb/1.0.0/" target="_blank">physionet.org ↗</a></td>
+        <td>2-lead · 10 h · 250 Hz · WFDB</td>
+        <td class="count">25</td>
+        <td class="count">25</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
+        <td><span class="origin-inst">Beth Israel Hospital</span><br><span class="origin-country">USA</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.13026/C2MW2D" target="_blank">Moody &amp; Mark, CinC 1983</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="2" data-text="long-term af ltafdb atrial fibrillation paroxysmal sustained northwestern usa poland medicalgorithmics holter 24h">
+        <td class="num-cell">3</td>
+        <td><span class="dataset-name">Long-Term AF Database (LTAFDB)</span><a class="dataset-link" href="https://physionet.org/content/ltafdb/1.0.0/" target="_blank">physionet.org ↗</a></td>
+        <td>2-lead · 24–25 h · 128 Hz · WFDB</td>
+        <td class="count">84</td>
+        <td class="count">84</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
+        <td><span class="origin-inst">Northwestern University; MEDICALgorithmics</span><br><span class="origin-country">USA / Poland</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.13026/C2QG6Q" target="_blank">Petrutiu et al., Europace 2007</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="2" data-text="mit-bih normal sinus rhythm nsrdb healthy control usa beth israel hospital holter 24h">
+        <td class="num-cell">4</td>
+        <td><span class="dataset-name">MIT-BIH Normal Sinus Rhythm Database</span><a class="dataset-link" href="https://physionet.org/content/nsrdb/1.0.0/" target="_blank">physionet.org ↗</a></td>
+        <td>2-lead · ~24 h · 128 Hz · WFDB</td>
+        <td class="count">18</td>
+        <td class="count">18</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
+        <td><span class="origin-inst">Beth Israel Hospital</span><br><span class="origin-country">USA</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.13026/C2NK5R" target="_blank">Dataset DOI</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="2" data-text="mit-bih supraventricular arrhythmia svdb mlii v1 usa mit harvard-mit hst svt pac pjc">
+        <td class="num-cell">5</td>
+        <td><span class="dataset-name">MIT-BIH Supraventricular Arrhythmia Database</span><a class="dataset-link" href="https://physionet.org/content/svdb/1.0.0/" target="_blank">physionet.org ↗</a></td>
+        <td>2-lead (MLII + V1) · 30 min · 360 Hz · WFDB</td>
+        <td class="count-na">—</td>
+        <td class="count">78</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
+        <td><span class="origin-inst">MIT / Harvard-MIT HST</span><br><span class="origin-country">USA</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.13026/C2V30W" target="_blank">Greenwald, PhD thesis, Harvard-MIT 1990</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="2" data-text="european st-t edb ischemia st segment t-wave italy pisa cnr esc ambulatory holter">
+        <td class="num-cell">6</td>
+        <td><span class="dataset-name">European ST-T Database (EDB)</span><a class="dataset-link" href="https://physionet.org/content/edb/1.0.0/" target="_blank">physionet.org ↗</a></td>
+        <td>2-lead ambulatory · 2 h · 250 Hz · WFDB</td>
+        <td class="count">79</td>
+        <td class="count">90</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
+        <td><span class="origin-inst">CNR Institute for Clinical Physiology, Pisa; European Society of Cardiology</span><br><span class="origin-country">Italy</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.13026/C2D59Z" target="_blank">Taddei et al., Eur Heart J 1992</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="2" data-text="bidmc congestive heart failure chfdb nyha usa boston beth israel deaconess medical center holter 20h">
+        <td class="num-cell">7</td>
+        <td><span class="dataset-name">BIDMC Congestive Heart Failure Database</span><a class="dataset-link" href="https://physionet.org/content/chfdb/1.0.0/" target="_blank">physionet.org ↗</a></td>
+        <td>2-lead · ~20 h · 250 Hz · WFDB</td>
+        <td class="count">15</td>
+        <td class="count">15</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
+        <td><span class="origin-inst">Beth Israel Deaconess Medical Center</span><br><span class="origin-country">USA — Boston, MA</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.13026/C29G60" target="_blank">Baim et al., J Am Coll Cardiol 1986</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="2" data-text="sudden cardiac death holter sddb ventricular tachycardia vt vf usa mit scd arrhythmia">
+        <td class="num-cell">8</td>
+        <td><span class="dataset-name">Sudden Cardiac Death Holter Database</span><a class="dataset-link" href="https://physionet.org/content/sddb/1.0.0/" target="_blank">physionet.org ↗</a></td>
+        <td>2-lead · 4–25 h · 250 Hz · WFDB</td>
+        <td class="count">23</td>
+        <td class="count">23</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
+        <td><span class="origin-inst">MIT</span><br><span class="origin-country">USA</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.13026/C2W306" target="_blank">Greenwald, MS thesis, MIT 1986</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="2" data-text="qt database qtdb waveform boundary p qrs t u wave annotation usa mit physionet benchmark">
+        <td class="num-cell">9</td>
+        <td><span class="dataset-name">QT Database (QTDB)</span><a class="dataset-link" href="https://physionet.org/content/qtdb/1.0.0/" target="_blank">physionet.org ↗</a></td>
+        <td>2-lead · 15 min · various Hz · WFDB</td>
+        <td class="count-na">—</td>
+        <td class="count">105</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
+        <td><span class="origin-inst">MIT / PhysioNet</span><br><span class="origin-country">USA</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.13026/C24K53" target="_blank">Laguna et al., CinC 1997</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="2" data-text="shdb-af saitama holter atrial fibrillation japan cc5 nasa lead paroxysmal deep learning generalization">
+        <td class="num-cell">10</td>
+        <td><span class="dataset-name">SHDB-AF (Saitama Holter Database — Atrial Fibrillation)</span><a class="dataset-link" href="https://physionet.org/content/shdb-af/1.0.1/" target="_blank">physionet.org ↗</a></td>
+        <td>2-lead (CC5 + NASA) · ~24 h · 125 Hz · WFDB</td>
+        <td class="count">122</td>
+        <td class="count">128</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
+        <td><span class="origin-inst">Saitama Medical University International Medical Center</span><br><span class="origin-country">Japan</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.13026/n6yq-fq90" target="_blank">Tsutsui et al., Scientific Data 2025</a></td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
 <!-- ── 1-Lead Section Header ── -->
 <div class="section-header">
   <h2>1-Lead ECG Datasets</h2>
@@ -998,7 +1136,7 @@
 <script>
   const searchInput = document.getElementById('search');
   const filterBtns = document.querySelectorAll('.filter-btn');
-  const rows = document.querySelectorAll('#tbody tr, #tbody1 tr, #tbody2 tr');
+  const rows = document.querySelectorAll('#tbody tr, #tbody1 tr, #tbody2 tr, #tbody3 tr');
   const noResults = document.getElementById('no-results');
 
   let activeAccess = 'all';
