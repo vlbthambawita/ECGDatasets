@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ECG Datasets — PhysioNet 12-Lead Collection</title>
+  <title>ECG Datasets — PhysioNet Collection</title>
   <style>
     :root {
       --bg: #0f1117;
@@ -285,6 +285,37 @@
     footer a { color: var(--accent); text-decoration: none; }
     footer a:hover { text-decoration: underline; }
 
+    /* ── Section headers ── */
+    .section-header {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 32px 24px 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-header h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .section-header .pill {
+      background: rgba(79,142,247,0.15);
+      border: 1px solid rgba(79,142,247,0.3);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 20px;
+    }
+    .section-divider {
+      max-width: 1300px;
+      margin: 0 auto 0;
+      padding: 0 24px;
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
     /* ── No results ── */
     #no-results {
       display: none;
@@ -305,8 +336,8 @@
 <!-- ── Hero ── -->
 <header>
   <div class="badge">PhysioNet Collection</div>
-  <h1>12-Lead ECG Datasets</h1>
-  <p>A curated index of publicly available 12-lead electrocardiogram datasets sourced from PhysioNet, covering clinical, pharmacological, and challenge datasets.</p>
+  <h1>ECG Datasets</h1>
+  <p>A curated index of publicly available electrocardiogram datasets sourced from PhysioNet, covering 12-lead clinical datasets and single-lead wearable, ambulatory, and challenge datasets.</p>
   <div class="links">
     <a href="https://github.com/vlbthambawita/ECGDatasets" target="_blank">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
@@ -321,11 +352,11 @@
 
 <!-- ── Stats ── -->
 <section class="stats">
-  <div class="stat-card"><div class="num">23</div><div class="label">Datasets</div></div>
-  <div class="stat-card"><div class="num">17</div><div class="label">Open Access</div></div>
+  <div class="stat-card"><div class="num">33</div><div class="label">Total Datasets</div></div>
+  <div class="stat-card"><div class="num">23</div><div class="label">12-Lead</div></div>
+  <div class="stat-card"><div class="num">10</div><div class="label">1-Lead</div></div>
   <div class="stat-card"><div class="num">800K+</div><div class="label">Max Records</div></div>
-  <div class="stat-card"><div class="num">9</div><div class="label">Countries</div></div>
-  <div class="stat-card"><div class="num">20+</div><div class="label">Papers</div></div>
+  <div class="stat-card"><div class="num">11</div><div class="label">Countries</div></div>
 </section>
 
 <!-- ── Controls ── -->
@@ -335,11 +366,22 @@
     <input type="text" id="search" placeholder="Search datasets, institutions, countries…" />
   </div>
   <div class="filter-group">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn f-open" data-filter="open">Open</button>
-    <button class="filter-btn f-cred" data-filter="credentialed">Credentialed</button>
-    <button class="filter-btn f-rest" data-filter="restricted">Restricted</button>
+    <button class="filter-btn active" data-filter="all" data-group="access">All</button>
+    <button class="filter-btn f-open" data-filter="open" data-group="access">Open</button>
+    <button class="filter-btn f-cred" data-filter="credentialed" data-group="access">Credentialed</button>
+    <button class="filter-btn f-rest" data-filter="restricted" data-group="access">Restricted</button>
   </div>
+  <div class="filter-group">
+    <button class="filter-btn active" data-filter="all" data-group="leads">All Leads</button>
+    <button class="filter-btn" data-filter="12" data-group="leads">12-Lead</button>
+    <button class="filter-btn" data-filter="1" data-group="leads">1-Lead</button>
+  </div>
+</div>
+
+<!-- ── 12-Lead Section Header ── -->
+<div class="section-header">
+  <h2>12-Lead ECG Datasets</h2>
+  <span class="pill">23 datasets</span>
 </div>
 
 <!-- ── Table ── -->
@@ -359,7 +401,7 @@
     </thead>
     <tbody id="tbody">
 
-      <tr data-access="open" data-text="ptb-xl germany ptb physikalisch-technische bundesanstalt">
+      <tr data-access="\1" data-leads="12" data-text="ptb-xl germany ptb physikalisch-technische bundesanstalt">
         <td class="num-cell">1</td>
         <td><span class="dataset-name">PTB-XL</span><a class="dataset-link" href="https://physionet.org/content/ptb-xl/1.0.3/" target="_blank">physionet.org ↗</a></td>
         <td>12-lead · 10 s · 500 Hz (also 100 Hz)</td>
@@ -370,7 +412,7 @@
         <td><a class="paper-link" href="https://doi.org/10.1038/s41597-020-0495-6" target="_blank">PTB-XL: A Large Publicly Available ECG Dataset</a></td>
       </tr>
 
-      <tr data-access="open" data-text="ptb-xl+ karlsruhe germany features snomed">
+      <tr data-access="\1" data-leads="12" data-text="ptb-xl+ karlsruhe germany features snomed">
         <td class="num-cell">2</td>
         <td><span class="dataset-name">PTB-XL+</span><a class="dataset-link" href="https://physionet.org/content/ptb-xl-plus/1.0.1/" target="_blank">physionet.org ↗</a></td>
         <td>12-lead · 10 s · 500 Hz · features &amp; median beats</td>
@@ -381,7 +423,7 @@
         <td><a class="paper-link" href="https://doi.org/10.1038/s41597-023-02153-8" target="_blank">PTB-XL+: A Comprehensive ECG Feature Dataset</a></td>
       </tr>
 
-      <tr data-access="open" data-text="ptb diagnostic germany berlin benjamin franklin">
+      <tr data-access="\1" data-leads="12" data-text="ptb diagnostic germany berlin benjamin franklin">
         <td class="num-cell">3</td>
         <td><span class="dataset-name">PTB Diagnostic ECG Database</span><a class="dataset-link" href="https://physionet.org/content/ptbdb/1.0.0/" target="_blank">physionet.org ↗</a></td>
         <td>15-lead (12 + 3 Frank) · variable · 1,000 Hz</td>
@@ -392,7 +434,7 @@
         <td><a class="paper-link" href="https://doi.org/10.13026/C28C71" target="_blank">Bousseljot et al., Biomedizinische Technik, 1995</a></td>
       </tr>
 
-      <tr data-access="credentialed" data-text="mimic iv ecg usa boston beth israel mit">
+      <tr data-access="\1" data-leads="12" data-text="mimic iv ecg usa boston beth israel mit">
         <td class="num-cell">4</td>
         <td><span class="dataset-name">MIMIC-IV-ECG</span><a class="dataset-link" href="https://physionet.org/content/mimic-iv-ecg/1.0/" target="_blank">physionet.org ↗</a></td>
         <td>12-lead · 10 s · 500 Hz</td>
@@ -403,7 +445,7 @@
         <td><a class="paper-link" href="https://doi.org/10.13026/4nqg-sb35" target="_blank">Gow et al.</a></td>
       </tr>
 
-      <tr data-access="open" data-text="mimic iv ecg demo usa boston beth israel">
+      <tr data-access="\1" data-leads="12" data-text="mimic iv ecg demo usa boston beth israel">
         <td class="num-cell">5</td>
         <td><span class="dataset-name">MIMIC-IV-ECG Demo</span><a class="dataset-link" href="https://physionet.org/content/mimic-iv-ecg-demo/0.1/" target="_blank">physionet.org ↗</a></td>
         <td>12-lead · 10 s · 500 Hz</td>
@@ -414,7 +456,7 @@
         <td><a class="paper-link" href="https://doi.org/10.13026/4eqn-kt76" target="_blank">Dataset DOI</a></td>
       </tr>
 
-      <tr data-access="credentialed" data-text="mimic iv ecg ext icd usa germany mit icd-10">
+      <tr data-access="\1" data-leads="12" data-text="mimic iv ecg ext icd usa germany mit icd-10">
         <td class="num-cell">6</td>
         <td><span class="dataset-name">MIMIC-IV-ECG-Ext-ICD</span><a class="dataset-link" href="https://physionet.org/content/mimic-iv-ecg-ext-icd-labels/1.0.1/" target="_blank">physionet.org ↗</a></td>
         <td>12-lead · 10 s · 500 Hz · 1,076 ICD-10-CM codes</td>
@@ -425,7 +467,7 @@
         <td><a class="paper-link" href="https://doi.org/10.1093/ehjdh/ztae039" target="_blank">Eur Heart J Digital Health, 2024</a></td>
       </tr>
 
-      <tr data-access="open" data-text="chapman shaoxing arrhythmia china usa ningbo">
+      <tr data-access="\1" data-leads="12" data-text="chapman shaoxing arrhythmia china usa ningbo">
         <td class="num-cell">7</td>
         <td><span class="dataset-name">Chapman-Shaoxing (Arrhythmia)</span><a class="dataset-link" href="https://physionet.org/content/ecg-arrhythmia/1.0.0/" target="_blank">physionet.org ↗</a></td>
         <td>12-lead · 10 s · 500 Hz</td>
@@ -436,7 +478,7 @@
         <td><a class="paper-link" href="https://doi.org/10.1038/s41598-020-59821-7" target="_blank">Zheng et al., Scientific Reports, 2020</a></td>
       </tr>
 
-      <tr data-access="open" data-text="incart st petersburg russia arrhythmia">
+      <tr data-access="\1" data-leads="12" data-text="incart st petersburg russia arrhythmia">
         <td class="num-cell">8</td>
         <td><span class="dataset-name">St Petersburg INCART 12-Lead Arrhythmia Database</span><a class="dataset-link" href="https://physionet.org/content/incartdb/1.0.0/" target="_blank">physionet.org ↗</a></td>
         <td>12-lead · 30 min · 257 Hz</td>
@@ -447,7 +489,7 @@
         <td><a class="paper-link" href="https://doi.org/10.13026/C2V88N" target="_blank">Dataset DOI</a></td>
       </tr>
 
-      <tr data-access="open" data-text="ludb lobachevsky russia nizhny novgorod annotated">
+      <tr data-access="\1" data-leads="12" data-text="ludb lobachevsky russia nizhny novgorod annotated">
         <td class="num-cell">9</td>
         <td><span class="dataset-name">Lobachevsky University ECG Database (LUDB)</span><a class="dataset-link" href="https://physionet.org/content/ludb/1.0.1/" target="_blank">physionet.org ↗</a></td>
         <td>12-lead · 10 s · 500 Hz · manually annotated waves</td>
@@ -458,7 +500,7 @@
         <td><a class="paper-link" href="https://doi.org/10.1109/ACCESS.2020.3029211" target="_blank">IEEE Access, 2020</a></td>
       </tr>
 
-      <tr data-access="open" data-text="brugada huca spain asturias hospital">
+      <tr data-access="\1" data-leads="12" data-text="brugada huca spain asturias hospital">
         <td class="num-cell">10</td>
         <td><span class="dataset-name">Brugada-HUCA</span><a class="dataset-link" href="https://physionet.org/content/brugada-huca/1.0.0/" target="_blank">physionet.org ↗</a></td>
         <td>12-lead · 12 s · 100 Hz</td>
@@ -469,7 +511,7 @@
         <td><a class="paper-link" href="https://doi.org/10.13026/0m2w-dy83" target="_blank">Dataset DOI</a></td>
       </tr>
 
-      <tr data-access="restricted" data-text="kurias ecg south korea seoul anam snomed omop">
+      <tr data-access="\1" data-leads="12" data-text="kurias ecg south korea seoul anam snomed omop">
         <td class="num-cell">11</td>
         <td><span class="dataset-name">KURIAS-ECG</span><a class="dataset-link" href="https://physionet.org/content/kurias-ecg/1.0/" target="_blank">physionet.org ↗</a></td>
         <td>12-lead · 10 s · 500 Hz · SNOMED CT + OMOP-CDM</td>
@@ -480,7 +522,7 @@
         <td><a class="paper-link" href="https://doi.org/10.13026/kga0-0270" target="_blank">Dataset DOI</a></td>
       </tr>
 
-      <tr data-access="open" data-text="leipzig heart center germany intracardiac electrogram">
+      <tr data-access="\1" data-leads="12" data-text="leipzig heart center germany intracardiac electrogram">
         <td class="num-cell">12</td>
         <td><span class="dataset-name">Leipzig Heart Center ECG Database</span><a class="dataset-link" href="https://physionet.org/content/leipzig-heart-center-ecg/1.0.0/" target="_blank">physionet.org ↗</a></td>
         <td>12-lead + intracardiac EGM · variable · 977 Hz</td>
@@ -491,7 +533,7 @@
         <td><a class="paper-link" href="https://doi.org/10.13026/7a4j-vn37" target="_blank">Dataset DOI</a></td>
       </tr>
 
-      <tr data-access="open" data-text="norwegian athlete ecg norway oslo endurance">
+      <tr data-access="\1" data-leads="12" data-text="norwegian athlete ecg norway oslo endurance">
         <td class="num-cell">13</td>
         <td><span class="dataset-name">Norwegian Endurance Athlete ECG Database</span><a class="dataset-link" href="https://physionet.org/content/norwegian-athlete-ecg/1.0.0/" target="_blank">physionet.org ↗</a></td>
         <td>12-lead · 10 s · 500 Hz</td>
@@ -502,7 +544,7 @@
         <td><a class="paper-link" href="https://doi.org/10.13026/qpjf-gk87" target="_blank">Dataset DOI</a></td>
       </tr>
 
-      <tr data-access="open" data-text="mhd mri ecg germany magdeburg otto guericke">
+      <tr data-access="\1" data-leads="12" data-text="mhd mri ecg germany magdeburg otto guericke">
         <td class="num-cell">14</td>
         <td><span class="dataset-name">MHD Effect on 12-Lead ECGs in MRI Scanners</span><a class="dataset-link" href="https://physionet.org/content/mhd-effect-ecg-mri/1.0.0/" target="_blank">physionet.org ↗</a></td>
         <td>12-lead + 3-lead · variable · 1,024 Hz</td>
@@ -513,7 +555,7 @@
         <td><a class="paper-link" href="https://doi.org/10.13026/05td-jn37" target="_blank">Krug et al., CinC 2017</a></td>
       </tr>
 
-      <tr data-access="open" data-text="wilson central terminal australia western sydney campbelltown">
+      <tr data-access="\1" data-leads="12" data-text="wilson central terminal australia western sydney campbelltown">
         <td class="num-cell">15</td>
         <td><span class="dataset-name">Wilson Central Terminal ECG Database</span><a class="dataset-link" href="https://physionet.org/content/wctecgdb/1.0.1/" target="_blank">physionet.org ↗</a></td>
         <td>37 signals (12 std + WCT + limb) · 10 s</td>
@@ -524,7 +566,7 @@
         <td><a class="paper-link" href="https://doi.org/10.3390/machines4040018" target="_blank">Machines, 2016</a></td>
       </tr>
 
-      <tr data-access="open" data-text="cipa ecg validation usa pharmacology clinical trial">
+      <tr data-access="\1" data-leads="12" data-text="cipa ecg validation usa pharmacology clinical trial">
         <td class="num-cell">16</td>
         <td><span class="dataset-name">CiPA ECG Validation Study</span><a class="dataset-link" href="https://physionet.org/content/ecgcipa/1.0.0/" target="_blank">physionet.org ↗</a></td>
         <td>12-lead · 10 s</td>
@@ -535,7 +577,7 @@
         <td><a class="paper-link" href="https://doi.org/10.1002/cpt.1303" target="_blank">Clin Pharmacol Ther, 2018</a></td>
       </tr>
 
-      <tr data-access="open" data-text="ecgdmmld dofetilide moxifloxacin usa pharmacology drug">
+      <tr data-access="\1" data-leads="12" data-text="ecgdmmld dofetilide moxifloxacin usa pharmacology drug">
         <td class="num-cell">17</td>
         <td><span class="dataset-name">ECG Effects of Dofetilide, Moxifloxacin and Combinations (ECGDMMLD)</span><a class="dataset-link" href="https://physionet.org/content/ecgdmmld/1.0.0/" target="_blank">physionet.org ↗</a></td>
         <td>12-lead · 10 s · 500 Hz (upsampled to 1 kHz)</td>
@@ -546,7 +588,7 @@
         <td><a class="paper-link" href="https://doi.org/10.1002/cpt.205" target="_blank">Clin Pharmacol Ther, 2016</a></td>
       </tr>
 
-      <tr data-access="open" data-text="ecgrdvq ranolazine dofetilide verapamil quinidine usa pharmacology drug">
+      <tr data-access="\1" data-leads="12" data-text="ecgrdvq ranolazine dofetilide verapamil quinidine usa pharmacology drug">
         <td class="num-cell">18</td>
         <td><span class="dataset-name">ECG Effects of Ranolazine, Dofetilide, Verapamil, Quinidine (ECGRDVQ)</span><a class="dataset-link" href="https://physionet.org/content/ecgrdvq/1.0.0/" target="_blank">physionet.org ↗</a></td>
         <td>12-lead · 10 s · 500 Hz</td>
@@ -557,7 +599,7 @@
         <td><a class="paper-link" href="https://doi.org/10.1038/clpt.2014.155" target="_blank">Clin Pharmacol Ther, 2014</a></td>
       </tr>
 
-      <tr data-access="open" data-text="eye tracking ecg qatar hamad bin khalifa interpretation">
+      <tr data-access="\1" data-leads="12" data-text="eye tracking ecg qatar hamad bin khalifa interpretation">
         <td class="num-cell">19</td>
         <td><span class="dataset-name">Eye Tracking Dataset for 12-Lead ECG Interpretation</span><a class="dataset-link" href="https://physionet.org/content/eye-tracking-ecg/1.0.0/" target="_blank">physionet.org ↗</a></td>
         <td>12-lead ECG images · eye tracking at 60 Hz</td>
@@ -568,7 +610,7 @@
         <td><a class="paper-link" href="http://dx.doi.org/10.2196/34058" target="_blank">JMIR, 2022</a></td>
       </tr>
 
-      <tr data-access="restricted" data-text="echonext columbia usa new york echocardiography">
+      <tr data-access="\1" data-leads="12" data-text="echonext columbia usa new york echocardiography">
         <td class="num-cell">20</td>
         <td><span class="dataset-name">EchoNext</span><a class="dataset-link" href="https://physionet.org/content/echonext/1.1.0/" target="_blank">physionet.org ↗</a></td>
         <td>12-lead · 10 s · 250 Hz</td>
@@ -579,7 +621,7 @@
         <td><span class="no-paper">Poterucha et al., Nature, 2025</span></td>
       </tr>
 
-      <tr data-access="credentialed" data-text="symile mimic multimodal ecg cxr labs usa mit bidmc neurips">
+      <tr data-access="\1" data-leads="12" data-text="symile mimic multimodal ecg cxr labs usa mit bidmc neurips">
         <td class="num-cell">21</td>
         <td><span class="dataset-name">Symile-MIMIC</span><a class="dataset-link" href="https://physionet.org/content/symile-mimic/1.0.0/" target="_blank">physionet.org ↗</a></td>
         <td>12-lead · 10 s · 500 Hz · multimodal (ECG + CXR + labs)</td>
@@ -590,7 +632,7 @@
         <td><a class="paper-link" href="https://doi.org/10.13026/3vvj-s428" target="_blank">Saporta et al., NeurIPS 2024</a></td>
       </tr>
 
-      <tr data-access="open" data-text="cinc challenge 2020 physionet china russia germany usa cpsc georgia">
+      <tr data-access="\1" data-leads="12" data-text="cinc challenge 2020 physionet china russia germany usa cpsc georgia">
         <td class="num-cell">22</td>
         <td><span class="dataset-name">PhysioNet/CinC Challenge 2020</span><a class="dataset-link" href="https://physionet.org/content/challenge-2020/1.0.2/" target="_blank">physionet.org ↗</a></td>
         <td>12-lead · 6–60 s · 257–1,000 Hz</td>
@@ -601,7 +643,7 @@
         <td><a class="paper-link" href="https://doi.org/10.1088/1361-6579/abc960" target="_blank">Physiol Meas, 2020</a></td>
       </tr>
 
-      <tr data-access="open" data-text="cinc challenge 2021 physionet china russia germany usa michigan chapman ningbo">
+      <tr data-access="\1" data-leads="12" data-text="cinc challenge 2021 physionet china russia germany usa michigan chapman ningbo">
         <td class="num-cell">23</td>
         <td><span class="dataset-name">PhysioNet/CinC Challenge 2021</span><a class="dataset-link" href="https://physionet.org/content/challenge-2021/1.0.3/" target="_blank">physionet.org ↗</a></td>
         <td>12-lead (+ reduced-lead) · 5–144 s · 250–1,000 Hz</td>
@@ -617,6 +659,142 @@
   <div id="no-results">No datasets match your search.</div>
 </div>
 
+<!-- ── 1-Lead Section Header ── -->
+<div class="section-header">
+  <h2>1-Lead ECG Datasets</h2>
+  <span class="pill">10 datasets</span>
+</div>
+
+<div class="table-wrap">
+  <table id="single-lead-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Dataset</th>
+        <th>Format</th>
+        <th>Patients</th>
+        <th>Records</th>
+        <th>Access</th>
+        <th>Origin</th>
+        <th>Paper</th>
+      </tr>
+    </thead>
+    <tbody id="tbody1">
+
+      <tr data-access="open" data-leads="1" data-text="icentia11k canada montreal arrhythmia cardiostat wearable continuous">
+        <td class="num-cell">1</td>
+        <td><span class="dataset-name">Icentia11k Single Lead Continuous ECG</span><a class="dataset-link" href="https://physionet.org/content/icentia11k-continuous-ecg/1.0/" target="_blank">physionet.org ↗</a></td>
+        <td>1-lead (modified Lead I) · ~70 min/seg · 250 Hz</td>
+        <td class="count">11,000</td>
+        <td class="count">541,794 segments</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY-NC-SA 4.0</small></td>
+        <td><span class="origin-inst">Université de Montréal; Icentia Inc.</span><br><span class="origin-country">Canada</span></td>
+        <td><a class="paper-link" href="https://arxiv.org/abs/1910.09570" target="_blank">Tan et al., CinC 2021</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="1" data-text="cinc challenge 2017 af atrial fibrillation alivecor usa mit harvard">
+        <td class="num-cell">2</td>
+        <td><span class="dataset-name">PhysioNet/CinC Challenge 2017 (AF Classification)</span><a class="dataset-link" href="https://physionet.org/content/challenge-2017/1.0.0/" target="_blank">physionet.org ↗</a></td>
+        <td>1-lead (AliveCor) · 9–61 s · 300 Hz</td>
+        <td class="count-na">—</td>
+        <td class="count">12,186</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution (training)</small></td>
+        <td><span class="origin-inst">AliveCor Inc. / MIT-Harvard PhysioNet</span><br><span class="origin-country">USA</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.22489/CinC.2017.065-469" target="_blank">Clifford et al., CinC 2017</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="1" data-text="apnea ecg sleep germany marburg philipps overnight holter">
+        <td class="num-cell">3</td>
+        <td><span class="dataset-name">Apnea-ECG Database</span><a class="dataset-link" href="https://physionet.org/content/apnea-ecg/1.0.0/" target="_blank">physionet.org ↗</a></td>
+        <td>1-lead · 7–10 h overnight · 100 Hz</td>
+        <td class="count">~70</td>
+        <td class="count">70</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
+        <td><span class="origin-inst">Philipps-University Marburg</span><br><span class="origin-country">Germany</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.13026/C23W2R" target="_blank">Penzel et al., CinC 2000</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="1" data-text="ecg id biometric russia leti saint petersburg wrist lead i identification">
+        <td class="num-cell">4</td>
+        <td><span class="dataset-name">ECG-ID Database</span><a class="dataset-link" href="https://physionet.org/content/ecgiddb/1.0.0/" target="_blank">physionet.org ↗</a></td>
+        <td>1-lead (Lead I, wrist) · 20 s · 500 Hz</td>
+        <td class="count">90</td>
+        <td class="count">310</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
+        <td><span class="origin-inst">Electrotechnical University "LETI"</span><br><span class="origin-country">Russia — St. Petersburg</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.13026/C2J01F" target="_blank">Lugovaya, MSc thesis, 2005</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="1" data-text="post ictal epilepsy seizure usa boston beth israel harvard heart rate">
+        <td class="num-cell">5</td>
+        <td><span class="dataset-name">Post-Ictal Heart Rate Oscillations in Partial Epilepsy</span><a class="dataset-link" href="https://physionet.org/content/szdb/1.0.0/" target="_blank">physionet.org ↗</a></td>
+        <td>1-lead · overnight continuous · 200 Hz</td>
+        <td class="count">5</td>
+        <td class="count">7</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
+        <td><span class="origin-inst">Beth Israel Deaconess Medical Center / Harvard</span><br><span class="origin-country">USA — Boston, MA</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.13026/C2QC72" target="_blank">Al-Aweel et al., Neurology 1999</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="1" data-text="toilet tollet thigh ecg portugal lisbon dry electrode wearable bmi">
+        <td class="num-cell">6</td>
+        <td><span class="dataset-name">tOLIet (Thigh-based ECG, toilet seat)</span><a class="dataset-link" href="https://physionet.org/content/tollet/1.0.1/" target="_blank">physionet.org ↗</a></td>
+        <td>1-lead (thigh, dry polymer electrodes) · up to 5 min · 1,000 Hz</td>
+        <td class="count">86</td>
+        <td class="count">149</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
+        <td><span class="origin-inst">Centro Hospitalar Universitário de Lisboa Central (CHULC)</span><br><span class="origin-country">Portugal — Lisbon</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.1038/s41597-026-06713-6" target="_blank">Silva et al., Scientific Data 2026</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="1" data-text="but qdb brno ecg quality wearable czech republic bittium faros ambulatory free-living">
+        <td class="num-cell">7</td>
+        <td><span class="dataset-name">Brno University of Technology ECG Quality Database (BUT QDB)</span><a class="dataset-link" href="https://physionet.org/content/butqdb/1.0.0/" target="_blank">physionet.org ↗</a></td>
+        <td>1-lead (Bittium Faros 180) + 3-axis accel. · ≥24 h · 1,000 Hz</td>
+        <td class="count">15</td>
+        <td class="count">18</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
+        <td><span class="origin-inst">Brno University of Technology</span><br><span class="origin-country">Czech Republic</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.1109/tbme.2020.2969719" target="_blank">Smital et al., IEEE TBME 2020</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="1" data-text="vitaldb arrhythmia south korea seoul intraoperative lead ii surgical anesthesia">
+        <td class="num-cell">8</td>
+        <td><span class="dataset-name">VitalDB Arrhythmia Database</span><a class="dataset-link" href="https://physionet.org/content/vitaldb-arrhythmia/1.0.0/" target="_blank">physionet.org ↗</a></td>
+        <td>1-lead (Lead II, intraoperative) · ~20 min median · 500 Hz</td>
+        <td class="count">482</td>
+        <td class="count">482</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
+        <td><span class="origin-inst">Seoul National University Hospital</span><br><span class="origin-country">South Korea</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.1038/s41597-026-07076-8" target="_blank">Eun et al., Scientific Data 2026</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="1" data-text="picsdb preterm infant cardio respiratory usa umass worcester nicu apnea bradycardia">
+        <td class="num-cell">9</td>
+        <td><span class="dataset-name">Preterm Infant Cardio-Respiratory Signals Database (PICSDB)</span><a class="dataset-link" href="https://physionet.org/content/picsdb/1.0.0/" target="_blank">physionet.org ↗</a></td>
+        <td>1-lead (single channel from bedside monitor) · 20–70 h · 500 Hz</td>
+        <td class="count">10 infants</td>
+        <td class="count">10</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
+        <td><span class="origin-inst">UMass Memorial Healthcare NICU</span><br><span class="origin-country">USA — Worcester, MA</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.1109/TBME.2016.2632746" target="_blank">Shamout et al., IEEE TBME 2017</a></td>
+      </tr>
+
+      <tr data-access="restricted" data-leads="1" data-text="smartwatch ecg lead i spain apple samsung fitbit withings synthetic simulator">
+        <td class="num-cell">10</td>
+        <td><span class="dataset-name">ECG-Capable Smartwatches Dataset</span><a class="dataset-link" href="https://physionet.org/content/ecg-capable-smartwatches/1.0.0/" target="_blank">physionet.org ↗</a></td>
+        <td>1-lead (Lead I) · 10 s · 4 smartwatch models + reference (synthetic)</td>
+        <td class="count-na">0 (synthetic)</td>
+        <td class="count">915</td>
+        <td><span class="tag tag-rest">Restricted</span><br><small style="color:var(--muted)">DUA required</small></td>
+        <td><span class="origin-inst">Instituto Ramón y Cajal de Investigación Sanitaria</span><br><span class="origin-country">Spain</span></td>
+        <td><span class="no-paper">Recas et al. (pending)</span></td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
 <footer>
   <p>Data sourced from <a href="https://physionet.org/" target="_blank">PhysioNet</a> · Maintained by <a href="https://github.com/vlbthambawita" target="_blank">Vajira Thambawita</a> · <a href="https://github.com/vlbthambawita/ECGDatasets" target="_blank">GitHub</a></p>
 </footer>
@@ -624,10 +802,11 @@
 <script>
   const searchInput = document.getElementById('search');
   const filterBtns = document.querySelectorAll('.filter-btn');
-  const rows = document.querySelectorAll('#tbody tr');
+  const rows = document.querySelectorAll('#tbody tr, #tbody1 tr');
   const noResults = document.getElementById('no-results');
 
-  let activeFilter = 'all';
+  let activeAccess = 'all';
+  let activeLeads = 'all';
 
   function applyFilters() {
     const query = searchInput.value.toLowerCase();
@@ -636,15 +815,17 @@
     rows.forEach(row => {
       const text = (row.dataset.text + ' ' + row.innerText).toLowerCase();
       const access = row.dataset.access;
+      const leads = row.dataset.leads || '12';
 
       const matchesSearch = !query || text.includes(query);
-      const matchesFilter =
-        activeFilter === 'all' ||
-        (activeFilter === 'open' && access === 'open') ||
-        (activeFilter === 'credentialed' && access === 'credentialed') ||
-        (activeFilter === 'restricted' && access === 'restricted');
+      const matchesAccess =
+        activeAccess === 'all' ||
+        (activeAccess === 'open' && access === 'open') ||
+        (activeAccess === 'credentialed' && access === 'credentialed') ||
+        (activeAccess === 'restricted' && access === 'restricted');
+      const matchesLeads = activeLeads === 'all' || leads === activeLeads;
 
-      if (matchesSearch && matchesFilter) {
+      if (matchesSearch && matchesAccess && matchesLeads) {
         row.classList.remove('hidden');
         visible++;
       } else {
@@ -659,9 +840,11 @@
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
+      const group = btn.dataset.group;
+      filterBtns.forEach(b => { if (b.dataset.group === group) b.classList.remove('active'); });
       btn.classList.add('active');
-      activeFilter = btn.dataset.filter;
+      if (group === 'access') activeAccess = btn.dataset.filter;
+      if (group === 'leads') activeLeads = btn.dataset.filter;
       applyFilters();
     });
   });

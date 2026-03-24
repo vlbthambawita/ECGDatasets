@@ -1,6 +1,6 @@
 # ECGDatasets
 
-A curated collection of publicly available 12-lead ECG datasets from [PhysioNet](https://physionet.org/).
+A curated collection of publicly available ECG datasets from [PhysioNet](https://physionet.org/), organised by number of leads.
 
 ## 12-Lead ECG Datasets
 
@@ -29,6 +29,21 @@ A curated collection of publicly available 12-lead ECG datasets from [PhysioNet]
 | 21 | Symile-MIMIC | [physionet.org](https://physionet.org/content/symile-mimic/1.0.0/) | 12-lead, 10 s, 500 Hz (multimodal: ECG + CXR + labs) | 9,573 | 11,622 | Credentialed | USA — MIT LCP / BIDMC | [NeurIPS 2024](https://doi.org/10.13026/3vvj-s428) |
 | 22 | PhysioNet/CinC Challenge 2020 | [physionet.org](https://physionet.org/content/challenge-2020/1.0.2/) | 12-lead, 6–60 s, 257–1,000 Hz | — | ~52,501 | Open (CC BY 4.0) | Multi-national (China, Russia, Germany, USA) | [Physiol Meas, 2020](https://doi.org/10.1088/1361-6579/abc960) |
 | 23 | PhysioNet/CinC Challenge 2021 | [physionet.org](https://physionet.org/content/challenge-2021/1.0.3/) | 12-lead (+ reduced-lead versions), 5–144 s, 250–1,000 Hz | — | ~130,862 | Open (CC BY 4.0) | Multi-national (China, Russia, Germany, USA) | [CinC 2021](https://doi.org/10.23919/CinC53138.2021.9662687) |
+
+## 1-Lead ECG Datasets
+
+| # | Dataset Name | Link | Format | Patients | Records | Access | Origin | Paper |
+|---|-------------|------|--------|----------|---------|--------|--------|-------|
+| 1 | Icentia11k Single Lead Continuous ECG | [physionet.org](https://physionet.org/content/icentia11k-continuous-ecg/1.0/) | 1-lead (modified Lead I), ~70 min segments, 250 Hz | 11,000 | 541,794 segments | Open (CC BY-NC-SA 4.0) | Canada — Université de Montréal; Icentia Inc. | [Tan et al., CinC 2021](https://arxiv.org/abs/1910.09570) |
+| 2 | PhysioNet/CinC Challenge 2017 (AF Classification) | [physionet.org](https://physionet.org/content/challenge-2017/1.0.0/) | 1-lead (AliveCor device), 9–61 s, 300 Hz | — | 12,186 | Open (training set; ODC Attribution) | USA — AliveCor Inc. / MIT-Harvard PhysioNet | [Clifford et al., CinC 2017](https://doi.org/10.22489/CinC.2017.065-469) |
+| 3 | Apnea-ECG Database | [physionet.org](https://physionet.org/content/apnea-ecg/1.0.0/) | 1-lead, 7–10 h overnight, 100 Hz | ~70 | 70 | Open (ODC Attribution) | Germany — Philipps-University Marburg | [Penzel et al., CinC 2000](https://doi.org/10.13026/C23W2R) |
+| 4 | ECG-ID Database | [physionet.org](https://physionet.org/content/ecgiddb/1.0.0/) | 1-lead (Lead I, wrist), 20 s, 500 Hz | 90 | 310 | Open (ODC Attribution) | Russia — Electrotechnical University "LETI", St. Petersburg | [Lugovaya, MSc thesis 2005](https://doi.org/10.13026/C2J01F) |
+| 5 | Post-Ictal Heart Rate Oscillations in Partial Epilepsy | [physionet.org](https://physionet.org/content/szdb/1.0.0/) | 1-lead, overnight continuous, 200 Hz | 5 | 7 | Open (ODC Attribution) | USA — Beth Israel Deaconess Medical Center / Harvard | [Al-Aweel et al., Neurology 1999](https://doi.org/10.13026/C2QC72) |
+| 6 | tOLIet (Thigh-based ECG, toilet seat) | [physionet.org](https://physionet.org/content/tollet/1.0.1/) | 1-lead (thigh, dry polymer electrodes), up to 5 min, 1,000 Hz | 86 | 149 | Open (CC BY 4.0) | Portugal — Centro Hospitalar Universitário de Lisboa Central (CHULC) | [Silva et al., Scientific Data 2026](https://doi.org/10.1038/s41597-026-06713-6) |
+| 7 | Brno University of Technology ECG Quality Database (BUT QDB) | [physionet.org](https://physionet.org/content/butqdb/1.0.0/) | 1-lead (Bittium Faros 180 wearable) + 3-axis accel., ≥24 h, 1,000 Hz | 15 | 18 | Open (CC BY 4.0) | Czech Republic — Brno University of Technology | [Smital et al., IEEE TBME 2020](https://doi.org/10.1109/tbme.2020.2969719) |
+| 8 | VitalDB Arrhythmia Database | [physionet.org](https://physionet.org/content/vitaldb-arrhythmia/1.0.0/) | 1-lead (Lead II, intraoperative), ~20 min median, 500 Hz | 482 | 482 | Open (CC BY 4.0) | South Korea — Seoul National University Hospital | [Eun et al., Scientific Data 2026](https://doi.org/10.1038/s41597-026-07076-8) |
+| 9 | Preterm Infant Cardio-Respiratory Signals Database (PICSDB) | [physionet.org](https://physionet.org/content/picsdb/1.0.0/) | 1-lead (single channel from bedside monitor), 20–70 h, 500 Hz | 10 infants | 10 | Open (ODC Attribution) | USA — UMass Memorial Healthcare NICU, Worcester | [Shamout et al., IEEE TBME 2017](https://doi.org/10.1109/TBME.2016.2632746) |
+| 10 | ECG-Capable Smartwatches Dataset | [physionet.org](https://physionet.org/content/ecg-capable-smartwatches/1.0.0/) | 1-lead (Lead I), 10 s (4 smartwatch models + reference device, synthetic signals) | 0 (synthetic) | 915 | Restricted (DUA required) | Spain — Instituto Ramón y Cajal de Investigación Sanitaria | Recas et al. (pending) |
 
 > **Access types:**
 > - **Open** — freely downloadable, no registration required (or only basic PhysioNet account)
