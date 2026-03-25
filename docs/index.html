@@ -325,9 +325,58 @@
       font-size: 1rem;
     }
 
+    /* ── Charts ── */
+    .charts-section {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 48px 24px 40px;
+    }
+    .charts-section-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .charts-section-sub {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 32px;
+    }
+    .charts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
+      gap: 20px;
+    }
+    .chart-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 20px 16px;
+      box-shadow: var(--card-shadow);
+    }
+    .chart-card h3 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .chart-card p {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+      opacity: .7;
+    }
+    .chart-card .plotly-chart { width: 100%; height: 320px; }
+    .chart-card.tall   .plotly-chart { height: 420px; }
+
     @media (max-width: 640px) {
       header { padding: 40px 16px 32px; }
       .stats { padding: 24px 16px; }
+      .charts-grid { grid-template-columns: 1fr; }
+      .chart-card .plotly-chart { height: 280px; }
+      .chart-card.tall .plotly-chart { height: 360px; }
     }
   </style>
 </head>
@@ -1128,6 +1177,248 @@
     </tbody>
   </table>
 </div>
+
+<!-- ── Statistics Section ── -->
+<hr class="section-divider" style="margin-top:0">
+<section class="charts-section">
+  <div class="charts-section-title">Dataset Statistics</div>
+  <div class="charts-section-sub">Interactive visualisations derived from the full 58-dataset catalogue</div>
+  <div class="charts-grid">
+
+    <div class="chart-card">
+      <h3>Datasets by Lead Category</h3>
+      <p>Distribution across the four lead-count groups</p>
+      <div id="chart-lead" class="plotly-chart"></div>
+    </div>
+
+    <div class="chart-card">
+      <h3>Access Type Breakdown</h3>
+      <p>Open vs credentialed vs restricted across all datasets</p>
+      <div id="chart-access" class="plotly-chart"></div>
+    </div>
+
+    <div class="chart-card tall">
+      <h3>Datasets by Country of Origin</h3>
+      <p>Primary country attributed to each dataset (multi-national datasets counted once)</p>
+      <div id="chart-country" class="plotly-chart"></div>
+    </div>
+
+    <div class="chart-card tall">
+      <h3>Top Datasets by Record Count (log scale)</h3>
+      <p>Largest datasets ranked by number of records or segments</p>
+      <div id="chart-records" class="plotly-chart"></div>
+    </div>
+
+    <div class="chart-card">
+      <h3>Access Type by Lead Category</h3>
+      <p>How open access varies across 1-, 2-, and 12-lead collections</p>
+      <div id="chart-stacked" class="plotly-chart"></div>
+    </div>
+
+    <div class="chart-card">
+      <h3>Sampling Frequency Distribution</h3>
+      <p>How many datasets use each common sampling rate</p>
+      <div id="chart-hz" class="plotly-chart"></div>
+    </div>
+
+  </div>
+</section>
+
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<script>
+(function () {
+  /* ── shared theme ── */
+  const BG       = '#1a1d27';
+  const SURFACE  = '#22263a';
+  const BORDER   = '#2e3247';
+  const TEXT     = '#e2e8f0';
+  const MUTED    = '#8892a4';
+  const ACCENT   = '#4f8ef7';
+  const ACCENT2  = '#7c6af7';
+  const GREEN    = '#22c55e';
+  const AMBER    = '#f59e0b';
+  const RED      = '#ef4444';
+  const TEAL     = '#14b8a6';
+  const PINK     = '#ec4899';
+
+  const layout_base = {
+    paper_bgcolor: BG,
+    plot_bgcolor:  BG,
+    font: { family: 'Inter, system-ui, sans-serif', color: TEXT, size: 12 },
+    margin: { t: 10, r: 16, b: 10, l: 16 },
+    showlegend: true,
+    legend: { bgcolor: 'transparent', font: { color: MUTED, size: 11 } },
+  };
+  const config = { displayModeBar: false, responsive: true };
+
+  /* ── 1. Donut: Lead Category ── */
+  Plotly.newPlot('chart-lead', [{
+    type: 'pie',
+    hole: 0.55,
+    values: [23, 15, 10, 10],
+    labels: ['12-Lead (PhysioNet)', '12-Lead (Other repos)', '2-Lead', '1-Lead'],
+    marker: { colors: [ACCENT, ACCENT2, TEAL, PINK] },
+    textinfo: 'percent',
+    hovertemplate: '<b>%{label}</b><br>%{value} datasets (%{percent})<extra></extra>',
+    textfont: { color: TEXT, size: 12 },
+  }], {
+    ...layout_base,
+    margin: { t: 10, r: 60, b: 10, l: 60 },
+    legend: { ...layout_base.legend, orientation: 'v', x: 1.0, y: 0.5 },
+    annotations: [{ text: '<b>58</b><br>datasets', x: 0.5, y: 0.5, showarrow: false,
+      font: { size: 15, color: TEXT }, xanchor: 'center' }]
+  }, config);
+
+  /* ── 2. Donut: Access Type ── */
+  Plotly.newPlot('chart-access', [{
+    type: 'pie',
+    hole: 0.55,
+    values: [48, 4, 6],
+    labels: ['Open', 'Credentialed', 'Restricted'],
+    marker: { colors: [GREEN, AMBER, RED] },
+    textinfo: 'percent',
+    hovertemplate: '<b>%{label}</b><br>%{value} datasets (%{percent})<extra></extra>',
+    textfont: { color: TEXT, size: 12 },
+  }], {
+    ...layout_base,
+    margin: { t: 10, r: 60, b: 10, l: 60 },
+    legend: { ...layout_base.legend, orientation: 'v', x: 1.0, y: 0.5 },
+    annotations: [{ text: '<b>58</b><br>datasets', x: 0.5, y: 0.5, showarrow: false,
+      font: { size: 15, color: TEXT }, xanchor: 'center' }]
+  }, config);
+
+  /* ── 3. Horizontal bar: Countries ── */
+  const countries = {
+    'USA':           21,
+    'China':          6,
+    'Germany':        6,
+    'Brazil':         4,
+    'Multi-national': 3,
+    'Russia':         3,
+    'South Korea':    2,
+    'Spain':          2,
+    'Czech Republic': 2,
+    'Australia':      1,
+    'Norway':         1,
+    'Qatar':          1,
+    'Canada':         1,
+    'Portugal':       1,
+    'Taiwan':         1,
+    'Turkey':         1,
+    'Japan':          1,
+    'Italy':          1,
+  };
+  const cSorted = Object.entries(countries).sort((a,b) => a[1]-b[1]);
+  Plotly.newPlot('chart-country', [{
+    type: 'bar', orientation: 'h',
+    x: cSorted.map(d=>d[1]),
+    y: cSorted.map(d=>d[0]),
+    marker: {
+      color: cSorted.map(d=>d[1]),
+      colorscale: [[0,'#2e3a6e'],[0.5,ACCENT2],[1,ACCENT]],
+      showscale: false,
+    },
+    hovertemplate: '<b>%{y}</b>: %{x} dataset(s)<extra></extra>',
+    text: cSorted.map(d=>d[1]),
+    textposition: 'outside',
+    textfont: { color: MUTED, size: 11 },
+  }], {
+    ...layout_base,
+    showlegend: false,
+    margin: { t: 10, r: 40, b: 40, l: 110 },
+    xaxis: { color: MUTED, gridcolor: BORDER, title: { text: 'Number of datasets', font:{color:MUTED,size:11} } },
+    yaxis: { color: TEXT, tickfont: { size: 11 }, automargin: true },
+  }, config);
+
+  /* ── 4. Horizontal bar: Record count (log) ── */
+  const rdata = [
+    { name: 'Harvard-Emory HEEDB',            n: 11607261 },
+    { name: 'CODE Full (~2.3 M)',              n: 2322513  },
+    { name: 'CODE-15%',                        n: 345779   },
+    { name: 'CinC Challenge 2021',             n: 130862   },
+    { name: 'MIMIC-IV-ECG',                    n: 800000   },
+    { name: 'Icentia11k',                      n: 541794   },
+    { name: 'EchoNext',                        n: 100000   },
+    { name: 'Nightingale BWH ED',              n: 103952   },
+    { name: 'CinC Challenge 2020',             n: 52501    },
+    { name: 'Chapman-Shaoxing (Arrhythmia)',   n: 45152    },
+    { name: 'Nightingale NTUH',                n: 18072    },
+    { name: 'IKEM Dataset',                    n: 98130    },
+    { name: 'SPHDB',                           n: 25770    },
+    { name: 'CODE-test',                       n: 827      },
+    { name: 'PTB-XL / PTB-XL+',               n: 21799    },
+  ].sort((a,b)=>a.n-b.n);
+  Plotly.newPlot('chart-records', [{
+    type: 'bar', orientation: 'h',
+    x: rdata.map(d=>d.n),
+    y: rdata.map(d=>d.name),
+    marker: {
+      color: rdata.map(d=>Math.log10(d.n)),
+      colorscale: [[0,'#2e3a6e'],[0.5,TEAL],[1,ACCENT]],
+      showscale: false,
+    },
+    hovertemplate: '<b>%{y}</b><br>%{x:,} records<extra></extra>',
+    text: rdata.map(d => d.n >= 1e6 ? (d.n/1e6).toFixed(1)+'M' : d.n >= 1e3 ? Math.round(d.n/1e3)+'K' : d.n),
+    textposition: 'outside',
+    textfont: { color: MUTED, size: 10 },
+  }], {
+    ...layout_base,
+    showlegend: false,
+    margin: { t: 10, r: 60, b: 50, l: 185 },
+    xaxis: {
+      type: 'log', color: MUTED, gridcolor: BORDER,
+      title: { text: 'Records (log scale)', font:{color:MUTED,size:11} },
+    },
+    yaxis: { color: TEXT, tickfont: { size: 10 }, automargin: true },
+  }, config);
+
+  /* ── 5. Stacked bar: Access by lead category ── */
+  const categories = ['12-Lead (PhysioNet)', '12-Lead (Other)', '2-Lead', '1-Lead'];
+  const openCounts  = [18, 11, 10,  9];
+  const credCounts  = [ 3,  1,  0,  0];
+  const restCounts  = [ 2,  3,  0,  1];
+  Plotly.newPlot('chart-stacked', [
+    { name: 'Open',         type: 'bar', x: categories, y: openCounts, marker:{color:GREEN},
+      hovertemplate: '<b>%{x}</b><br>Open: %{y}<extra></extra>' },
+    { name: 'Credentialed', type: 'bar', x: categories, y: credCounts, marker:{color:AMBER},
+      hovertemplate: '<b>%{x}</b><br>Credentialed: %{y}<extra></extra>' },
+    { name: 'Restricted',   type: 'bar', x: categories, y: restCounts, marker:{color:RED},
+      hovertemplate: '<b>%{x}</b><br>Restricted: %{y}<extra></extra>' },
+  ], {
+    ...layout_base,
+    barmode: 'stack',
+    margin: { t: 10, r: 16, b: 80, l: 40 },
+    xaxis: { color: MUTED, tickangle: -20, tickfont:{size:11} },
+    yaxis: { color: MUTED, gridcolor: BORDER, title:{text:'Datasets',font:{color:MUTED,size:11}} },
+    legend: { ...layout_base.legend, orientation:'h', x:0.5, xanchor:'center', y:-0.25 },
+  }, config);
+
+  /* ── 6. Bar: Sampling frequency distribution ── */
+  const hzLabels = ['100 Hz','125 Hz','128 Hz','200/250 Hz','257 Hz','300 Hz','360 Hz','400 Hz','500 Hz','977–1000 Hz','Mixed/Other'];
+  const hzCounts = [2, 1, 2, 6, 2, 1, 2, 3, 23, 5, 11];
+  Plotly.newPlot('chart-hz', [{
+    type: 'bar',
+    x: hzLabels,
+    y: hzCounts,
+    marker: {
+      color: hzCounts,
+      colorscale: [[0,'#2e3a6e'],[0.5,ACCENT2],[1,ACCENT]],
+      showscale: false,
+    },
+    hovertemplate: '<b>%{x}</b><br>%{y} datasets<extra></extra>',
+    text: hzCounts,
+    textposition: 'outside',
+    textfont: { color: MUTED, size: 11 },
+  }], {
+    ...layout_base,
+    showlegend: false,
+    margin: { t: 10, r: 16, b: 90, l: 50 },
+    xaxis: { color: MUTED, tickangle: -35, tickfont:{size:11} },
+    yaxis: { color: MUTED, gridcolor: BORDER, title:{text:'Datasets',font:{color:MUTED,size:11}} },
+  }, config);
+
+})();
+</script>
 
 <footer>
   <p>Data sourced from <a href="https://physionet.org/" target="_blank">PhysioNet</a> · Maintained by <a href="https://github.com/vlbthambawita" target="_blank">Vajira Thambawita</a> · <a href="https://github.com/vlbthambawita/ECGDatasets" target="_blank">GitHub</a></p>

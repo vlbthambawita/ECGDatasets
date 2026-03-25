@@ -1,6 +1,18 @@
 # ECGDatasets
 
-A curated collection of publicly available ECG datasets from [PhysioNet](https://physionet.org/), organised by number of leads.
+> ### Browse the interactive dataset catalogue at [vajira.info/ECGDatasets](https://vajira.info/ECGDatasets/)
+
+A curated, community-maintained catalogue of publicly available ECG (electrocardiogram) datasets — spanning clinical hospitals, challenge competitions, and research institutions worldwide. Datasets are organised by lead configuration and include key metadata: recording format, patient/record counts, access requirements, geographic origin, and the primary publication.
+
+**Why this exists:** Finding the right ECG dataset for a research project is surprisingly time-consuming. This repository consolidates information scattered across PhysioNet, Zenodo, Figshare, and other repositories into a single, searchable reference.
+
+**What's covered:**
+- 23 twelve-lead datasets from PhysioNet
+- 15 twelve-lead datasets from other repositories (Zenodo, Figshare, BDSP, Mendeley, etc.)
+- 10 single-lead datasets
+- 10 two-lead datasets
+
+Contributions and corrections are welcome — please open an issue or pull request.
 
 ## 12-Lead ECG Datasets
 
