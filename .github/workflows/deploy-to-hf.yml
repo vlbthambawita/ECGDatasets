@@ -1,0 +1,51 @@
+name: Deploy to HuggingFace Space
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/**'
+      - 'hf_space/**'
+      - '.github/workflows/deploy-to-hf.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to HuggingFace Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          # IMPORTANT: Change this to your HuggingFace username/space-name
+          HF_SPACE: vlbthambawita/ECGDatasets
+        run: |
+          # Configure git
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+          # Clone the HuggingFace Space repo
+          git clone https://vlbthambawita:${HF_TOKEN}@huggingface.co/spaces/${HF_SPACE} hf_repo
+
+          # Clear existing content (keep .git)
+          find hf_repo -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+
+          # Copy docs/ content to Space root (index.html etc.)
+          cp -r docs/. hf_repo/
+
+          # Copy HF Space README with metadata (overrides any README from docs/)
+          cp hf_space/README.md hf_repo/README.md
+
+          # Commit and push
+          cd hf_repo
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to deploy."
+          else
+            git commit -m "Deploy from GitHub: ${{ github.sha }}"
+            git push
+          fi
