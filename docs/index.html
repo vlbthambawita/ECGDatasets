@@ -386,7 +386,7 @@
 <header>
   <div class="badge">ECG Dataset Index</div>
   <h1>ECG Datasets</h1>
-  <p>A curated index of 58 publicly available electrocardiogram datasets spanning 12-lead clinical, 2-lead ambulatory, and single-lead wearable recordings, sourced from PhysioNet and other open repositories across 13+ countries.</p>
+  <p>A curated index of 64 publicly available electrocardiogram datasets spanning 12-lead clinical, 3-lead ICU, 2-lead ambulatory, single-lead wearable, and BSPM/ECGI recordings, sourced from open repositories across 15+ countries.</p>
   <div class="links">
     <a href="https://github.com/vlbthambawita/ECGDatasets" target="_blank">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
@@ -405,8 +405,8 @@
 
 <!-- ── Stats ── -->
 <section class="stats">
-  <div class="stat-card"><div class="num">58</div><div class="label">Total Datasets</div></div>
-  <div class="stat-card"><div class="num">23</div><div class="label">12-Lead (PhysioNet)</div></div>
+  <div class="stat-card"><div class="num">64</div><div class="label">Total Datasets</div></div>
+  <div class="stat-card"><div class="num">24</div><div class="label">12-Lead (PhysioNet)</div></div>
   <div class="stat-card"><div class="num">15</div><div class="label">12-Lead (Other)</div></div>
   <div class="stat-card"><div class="num">10</div><div class="label">2-Lead</div></div>
   <div class="stat-card"><div class="num">10</div><div class="label">1-Lead</div></div>
@@ -429,15 +429,17 @@
   <div class="filter-group">
     <button class="filter-btn active" data-filter="all" data-group="leads">All Leads</button>
     <button class="filter-btn" data-filter="12" data-group="leads">12-Lead</button>
+    <button class="filter-btn" data-filter="3" data-group="leads">3-Lead</button>
     <button class="filter-btn" data-filter="2" data-group="leads">2-Lead</button>
     <button class="filter-btn" data-filter="1" data-group="leads">1-Lead</button>
+    <button class="filter-btn" data-filter="bspm" data-group="leads">BSPM/ECGI</button>
   </div>
 </div>
 
 <!-- ── 12-Lead Section Header ── -->
 <div class="section-header">
   <h2>12-Lead ECG Datasets</h2>
-  <span class="pill">23 datasets</span>
+  <span class="pill">24 datasets</span>
 </div>
 
 <!-- ── Table ── -->
@@ -710,6 +712,17 @@
         <td><a class="paper-link" href="https://doi.org/10.23919/CinC53138.2021.9662687" target="_blank">CinC 2021</a></td>
       </tr>
 
+      <tr data-access="open" data-leads="12" data-text="staff iii staffiii ptca balloon ischemia exercise stress coronary angiography charleston usa sweden">
+        <td class="num-cell">24</td>
+        <td><span class="dataset-name">STAFF III Database</span><a class="dataset-link" href="https://physionet.org/content/staffiii/1.0.0/" target="_blank">physionet.org ↗</a></td>
+        <td>12-lead · variable duration · 1,000 Hz · 0.625 µV resolution · WFDB</td>
+        <td class="count">104</td>
+        <td class="count">152 inflations</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
+        <td><span class="origin-inst">Charleston Area Medical Center; Blekinge Hospital</span><br><span class="origin-country">USA / Sweden</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.22489/CinC.2017.266-133" target="_blank">Martínez et al., CinC 2017</a></td>
+      </tr>
+
     </tbody>
   </table>
   <div id="no-results">No datasets match your search.</div>
@@ -909,7 +922,7 @@
 <!-- ── 2-Lead Section Header ── -->
 <div class="section-header">
   <h2>2-Lead ECG Datasets</h2>
-  <span class="pill">10 datasets</span>
+  <span class="pill">12 datasets</span>
 </div>
 
 <div class="table-wrap">
@@ -1036,6 +1049,28 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">Saitama Medical University International Medical Center</span><br><span class="origin-country">Japan</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/n6yq-fq90" target="_blank">Tsutsui et al., Scientific Data 2025</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="2" data-text="mit-bih st change stdb exercise stress test st depression elevation transient ischemia usa mit physionet">
+        <td class="num-cell">11</td>
+        <td><span class="dataset-name">MIT-BIH ST Change Database</span><a class="dataset-link" href="https://physionet.org/content/stdb/1.0.0/" target="_blank">physionet.org ↗</a></td>
+        <td>2-lead · variable length · 360 Hz · WFDB · mostly exercise stress ECGs</td>
+        <td class="count-na">—</td>
+        <td class="count">28</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
+        <td><span class="origin-inst">MIT / PhysioNet</span><br><span class="origin-country">USA</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.13026/C2ZW2H" target="_blank">Dataset DOI</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="2" data-text="long-term st ltstdb ischemia st episode ambulatory holter 24h ischaemia multi-national eu ljubljana pisa cambridge">
+        <td class="num-cell">12</td>
+        <td><span class="dataset-name">Long-Term ST Database (LTSTDB)</span><a class="dataset-link" href="https://physionet.org/content/ltstdb/1.0.0/" target="_blank">physionet.org ↗</a></td>
+        <td>2–3 lead · 21–24 h · 250 Hz · WFDB · annotated ST episodes</td>
+        <td class="count">80</td>
+        <td class="count">86</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
+        <td><span class="origin-inst">Ljubljana; Pisa; Cambridge</span><br><span class="origin-country">Multi-national (EU)</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.13026/C2CC7C" target="_blank">Jager et al., Med Biol Eng Comput, 2003</a></td>
       </tr>
 
     </tbody>
@@ -1178,11 +1213,96 @@
   </table>
 </div>
 
+<!-- ── 3-Lead Section Header ── -->
+<div class="section-header">
+  <h2>3-Lead ECG Datasets</h2>
+  <span class="pill">2 datasets</span>
+</div>
+
+<div class="table-wrap">
+  <table id="three-lead-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Dataset</th>
+        <th>Format</th>
+        <th>Patients</th>
+        <th>Records</th>
+        <th>Access</th>
+        <th>Origin</th>
+        <th>Paper</th>
+      </tr>
+    </thead>
+    <tbody id="tbody4">
+
+      <tr data-access="open" data-leads="3" data-text="ucddb ucd sleep apnea dublin ireland holter v5 cc5 v5r overnight polysomnogram psg 3-lead">
+        <td class="num-cell">1</td>
+        <td><span class="dataset-name">St. Vincent's / UCD Sleep Apnea Database (UCDDB)</span><a class="dataset-link" href="https://physionet.org/content/ucddb/1.0.0/" target="_blank">physionet.org ↗</a></td>
+        <td>3-lead Holter (V5, CC5, V5R) · overnight PSG · 128 Hz · EDF</td>
+        <td class="count">25</td>
+        <td class="count">25</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
+        <td><span class="origin-inst">St. Vincent's University Hospital / University College Dublin</span><br><span class="origin-country">Ireland</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.13026/C26C7D" target="_blank">Dataset DOI</a></td>
+      </tr>
+
+      <tr data-access="open" data-leads="3" data-text="mimic iii waveform icu monitoring 3-lead usa boston beth israel bidmc continuous lead ii v avr mcl">
+        <td class="num-cell">2</td>
+        <td><span class="dataset-name">MIMIC-III Waveform Database Matched Subset</span><a class="dataset-link" href="https://physionet.org/content/mimic3wdb-matched/1.0/" target="_blank">physionet.org ↗</a></td>
+        <td>1–5 ECG leads · typically 3-lead ICU (Lead II, V, AVR) · continuous · 125 Hz · WFDB</td>
+        <td class="count">10,282</td>
+        <td class="count">22,317</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODbL</small></td>
+        <td><span class="origin-inst">Beth Israel Deaconess Medical Center</span><br><span class="origin-country">USA — Boston, MA</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.1038/sdata.2016.35" target="_blank">Johnson et al., Scientific Data, 2016</a></td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<!-- ── BSPM / ECGI Section Header ── -->
+<div class="section-header">
+  <h2>BSPM / ECGI Datasets</h2>
+  <span class="pill">1 dataset</span>
+</div>
+
+<div class="table-wrap">
+  <table id="bspm-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Dataset</th>
+        <th>Format</th>
+        <th>Subjects</th>
+        <th>Records</th>
+        <th>Access</th>
+        <th>Origin</th>
+        <th>Paper</th>
+      </tr>
+    </thead>
+    <tbody id="tbody5">
+
+      <tr data-access="open" data-leads="bspm" data-text="edgar bspm body surface potential mapping ecgi electrocardiographic imaging utah sci institute geometry torso ct simulation human canine">
+        <td class="num-cell">1</td>
+        <td><span class="dataset-name">EDGAR (Experimental Data &amp; Geometric Analysis Repository)</span><a class="dataset-link" href="https://www.ecg-imaging.org/edgar-database" target="_blank">ecg-imaging.org ↗</a></td>
+        <td>BSPM (64+ leads) + torso geometry + CT · human, canine &amp; simulation · MATLAB/SCIRun</td>
+        <td class="count">Multiple</td>
+        <td class="count">Multiple datasets</td>
+        <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">Free registration</small></td>
+        <td><span class="origin-inst">Univ. of Utah; Charles Univ. Hospital; Karlsruhe Institute of Technology</span><br><span class="origin-country">Multi-national (USA / Czech Republic / Germany)</span></td>
+        <td><a class="paper-link" href="https://doi.org/10.1016/j.jelectrocard.2015.08.008" target="_blank">Aras et al., J Electrocardiol, 2015</a></td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
 <!-- ── Statistics Section ── -->
 <hr class="section-divider" style="margin-top:0">
 <section class="charts-section">
   <div class="charts-section-title">Dataset Statistics</div>
-  <div class="charts-section-sub">Interactive visualisations derived from the full 58-dataset catalogue</div>
+  <div class="charts-section-sub">Interactive visualisations derived from the full 64-dataset catalogue</div>
   <div class="charts-grid">
 
     <div class="chart-card">
@@ -1211,7 +1331,7 @@
 
     <div class="chart-card">
       <h3>Access Type by Lead Category</h3>
-      <p>How open access varies across 1-, 2-, and 12-lead collections</p>
+      <p>How open access varies across lead-count categories</p>
       <div id="chart-stacked" class="plotly-chart"></div>
     </div>
 
@@ -1255,9 +1375,9 @@
   Plotly.newPlot('chart-lead', [{
     type: 'pie',
     hole: 0.55,
-    values: [23, 15, 10, 10],
-    labels: ['12-Lead (PhysioNet)', '12-Lead (Other repos)', '2-Lead', '1-Lead'],
-    marker: { colors: [ACCENT, ACCENT2, TEAL, PINK] },
+    values: [24, 15, 12, 10, 2, 1],
+    labels: ['12-Lead (PhysioNet)', '12-Lead (Other repos)', '2-Lead', '1-Lead', '3-Lead', 'BSPM/ECGI'],
+    marker: { colors: [ACCENT, ACCENT2, TEAL, PINK, GREEN, AMBER] },
     textinfo: 'percent',
     hovertemplate: '<b>%{label}</b><br>%{value} datasets (%{percent})<extra></extra>',
     textfont: { color: TEXT, size: 12 },
@@ -1265,7 +1385,7 @@
     ...layout_base,
     margin: { t: 10, r: 60, b: 10, l: 60 },
     legend: { ...layout_base.legend, orientation: 'v', x: 1.0, y: 0.5 },
-    annotations: [{ text: '<b>58</b><br>datasets', x: 0.5, y: 0.5, showarrow: false,
+    annotations: [{ text: '<b>64</b><br>datasets', x: 0.5, y: 0.5, showarrow: false,
       font: { size: 15, color: TEXT }, xanchor: 'center' }]
   }, config);
 
@@ -1273,7 +1393,7 @@
   Plotly.newPlot('chart-access', [{
     type: 'pie',
     hole: 0.55,
-    values: [48, 4, 6],
+    values: [54, 4, 6],
     labels: ['Open', 'Credentialed', 'Restricted'],
     marker: { colors: [GREEN, AMBER, RED] },
     textinfo: 'percent',
@@ -1283,17 +1403,17 @@
     ...layout_base,
     margin: { t: 10, r: 60, b: 10, l: 60 },
     legend: { ...layout_base.legend, orientation: 'v', x: 1.0, y: 0.5 },
-    annotations: [{ text: '<b>58</b><br>datasets', x: 0.5, y: 0.5, showarrow: false,
+    annotations: [{ text: '<b>64</b><br>datasets', x: 0.5, y: 0.5, showarrow: false,
       font: { size: 15, color: TEXT }, xanchor: 'center' }]
   }, config);
 
   /* ── 3. Horizontal bar: Countries ── */
   const countries = {
-    'USA':           21,
+    'USA':           24,
     'China':          6,
     'Germany':        6,
     'Brazil':         4,
-    'Multi-national': 3,
+    'Multi-national': 5,
     'Russia':         3,
     'South Korea':    2,
     'Spain':          2,
@@ -1307,6 +1427,7 @@
     'Turkey':         1,
     'Japan':          1,
     'Italy':          1,
+    'Ireland':        1,
   };
   const cSorted = Object.entries(countries).sort((a,b) => a[1]-b[1]);
   Plotly.newPlot('chart-country', [{
@@ -1347,6 +1468,7 @@
     { name: 'SPHDB',                           n: 25770    },
     { name: 'CODE-test',                       n: 827      },
     { name: 'PTB-XL / PTB-XL+',               n: 21799    },
+    { name: 'MIMIC-III Waveform (Matched)',    n: 22317    },
   ].sort((a,b)=>a.n-b.n);
   Plotly.newPlot('chart-records', [{
     type: 'bar', orientation: 'h',
@@ -1373,10 +1495,10 @@
   }, config);
 
   /* ── 5. Stacked bar: Access by lead category ── */
-  const categories = ['12-Lead (PhysioNet)', '12-Lead (Other)', '2-Lead', '1-Lead'];
-  const openCounts  = [18, 11, 10,  9];
-  const credCounts  = [ 3,  1,  0,  0];
-  const restCounts  = [ 2,  3,  0,  1];
+  const categories = ['12-Lead (PhysioNet)', '12-Lead (Other)', '2-Lead', '1-Lead', '3-Lead', 'BSPM/ECGI'];
+  const openCounts  = [19, 11, 12,  9, 2, 1];
+  const credCounts  = [ 3,  1,  0,  0, 0, 0];
+  const restCounts  = [ 2,  3,  0,  1, 0, 0];
   Plotly.newPlot('chart-stacked', [
     { name: 'Open',         type: 'bar', x: categories, y: openCounts, marker:{color:GREEN},
       hovertemplate: '<b>%{x}</b><br>Open: %{y}<extra></extra>' },
@@ -1395,7 +1517,7 @@
 
   /* ── 6. Bar: Sampling frequency distribution ── */
   const hzLabels = ['100 Hz','125 Hz','128 Hz','200/250 Hz','257 Hz','300 Hz','360 Hz','400 Hz','500 Hz','977–1000 Hz','Mixed/Other'];
-  const hzCounts = [2, 1, 2, 6, 2, 1, 2, 3, 23, 5, 11];
+  const hzCounts = [2, 2, 3, 7, 2, 1, 3, 3, 23, 6, 12];
   Plotly.newPlot('chart-hz', [{
     type: 'bar',
     x: hzLabels,
@@ -1427,7 +1549,7 @@
 <script>
   const searchInput = document.getElementById('search');
   const filterBtns = document.querySelectorAll('.filter-btn');
-  const rows = document.querySelectorAll('#tbody tr, #tbody1 tr, #tbody2 tr, #tbody3 tr');
+  const rows = document.querySelectorAll('#tbody tr, #tbody1 tr, #tbody2 tr, #tbody3 tr, #tbody4 tr, #tbody5 tr');
   const noResults = document.getElementById('no-results');
 
   let activeAccess = 'all';

@@ -7,10 +7,14 @@ A curated, community-maintained catalogue of publicly available ECG (electrocard
 **Why this exists:** Finding the right ECG dataset for a research project is surprisingly time-consuming. This repository consolidates information scattered across PhysioNet, Zenodo, Figshare, and other repositories into a single, searchable reference.
 
 **What's covered:**
-- 23 twelve-lead datasets from PhysioNet
+- 24 twelve-lead datasets from PhysioNet
 - 15 twelve-lead datasets from other repositories (Zenodo, Figshare, BDSP, Mendeley, etc.)
+- 12 two-lead datasets (including exercise stress ECG)
 - 10 single-lead datasets
-- 10 two-lead datasets
+- 2 three-lead datasets
+- 1 BSPM / ECGI dataset
+
+**64 datasets total.**
 
 Contributions and corrections are welcome — please open an issue or pull request.
 
@@ -41,6 +45,7 @@ Contributions and corrections are welcome — please open an issue or pull reque
 | 21 | Symile-MIMIC | [physionet.org](https://physionet.org/content/symile-mimic/1.0.0/) | 12-lead, 10 s, 500 Hz (multimodal: ECG + CXR + labs) | 9,573 | 11,622 | Credentialed | USA — MIT LCP / BIDMC | [NeurIPS 2024](https://doi.org/10.13026/3vvj-s428) |
 | 22 | PhysioNet/CinC Challenge 2020 | [physionet.org](https://physionet.org/content/challenge-2020/1.0.2/) | 12-lead, 6–60 s, 257–1,000 Hz | — | ~52,501 | Open (CC BY 4.0) | Multi-national (China, Russia, Germany, USA) | [Physiol Meas, 2020](https://doi.org/10.1088/1361-6579/abc960) |
 | 23 | PhysioNet/CinC Challenge 2021 | [physionet.org](https://physionet.org/content/challenge-2021/1.0.3/) | 12-lead (+ reduced-lead versions), 5–144 s, 250–1,000 Hz | — | ~130,862 | Open (CC BY 4.0) | Multi-national (China, Russia, Germany, USA) | [CinC 2021](https://doi.org/10.23919/CinC53138.2021.9662687) |
+| 24 | STAFF III Database | [physionet.org](https://physionet.org/content/staffiii/1.0.0/) | 12-lead, variable duration, 1,000 Hz, 0.625 µV resolution; PTCA-induced ischemia | 104 | 152 inflations | Open (ODC Attribution) | USA — Charleston Area Medical Center, WV; Blekinge Hospital, Sweden | [Martínez et al., CinC 2017](https://doi.org/10.22489/CinC.2017.266-133) |
 
 ## 12-Lead ECG Datasets (Other Repositories)
 
@@ -91,6 +96,23 @@ Contributions and corrections are welcome — please open an issue or pull reque
 | 8 | Sudden Cardiac Death Holter Database | [physionet.org](https://physionet.org/content/sddb/1.0.0/) | 2-lead, 4–25 h, 250 Hz, WFDB | 23 | 23 | Open (ODC Attribution) | USA — MIT | [Greenwald, MS thesis, MIT 1986](https://doi.org/10.13026/C2W306) |
 | 9 | QT Database (QTDB) | [physionet.org](https://physionet.org/content/qtdb/1.0.0/) | 2-lead, 15 min, various Hz, WFDB | — | 105 | Open (ODC Attribution) | USA — MIT / PhysioNet | [Laguna et al., CinC 1997](https://doi.org/10.13026/C24K53) |
 | 10 | SHDB-AF (Saitama Holter Database — Atrial Fibrillation) | [physionet.org](https://physionet.org/content/shdb-af/1.0.1/) | 2-lead (CC5 + NASA), ~24 h, 125 Hz, WFDB | 122 | 128 | Open (ODC Attribution) | Japan — Saitama Medical University International Medical Center | [Tsutsui et al., Scientific Data 2025](https://doi.org/10.13026/n6yq-fq90) |
+| 11 | MIT-BIH ST Change Database | [physionet.org](https://physionet.org/content/stdb/1.0.0/) | 2-lead, variable length, 360 Hz, WFDB; mostly exercise stress test ECGs with transient ST depression/elevation | — | 28 | Open (ODC Attribution) | USA — MIT / PhysioNet | [Dataset DOI](https://doi.org/10.13026/C2ZW2H) |
+| 12 | Long-Term ST Database (LTSTDB) | [physionet.org](https://physionet.org/content/ltstdb/1.0.0/) | 2–3 lead, 21–24 h, 250 Hz, WFDB; annotated ST episodes (ischemic, axis-related, drift) | 80 | 86 | Open (ODC Attribution) | Multi-national (EU) — Ljubljana, Pisa, Cambridge | [Jager et al., Med Biol Eng Comput, 2003](https://doi.org/10.13026/C2CC7C) |
+
+## 3-Lead ECG Datasets
+
+| # | Dataset Name | Link | Format | Patients | Records | Access | Origin | Paper |
+|---|-------------|------|--------|----------|---------|--------|--------|-------|
+| 1 | St. Vincent's / UCD Sleep Apnea Database (UCDDB) | [physionet.org](https://physionet.org/content/ucddb/1.0.0/) | 3-lead Holter (V5, CC5, V5R), overnight PSG, 128 Hz, EDF | 25 | 25 | Open (ODC Attribution) | Ireland — St. Vincent's University Hospital / University College Dublin | [Dataset DOI](https://doi.org/10.13026/C26C7D) |
+| 2 | MIMIC-III Waveform Database Matched Subset | [physionet.org](https://physionet.org/content/mimic3wdb-matched/1.0/) | 1–5 ECG leads, typically 3-lead ICU monitoring (Lead II, V, AVR), continuous, 125 Hz, WFDB | 10,282 | 22,317 | Open (ODbL) | USA — Beth Israel Deaconess Medical Center, Boston | [Johnson et al., Scientific Data, 2016](https://doi.org/10.1038/sdata.2016.35) |
+
+## BSPM / ECGI Datasets
+
+Body Surface Potential Mapping (BSPM) and Electrocardiographic Imaging (ECGI) datasets use 32–252+ electrodes distributed across the torso to reconstruct 3D cardiac electrical activity.
+
+| # | Dataset Name | Link | Format | Subjects | Records | Access | Origin | Paper |
+|---|-------------|------|--------|----------|---------|--------|--------|-------|
+| 1 | EDGAR (Experimental Data and Geometric Analysis Repository) | [ecg-imaging.org](https://www.ecg-imaging.org/edgar-database) | BSPM (64+ leads) + endocardial/epicardial data + torso geometry + CT; human, canine, and simulation data; MATLAB/SCIRun format | Multiple (human + animal + simulation) | Multiple datasets | Open (free registration) | Multi-national — University of Utah (USA); Charles University Hospital (Czech Republic); Karlsruhe Institute of Technology (Germany) | [Aras et al., J Electrocardiol, 2015](https://doi.org/10.1016/j.jelectrocard.2015.08.008) |
 
 > **Access types:**
 > - **Open** — freely downloadable, no registration required (or only basic PhysioNet account)
