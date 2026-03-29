@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "flag": "baseline_drift",
+      "count": 1607
+    },
+    {
+      "flag": "static_noise",
+      "count": 3262
+    },
+    {
+      "flag": "burst_noise",
+      "count": 613
+    },
+    {
+      "flag": "electrodes_problems",
+      "count": 30
+    },
+    {
+      "flag": "extra_beats",
+      "count": 1954
+    }
+  ]
+}

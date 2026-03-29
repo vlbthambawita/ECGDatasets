@@ -1,0 +1,112 @@
+{
+  "bins": [
+    {
+      "bin_start": 2.0,
+      "bin_end": 6.65,
+      "count": 8
+    },
+    {
+      "bin_start": 6.65,
+      "bin_end": 11.3,
+      "count": 13
+    },
+    {
+      "bin_start": 11.3,
+      "bin_end": 15.950000000000001,
+      "count": 43
+    },
+    {
+      "bin_start": 15.950000000000001,
+      "bin_end": 20.6,
+      "count": 506
+    },
+    {
+      "bin_start": 20.6,
+      "bin_end": 25.25,
+      "count": 402
+    },
+    {
+      "bin_start": 25.25,
+      "bin_end": 29.900000000000002,
+      "count": 409
+    },
+    {
+      "bin_start": 29.900000000000002,
+      "bin_end": 34.550000000000004,
+      "count": 616
+    },
+    {
+      "bin_start": 34.550000000000004,
+      "bin_end": 39.2,
+      "count": 852
+    },
+    {
+      "bin_start": 39.2,
+      "bin_end": 43.85,
+      "count": 889
+    },
+    {
+      "bin_start": 43.85,
+      "bin_end": 48.5,
+      "count": 1288
+    },
+    {
+      "bin_start": 48.5,
+      "bin_end": 53.150000000000006,
+      "count": 1720
+    },
+    {
+      "bin_start": 53.150000000000006,
+      "bin_end": 57.800000000000004,
+      "count": 2056
+    },
+    {
+      "bin_start": 57.800000000000004,
+      "bin_end": 62.45,
+      "count": 2520
+    },
+    {
+      "bin_start": 62.45,
+      "bin_end": 67.10000000000001,
+      "count": 2657
+    },
+    {
+      "bin_start": 67.10000000000001,
+      "bin_end": 71.75,
+      "count": 1980
+    },
+    {
+      "bin_start": 71.75,
+      "bin_end": 76.4,
+      "count": 2153
+    },
+    {
+      "bin_start": 76.4,
+      "bin_end": 81.05000000000001,
+      "count": 1669
+    },
+    {
+      "bin_start": 81.05000000000001,
+      "bin_end": 85.7,
+      "count": 1106
+    },
+    {
+      "bin_start": 85.7,
+      "bin_end": 90.35000000000001,
+      "count": 746
+    },
+    {
+      "bin_start": 90.35000000000001,
+      "bin_end": 95.0,
+      "count": 115
+    }
+  ],
+  "stats": {
+    "mean": 59.8,
+    "median": 62.0,
+    "std": 17.0,
+    "min": 2,
+    "max": 95,
+    "missing": 89
+  }
+}

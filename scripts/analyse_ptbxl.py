@@ -460,9 +460,13 @@ def generate_report(cfg: dict) -> None:
         var_name = json_file.stem.replace("-", "_")
         json_vars[var_name] = json_file.read_text()
 
+    # Inline clean_records.csv content
+    clean_csv = Path(cfg["output"]["clean_csv"])
+    clean_csv_content = clean_csv.read_text() if clean_csv.exists() else "ecg_id,strat_fold\n"
+
     env = Environment(loader=FileSystemLoader(str(template_path.parent)))
     template = env.get_template(template_path.name)
-    html = template.render(d3_src=d3_src, json_vars=json_vars)
+    html = template.render(d3_src=d3_src, json_vars=json_vars, clean_csv_content=clean_csv_content)
 
     report_html.parent.mkdir(parents=True, exist_ok=True)
     report_html.write_text(html)

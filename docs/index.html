@@ -269,6 +269,31 @@
     .no-paper { color: var(--muted); font-size: 0.82rem; }
 
     .origin-country { color: var(--muted); font-size: 0.8rem; }
+
+    .analysis-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border: 1px solid rgba(79,142,247,0.4);
+      border-radius: 6px;
+      background: rgba(79,142,247,0.08);
+      white-space: nowrap;
+      transition: background .15s, border-color .15s;
+    }
+    .analysis-link:hover {
+      background: rgba(79,142,247,0.18);
+      border-color: var(--accent);
+    }
+    .analysis-soon {
+      color: var(--muted);
+      font-size: 0.75rem;
+      font-style: italic;
+    }
     .origin-inst { font-size: 0.82rem; }
 
     .count { color: var(--text); }
@@ -459,6 +484,7 @@
         <th>Access</th>
         <th>Origin</th>
         <th>Paper</th>
+        <th>Analysis</th>
       </tr>
     </thead>
     <tbody id="tbody">
@@ -472,6 +498,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
         <td><span class="origin-inst">Physikalisch-Technische Bundesanstalt</span><br><span class="origin-country">Germany</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1038/s41597-020-0495-6" target="_blank">PTB-XL: A Large Publicly Available ECG Dataset</a></td>
+        <td><a class="analysis-link" href="analysis/ptbxl/report.html" target="_blank">&#128202; View Report</a></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="ptb-xl+ karlsruhe germany features snomed">
@@ -483,6 +510,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
         <td><span class="origin-inst">Karlsruhe Institute of Technology</span><br><span class="origin-country">Germany</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1038/s41597-023-02153-8" target="_blank">PTB-XL+: A Comprehensive ECG Feature Dataset</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="ptb diagnostic germany berlin benjamin franklin">
@@ -494,6 +522,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">Univ. Clinic Benjamin Franklin</span><br><span class="origin-country">Germany — Berlin</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/C28C71" target="_blank">Bousseljot et al., Biomedizinische Technik, 1995</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="credentialed" data-leads="12" data-text="mimic iv ecg usa boston beth israel mit">
@@ -505,6 +534,7 @@
         <td><span class="tag tag-cred">Credentialed</span><br><small style="color:var(--muted)">PhysioNet DUA</small></td>
         <td><span class="origin-inst">Beth Israel Deaconess Medical Center</span><br><span class="origin-country">USA — Boston, MA</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/4nqg-sb35" target="_blank">Gow et al.</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="mimic iv ecg demo usa boston beth israel">
@@ -516,6 +546,7 @@
         <td><span class="tag tag-open">Open</span></td>
         <td><span class="origin-inst">Beth Israel Deaconess Medical Center</span><br><span class="origin-country">USA — Boston, MA</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/4eqn-kt76" target="_blank">Dataset DOI</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="credentialed" data-leads="12" data-text="mimic iv ecg ext icd usa germany mit icd-10">
@@ -527,6 +558,7 @@
         <td><span class="tag tag-cred">Credentialed</span></td>
         <td><span class="origin-inst">MIT LCP + collaborators</span><br><span class="origin-country">USA / Germany</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1093/ehjdh/ztae039" target="_blank">Eur Heart J Digital Health, 2024</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="chapman shaoxing arrhythmia china usa ningbo">
@@ -538,6 +570,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
         <td><span class="origin-inst">Chapman Univ.; Shaoxing People's Hospital &amp; Ningbo First Hospital</span><br><span class="origin-country">China / USA</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1038/s41598-020-59821-7" target="_blank">Zheng et al., Scientific Reports, 2020</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="incart st petersburg russia arrhythmia">
@@ -549,6 +582,7 @@
         <td><span class="tag tag-open">Open</span></td>
         <td><span class="origin-inst">St. Petersburg Institute of Cardiological Technics (INCART)</span><br><span class="origin-country">Russia</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/C2V88N" target="_blank">Dataset DOI</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="ludb lobachevsky russia nizhny novgorod annotated">
@@ -560,6 +594,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">Nizhny Novgorod City Hospital No. 5 / Lobachevsky University</span><br><span class="origin-country">Russia</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1109/ACCESS.2020.3029211" target="_blank">IEEE Access, 2020</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="brugada huca spain asturias hospital">
@@ -571,6 +606,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY-SA 4.0</small></td>
         <td><span class="origin-inst">Hospital Universitario Central de Asturias (HUCA)</span><br><span class="origin-country">Spain</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/0m2w-dy83" target="_blank">Dataset DOI</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="restricted" data-leads="12" data-text="kurias ecg south korea seoul anam snomed omop">
@@ -582,6 +618,7 @@
         <td><span class="tag tag-rest">Restricted</span><br><small style="color:var(--muted)">Pending audit</small></td>
         <td><span class="origin-inst">Korea University Anam Hospital</span><br><span class="origin-country">South Korea — Seoul</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/kga0-0270" target="_blank">Dataset DOI</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="leipzig heart center germany intracardiac electrogram">
@@ -593,6 +630,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">Leipzig Heart Center</span><br><span class="origin-country">Germany</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/7a4j-vn37" target="_blank">Dataset DOI</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="norwegian athlete ecg norway oslo endurance">
@@ -604,6 +642,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
         <td><span class="origin-inst">University of Oslo</span><br><span class="origin-country">Norway</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/qpjf-gk87" target="_blank">Dataset DOI</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="mhd mri ecg germany magdeburg otto guericke">
@@ -615,6 +654,7 @@
         <td><span class="tag tag-open">Open</span></td>
         <td><span class="origin-inst">Otto-von-Guericke University of Magdeburg</span><br><span class="origin-country">Germany</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/05td-jn37" target="_blank">Krug et al., CinC 2017</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="wilson central terminal australia western sydney campbelltown">
@@ -626,6 +666,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">MARCS Institute, Western Sydney Univ.; Campbelltown Hospital</span><br><span class="origin-country">Australia</span></td>
         <td><a class="paper-link" href="https://doi.org/10.3390/machines4040018" target="_blank">Machines, 2016</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="cipa ecg validation usa pharmacology clinical trial">
@@ -637,6 +678,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">Phase I Clinical Pharmacology Study (NCT03070470)</span><br><span class="origin-country">USA</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1002/cpt.1303" target="_blank">Clin Pharmacol Ther, 2018</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="ecgdmmld dofetilide moxifloxacin usa pharmacology drug">
@@ -648,6 +690,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">NCT02308748</span><br><span class="origin-country">USA</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1002/cpt.205" target="_blank">Clin Pharmacol Ther, 2016</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="ecgrdvq ranolazine dofetilide verapamil quinidine usa pharmacology drug">
@@ -659,6 +702,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">Clinical Pharmacology Study</span><br><span class="origin-country">USA</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1038/clpt.2014.155" target="_blank">Clin Pharmacol Ther, 2014</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="eye tracking ecg qatar hamad bin khalifa interpretation">
@@ -670,6 +714,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC ODbL</small></td>
         <td><span class="origin-inst">Qatar Biomedical Research Institute, Hamad bin Khalifa Univ.</span><br><span class="origin-country">Qatar</span></td>
         <td><a class="paper-link" href="http://dx.doi.org/10.2196/34058" target="_blank">JMIR, 2022</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="restricted" data-leads="12" data-text="echonext columbia usa new york echocardiography">
@@ -681,6 +726,7 @@
         <td><span class="tag tag-rest">Restricted</span></td>
         <td><span class="origin-inst">Columbia University Irving Medical Center</span><br><span class="origin-country">USA — New York, NY</span></td>
         <td><span class="no-paper">Poterucha et al., Nature, 2025</span></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="credentialed" data-leads="12" data-text="symile mimic multimodal ecg cxr labs usa mit bidmc neurips">
@@ -692,6 +738,7 @@
         <td><span class="tag tag-cred">Credentialed</span></td>
         <td><span class="origin-inst">MIT LCP / BIDMC</span><br><span class="origin-country">USA</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/3vvj-s428" target="_blank">Saporta et al., NeurIPS 2024</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="cinc challenge 2020 physionet china russia germany usa cpsc georgia">
@@ -703,6 +750,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
         <td><span class="origin-inst">CPSC, INCART, PTB, PTB-XL, Georgia</span><br><span class="origin-country">Multi-national (China, Russia, Germany, USA)</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1088/1361-6579/abc960" target="_blank">Physiol Meas, 2020</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="cinc challenge 2021 physionet china russia germany usa michigan chapman ningbo">
@@ -714,6 +762,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
         <td><span class="origin-inst">CPSC, INCART, PTB-XL, Georgia, Chapman-Shaoxing, Ningbo, UMich</span><br><span class="origin-country">Multi-national (China, Russia, Germany, USA)</span></td>
         <td><a class="paper-link" href="https://doi.org/10.23919/CinC53138.2021.9662687" target="_blank">CinC 2021</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="staff iii staffiii ptca balloon ischemia exercise stress coronary angiography charleston usa sweden">
@@ -725,6 +774,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">Charleston Area Medical Center; Blekinge Hospital</span><br><span class="origin-country">USA / Sweden</span></td>
         <td><a class="paper-link" href="https://doi.org/10.22489/CinC.2017.266-133" target="_blank">Martínez et al., CinC 2017</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
     </tbody>
@@ -750,6 +800,7 @@
         <th>Access</th>
         <th>Origin</th>
         <th>Paper</th>
+        <th>Analysis</th>
       </tr>
     </thead>
     <tbody id="tbody2">
@@ -763,6 +814,7 @@
         <td><span class="tag tag-open">Open</span></td>
         <td><span class="origin-inst">11 hospitals (ICBEB, Nanjing)</span><br><span class="origin-country">China</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1166/jmihi.2018.2442" target="_blank">Liu et al., J. Med. Imaging Health Inform., 2018</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="chapman shaoxing ecg figshare arrhythmia 10646 china usa">
@@ -774,6 +826,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
         <td><span class="origin-inst">Chapman University; Shaoxing People's Hospital</span><br><span class="origin-country">China / USA</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1038/s41597-020-0386-x" target="_blank">Zheng et al., Scientific Data, 2020</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="ningbo first hospital ecg idiopathic ventricular arrhythmia iva figshare china chapman ablation">
@@ -785,6 +838,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
         <td><span class="origin-inst">Chapman University; Ningbo First Hospital, Zhejiang University</span><br><span class="origin-country">China / USA</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1038/s41597-020-0440-8" target="_blank">Zheng et al., Scientific Data, 2020</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="shandong provincial hospital sphdb ecg hdf5 figshare china aha multi-label">
@@ -796,6 +850,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
         <td><span class="origin-inst">Shandong Provincial Hospital</span><br><span class="origin-country">China</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1038/s41597-022-01403-5" target="_blank">Liu et al., Scientific Data, 2022</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="code 15 percent telehealth minas gerais brazil tnmg zenodo hdf5 deep learning ribeiro">
@@ -807,6 +862,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
         <td><span class="origin-inst">Telehealth Network of Minas Gerais (TNMG)</span><br><span class="origin-country">Brazil</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1038/s41467-020-15432-4" target="_blank">Ribeiro et al., Nature Communications, 2020</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="code test 827 zenodo hdf5 brazil minas gerais tnmg ribeiro hold-out evaluation">
@@ -818,6 +874,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
         <td><span class="origin-inst">Universidade Federal de Minas Gerais / TNMG</span><br><span class="origin-country">Brazil</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1038/s41467-020-15432-4" target="_blank">Ribeiro et al., Nature Communications, 2020</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="restricted" data-leads="12" data-text="code full dataset scilifelab figshare brazil tnmg 2 million hdf5 dua">
@@ -829,6 +886,7 @@
         <td><span class="tag tag-rest">Restricted</span><br><small style="color:var(--muted)">DUA required</small></td>
         <td><span class="origin-inst">Telehealth Network of Minas Gerais (TNMG)</span><br><span class="origin-country">Brazil</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1038/s41467-020-15432-4" target="_blank">Ribeiro et al., Nature Communications, 2020</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="sami trop chagas cardiomyopathy brazil minas gerais zenodo hdf5 mortality age">
@@ -840,6 +898,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
         <td><span class="origin-inst">UFMG; Uppsala University; EPFL</span><br><span class="origin-country">Brazil / Sweden / Switzerland</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1101/2021.02.19.21251232" target="_blank">Lima et al., medRxiv, 2021</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="ikem prague czech republic institute clinical experimental medicine zenodo hdf5 cardiology diabetes">
@@ -851,6 +910,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
         <td><span class="origin-inst">IKEM (Institute for Clinical and Experimental Medicine)</span><br><span class="origin-country">Czech Republic — Prague</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1016/j.knosys.2023.111014" target="_blank">Seják et al., Knowledge-Based Systems, 2023</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="medalcare xl synthetic simulation electrophysiological zenodo austria germany uk graz kit ptb edinburgh">
@@ -862,6 +922,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
         <td><span class="origin-inst">Medical Univ. of Graz; KIT; PTB; Univ. of Edinburgh</span><br><span class="origin-country">Austria / Germany / UK</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1038/s41597-023-02416-4" target="_blank">Gillette et al., Scientific Data, 2023</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="credentialed" data-leads="12" data-text="harvard emory ecg heedb bdsp aws wfdb massachusetts general hospital mgh emory atlanta usa largest">
@@ -873,6 +934,7 @@
         <td><span class="tag tag-cred">Credentialed</span><br><small style="color:var(--muted)">DUA (BDSP)</small></td>
         <td><span class="origin-inst">Massachusetts General Hospital; Emory University Hospital</span><br><span class="origin-country">USA — Boston &amp; Atlanta</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1038/s41597-026-06861-9" target="_blank">Koscova et al., Scientific Data, 2026</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="restricted" data-leads="12" data-text="nightingale bwh brigham women hospital emergency department ecg boston usa numpy cardiac risk">
@@ -884,6 +946,7 @@
         <td><span class="tag tag-rest">Restricted</span><br><small style="color:var(--muted)">Institutional credentials</small></td>
         <td><span class="origin-inst">Brigham and Women's Hospital</span><br><span class="origin-country">USA — Boston, MA</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1093/qje/qjab046" target="_blank">Mullainathan &amp; Obermeyer, QJE, 2021</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="restricted" data-leads="12" data-text="nightingale ntuh national taiwan university hospital cardiac arrest emergency xml taiwan">
@@ -895,6 +958,7 @@
         <td><span class="tag tag-rest">Restricted</span><br><small style="color:var(--muted)">Institutional credentials</small></td>
         <td><span class="origin-inst">National Taiwan University Hospital, Emergency Dept</span><br><span class="origin-country">Taiwan</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1038/s41591-022-01804-4" target="_blank">Obermeyer et al., Nature Medicine, 2022</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="gu ecg gazi university turkey ptca ischaemia mendeley high frequency bilkent coronary artery">
@@ -906,6 +970,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
         <td><span class="origin-inst">Gazi University Faculty of Medicine; Bilkent University</span><br><span class="origin-country">Turkey</span></td>
         <td><a class="paper-link" href="https://doi.org/10.17632/zhr5zsngtg.1" target="_blank">Dataset DOI</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="12" data-text="zzu pecg zhengzhou pediatric children ecg figshare wfdb china kawasaki myocarditis congenital">
@@ -917,6 +982,7 @@
         <td><span class="tag tag-open">Open</span></td>
         <td><span class="origin-inst">First Affiliated Hospital of Zhengzhou University</span><br><span class="origin-country">China</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1038/s41597-025-05225-z" target="_blank">Scientific Data, 2025</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
     </tbody>
@@ -941,6 +1007,7 @@
         <th>Access</th>
         <th>Origin</th>
         <th>Paper</th>
+        <th>Analysis</th>
       </tr>
     </thead>
     <tbody id="tbody3">
@@ -954,6 +1021,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">Beth Israel Hospital / MIT</span><br><span class="origin-country">USA</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/C2F305" target="_blank">Moody &amp; Mark, IEEE EMBS 2001</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="2" data-text="mit-bih atrial fibrillation afdb af flutter usa beth israel hospital holter rhythm">
@@ -965,6 +1033,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">Beth Israel Hospital</span><br><span class="origin-country">USA</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/C2MW2D" target="_blank">Moody &amp; Mark, CinC 1983</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="2" data-text="long-term af ltafdb atrial fibrillation paroxysmal sustained northwestern usa poland medicalgorithmics holter 24h">
@@ -976,6 +1045,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">Northwestern University; MEDICALgorithmics</span><br><span class="origin-country">USA / Poland</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/C2QG6Q" target="_blank">Petrutiu et al., Europace 2007</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="2" data-text="mit-bih normal sinus rhythm nsrdb healthy control usa beth israel hospital holter 24h">
@@ -987,6 +1057,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">Beth Israel Hospital</span><br><span class="origin-country">USA</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/C2NK5R" target="_blank">Dataset DOI</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="2" data-text="mit-bih supraventricular arrhythmia svdb mlii v1 usa mit harvard-mit hst svt pac pjc">
@@ -998,6 +1069,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">MIT / Harvard-MIT HST</span><br><span class="origin-country">USA</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/C2V30W" target="_blank">Greenwald, PhD thesis, Harvard-MIT 1990</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="2" data-text="european st-t edb ischemia st segment t-wave italy pisa cnr esc ambulatory holter">
@@ -1009,6 +1081,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">CNR Institute for Clinical Physiology, Pisa; European Society of Cardiology</span><br><span class="origin-country">Italy</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/C2D59Z" target="_blank">Taddei et al., Eur Heart J 1992</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="2" data-text="bidmc congestive heart failure chfdb nyha usa boston beth israel deaconess medical center holter 20h">
@@ -1020,6 +1093,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">Beth Israel Deaconess Medical Center</span><br><span class="origin-country">USA — Boston, MA</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/C29G60" target="_blank">Baim et al., J Am Coll Cardiol 1986</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="2" data-text="sudden cardiac death holter sddb ventricular tachycardia vt vf usa mit scd arrhythmia">
@@ -1031,6 +1105,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">MIT</span><br><span class="origin-country">USA</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/C2W306" target="_blank">Greenwald, MS thesis, MIT 1986</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="2" data-text="qt database qtdb waveform boundary p qrs t u wave annotation usa mit physionet benchmark">
@@ -1042,6 +1117,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">MIT / PhysioNet</span><br><span class="origin-country">USA</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/C24K53" target="_blank">Laguna et al., CinC 1997</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="2" data-text="shdb-af saitama holter atrial fibrillation japan cc5 nasa lead paroxysmal deep learning generalization">
@@ -1053,6 +1129,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">Saitama Medical University International Medical Center</span><br><span class="origin-country">Japan</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/n6yq-fq90" target="_blank">Tsutsui et al., Scientific Data 2025</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="2" data-text="mit-bih st change stdb exercise stress test st depression elevation transient ischemia usa mit physionet">
@@ -1064,6 +1141,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">MIT / PhysioNet</span><br><span class="origin-country">USA</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/C2ZW2H" target="_blank">Dataset DOI</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="2" data-text="long-term st ltstdb ischemia st episode ambulatory holter 24h ischaemia multi-national eu ljubljana pisa cambridge">
@@ -1075,6 +1153,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">Ljubljana; Pisa; Cambridge</span><br><span class="origin-country">Multi-national (EU)</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/C2CC7C" target="_blank">Jager et al., Med Biol Eng Comput, 2003</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
     </tbody>
@@ -1099,6 +1178,7 @@
         <th>Access</th>
         <th>Origin</th>
         <th>Paper</th>
+        <th>Analysis</th>
       </tr>
     </thead>
     <tbody id="tbody1">
@@ -1112,6 +1192,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY-NC-SA 4.0</small></td>
         <td><span class="origin-inst">Université de Montréal; Icentia Inc.</span><br><span class="origin-country">Canada</span></td>
         <td><a class="paper-link" href="https://arxiv.org/abs/1910.09570" target="_blank">Tan et al., CinC 2021</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="1" data-text="cinc challenge 2017 af atrial fibrillation alivecor usa mit harvard">
@@ -1123,6 +1204,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution (training)</small></td>
         <td><span class="origin-inst">AliveCor Inc. / MIT-Harvard PhysioNet</span><br><span class="origin-country">USA</span></td>
         <td><a class="paper-link" href="https://doi.org/10.22489/CinC.2017.065-469" target="_blank">Clifford et al., CinC 2017</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="1" data-text="apnea ecg sleep germany marburg philipps overnight holter">
@@ -1134,6 +1216,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">Philipps-University Marburg</span><br><span class="origin-country">Germany</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/C23W2R" target="_blank">Penzel et al., CinC 2000</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="1" data-text="ecg id biometric russia leti saint petersburg wrist lead i identification">
@@ -1145,6 +1228,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">Electrotechnical University "LETI"</span><br><span class="origin-country">Russia — St. Petersburg</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/C2J01F" target="_blank">Lugovaya, MSc thesis, 2005</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="1" data-text="post ictal epilepsy seizure usa boston beth israel harvard heart rate">
@@ -1156,6 +1240,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">Beth Israel Deaconess Medical Center / Harvard</span><br><span class="origin-country">USA — Boston, MA</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/C2QC72" target="_blank">Al-Aweel et al., Neurology 1999</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="1" data-text="toilet tollet thigh ecg portugal lisbon dry electrode wearable bmi">
@@ -1167,6 +1252,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
         <td><span class="origin-inst">Centro Hospitalar Universitário de Lisboa Central (CHULC)</span><br><span class="origin-country">Portugal — Lisbon</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1038/s41597-026-06713-6" target="_blank">Silva et al., Scientific Data 2026</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="1" data-text="but qdb brno ecg quality wearable czech republic bittium faros ambulatory free-living">
@@ -1178,6 +1264,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
         <td><span class="origin-inst">Brno University of Technology</span><br><span class="origin-country">Czech Republic</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1109/tbme.2020.2969719" target="_blank">Smital et al., IEEE TBME 2020</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="1" data-text="vitaldb arrhythmia south korea seoul intraoperative lead ii surgical anesthesia">
@@ -1189,6 +1276,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">CC BY 4.0</small></td>
         <td><span class="origin-inst">Seoul National University Hospital</span><br><span class="origin-country">South Korea</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1038/s41597-026-07076-8" target="_blank">Eun et al., Scientific Data 2026</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="1" data-text="picsdb preterm infant cardio respiratory usa umass worcester nicu apnea bradycardia">
@@ -1200,6 +1288,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">UMass Memorial Healthcare NICU</span><br><span class="origin-country">USA — Worcester, MA</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1109/TBME.2016.2632746" target="_blank">Shamout et al., IEEE TBME 2017</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="restricted" data-leads="1" data-text="smartwatch ecg lead i spain apple samsung fitbit withings synthetic simulator">
@@ -1211,6 +1300,7 @@
         <td><span class="tag tag-rest">Restricted</span><br><small style="color:var(--muted)">DUA required</small></td>
         <td><span class="origin-inst">Instituto Ramón y Cajal de Investigación Sanitaria</span><br><span class="origin-country">Spain</span></td>
         <td><span class="no-paper">Recas et al. (pending)</span></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
     </tbody>
@@ -1235,6 +1325,7 @@
         <th>Access</th>
         <th>Origin</th>
         <th>Paper</th>
+        <th>Analysis</th>
       </tr>
     </thead>
     <tbody id="tbody4">
@@ -1248,6 +1339,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODC Attribution</small></td>
         <td><span class="origin-inst">St. Vincent's University Hospital / University College Dublin</span><br><span class="origin-country">Ireland</span></td>
         <td><a class="paper-link" href="https://doi.org/10.13026/C26C7D" target="_blank">Dataset DOI</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
       <tr data-access="open" data-leads="3" data-text="mimic iii waveform icu monitoring 3-lead usa boston beth israel bidmc continuous lead ii v avr mcl">
@@ -1259,6 +1351,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">ODbL</small></td>
         <td><span class="origin-inst">Beth Israel Deaconess Medical Center</span><br><span class="origin-country">USA — Boston, MA</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1038/sdata.2016.35" target="_blank">Johnson et al., Scientific Data, 2016</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
     </tbody>
@@ -1283,6 +1376,7 @@
         <th>Access</th>
         <th>Origin</th>
         <th>Paper</th>
+        <th>Analysis</th>
       </tr>
     </thead>
     <tbody id="tbody5">
@@ -1296,6 +1390,7 @@
         <td><span class="tag tag-open">Open</span><br><small style="color:var(--muted)">Free registration</small></td>
         <td><span class="origin-inst">Univ. of Utah; Charles Univ. Hospital; Karlsruhe Institute of Technology</span><br><span class="origin-country">Multi-national (USA / Czech Republic / Germany)</span></td>
         <td><a class="paper-link" href="https://doi.org/10.1016/j.jelectrocard.2015.08.008" target="_blank">Aras et al., J Electrocardiol, 2015</a></td>
+        <td><span class="analysis-soon">&#128337; Coming soon</span></td>
       </tr>
 
     </tbody>

@@ -1,0 +1,45 @@
+{
+  "data": [
+    {
+      "label": "0.0",
+      "count": 8940
+    },
+    {
+      "label": "1.0",
+      "count": 6296
+    },
+    {
+      "label": "2.0",
+      "count": 5075
+    },
+    {
+      "label": "3.0",
+      "count": 611
+    },
+    {
+      "label": "4.0",
+      "count": 100
+    },
+    {
+      "label": "5.0",
+      "count": 58
+    },
+    {
+      "label": "6.0",
+      "count": 46
+    },
+    {
+      "label": "7.0",
+      "count": 43
+    },
+    {
+      "label": "8.0",
+      "count": 43
+    },
+    {
+      "label": "9.0",
+      "count": 38
+    }
+  ],
+  "missing": 18
+}

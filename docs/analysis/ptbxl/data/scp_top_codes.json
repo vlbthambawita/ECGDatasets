@@ -1,0 +1,105 @@
+{
+  "data": [
+    {
+      "code": "SR",
+      "count": 16782,
+      "description": "sinus rhythm"
+    },
+    {
+      "code": "NORM",
+      "count": 9528,
+      "description": "normal ECG"
+    },
+    {
+      "code": "ABQRS",
+      "count": 3327,
+      "description": "abnormal QRS"
+    },
+    {
+      "code": "IMI",
+      "count": 2685,
+      "description": "inferior myocardial infarction"
+    },
+    {
+      "code": "ASMI",
+      "count": 2363,
+      "description": "anteroseptal myocardial infarction"
+    },
+    {
+      "code": "LVH",
+      "count": 2137,
+      "description": "left ventricular hypertrophy"
+    },
+    {
+      "code": "NDT",
+      "count": 1829,
+      "description": "non-diagnostic T abnormalities"
+    },
+    {
+      "code": "LAFB",
+      "count": 1626,
+      "description": "left anterior fascicular block"
+    },
+    {
+      "code": "AFIB",
+      "count": 1514,
+      "description": "atrial fibrillation"
+    },
+    {
+      "code": "ISC_",
+      "count": 1275,
+      "description": "non-specific ischemic"
+    },
+    {
+      "code": "PVC",
+      "count": 1146,
+      "description": "ventricular premature complex"
+    },
+    {
+      "code": "IRBBB",
+      "count": 1118,
+      "description": "incomplete right bundle branch block"
+    },
+    {
+      "code": "STD_",
+      "count": 1009,
+      "description": "non-specific ST depression"
+    },
+    {
+      "code": "VCLVH",
+      "count": 875,
+      "description": "voltage criteria (QRS) for left ventricular hypertrophy"
+    },
+    {
+      "code": "STACH",
+      "count": 826,
+      "description": "sinus tachycardia"
+    },
+    {
+      "code": "1AVB",
+      "count": 797,
+      "description": "first degree AV block"
+    },
+    {
+      "code": "IVCD",
+      "count": 789,
+      "description": "non-specific intraventricular conduction disturbance (block)"
+    },
+    {
+      "code": "SARRH",
+      "count": 772,
+      "description": "sinus arrhythmia"
+    },
+    {
+      "code": "NST_",
+      "count": 770,
+      "description": "non-specific ST changes"
+    },
+    {
+      "code": "ISCAL",
+      "count": 660,
+      "description": "ischemic in anterolateral leads"
+    }
+  ],
+  "total_unique_codes": 71
+}

@@ -1,0 +1,79 @@
+{
+  "leads": [
+    "I",
+    "II",
+    "III",
+    "AVR",
+    "AVL",
+    "AVF",
+    "V1",
+    "V2",
+    "V3",
+    "V4",
+    "V5",
+    "V6"
+  ],
+  "n_analysed": 21837,
+  "data": [
+    {
+      "lead": "I",
+      "count": 0,
+      "pct": 0.0
+    },
+    {
+      "lead": "II",
+      "count": 0,
+      "pct": 0.0
+    },
+    {
+      "lead": "III",
+      "count": 0,
+      "pct": 0.0
+    },
+    {
+      "lead": "AVR",
+      "count": 0,
+      "pct": 0.0
+    },
+    {
+      "lead": "AVL",
+      "count": 0,
+      "pct": 0.0
+    },
+    {
+      "lead": "AVF",
+      "count": 0,
+      "pct": 0.0
+    },
+    {
+      "lead": "V1",
+      "count": 0,
+      "pct": 0.0
+    },
+    {
+      "lead": "V2",
+      "count": 0,
+      "pct": 0.0
+    },
+    {
+      "lead": "V3",
+      "count": 0,
+      "pct": 0.0
+    },
+    {
+      "lead": "V4",
+      "count": 0,
+      "pct": 0.0
+    },
+    {
+      "lead": "V5",
+      "count": 1,
+      "pct": 0.005
+    },
+    {
+      "lead": "V6",
+      "count": 0,
+      "pct": 0.0
+    }
+  ]
+}

@@ -117,9 +117,29 @@
   <h1 style="font-size:1.6rem;font-weight:800;color:#1a2233;margin-bottom:8px;">
     PTB-XL ECG Dataset — Analysis Report
   </h1>
-  <p style="font-size:.85rem;color:#666;margin-bottom:28px;">
+  <p style="font-size:.85rem;color:#666;margin-bottom:20px;">
     Automated analysis of metadata, missing values, ECG signal quality, and clean record identification.
   </p>
+
+  <!-- Clean CSV banner -->
+  <div style="background:#eaf3ff;border:1px solid #b6d4fe;border-radius:10px;padding:18px 24px;
+              display:flex;align-items:flex-start;gap:20px;margin-bottom:32px;">
+    <div style="font-size:1.6rem;line-height:1;">&#128196;</div>
+    <div style="flex:1;">
+      <div style="font-weight:700;color:#1a2233;font-size:.95rem;margin-bottom:4px;">
+        Clean Records CSV
+      </div>
+      <p style="font-size:.82rem;color:#445;margin:0 0 10px;">
+        The file below lists every ECG record that passed <em>all</em> quality criteria:
+        all 12 leads present, no NaN values in any lead, no flat signals, no missing required
+        metadata fields, and no quality flags (baseline drift, static noise, burst noise, or
+        electrode problems). Each row contains the <code>ecg_id</code> and its
+        <code>strat_fold</code> assignment for use in cross-validation splits.
+      </p>
+      <button class="btn" style="background:#1a6ef5;color:#fff;border-color:#1a6ef5;font-size:.8rem;padding:7px 16px;"
+              onclick="downloadInlineCSV()">&#11015; Download clean_records.csv</button>
+    </div>
+  </div>
 
   <!-- Overview cards -->
   <section id="overview-section" class="section">
@@ -444,6 +464,19 @@
 {% for var_name, json_str in json_vars.items() %}
 const DATA_{{ var_name }} = {{ json_str }};
 {% endfor %}
+</script>
+
+<!-- ═══════════════════════ CLEAN CSV DATA ══════════════════ -->
+<script>
+const CLEAN_CSV_CONTENT = {{ clean_csv_content | tojson }};
+
+function downloadInlineCSV() {
+  const blob = new Blob([CLEAN_CSV_CONTENT], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'clean_records.csv'; a.click();
+  URL.revokeObjectURL(url);
+}
 </script>
 
 <!-- ═══════════════════════ UTILS ══════════════════════════ -->
