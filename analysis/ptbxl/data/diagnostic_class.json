@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "label": "NORM",
+      "count": 9528
+    },
+    {
+      "label": "MI",
+      "count": 5486
+    },
+    {
+      "label": "STTC",
+      "count": 5123
+    },
+    {
+      "label": "CD",
+      "count": 4907
+    },
+    {
+      "label": "HYP",
+      "count": 2655
+    }
+  ]
+}

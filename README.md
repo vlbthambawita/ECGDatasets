@@ -118,3 +118,69 @@ Body Surface Potential Mapping (BSPM) and Electrocardiographic Imaging (ECGI) da
 > - **Open** — freely downloadable, no registration required (or only basic PhysioNet account)
 > - **Credentialed** — requires PhysioNet credentialing and signing a Data Use Agreement (DUA)
 > - **Restricted** — currently unavailable pending review or additional process
+
+---
+
+## Dataset Analysis
+
+This repository includes a Python script that analyses a downloaded dataset and produces an interactive HTML report with D3.js visualisations, plus a CSV of clean records.
+
+Currently supported: **PTB-XL**.
+
+### Requirements
+
+```bash
+pip install wfdb pandas numpy scipy pyyaml tqdm jinja2
+```
+
+### Running the PTB-XL analysis
+
+**1. Edit the config** to point at your local copy of the dataset:
+
+```bash
+# Open and set dataset.root to the path where PTB-XL is stored
+nano analysis/ptbxl/config.yaml
+```
+
+Key config options:
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `dataset.root` | `/work/…/ptb-xl/1_0_1` | Path to the PTB-XL 1.0.1 root directory |
+| `dataset.signal_resolution` | `100` | Signal resolution to analyse (`100` or `500` Hz) |
+| `dataset.max_records` | `null` | Cap on records analysed — set e.g. `500` for a quick test run |
+| `signal_analysis.flat_threshold` | `0.01` | Leads with std below this (mV) are treated as flat |
+| `clean_record_criteria.exclude_quality_flags` | see config | Quality flags that disqualify a record |
+
+**2. Run the script** from the repository root:
+
+```bash
+python scripts/analyse_ptbxl.py --config analysis/ptbxl/config.yaml
+```
+
+Runtime on all 21,837 records is approximately 1 minute at 100 Hz.
+
+**3. View the report:**
+
+```bash
+# Open in your browser — no web server required
+xdg-open analysis/ptbxl/report.html        # Linux
+open analysis/ptbxl/report.html            # macOS
+```
+
+### Outputs
+
+| File | Description |
+|------|-------------|
+| `analysis/ptbxl/report.html` | Self-contained interactive report (D3.js charts, works offline) |
+| `analysis/ptbxl/clean_records.csv` | `ecg_id`, `strat_fold` for every record passing all quality criteria |
+| `analysis/ptbxl/data/*.json` | Per-chart JSON data files consumed by the report |
+
+### What the report covers
+
+- **Dataset summary** — record count, patient count, date range, leads, folds
+- **Metadata analysis** — age histogram, sex distribution, height/weight scatter (zoomable), recording site, stratified fold distribution, top SCP diagnostic codes, diagnostic class, heart axis, quality flag counts
+- **Missing value analysis** — per-column missing metadata bar chart + heatmap; per-lead missing/NaN bar chart (grouped); per-lead flat signal bar chart; per-record × per-lead missing heatmap
+- **Clean record summary** — clean vs discarded records per fold (grouped bar)
+
+Every chart has a **Download SVG** button; every stats table has a **Download CSV** button.

@@ -1,0 +1,28 @@
+dataset:
+  root: /work/vajira/DATA/EXG_PTB_XL/physionet/files/ptb-xl/1_0_1
+  metadata_file: ptbxl_database.csv
+  scp_file: scp_statements.csv
+  signal_resolution: 100          # 100 or 500 Hz
+  max_records: null               # null = all; set integer for quick test runs
+
+output:
+  report_dir: analysis/ptbxl
+  data_dir: analysis/ptbxl/data
+  clean_csv: analysis/ptbxl/clean_records.csv
+  report_html: analysis/ptbxl/report.html
+
+signal_analysis:
+  flat_threshold: 0.01            # mV; leads with std below this are "flat"
+  nan_count_threshold: 1          # samples with >= this many NaN values are flagged
+  check_500hz: false              # whether to also check 500 Hz signals
+
+clean_record_criteria:
+  require_all_12_leads: true
+  no_flat_leads: true
+  no_nan_in_leads: true
+  no_missing_metadata: []
+
+metadata_analysis:
+  top_n_scp_codes: 20
+  top_n_sites: 10
+  missing_heatmap_sample_size: 2000

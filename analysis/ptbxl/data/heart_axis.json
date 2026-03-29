@@ -1,0 +1,37 @@
+{
+  "data": [
+    {
+      "label": "MID",
+      "count": 7687
+    },
+    {
+      "label": "LAD",
+      "count": 3764
+    },
+    {
+      "label": "ALAD",
+      "count": 1382
+    },
+    {
+      "label": "RAD",
+      "count": 221
+    },
+    {
+      "label": "ARAD",
+      "count": 122
+    },
+    {
+      "label": "AXL",
+      "count": 102
+    },
+    {
+      "label": "AXR",
+      "count": 51
+    },
+    {
+      "label": "SAG",
+      "count": 3
+    }
+  ],
+  "missing": 8505
+}

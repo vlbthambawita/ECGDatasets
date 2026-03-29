@@ -1,0 +1,45 @@
+{
+  "data": [
+    {
+      "fold": 1,
+      "count": 2177
+    },
+    {
+      "fold": 2,
+      "count": 2184
+    },
+    {
+      "fold": 3,
+      "count": 2194
+    },
+    {
+      "fold": 4,
+      "count": 2175
+    },
+    {
+      "fold": 5,
+      "count": 2176
+    },
+    {
+      "fold": 6,
+      "count": 2178
+    },
+    {
+      "fold": 7,
+      "count": 2178
+    },
+    {
+      "fold": 8,
+      "count": 2179
+    },
+    {
+      "fold": 9,
+      "count": 2193
+    },
+    {
+      "fold": 10,
+      "count": 2203
+    }
+  ],
+  "missing": 0
+}

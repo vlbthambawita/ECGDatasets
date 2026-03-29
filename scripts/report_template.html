@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PTB-XL ECG Dataset Analysis Report</title>
+<style>
+  /* ── Reset & base ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f4f6f9; color: #222; display: flex; min-height: 100vh; }
+
+  /* ── Sidebar ── */
+  #sidebar {
+    width: 220px; min-width: 220px; background: #1a2233; color: #c8d0e0;
+    position: sticky; top: 0; height: 100vh; overflow-y: auto;
+    display: flex; flex-direction: column; padding: 0;
+  }
+  #sidebar .logo { padding: 24px 20px 16px; font-size: 1rem; font-weight: 700;
+    color: #fff; border-bottom: 1px solid #2d3a52; letter-spacing: .02em; }
+  #sidebar nav a {
+    display: block; padding: 10px 20px; color: #9aa5bc; text-decoration: none;
+    font-size: 0.82rem; border-left: 3px solid transparent; transition: all .15s;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active {
+    color: #fff; background: #243050; border-left-color: #4f8ef7;
+  }
+  #sidebar nav .nav-section { padding: 12px 20px 4px; font-size: 0.7rem;
+    text-transform: uppercase; letter-spacing: .08em; color: #5a6580; }
+
+  /* ── Main content ── */
+  #main { flex: 1; padding: 32px 36px; max-width: 1200px; }
+
+  /* ── Overview card ── */
+  #overview { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+    gap: 16px; margin-bottom: 36px; }
+  .stat-card { background: #fff; border-radius: 10px; padding: 20px 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+  .stat-card .val { font-size: 2rem; font-weight: 700; color: #1a2233; line-height: 1; }
+  .stat-card .lbl { font-size: 0.78rem; color: #666; margin-top: 6px; }
+
+  /* ── Section ── */
+  .section { margin-bottom: 56px; }
+  .section h2 { font-size: 1.25rem; font-weight: 700; color: #1a2233;
+    margin-bottom: 4px; padding-bottom: 8px; border-bottom: 2px solid #e2e8f0; }
+  .section .subtitle { font-size: 0.83rem; color: #666; margin-bottom: 20px; }
+
+  /* ── Chart card ── */
+  .chart-card { background: #fff; border-radius: 10px; padding: 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.08); margin-bottom: 16px; }
+  .chart-header { display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 16px; }
+  .chart-title { font-size: 0.95rem; font-weight: 600; color: #333; }
+  .btn { font-size: 0.75rem; padding: 5px 12px; border: 1px solid #d0d7e2;
+    border-radius: 5px; background: #f7f9fc; color: #445; cursor: pointer;
+    text-decoration: none; transition: background .12s; }
+  .btn:hover { background: #e8edf5; }
+  .btn-group { display: flex; gap: 6px; }
+  svg { display: block; }
+
+  /* ── Stats table ── */
+  .table-wrap { overflow-x: auto; margin-top: 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.81rem; }
+  th { background: #f0f4fa; color: #445; font-weight: 600; padding: 8px 12px;
+    text-align: left; border-bottom: 2px solid #dde3ef; }
+  td { padding: 7px 12px; border-bottom: 1px solid #eef1f6; color: #334; }
+  tr:hover td { background: #f7f9fd; }
+
+  /* ── D3 tooltip ── */
+  .tooltip {
+    position: absolute; background: rgba(20,30,50,.88); color: #fff;
+    padding: 7px 12px; border-radius: 6px; font-size: 0.78rem; pointer-events: none;
+    opacity: 0; transition: opacity .12s; white-space: nowrap; z-index: 999;
+  }
+
+  /* ── Heatmap legend ── */
+  .legend { display: flex; align-items: center; gap: 8px; font-size: 0.75rem;
+    color: #667; margin-top: 8px; }
+  .legend-swatch { width: 16px; height: 14px; border-radius: 2px; }
+
+  @media (max-width: 900px) {
+    #sidebar { display: none; }
+    #main { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════ SIDEBAR ═══════════════════════ -->
+<aside id="sidebar">
+  <div class="logo">PTB-XL Analysis</div>
+  <nav>
+    <div class="nav-section">Overview</div>
+    <a href="#overview-section">Dataset Summary</a>
+    <div class="nav-section">Metadata</div>
+    <a href="#age">Age Distribution</a>
+    <a href="#sex">Sex Distribution</a>
+    <a href="#hw">Height &amp; Weight</a>
+    <a href="#site">Recording Site</a>
+    <a href="#fold">Strat Fold</a>
+    <a href="#scp">SCP Codes</a>
+    <a href="#diagclass">Diagnostic Class</a>
+    <a href="#heartaxis">Heart Axis</a>
+    <a href="#qflags">Quality Flags</a>
+    <div class="nav-section">Missing Values</div>
+    <a href="#missing-meta">Missing Metadata</a>
+    <a href="#missing-leads">Missing ECG Leads</a>
+    <a href="#flat-leads">Flat Leads</a>
+    <a href="#missing-heatmap">Missing Heatmap</a>
+    <div class="nav-section">Clean Records</div>
+    <a href="#clean-fold">Clean per Fold</a>
+  </nav>
+</aside>
+
+<!-- ═══════════════════════ MAIN ═══════════════════════════ -->
+<main id="main">
+
+  <h1 style="font-size:1.6rem;font-weight:800;color:#1a2233;margin-bottom:8px;">
+    PTB-XL ECG Dataset — Analysis Report
+  </h1>
+  <p style="font-size:.85rem;color:#666;margin-bottom:28px;">
+    Automated analysis of metadata, missing values, ECG signal quality, and clean record identification.
+  </p>
+
+  <!-- Overview cards -->
+  <section id="overview-section" class="section">
+    <h2>Dataset Summary</h2>
+    <p class="subtitle">Key statistics from ptbxl_database.csv and signal files.</p>
+    <div id="overview"></div>
+    <div class="chart-card" style="margin-top:16px;">
+      <div class="chart-header">
+        <span class="chart-title">Summary Table</span>
+        <button class="btn" onclick="downloadTableCSV('summary-table','dataset_summary.csv')">Download CSV</button>
+      </div>
+      <div class="table-wrap"><table id="summary-table"></table></div>
+    </div>
+  </section>
+
+  <!-- ── Metadata sections ── -->
+  <section id="age" class="section">
+    <h2>Age Distribution</h2>
+    <p class="subtitle">Histogram of patient ages across all recordings.</p>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Age Distribution</span>
+        <div class="btn-group">
+          <button class="btn" onclick="downloadSVG('age-svg','age_distribution.svg')">Download SVG</button>
+        </div>
+      </div>
+      <svg id="age-svg"></svg>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Age Statistics</span>
+        <button class="btn" onclick="downloadTableCSV('age-table','age_distribution_stats.csv')">Download CSV</button>
+      </div>
+      <div class="table-wrap"><table id="age-table"></table></div>
+    </div>
+  </section>
+
+  <section id="sex" class="section">
+    <h2>Sex Distribution</h2>
+    <p class="subtitle">Count of female and male patients.</p>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Sex Distribution</span>
+        <div class="btn-group">
+          <button class="btn" onclick="downloadSVG('sex-svg','sex_distribution.svg')">Download SVG</button>
+        </div>
+      </div>
+      <svg id="sex-svg"></svg>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Sex Statistics</span>
+        <button class="btn" onclick="downloadTableCSV('sex-table','sex_distribution_stats.csv')">Download CSV</button>
+      </div>
+      <div class="table-wrap"><table id="sex-table"></table></div>
+    </div>
+  </section>
+
+  <section id="hw" class="section">
+    <h2>Height &amp; Weight</h2>
+    <p class="subtitle">Scatter plot of patient height vs weight (up to 5,000 sampled points). Scroll to zoom, drag to pan.</p>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Height vs Weight</span>
+        <div class="btn-group">
+          <button class="btn" onclick="downloadSVG('hw-svg','height_weight.svg')">Download SVG</button>
+        </div>
+      </div>
+      <svg id="hw-svg"></svg>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Height &amp; Weight Statistics</span>
+        <button class="btn" onclick="downloadTableCSV('hw-table','height_weight_stats.csv')">Download CSV</button>
+      </div>
+      <div class="table-wrap"><table id="hw-table"></table></div>
+    </div>
+  </section>
+
+  <section id="site" class="section">
+    <h2>Recording Site</h2>
+    <p class="subtitle">Top recording sites by number of ECG recordings.</p>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Recording Site Distribution</span>
+        <div class="btn-group">
+          <button class="btn" onclick="downloadSVG('site-svg','recording_site.svg')">Download SVG</button>
+        </div>
+      </div>
+      <svg id="site-svg"></svg>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Site Statistics</span>
+        <button class="btn" onclick="downloadTableCSV('site-table','recording_site_stats.csv')">Download CSV</button>
+      </div>
+      <div class="table-wrap"><table id="site-table"></table></div>
+    </div>
+  </section>
+
+  <section id="fold" class="section">
+    <h2>Stratified Fold Distribution</h2>
+    <p class="subtitle">Number of records per cross-validation fold (1–10).</p>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Strat Fold Distribution</span>
+        <div class="btn-group">
+          <button class="btn" onclick="downloadSVG('fold-svg','strat_fold.svg')">Download SVG</button>
+        </div>
+      </div>
+      <svg id="fold-svg"></svg>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Fold Statistics</span>
+        <button class="btn" onclick="downloadTableCSV('fold-table','strat_fold_stats.csv')">Download CSV</button>
+      </div>
+      <div class="table-wrap"><table id="fold-table"></table></div>
+    </div>
+  </section>
+
+  <section id="scp" class="section">
+    <h2>Top SCP Diagnostic Codes</h2>
+    <p class="subtitle">Most frequent SCP-ECG diagnostic codes across all records.</p>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Top SCP Codes</span>
+        <div class="btn-group">
+          <button class="btn" onclick="downloadSVG('scp-svg','scp_top_codes.svg')">Download SVG</button>
+        </div>
+      </div>
+      <svg id="scp-svg"></svg>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">SCP Code Statistics</span>
+        <button class="btn" onclick="downloadTableCSV('scp-table','scp_top_codes_stats.csv')">Download CSV</button>
+      </div>
+      <div class="table-wrap"><table id="scp-table"></table></div>
+    </div>
+  </section>
+
+  <section id="diagclass" class="section">
+    <h2>Diagnostic Class Distribution</h2>
+    <p class="subtitle">High-level diagnostic classes assigned to records.</p>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Diagnostic Class</span>
+        <div class="btn-group">
+          <button class="btn" onclick="downloadSVG('diagclass-svg','diagnostic_class.svg')">Download SVG</button>
+        </div>
+      </div>
+      <svg id="diagclass-svg"></svg>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Diagnostic Class Statistics</span>
+        <button class="btn" onclick="downloadTableCSV('diagclass-table','diagnostic_class_stats.csv')">Download CSV</button>
+      </div>
+      <div class="table-wrap"><table id="diagclass-table"></table></div>
+    </div>
+  </section>
+
+  <section id="heartaxis" class="section">
+    <h2>Heart Axis</h2>
+    <p class="subtitle">Distribution of heart axis categories.</p>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Heart Axis Distribution</span>
+        <div class="btn-group">
+          <button class="btn" onclick="downloadSVG('heartaxis-svg','heart_axis.svg')">Download SVG</button>
+        </div>
+      </div>
+      <svg id="heartaxis-svg"></svg>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Heart Axis Statistics</span>
+        <button class="btn" onclick="downloadTableCSV('heartaxis-table','heart_axis_stats.csv')">Download CSV</button>
+      </div>
+      <div class="table-wrap"><table id="heartaxis-table"></table></div>
+    </div>
+  </section>
+
+  <section id="qflags" class="section">
+    <h2>Quality Flags</h2>
+    <p class="subtitle">Number of records flagged for each signal quality issue.</p>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Quality Flag Counts</span>
+        <div class="btn-group">
+          <button class="btn" onclick="downloadSVG('qflags-svg','quality_flags.svg')">Download SVG</button>
+        </div>
+      </div>
+      <svg id="qflags-svg"></svg>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Quality Flag Statistics</span>
+        <button class="btn" onclick="downloadTableCSV('qflags-table','quality_flags_stats.csv')">Download CSV</button>
+      </div>
+      <div class="table-wrap"><table id="qflags-table"></table></div>
+    </div>
+  </section>
+
+  <!-- ── Missing value sections ── -->
+  <section id="missing-meta" class="section">
+    <h2>Missing Metadata</h2>
+    <p class="subtitle">Percentage of records missing each metadata field.</p>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Missing Metadata (%)</span>
+        <div class="btn-group">
+          <button class="btn" onclick="downloadSVG('missing-meta-svg','missing_metadata.svg')">Download SVG</button>
+        </div>
+      </div>
+      <svg id="missing-meta-svg"></svg>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Missing Metadata Statistics</span>
+        <button class="btn" onclick="downloadTableCSV('missing-meta-table','missing_metadata_stats.csv')">Download CSV</button>
+      </div>
+      <div class="table-wrap"><table id="missing-meta-table"></table></div>
+    </div>
+  </section>
+
+  <section id="missing-leads" class="section">
+    <h2>Missing ECG Leads</h2>
+    <p class="subtitle">Percentage of records where each ECG lead is absent or contains NaN values.</p>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Missing / NaN Leads (%)</span>
+        <div class="btn-group">
+          <button class="btn" onclick="downloadSVG('missing-leads-svg','missing_ecg_leads.svg')">Download SVG</button>
+        </div>
+      </div>
+      <svg id="missing-leads-svg"></svg>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Missing Lead Statistics</span>
+        <button class="btn" onclick="downloadTableCSV('missing-leads-table','missing_ecg_leads_stats.csv')">Download CSV</button>
+      </div>
+      <div class="table-wrap"><table id="missing-leads-table"></table></div>
+    </div>
+  </section>
+
+  <section id="flat-leads" class="section">
+    <h2>Flat Signal Leads</h2>
+    <p class="subtitle">Percentage of records where each lead has a flat (near-zero std) signal.</p>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Flat Leads (%)</span>
+        <div class="btn-group">
+          <button class="btn" onclick="downloadSVG('flat-leads-svg','flat_signal_leads.svg')">Download SVG</button>
+        </div>
+      </div>
+      <svg id="flat-leads-svg"></svg>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Flat Lead Statistics</span>
+        <button class="btn" onclick="downloadTableCSV('flat-leads-table','flat_signal_leads_stats.csv')">Download CSV</button>
+      </div>
+      <div class="table-wrap"><table id="flat-leads-table"></table></div>
+    </div>
+  </section>
+
+  <section id="missing-heatmap" class="section">
+    <h2>Missing / NaN Leads Heatmap</h2>
+    <p class="subtitle">Per-record × per-lead presence of missing or NaN values (sampled records). Blue = present, Red = missing/NaN.</p>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Missing Leads Heatmap</span>
+        <div class="btn-group">
+          <button class="btn" onclick="downloadSVG('heatmap-svg','missing_leads_heatmap.svg')">Download SVG</button>
+        </div>
+      </div>
+      <svg id="heatmap-svg"></svg>
+      <div class="legend">
+        <div class="legend-swatch" style="background:#4f8ef7"></div><span>Present</span>
+        <div class="legend-swatch" style="background:#e05c5c"></div><span>Missing / NaN</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Clean records ── -->
+  <section id="clean-fold" class="section">
+    <h2>Clean Records per Fold</h2>
+    <p class="subtitle">Number of clean vs discarded records in each stratified fold.</p>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Clean Records per Fold</span>
+        <div class="btn-group">
+          <button class="btn" onclick="downloadSVG('clean-fold-svg','clean_records_per_fold.svg')">Download SVG</button>
+        </div>
+      </div>
+      <svg id="clean-fold-svg"></svg>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Clean Record Statistics</span>
+        <button class="btn" onclick="downloadTableCSV('clean-fold-table','clean_records_per_fold_stats.csv')">Download CSV</button>
+      </div>
+      <div class="table-wrap"><table id="clean-fold-table"></table></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══════════════════════ TOOLTIP ═══════════════════════ -->
+<div class="tooltip" id="tooltip"></div>
+
+<!-- ═══════════════════════ D3 INLINE ══════════════════════ -->
+<script>
+{{ d3_src }}
+</script>
+
+<!-- ═══════════════════════ JSON DATA ══════════════════════ -->
+<script>
+{% for var_name, json_str in json_vars.items() %}
+const DATA_{{ var_name }} = {{ json_str }};
+{% endfor %}
+</script>
+
+<!-- ═══════════════════════ UTILS ══════════════════════════ -->
+<script>
+// ── SVG download ──────────────────────────────────────────
+function downloadSVG(svgId, filename) {
+  const svgEl = document.getElementById(svgId);
+  if (!svgEl) return;
+  const clone = svgEl.cloneNode(true);
+  // Inline computed styles for portability
+  inlineStyles(svgEl, clone);
+  clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  const src = '<?xml version="1.0" encoding="utf-8"?>\n' + clone.outerHTML;
+  const blob = new Blob([src], { type: 'image/svg+xml;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename; a.click();
+  URL.revokeObjectURL(url);
+}
+
+function inlineStyles(src, dst) {
+  const srcEls = src.querySelectorAll('*');
+  const dstEls = dst.querySelectorAll('*');
+  srcEls.forEach((el, i) => {
+    const cs = window.getComputedStyle(el);
+    const relevant = ['fill','stroke','stroke-width','font-size','font-family',
+                      'font-weight','text-anchor','dominant-baseline','opacity',
+                      'shape-rendering'];
+    relevant.forEach(p => {
+      const val = cs.getPropertyValue(p);
+      if (val) dstEls[i].style[p] = val;
+    });
+  });
+}
+
+// ── CSV download from table ───────────────────────────────
+function downloadTableCSV(tableId, filename) {
+  const table = document.getElementById(tableId);
+  if (!table) return;
+  const rows = [];
+  table.querySelectorAll('tr').forEach(tr => {
+    const cells = [...tr.querySelectorAll('th,td')].map(c =>
+      '"' + c.innerText.replace(/"/g,'""') + '"'
+    );
+    rows.push(cells.join(','));
+  });
+  const blob = new Blob([rows.join('\n')], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename; a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ── Tooltip helpers ───────────────────────────────────────
+const tip = document.getElementById('tooltip');
+function showTip(html, event) {
+  tip.innerHTML = html;
+  tip.style.opacity = '1';
+  moveTip(event);
+}
+function moveTip(event) {
+  tip.style.left = (event.pageX + 14) + 'px';
+  tip.style.top  = (event.pageY - 28) + 'px';
+}
+function hideTip() { tip.style.opacity = '0'; }
+
+// ── Table builder ─────────────────────────────────────────
+function buildTable(tableId, headers, rows) {
+  const table = document.getElementById(tableId);
+  if (!table) return;
+  table.innerHTML = '';
+  const thead = table.createTHead();
+  const hrow = thead.insertRow();
+  headers.forEach(h => { const th = document.createElement('th'); th.textContent = h; hrow.appendChild(th); });
+  const tbody = table.createTBody();
+  rows.forEach(r => {
+    const row = tbody.insertRow();
+    r.forEach(v => { const td = row.insertCell(); td.textContent = v; });
+  });
+}
+
+// ── Generic horizontal bar chart ─────────────────────────
+function barChart(svgId, data, {labelKey, valueKey, color='#4f8ef7', unit='', pctKey=null}={}) {
+  const W = 700, marginL = 160, marginR = 40, marginT = 20, marginB = 40;
+  const barH = 22, gap = 6;
+  const H = data.length * (barH + gap) + marginT + marginB;
+
+  const svg = d3.select('#' + svgId)
+    .attr('width', W).attr('height', H).attr('viewBox', `0 0 ${W} ${H}`);
+  svg.selectAll('*').remove();
+
+  const xMax = d3.max(data, d => d[valueKey]) || 1;
+  const x = d3.scaleLinear().domain([0, xMax]).range([marginL, W - marginR]);
+  const y = d3.scaleBand()
+    .domain(data.map(d => d[labelKey]))
+    .range([marginT, H - marginB])
+    .paddingInner(gap / (barH + gap));
+
+  // Gridlines
+  const xTicks = x.ticks(5);
+  svg.append('g').attr('class','grid')
+    .selectAll('line').data(xTicks).join('line')
+    .attr('x1', d => x(d)).attr('x2', d => x(d))
+    .attr('y1', marginT).attr('y2', H - marginB)
+    .attr('stroke', '#e8edf5').attr('stroke-width', 1);
+
+  // Bars
+  svg.selectAll('rect.bar').data(data).join('rect')
+    .attr('class','bar')
+    .attr('x', marginL).attr('y', d => y(d[labelKey]))
+    .attr('width', d => x(d[valueKey]) - marginL)
+    .attr('height', barH)
+    .attr('fill', color).attr('rx', 3)
+    .on('mouseover', (e, d) => showTip(
+      `<b>${d[labelKey]}</b><br>${valueKey}: ${d[valueKey].toLocaleString()}${unit}` +
+      (pctKey ? `<br>${pctKey}: ${d[pctKey]}%` : ''), e))
+    .on('mousemove', moveTip)
+    .on('mouseout', hideTip);
+
+  // Value labels
+  svg.selectAll('text.val').data(data).join('text')
+    .attr('class','val')
+    .attr('x', d => x(d[valueKey]) + 5)
+    .attr('y', d => y(d[labelKey]) + barH / 2 + 1)
+    .attr('dominant-baseline','middle')
+    .attr('font-size', '11px').attr('fill','#555')
+    .text(d => d[valueKey].toLocaleString() + (pctKey ? ` (${d[pctKey]}%)` : ''));
+
+  // Y axis labels
+  svg.selectAll('text.lbl').data(data).join('text')
+    .attr('class','lbl')
+    .attr('x', marginL - 8).attr('y', d => y(d[labelKey]) + barH / 2 + 1)
+    .attr('text-anchor','end').attr('dominant-baseline','middle')
+    .attr('font-size','12px').attr('fill','#445')
+    .text(d => d[labelKey]);
+
+  // X axis
+  svg.append('g').attr('transform', `translate(0,${H - marginB})`)
+    .call(d3.axisBottom(x).ticks(5).tickFormat(d => d.toLocaleString()))
+    .call(g => g.select('.domain').remove())
+    .call(g => g.selectAll('text').attr('font-size','11px').attr('fill','#667'));
+}
+
+// ── Sidebar active link ───────────────────────────────────
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('#sidebar nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+  });
+}, { passive: true });
+</script>
+
+<!-- ═══════════════════════ CHARTS ══════════════════════════ -->
+<script>
+
+// ── Overview cards ────────────────────────────────────────
+(function() {
+  const d = DATA_metadata_summary;
+  const cards = [
+    { val: d.total_records.toLocaleString(), lbl: 'Total ECG Records' },
+    { val: d.unique_patients.toLocaleString(), lbl: 'Unique Patients' },
+    { val: d.leads.length.toString(), lbl: 'ECG Leads' },
+    { val: d.folds.length.toString(), lbl: 'CV Folds' },
+    { val: d.sampling_rates.join(' / '), lbl: 'Sampling Rates' },
+  ];
+  const el = document.getElementById('overview');
+  cards.forEach(c => {
+    el.innerHTML += `<div class="stat-card"><div class="val">${c.val}</div><div class="lbl">${c.lbl}</div></div>`;
+  });
+
+  // Summary table
+  const d2 = DATA_metadata_summary;
+  buildTable('summary-table',
+    ['Property','Value'],
+    [
+      ['Total records', d2.total_records.toLocaleString()],
+      ['Unique patients', d2.unique_patients.toLocaleString()],
+      ['ECG leads', d2.leads.join(', ')],
+      ['CV folds', d2.folds.join(', ')],
+      ['Sampling rates', d2.sampling_rates.join(', ')],
+      ['Date range (min)', d2.date_range.min],
+      ['Date range (max)', d2.date_range.max],
+    ]
+  );
+})();
+
+// ── Age histogram ─────────────────────────────────────────
+(function() {
+  const d = DATA_age_distribution;
+  const W = 700, H = 280;
+  const ml = 50, mr = 30, mt = 20, mb = 50;
+
+  const svg = d3.select('#age-svg').attr('width',W).attr('height',H).attr('viewBox',`0 0 ${W} ${H}`);
+
+  const x = d3.scaleLinear()
+    .domain([d.bins[0].bin_start, d.bins[d.bins.length-1].bin_end])
+    .range([ml, W-mr]);
+  const y = d3.scaleLinear()
+    .domain([0, d3.max(d.bins, b => b.count)]).nice()
+    .range([H-mb, mt]);
+
+  // Grid
+  svg.append('g').selectAll('line').data(y.ticks(5)).join('line')
+    .attr('x1',ml).attr('x2',W-mr)
+    .attr('y1', d => y(d)).attr('y2', d => y(d))
+    .attr('stroke','#e8edf5');
+
+  // Bars
+  svg.selectAll('rect').data(d.bins).join('rect')
+    .attr('x', b => x(b.bin_start) + 1)
+    .attr('y', b => y(b.count))
+    .attr('width', b => Math.max(0, x(b.bin_end) - x(b.bin_start) - 2))
+    .attr('height', b => H - mb - y(b.count))
+    .attr('fill','#4f8ef7').attr('rx',2)
+    .on('mouseover', (e,b) => showTip(`Age ${b.bin_start.toFixed(0)}–${b.bin_end.toFixed(0)}<br>Count: ${b.count.toLocaleString()}`, e))
+    .on('mousemove', moveTip).on('mouseout', hideTip);
+
+  svg.append('g').attr('transform',`translate(0,${H-mb})`).call(d3.axisBottom(x).ticks(10))
+    .call(g => g.select('.domain').attr('stroke','#ccc'))
+    .call(g => g.selectAll('text').attr('font-size','11px'));
+  svg.append('g').attr('transform',`translate(${ml},0)`).call(d3.axisLeft(y).ticks(5))
+    .call(g => g.select('.domain').remove())
+    .call(g => g.selectAll('text').attr('font-size','11px'));
+
+  // Axis labels
+  svg.append('text').attr('x',(ml+W-mr)/2).attr('y',H-8)
+    .attr('text-anchor','middle').attr('font-size','12px').attr('fill','#667').text('Age (years)');
+  svg.append('text').attr('transform','rotate(-90)').attr('x',-(mt+H-mb)/2).attr('y',12)
+    .attr('text-anchor','middle').attr('font-size','12px').attr('fill','#667').text('Count');
+
+  // Stats table
+  const s = d.stats;
+  buildTable('age-table',
+    ['Statistic','Value'],
+    [['Mean', s.mean],['Median',s.median],['Std',s.std],['Min',s.min],['Max',s.max],['Missing',s.missing.toLocaleString()]]
+  );
+})();
+
+// ── Sex distribution ──────────────────────────────────────
+(function() {
+  const d = DATA_sex_distribution.data;
+  barChart('sex-svg', d, { labelKey:'label', valueKey:'count', color:'#7b61ff' });
+  buildTable('sex-table', ['Sex','Count'],
+    d.map(r => [r.label, r.count.toLocaleString()])
+      .concat([['Missing', DATA_sex_distribution.missing.toLocaleString()]]));
+})();
+
+// ── Height & Weight scatter ───────────────────────────────
+(function() {
+  const d = DATA_height_weight;
+  const W = 700, H = 400;
+  const ml = 55, mr = 30, mt = 20, mb = 50;
+
+  const svg = d3.select('#hw-svg').attr('width',W).attr('height',H).attr('viewBox',`0 0 ${W} ${H}`);
+
+  const x = d3.scaleLinear().domain(d3.extent(d.data, p => p.height)).nice().range([ml,W-mr]);
+  const y = d3.scaleLinear().domain(d3.extent(d.data, p => p.weight)).nice().range([H-mb,mt]);
+
+  // Clip path
+  svg.append('defs').append('clipPath').attr('id','hw-clip')
+    .append('rect').attr('x',ml).attr('y',mt).attr('width',W-ml-mr).attr('height',H-mt-mb);
+
+  const g = svg.append('g').attr('clip-path','url(#hw-clip)');
+
+  const dots = g.selectAll('circle').data(d.data).join('circle')
+    .attr('cx', p => x(p.height)).attr('cy', p => y(p.weight))
+    .attr('r', 2.5).attr('fill','#4f8ef7').attr('opacity',0.45)
+    .on('mouseover', (e,p) => showTip(`Height: ${p.height} cm<br>Weight: ${p.weight} kg`, e))
+    .on('mousemove', moveTip).on('mouseout', hideTip);
+
+  const xAxis = svg.append('g').attr('transform',`translate(0,${H-mb})`).call(d3.axisBottom(x).ticks(8));
+  const yAxis = svg.append('g').attr('transform',`translate(${ml},0)`).call(d3.axisLeft(y).ticks(6));
+  [xAxis,yAxis].forEach(a => a.call(g=>g.select('.domain').attr('stroke','#ccc'))
+    .call(g=>g.selectAll('text').attr('font-size','11px')));
+
+  svg.append('text').attr('x',(ml+W-mr)/2).attr('y',H-8)
+    .attr('text-anchor','middle').attr('font-size','12px').attr('fill','#667').text('Height (cm)');
+  svg.append('text').attr('transform','rotate(-90)').attr('x',-(mt+H-mb)/2).attr('y',14)
+    .attr('text-anchor','middle').attr('font-size','12px').attr('fill','#667').text('Weight (kg)');
+
+  // Zoom
+  const zoom = d3.zoom().scaleExtent([1,12]).translateExtent([[ml,mt],[W-mr,H-mb]])
+    .on('zoom', (event) => {
+      const zx = event.transform.rescaleX(x);
+      const zy = event.transform.rescaleY(y);
+      dots.attr('cx', p => zx(p.height)).attr('cy', p => zy(p.weight));
+      xAxis.call(d3.axisBottom(zx).ticks(8));
+      yAxis.call(d3.axisLeft(zy).ticks(6));
+    });
+  svg.call(zoom);
+
+  // Stats table
+  const s = d.stats;
+  buildTable('hw-table',
+    ['Metric','Mean','Std','Missing'],
+    [
+      ['Height (cm)', s.height.mean, s.height.std, s.height.missing.toLocaleString()],
+      ['Weight (kg)', s.weight.mean, s.weight.std, s.weight.missing.toLocaleString()],
+    ]
+  );
+})();
+
+// ── Recording site ────────────────────────────────────────
+(function() {
+  const d = DATA_recording_site.data;
+  barChart('site-svg', d, { labelKey:'label', valueKey:'count', color:'#22b8a0' });
+  buildTable('site-table', ['Site','Count'],
+    d.map(r => [r.label, r.count.toLocaleString()])
+      .concat([['Missing', DATA_recording_site.missing.toLocaleString()]]));
+})();
+
+// ── Strat fold ────────────────────────────────────────────
+(function() {
+  const d = DATA_strat_fold.data;
+  const data = d.map(r => ({label: 'Fold ' + r.fold, count: r.count}));
+  barChart('fold-svg', data, { labelKey:'label', valueKey:'count', color:'#f77b4f' });
+  buildTable('fold-table', ['Fold','Count'],
+    d.map(r => ['Fold ' + r.fold, r.count.toLocaleString()])
+      .concat([['Missing', DATA_strat_fold.missing.toLocaleString()]]));
+})();
+
+// ── SCP top codes ─────────────────────────────────────────
+(function() {
+  const d = DATA_scp_top_codes.data;
+  const data = d.map(r => ({label: r.code, count: r.count, desc: r.description}));
+  const W = 700, marginL = 70;
+  barChart('scp-svg', data, { labelKey:'label', valueKey:'count', color:'#e85c8a' });
+  // Override tooltip to include description
+  d3.select('#scp-svg').selectAll('rect.bar')
+    .on('mouseover', (e,r) => showTip(`<b>${r.label}</b> — ${r.desc}<br>Count: ${r.count.toLocaleString()}`, e))
+    .on('mousemove', moveTip).on('mouseout', hideTip);
+  buildTable('scp-table', ['Code','Description','Count'],
+    d.map(r => [r.code, r.description, r.count.toLocaleString()]));
+})();
+
+// ── Diagnostic class ──────────────────────────────────────
+(function() {
+  const d = DATA_diagnostic_class.data;
+  const data = d.map(r => ({label: r.label, count: r.count}));
+  barChart('diagclass-svg', data, { labelKey:'label', valueKey:'count', color:'#a05cf7' });
+  buildTable('diagclass-table', ['Class','Count'],
+    d.map(r => [r.label, r.count.toLocaleString()]));
+})();
+
+// ── Heart axis ────────────────────────────────────────────
+(function() {
+  const d = DATA_heart_axis.data;
+  const data = d.map(r => ({label: r.label, count: r.count}));
+  barChart('heartaxis-svg', data, { labelKey:'label', valueKey:'count', color:'#f7b84f' });
+  buildTable('heartaxis-table', ['Heart Axis','Count'],
+    d.map(r => [r.label, r.count.toLocaleString()])
+      .concat([['Missing', DATA_heart_axis.missing.toLocaleString()]]));
+})();
+
+// ── Quality flags ─────────────────────────────────────────
+(function() {
+  const d = DATA_quality_flags.data;
+  const data = d.map(r => ({label: r.flag.replace(/_/g,' '), count: r.count}));
+  barChart('qflags-svg', data, { labelKey:'label', valueKey:'count', color:'#e05c5c' });
+  buildTable('qflags-table', ['Flag','Count'],
+    d.map(r => [r.flag, r.count.toLocaleString()]));
+})();
+
+// ── Missing metadata bar ──────────────────────────────────
+(function() {
+  const d = DATA_missing_metadata.summary.filter(r => r.missing_count > 0);
+  const data = d.map(r => ({label: r.column, count: r.missing_count, pct: r.missing_pct}));
+  barChart('missing-meta-svg', data, { labelKey:'label', valueKey:'count', color:'#e05c5c', pctKey:'pct' });
+  buildTable('missing-meta-table', ['Column','Missing Count','Missing %'],
+    DATA_missing_metadata.summary.map(r => [r.column, r.missing_count.toLocaleString(), r.missing_pct + '%']));
+})();
+
+// ── Missing ECG leads bar ─────────────────────────────────
+(function() {
+  const d = DATA_missing_ecg_leads;
+  // Combine missing + nan
+  const data = d.leads.map((lead, i) => ({
+    label: lead,
+    missing: d.missing_leads[i].count,
+    nan: d.nan_leads[i].count,
+    missing_pct: d.missing_leads[i].pct,
+    nan_pct: d.nan_leads[i].pct,
+  }));
+
+  const W = 700, H = 300, ml = 70, mr = 30, mt = 20, mb = 50;
+  const svg = d3.select('#missing-leads-svg').attr('width',W).attr('height',H).attr('viewBox',`0 0 ${W} ${H}`);
+  const leads = data.map(r=>r.label);
+  const x0 = d3.scaleBand().domain(leads).range([ml,W-mr]).paddingInner(0.2);
+  const x1 = d3.scaleBand().domain(['missing','nan']).range([0,x0.bandwidth()]).padding(0.05);
+  const y  = d3.scaleLinear().domain([0, d3.max(data, r => Math.max(r.missing,r.nan))]).nice().range([H-mb,mt]);
+  const color = d3.scaleOrdinal().domain(['missing','nan']).range(['#e05c5c','#f7b84f']);
+
+  svg.append('g').selectAll('line').data(y.ticks(5)).join('line')
+    .attr('x1',ml).attr('x2',W-mr).attr('y1',d=>y(d)).attr('y2',d=>y(d)).attr('stroke','#e8edf5');
+
+  const grp = svg.selectAll('g.grp').data(data).join('g')
+    .attr('transform', r => `translate(${x0(r.label)},0)`);
+  ['missing','nan'].forEach(key => {
+    grp.append('rect')
+      .attr('x', x1(key)).attr('y', r => y(r[key])).attr('width', x1.bandwidth())
+      .attr('height', r => H-mb-y(r[key])).attr('fill', color(key)).attr('rx', 2)
+      .on('mouseover', (e,r) => showTip(`Lead: ${r.label}<br>${key}: ${r[key].toLocaleString()} records`, e))
+      .on('mousemove', moveTip).on('mouseout', hideTip);
+  });
+
+  svg.append('g').attr('transform',`translate(0,${H-mb})`).call(d3.axisBottom(x0))
+    .call(g=>g.select('.domain').attr('stroke','#ccc')).call(g=>g.selectAll('text').attr('font-size','11px'));
+  svg.append('g').attr('transform',`translate(${ml},0)`).call(d3.axisLeft(y).ticks(5))
+    .call(g=>g.select('.domain').remove()).call(g=>g.selectAll('text').attr('font-size','11px'));
+
+  // Legend
+  const leg = svg.append('g').attr('transform',`translate(${W-mr-120},${mt})`);
+  ['missing','nan'].forEach((k,i) => {
+    leg.append('rect').attr('x',0).attr('y',i*18).attr('width',12).attr('height',12).attr('fill',color(k)).attr('rx',2);
+    leg.append('text').attr('x',16).attr('y',i*18+10).attr('font-size','11px').attr('fill','#445').text(k==='nan'?'NaN values':k);
+  });
+
+  buildTable('missing-leads-table', ['Lead','Missing Count','Missing %','NaN Count','NaN %'],
+    data.map(r => [r.label, r.missing.toLocaleString(), r.missing_pct+'%', r.nan.toLocaleString(), r.nan_pct+'%']));
+})();
+
+// ── Flat leads bar ────────────────────────────────────────
+(function() {
+  const d = DATA_flat_signal_leads.data;
+  const data = d.map(r => ({label: r.lead, count: r.count, pct: r.pct}));
+  barChart('flat-leads-svg', data, { labelKey:'label', valueKey:'count', color:'#f7b84f', pctKey:'pct' });
+  buildTable('flat-leads-table', ['Lead','Flat Count','Flat %'],
+    d.map(r => [r.lead, r.count.toLocaleString(), r.pct+'%']));
+})();
+
+// ── Missing leads heatmap ─────────────────────────────────
+(function() {
+  const d = DATA_missing_ecg_leads;
+  const rows = d.heatmap;
+  const leads = d.leads;
+  const nRows = rows.length;
+  const nCols = leads.length;
+
+  const cellW = 40, cellH = Math.max(1, Math.min(4, Math.floor(600 / nRows)));
+  const ml = 60, mt = 30, mr = 20, mb = 30;
+  const W = ml + nCols * cellW + mr;
+  const H = mt + nRows * cellH + mb;
+
+  const svg = d3.select('#heatmap-svg').attr('width',W).attr('height',H).attr('viewBox',`0 0 ${W} ${H}`);
+  const color = d3.scaleOrdinal().domain([0,1]).range(['#4f8ef7','#e05c5c']);
+
+  // Cells
+  rows.forEach((row, ri) => {
+    row.values.forEach((v, ci) => {
+      svg.append('rect')
+        .attr('x', ml + ci * cellW).attr('y', mt + ri * cellH)
+        .attr('width', cellW - 1).attr('height', Math.max(1, cellH - 1))
+        .attr('fill', color(v))
+        .on('mouseover', (e) => showTip(`ECG ID: ${row.ecg_id}<br>Lead: ${leads[ci]}<br>${v ? 'Missing/NaN' : 'Present'}`, e))
+        .on('mousemove', moveTip).on('mouseout', hideTip);
+    });
+  });
+
+  // Lead labels (x axis)
+  leads.forEach((lead, ci) => {
+    svg.append('text')
+      .attr('x', ml + ci * cellW + cellW/2).attr('y', mt - 6)
+      .attr('text-anchor','middle').attr('font-size','10px').attr('fill','#445').text(lead);
+  });
+
+  svg.append('text').attr('x', ml - 8).attr('y', mt + nRows * cellH / 2)
+    .attr('text-anchor','end').attr('dominant-baseline','middle')
+    .attr('font-size','10px').attr('fill','#667').attr('transform',
+      `rotate(-90,${ml-8},${mt + nRows*cellH/2})`).text('Records (sampled)');
+})();
+
+// ── Clean records per fold (grouped bar) ──────────────────
+(function() {
+  const d = DATA_clean_records_per_fold.data;
+  const W = 700, H = 300, ml = 50, mr = 30, mt = 20, mb = 50;
+  const svg = d3.select('#clean-fold-svg').attr('width',W).attr('height',H).attr('viewBox',`0 0 ${W} ${H}`);
+
+  const folds = d.map(r => 'Fold ' + r.fold);
+  const x0 = d3.scaleBand().domain(folds).range([ml,W-mr]).paddingInner(0.2);
+  const x1 = d3.scaleBand().domain(['clean','dirty']).range([0,x0.bandwidth()]).padding(0.05);
+  const y  = d3.scaleLinear().domain([0, d3.max(d, r=>r.total)]).nice().range([H-mb,mt]);
+  const color = d3.scaleOrdinal().domain(['clean','dirty']).range(['#22b8a0','#e05c5c']);
+
+  svg.append('g').selectAll('line').data(y.ticks(5)).join('line')
+    .attr('x1',ml).attr('x2',W-mr).attr('y1',dv=>y(dv)).attr('y2',dv=>y(dv)).attr('stroke','#e8edf5');
+
+  const grp = svg.selectAll('g.grp').data(d).join('g')
+    .attr('transform', r => `translate(${x0('Fold '+r.fold)},0)`);
+  ['clean','dirty'].forEach(key => {
+    grp.append('rect')
+      .attr('x', x1(key)).attr('y', r=>y(r[key])).attr('width', x1.bandwidth())
+      .attr('height', r=>H-mb-y(r[key])).attr('fill', color(key)).attr('rx', 2)
+      .on('mouseover', (e,r) => showTip(`Fold ${r.fold}<br>${key}: ${r[key].toLocaleString()}`, e))
+      .on('mousemove', moveTip).on('mouseout', hideTip);
+  });
+
+  svg.append('g').attr('transform',`translate(0,${H-mb})`).call(d3.axisBottom(x0))
+    .call(g=>g.select('.domain').attr('stroke','#ccc')).call(g=>g.selectAll('text').attr('font-size','11px'));
+  svg.append('g').attr('transform',`translate(${ml},0)`).call(d3.axisLeft(y).ticks(5))
+    .call(g=>g.select('.domain').remove()).call(g=>g.selectAll('text').attr('font-size','11px'));
+
+  // Legend
+  const leg = svg.append('g').attr('transform',`translate(${W-mr-100},${mt})`);
+  ['clean','dirty'].forEach((k,i) => {
+    leg.append('rect').attr('x',0).attr('y',i*18).attr('width',12).attr('height',12).attr('fill',color(k)).attr('rx',2);
+    leg.append('text').attr('x',16).attr('y',i*18+10).attr('font-size','11px').attr('fill','#445').text(k);
+  });
+
+  buildTable('clean-fold-table', ['Fold','Clean','Dirty','Total'],
+    d.map(r => ['Fold '+r.fold, r.clean.toLocaleString(), r.dirty.toLocaleString(), r.total.toLocaleString()]));
+})();
+
+</script>
+</body>
+</html>
