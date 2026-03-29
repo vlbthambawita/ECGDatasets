@@ -2,62 +2,62 @@
   "data": [
     {
       "fold": 1,
-      "clean": 622,
-      "dirty": 1555,
+      "clean": 2177,
+      "dirty": 0,
       "total": 2177
     },
     {
       "fold": 2,
-      "clean": 610,
-      "dirty": 1574,
+      "clean": 2183,
+      "dirty": 1,
       "total": 2184
     },
     {
       "fold": 3,
-      "clean": 602,
-      "dirty": 1592,
+      "clean": 2194,
+      "dirty": 0,
       "total": 2194
     },
     {
       "fold": 4,
-      "clean": 620,
-      "dirty": 1555,
+      "clean": 2175,
+      "dirty": 0,
       "total": 2175
     },
     {
       "fold": 5,
-      "clean": 610,
-      "dirty": 1566,
+      "clean": 2176,
+      "dirty": 0,
       "total": 2176
     },
     {
       "fold": 6,
-      "clean": 605,
-      "dirty": 1573,
+      "clean": 2178,
+      "dirty": 0,
       "total": 2178
     },
     {
       "fold": 7,
-      "clean": 617,
-      "dirty": 1561,
+      "clean": 2178,
+      "dirty": 0,
       "total": 2178
     },
     {
       "fold": 8,
-      "clean": 606,
-      "dirty": 1573,
+      "clean": 2179,
+      "dirty": 0,
       "total": 2179
     },
     {
       "fold": 9,
-      "clean": 628,
-      "dirty": 1565,
+      "clean": 2193,
+      "dirty": 0,
       "total": 2193
     },
     {
       "fold": 10,
-      "clean": 596,
-      "dirty": 1607,
+      "clean": 2203,
+      "dirty": 0,
       "total": 2203
     }
   ]

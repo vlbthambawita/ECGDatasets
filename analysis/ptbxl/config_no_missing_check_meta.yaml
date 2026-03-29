@@ -6,10 +6,10 @@ dataset:
   max_records: null               # null = all; set integer for quick test runs
 
 output:
-  report_dir: analysis/ptbxl
-  data_dir: analysis/ptbxl/data
-  clean_csv: analysis/ptbxl/clean_records.csv
-  report_html: analysis/ptbxl/report.html
+  report_dir: docs/analysis/ptbxl
+  data_dir: docs/analysis/ptbxl/data
+  clean_csv: docs/analysis/ptbxl/clean_records.csv
+  report_html: docs/analysis/ptbxl/report.html
 
 signal_analysis:
   flat_threshold: 0.01            # mV; leads with std below this are "flat"
