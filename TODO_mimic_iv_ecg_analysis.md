@@ -65,7 +65,7 @@ Build a configurable Python analysis script for the MIMIC-IV ECG (Diagnostic Ele
 analysis/
 └── mimic_iv_ecg/
     ├── config.yaml
-    └── clean_records.csv          ← filtered ECG IDs; auto-uploaded to HF Dataset on push
+    └── clean_records.csv          ← filtered ECG IDs; pushed directly to HF Dataset repo (NOT committed to GitHub)
 
 scripts/
 ├── analyse_mimic_iv_ecg.py
@@ -487,7 +487,8 @@ d3 v7     # vendored at scripts/vendor/d3.min.js — no CDN dependency
 - [ ] **T7** Open `docs/analysis/mimic_iv_ecg/report.html` in a browser; verify all D3 charts render
 - [ ] **T8** Update `docs/index.html` — add MIMIC-IV ECG row with "View Report" link
 - [ ] **T9** Update `README.md` to list MIMIC-IV ECG as an available dataset
-- [ ] **T10** Commit all outputs and push to `main` to deploy to GitHub Pages and HuggingFace Space
+- [ ] **T10** Commit docs/scripts/analysis config outputs and push to `main` to deploy to GitHub Pages and HuggingFace Space
+- [ ] **T11** Push `analysis/mimic_iv_ecg/clean_records.csv` directly to the HuggingFace Dataset repo (`vlbthambawita/ecg-metadata-curated`) using the `huggingface_hub` Python library or the `huggingface-cli` — **do not commit this file to GitHub**
 
 ---
 
@@ -508,3 +509,15 @@ d3 v7     # vendored at scripts/vendor/d3.min.js — no CDN dependency
 - **D3 vendor:** Reuse `scripts/vendor/d3.min.js` — do not re-download
 - **docs/index.html and README.md must be updated together** (per CLAUDE.md) to stay in sync
 - **HuggingFace Space** is auto-deployed by `.github/workflows/deploy-to-hf.yml` on push to `main`
+- **`clean_records.csv` → HF Dataset directly:** Do NOT commit `analysis/mimic_iv_ecg/clean_records.csv` to GitHub. Instead push it straight to the HF Dataset repo:
+  ```python
+  from huggingface_hub import HfApi
+  api = HfApi()
+  api.upload_file(
+      path_or_fileobj="analysis/mimic_iv_ecg/clean_records.csv",
+      path_in_repo="mimic_iv_ecg/clean_records.csv",
+      repo_id="vlbthambawita/ecg-metadata-curated",
+      repo_type="dataset",
+  )
+  ```
+  Or via CLI: `huggingface-cli upload vlbthambawita/ecg-metadata-curated analysis/mimic_iv_ecg/clean_records.csv mimic_iv_ecg/clean_records.csv --repo-type dataset`

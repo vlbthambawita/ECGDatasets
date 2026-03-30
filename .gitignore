@@ -206,5 +206,6 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
-# Generated analysis outputs — CSVs live on HuggingFace dataset, not in this repo
+# Generated analysis outputs — clean_records CSVs go to HuggingFace Dataset repo, not GitHub
+analysis/*/clean_records.csv
 docs/analysis/*/clean_records.csv
