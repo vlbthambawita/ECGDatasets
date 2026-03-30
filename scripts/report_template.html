@@ -175,15 +175,33 @@
       <div style="font-weight:700;color:#1a2233;font-size:.95rem;margin-bottom:4px;">
         Clean Records CSV
       </div>
-      <p style="font-size:.82rem;color:#445;margin:0 0 10px;">
-        The file below lists every ECG record that passed <em>all</em> quality criteria:
+      <p style="font-size:.82rem;color:#445;margin:0 0 6px;">
+        Lists every ECG record that passed <em>all</em> quality criteria:
         all 12 leads present, no NaN values in any lead, no flat signals, no missing required
         metadata fields, and no quality flags (baseline drift, static noise, burst noise, or
         electrode problems). Each row contains the <code>ecg_id</code> and its
         <code>strat_fold</code> assignment for use in cross-validation splits.
       </p>
-      <button class="btn" style="background:#1a6ef5;color:#fff;border-color:#1a6ef5;font-size:.8rem;padding:7px 16px;"
-              onclick="downloadInlineCSV()">&#11015; Download clean_records.csv</button>
+      <p style="font-size:.78rem;color:#6b7a99;margin:0 0 12px;">
+        Hosted on
+        <a href="https://huggingface.co/datasets/SEARCH-IHI/ECGData_clean_splits"
+           target="_blank" style="color:#4f8ef7;text-decoration:none;">
+          &#129303; HuggingFace — SEARCH-IHI/ECGData_clean_splits
+        </a>
+      </p>
+      {% if hf_csv_url %}
+      <a href="{{ hf_csv_url }}" target="_blank"
+         style="display:inline-flex;align-items:center;gap:6px;background:#1a6ef5;color:#fff;
+                border:1px solid #1a6ef5;border-radius:5px;font-size:.8rem;padding:7px 16px;
+                text-decoration:none;font-weight:600;transition:background .12s;"
+         onmouseover="this.style.background='#1558c9'" onmouseout="this.style.background='#1a6ef5'">
+        &#11015; Download clean_records.csv
+      </a>
+      {% else %}
+      <span style="font-size:.8rem;color:#888;font-style:italic;">
+        HF dataset URL not configured — set <code>output.hf_dataset_csv_url</code> in config.yaml
+      </span>
+      {% endif %}
     </div>
   </div>
 
@@ -512,18 +530,6 @@ const DATA_{{ var_name }} = {{ json_str }};
 {% endfor %}
 </script>
 
-<!-- ═══════════════════════ CLEAN CSV DATA ══════════════════ -->
-<script>
-const CLEAN_CSV_CONTENT = {{ clean_csv_content | tojson }};
-
-function downloadInlineCSV() {
-  const blob = new Blob([CLEAN_CSV_CONTENT], { type: 'text/csv;charset=utf-8;' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = 'clean_records.csv'; a.click();
-  URL.revokeObjectURL(url);
-}
-</script>
 
 <!-- ═══════════════════════ UTILS ══════════════════════════ -->
 <script>

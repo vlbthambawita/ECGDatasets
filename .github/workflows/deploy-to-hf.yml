@@ -7,6 +7,7 @@ on:
     paths:
       - 'docs/**'
       - 'hf_space/**'
+      - 'analysis/**'
       - '.github/workflows/deploy-to-hf.yml'
   # Allow manual trigger from the Actions tab
   workflow_dispatch:
@@ -37,6 +38,40 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global http.postBuffer 157286400
 
+      # ── Step 1: Upload clean_records CSVs to HF Dataset ──────────────────
+      - name: Upload clean CSVs to HuggingFace Dataset
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          pip install -q huggingface_hub
+          python - <<'PYEOF'
+          import os, glob
+          from huggingface_hub import HfApi
+
+          HF_DATASET = "SEARCH-IHI/ECGData_clean_splits"
+          token = os.environ["HF_TOKEN"]
+          api = HfApi()
+
+          csv_files = sorted(glob.glob("analysis/*/clean_records.csv"))
+          if not csv_files:
+              print("No clean_records.csv files found in analysis/ — skipping dataset upload.")
+          else:
+              for csv_path in csv_files:
+                  dataset_name = csv_path.split("/")[1]   # e.g. "ptbxl"
+                  repo_path = f"{dataset_name}/clean_records.csv"
+                  print(f"Uploading {csv_path} → {HF_DATASET}/{repo_path} ...")
+                  api.upload_file(
+                      path_or_fileobj=csv_path,
+                      path_in_repo=repo_path,
+                      repo_id=HF_DATASET,
+                      repo_type="dataset",
+                      token=token,
+                      commit_message=f"Update {repo_path} from GitHub Actions",
+                  )
+                  print(f"  ✓ Done")
+          PYEOF
+
+      # ── Step 2: Deploy docs/ to HF Space ─────────────────────────────────
       - name: Clone HuggingFace Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
@@ -63,7 +98,7 @@ jobs:
           echo "Files to be deployed:"
           find hf_repo -not -path '*/.git/*' -type f | sort
 
-      - name: Commit and push to HuggingFace
+      - name: Commit and push to HuggingFace Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           HF_SPACE: vlbthambawita/ECGDatasets
