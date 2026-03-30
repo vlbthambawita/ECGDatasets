@@ -64,7 +64,8 @@ Build a configurable Python analysis script for the MIMIC-IV ECG (Diagnostic Ele
 ```
 analysis/
 └── mimic_iv_ecg/
-    └── config.yaml
+    ├── config.yaml
+    └── clean_records.csv          ← filtered ECG IDs; auto-uploaded to HF Dataset on push
 
 scripts/
 ├── analyse_mimic_iv_ecg.py
@@ -90,7 +91,6 @@ docs/
         │   ├── lead_completeness.json
         │   ├── signal_quality.json
         │   └── clean_records_summary.json
-        ├── clean_records.csv
         └── report.html
 ```
 

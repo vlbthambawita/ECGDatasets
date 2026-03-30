@@ -1,11 +1,11 @@
 {
   "total_records": 800035,
-  "passed_all_criteria": 789479,
-  "excluded_total": 10556,
+  "passed_all_criteria": 789478,
+  "excluded_total": 10557,
   "exclusions": {
     "missing_leads": 0,
-    "flat_leads": 1,
-    "nan_leads": 13,
+    "flat_leads": 3,
+    "nan_leads": 24,
     "missing_ecg_time": 0,
     "missing_rr_interval": 10554,
     "missing_report_0": 10555

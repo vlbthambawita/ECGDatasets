@@ -652,7 +652,7 @@ def signal_quality(root, records_df, sample_n, flat_threshold,
 # Phase 18 — Clean Record Identification
 # ─────────────────────────────────────────────────────────────────────────────
 
-def clean_records(records_df, meas_df, criteria, out):
+def clean_records(records_df, meas_df, criteria, out, csv_path):
     print("[Phase 18] Clean record identification...")
 
     import json as _json
@@ -718,7 +718,8 @@ def clean_records(records_df, meas_df, criteria, out):
     clean_df = records_df[records_df["study_id"].isin(passing_ids)][
         ["study_id", "subject_id", "ecg_time", "path"]
     ].copy()
-    csv_path = out.parent / "clean_records.csv"
+    csv_path = Path(csv_path)
+    csv_path.parent.mkdir(parents=True, exist_ok=True)
     clean_df.to_csv(csv_path, index=False)
     print(f"  wrote {csv_path.relative_to(REPO_ROOT)}  ({len(clean_df):,} records)")
 
@@ -808,7 +809,8 @@ def main():
     waveform_header_stats(root, records_df, sample_wf, out)
     lead_completeness(root, records_df, out)
     signal_quality(root, records_df, sample_sq, flat_threshold, nan_count_threshold, clip_pct, out)
-    clean_records(records_df, meas_df, criteria, out)
+    clean_csv = REPO_ROOT / cfg["output"]["clean_records"]
+    clean_records(records_df, meas_df, criteria, out, clean_csv)
 
     print("[Phase 19] Rendering HTML report...")
     template_path = REPO_ROOT / "scripts" / "report_template_mimic_iv_ecg.html"

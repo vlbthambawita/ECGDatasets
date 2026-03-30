@@ -13,9 +13,10 @@ dataset:
     root: files
 
 output:
-  report_dir:  docs/analysis/mimic_iv_ecg
-  data_dir:    docs/analysis/mimic_iv_ecg/data
-  report_html: docs/analysis/mimic_iv_ecg/report.html
+  report_dir:    docs/analysis/mimic_iv_ecg
+  data_dir:      docs/analysis/mimic_iv_ecg/data
+  report_html:   docs/analysis/mimic_iv_ecg/report.html
+  clean_records: analysis/mimic_iv_ecg/clean_records.csv
 
 analysis:
   top_n_reports:          40      # top N machine-report phrases
