@@ -36,14 +36,14 @@ jobs:
         run: pip install -q "huggingface_hub>=0.23"
 
       # ── Step 1: Upload clean CSVs to HF Dataset (optional) ───────────────
-      # Requires HF_DATASET_TOKEN with write access to SEARCH-IHI/ECGData_clean_splits.
+      # Requires HF_DATASET_TOKEN with write access to vlbthambawita/ecg-metadata-curated.
       # If not set this step warns and skips; the Space deploy always continues.
       - name: Upload clean CSVs to HuggingFace Dataset
         env:
           HF_DATASET_TOKEN: ${{ secrets.HF_DATASET_TOKEN }}
         run: |
           if [ -z "${HF_DATASET_TOKEN}" ]; then
-            echo "::warning::HF_DATASET_TOKEN not set — skipping CSV upload to SEARCH-IHI/ECGData_clean_splits."
+            echo "::warning::HF_DATASET_TOKEN not set — skipping CSV upload to vlbthambawita/ecg-metadata-curated."
             echo "To enable: add HF_DATASET_TOKEN in Settings → Secrets → Actions."
             exit 0
           fi
@@ -52,7 +52,7 @@ jobs:
           import os, glob, sys
           from huggingface_hub import HfApi
 
-          HF_DATASET = "SEARCH-IHI/ECGData_clean_splits"
+          HF_DATASET = "vlbthambawita/ecg-metadata-curated"
           api = HfApi(token=os.environ["HF_DATASET_TOKEN"])
 
           csv_files = sorted(glob.glob("analysis/*/clean_records.csv"))

@@ -10,7 +10,7 @@ output:
   data_dir: docs/analysis/ptbxl/data
   clean_csv: analysis/ptbxl/clean_records.csv   # kept in git; uploaded to HF dataset by CI
   report_html: docs/analysis/ptbxl/report.html
-  hf_dataset_csv_url: https://huggingface.co/datasets/SEARCH-IHI/ECGData_clean_splits/resolve/main/ptbxl/clean_records.csv
+  hf_dataset_csv_url: https://huggingface.co/datasets/vlbthambawita/ecg-metadata-curated/resolve/main/ptbxl/clean_records.csv
 
 signal_analysis:
   flat_threshold: 0.01            # mV; leads with std below this are "flat"
