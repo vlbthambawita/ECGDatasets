@@ -197,7 +197,10 @@ jobs:
           # Snapshot docs/ from the tag commit (including _version.json just written)
           cp -r docs/ /tmp/docs_snapshot
 
-          # Remove untracked files that would block the branch switch
+          # Discard all local changes in docs/ so the branch switch succeeds.
+          # git restore handles modified tracked files (e.g. _version.json);
+          # git clean handles any untracked files.
+          git restore docs/ 2>/dev/null || true
           git clean -fd docs/
 
           # Switch to main
