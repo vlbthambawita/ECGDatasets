@@ -8,6 +8,8 @@ on:
       - 'docs/**'
       - 'hf_space/**'
       - '.github/workflows/deploy-to-hf.yml'
+  # Allow manual trigger from the Actions tab
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -17,35 +19,64 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          lfs: true
 
-      - name: Push to HuggingFace Space
+      - name: Validate HF_TOKEN secret
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-          # IMPORTANT: Change this to your HuggingFace username/space-name
-          HF_SPACE: vlbthambawita/ECGDatasets
         run: |
-          # Configure git
+          if [ -z "${HF_TOKEN}" ]; then
+            echo "::error::HF_TOKEN secret is not set. Go to Settings → Secrets → Actions and add a HuggingFace write token."
+            exit 1
+          fi
+          echo "HF_TOKEN is set (length: ${#HF_TOKEN})"
+
+      - name: Configure git
+        run: |
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
+          git config --global http.postBuffer 157286400
 
-          # Clone the HuggingFace Space repo
-          git clone https://vlbthambawita:${HF_TOKEN}@huggingface.co/spaces/${HF_SPACE} hf_repo
+      - name: Clone HuggingFace Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_SPACE: vlbthambawita/ECGDatasets
+        run: |
+          set -e
+          echo "Cloning https://huggingface.co/spaces/${HF_SPACE} ..."
+          git clone "https://vlbthambawita:${HF_TOKEN}@huggingface.co/spaces/${HF_SPACE}" hf_repo
+          echo "Clone successful. Current HF Space contents:"
+          ls -lh hf_repo/
 
+      - name: Sync docs/ to HF Space
+        run: |
+          set -e
           # Clear existing content (keep .git)
           find hf_repo -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
 
-          # Copy docs/ content to Space root (index.html etc.)
+          # Copy docs/ content to Space root
           cp -r docs/. hf_repo/
 
-          # Copy HF Space README with metadata (overrides any README from docs/)
+          # Overwrite README with HF Space metadata (frontmatter controls Space settings)
           cp hf_space/README.md hf_repo/README.md
 
-          # Commit and push
+          echo "Files to be deployed:"
+          find hf_repo -not -path '*/.git/*' -type f | sort
+
+      - name: Commit and push to HuggingFace
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_SPACE: vlbthambawita/ECGDatasets
+        run: |
+          set -e
           cd hf_repo
           git add -A
           if git diff --cached --quiet; then
-            echo "No changes to deploy."
+            echo "No changes to deploy — HF Space is already up to date."
           else
+            echo "Changes staged:"
+            git diff --cached --stat
             git commit -m "Deploy from GitHub: ${{ github.sha }}"
-            git push
+            git push "https://vlbthambawita:${HF_TOKEN}@huggingface.co/spaces/${HF_SPACE}"
+            echo "Successfully deployed to https://huggingface.co/spaces/${HF_SPACE}"
           fi

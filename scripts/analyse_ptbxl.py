@@ -25,6 +25,60 @@ from tqdm import tqdm
 
 LEADS = ["I", "II", "III", "AVR", "AVL", "AVF", "V1", "V2", "V3", "V4", "V5", "V6"]
 
+# Static PTB-XL directory / file structure for the report tree visualisation
+DATASET_TREE = {
+    "name": "ptb-xl / 1_0_1 /", "type": "folder",
+    "desc": "PTB-XL v1.0.1 root — 21,837 ECG records, 3.2 GB total",
+    "children": [
+        {"name": "ptbxl_database.csv",  "type": "csv",    "desc": "Main metadata: 21,837 records × 28 columns (demographics, SCP codes, quality flags, fold assignments)"},
+        {"name": "scp_statements.csv",  "type": "csv",    "desc": "SCP-ECG diagnostic code reference table (71 codes, descriptions, diagnostic classes)"},
+        {"name": "RECORDS",             "type": "text",   "desc": "Plain-text list of all 21,837 record paths (one per line)"},
+        {"name": "example_physionet.py","type": "python", "desc": "Official example script showing how to load records with the wfdb library"},
+        {"name": "LICENSE.txt",         "type": "text",   "desc": "Creative Commons Attribution 4.0 International (CC BY 4.0)"},
+        {"name": "SHA256SUMS.txt",      "type": "text",   "desc": "SHA-256 checksums for all files"},
+        {
+            "name": "records100 /", "type": "folder",
+            "desc": "100 Hz ECG signals — 604 MB total; 24 subdirectories (1,000 records each)",
+            "children": [
+                {
+                    "name": "00000 /", "type": "folder",
+                    "desc": "Records with ecg_id 1–999 (example subdirectory)",
+                    "children": [
+                        {"name": "00001_lr.dat", "type": "dat", "desc": "Binary WFDB signal file — 12 leads × 1,000 samples (10 s @ 100 Hz), 16-bit integers, 24 KB"},
+                        {"name": "00001_lr.hea", "type": "hea", "desc": "WFDB plain-text header — signal names, sampling rate, ADC gain, channel metadata"},
+                        {"name": "00002_lr.dat", "type": "dat", "desc": "Next record signal file (same format)"},
+                        {"name": "00002_lr.hea", "type": "hea", "desc": "Next record header file"},
+                        {"name": "… (≈ 996 more pairs)", "type": "ellipsis", "desc": ""},
+                    ]
+                },
+                {"name": "01000 / … 21000 /", "type": "folder-multi",
+                 "desc": "23 further subdirectories with the same structure (1,000-record batches)",
+                 "children": []},
+            ]
+        },
+        {
+            "name": "records500 /", "type": "folder",
+            "desc": "500 Hz ECG signals — 2.6 GB total; same 24-subdirectory layout as records100",
+            "children": [
+                {
+                    "name": "00000 /", "type": "folder",
+                    "desc": "Records with ecg_id 1–999 (example subdirectory)",
+                    "children": [
+                        {"name": "00001_hr.dat", "type": "dat", "desc": "Binary WFDB signal file — 12 leads × 5,000 samples (10 s @ 500 Hz), 16-bit integers, 120 KB"},
+                        {"name": "00001_hr.hea", "type": "hea", "desc": "WFDB plain-text header for the 500 Hz record"},
+                        {"name": "00002_hr.dat", "type": "dat", "desc": "Next record signal file (same format)"},
+                        {"name": "00002_hr.hea", "type": "hea", "desc": "Next record header file"},
+                        {"name": "… (≈ 996 more pairs)", "type": "ellipsis", "desc": ""},
+                    ]
+                },
+                {"name": "01000 / … 21000 /", "type": "folder-multi",
+                 "desc": "23 further subdirectories with the same structure (1,000-record batches)",
+                 "children": []},
+            ]
+        },
+    ]
+}
+
 
 # ---------------------------------------------------------------------------
 # Phase 1 — Config
@@ -201,6 +255,9 @@ def analyse_metadata(db: pd.DataFrame, scp: pd.DataFrame, cfg: dict) -> dict:
         if flag in db.columns:
             flag_data.append({"flag": flag, "count": int(db[flag].sum())})
     _write_json(data_dir / "quality_flags.json", {"data": flag_data})
+
+    # Dataset tree structure
+    _write_json(data_dir / "dataset_tree.json", DATASET_TREE)
 
     print(f"[Phase 3] Metadata analysis complete. {len(db)} records.")
     return results

@@ -65,6 +65,21 @@
   td { padding: 7px 12px; border-bottom: 1px solid #eef1f6; color: #334; }
   tr:hover td { background: #f7f9fd; }
 
+  /* ── Dataset tree ── */
+  #tree-svg { width: 100%; overflow: visible; cursor: grab; }
+  #tree-svg:active { cursor: grabbing; }
+  .tree-node circle { stroke-width: 1.5px; transition: r .2s; }
+  .tree-node:hover circle { r: 7; }
+  .tree-link { fill: none; stroke: #c8d4e8; stroke-width: 1.5px; }
+  .tree-label { font-size: 12px; fill: #2a3550; font-family: 'Segoe UI', sans-serif; }
+  .tree-desc  { font-size: 10px; fill: #8896b0; font-family: 'Segoe UI', sans-serif; }
+  .tree-icon  { font-size: 14px; }
+  .node-btn   { font-size: 9px; fill: #7090c0; cursor: pointer; }
+  .tree-legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 16px;
+                 padding: 12px 16px; background: #f7f9fc; border-radius: 8px; }
+  .tree-legend-item { display: flex; align-items: center; gap: 6px;
+                      font-size: 0.75rem; color: #556; }
+
   /* ── D3 tooltip ── */
   .tooltip {
     position: absolute; background: rgba(20,30,50,.88); color: #fff;
@@ -90,6 +105,7 @@
   <div class="logo">PTB-XL Analysis</div>
   <nav>
     <div class="nav-section">Overview</div>
+    <a href="#dataset-structure">Dataset Structure</a>
     <a href="#overview-section">Dataset Summary</a>
     <div class="nav-section">Metadata</div>
     <a href="#age">Age Distribution</a>
@@ -120,6 +136,36 @@
   <p style="font-size:.85rem;color:#666;margin-bottom:20px;">
     Automated analysis of metadata, missing values, ECG signal quality, and clean record identification.
   </p>
+
+  <!-- Dataset Structure tree -->
+  <section id="dataset-structure" class="section">
+    <h2>Dataset Structure</h2>
+    <p class="subtitle">
+      Interactive folder &amp; file tree of the PTB-XL v1.0.1 dataset.
+      Click any folder node to expand or collapse. Hover for descriptions. Scroll/pinch to zoom, drag to pan.
+    </p>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">PTB-XL Directory Tree</span>
+        <div class="btn-group">
+          <button class="btn" id="tree-expand-all">Expand all</button>
+          <button class="btn" id="tree-collapse-all">Collapse all</button>
+          <button class="btn" onclick="downloadSVG('tree-svg','ptbxl_dataset_structure.svg')">Download SVG</button>
+        </div>
+      </div>
+      <svg id="tree-svg"></svg>
+      <!-- Legend -->
+      <div class="tree-legend">
+        <div class="tree-legend-item"><span style="color:#f59e0b;font-size:1rem;">&#128193;</span> Folder</div>
+        <div class="tree-legend-item"><span style="color:#22c55e;font-size:1rem;">&#128202;</span> CSV file</div>
+        <div class="tree-legend-item"><span style="color:#3b82f6;font-size:1rem;">&#128190;</span> DAT — binary signal</div>
+        <div class="tree-legend-item"><span style="color:#6366f1;font-size:1rem;">&#128196;</span> HEA — WFDB header</div>
+        <div class="tree-legend-item"><span style="color:#f97316;font-size:1rem;">&#128013;</span> Python script</div>
+        <div class="tree-legend-item"><span style="color:#94a3b8;font-size:1rem;">&#128221;</span> Text file</div>
+        <div class="tree-legend-item"><span style="color:#cbd5e1;font-size:1rem;">&#8943;</span> More files</div>
+      </div>
+    </div>
+  </section>
 
   <!-- Clean CSV banner -->
   <div style="background:#eaf3ff;border:1px solid #b6d4fe;border-radius:10px;padding:18px 24px;
@@ -990,6 +1036,187 @@ window.addEventListener('scroll', () => {
 
   buildTable('clean-fold-table', ['Fold','Clean','Dirty','Total'],
     d.map(r => ['Fold '+r.fold, r.clean.toLocaleString(), r.dirty.toLocaleString(), r.total.toLocaleString()]));
+})();
+
+// ── Dataset structure tree ────────────────────────────────
+(function() {
+  const treeData = DATA_dataset_tree;
+
+  // Icon & colour map per node type
+  const TYPE = {
+    'folder':       { icon: '\u{1F4C1}', color: '#f59e0b', fill: '#fff7e6', stroke: '#f59e0b' },
+    'folder-multi': { icon: '\u{1F4C2}', color: '#d97706', fill: '#fff3cd', stroke: '#d97706' },
+    'csv':          { icon: '\u{1F4CA}', color: '#22c55e', fill: '#f0fdf4', stroke: '#22c55e' },
+    'dat':          { icon: '\u{1F4BE}', color: '#3b82f6', fill: '#eff6ff', stroke: '#3b82f6' },
+    'hea':          { icon: '\u{1F4C4}', color: '#6366f1', fill: '#f5f3ff', stroke: '#6366f1' },
+    'python':       { icon: '\u{1F40D}', color: '#f97316', fill: '#fff7ed', stroke: '#f97316' },
+    'text':         { icon: '\u{1F4DD}', color: '#94a3b8', fill: '#f8fafc', stroke: '#94a3b8' },
+    'ellipsis':     { icon: '\u22EF',    color: '#cbd5e1', fill: '#f8fafc', stroke: '#cbd5e1' },
+  };
+  const getType = t => TYPE[t] || TYPE['text'];
+
+  const W = 860, nodeH = 32, marginL = 24, marginT = 20;
+
+  const svg = d3.select('#tree-svg').attr('height', 400);
+  svg.selectAll('*').remove();
+
+  // Defs for clip
+  const defs = svg.append('defs');
+  defs.append('clipPath').attr('id','tree-clip')
+    .append('rect').attr('x', 0).attr('y', 0).attr('width', W).attr('height', 2000);
+
+  const zoomG = svg.append('g').attr('class','zoom-g');
+  const linksG = zoomG.append('g').attr('class','links-g');
+  const nodesG = zoomG.append('g').attr('class','nodes-g');
+
+  // Zoom & pan
+  const zoom = d3.zoom().scaleExtent([0.35, 2.5])
+    .on('zoom', e => zoomG.attr('transform', e.transform));
+  svg.call(zoom).on('dblclick.zoom', null);
+
+  let root;
+
+  function buildHierarchy(data) {
+    root = d3.hierarchy(data, d => (d._collapsed ? null : d.children));
+    // Collapse all folders below depth 1 initially
+    root.each(d => {
+      if (d.depth >= 2 && d.data.children && d.data.children.length) {
+        d.data._collapsed = true;
+      }
+    });
+    return root;
+  }
+
+  function update() {
+    // Re-build hierarchy respecting _collapsed flags
+    root = d3.hierarchy(treeData, d => d._collapsed ? null : d.children);
+
+    const treeLayout = d3.tree().nodeSize([nodeH, 220]);
+    treeLayout(root);
+
+    const nodes = root.descendants();
+    const links = root.links();
+
+    // Fit height to content
+    const ys = nodes.map(n => n.x);
+    const minY = d3.min(ys), maxY = d3.max(ys);
+    const totalH = maxY - minY + nodeH * 2 + marginT * 2;
+    svg.attr('height', Math.max(260, totalH));
+
+    // Offset so top node is not clipped
+    const offsetY = marginT - minY;
+    const offsetX = marginL;
+
+    // ── Links ────────────────────────────────────────────
+    const link = linksG.selectAll('path.tree-link').data(links, d => d.target.data.name + d.source.data.name);
+    link.join(
+      enter => enter.append('path').attr('class','tree-link')
+        .attr('d', d => {
+          const sx = d.source.y + offsetX, sy = d.source.x + offsetY;
+          const tx = d.target.y + offsetX, ty = d.target.x + offsetY;
+          return `M${sx},${sy} C${(sx+tx)/2},${sy} ${(sx+tx)/2},${ty} ${tx},${ty}`;
+        }),
+      update => update.transition().duration(300)
+        .attr('d', d => {
+          const sx = d.source.y + offsetX, sy = d.source.x + offsetY;
+          const tx = d.target.y + offsetX, ty = d.target.x + offsetY;
+          return `M${sx},${sy} C${(sx+tx)/2},${sy} ${(sx+tx)/2},${ty} ${tx},${ty}`;
+        }),
+      exit => exit.remove()
+    );
+
+    // ── Nodes ────────────────────────────────────────────
+    const node = nodesG.selectAll('g.tree-node').data(nodes, d => d.data.name);
+    const nodeEnter = node.enter().append('g').attr('class','tree-node')
+      .attr('transform', d => `translate(${d.y + offsetX},${d.x + offsetY})`);
+
+    // Background pill
+    nodeEnter.append('rect')
+      .attr('x', -4).attr('y', -11)
+      .attr('width', d => {
+        const t = getType(d.data.type);
+        return Math.min(200, d.data.name.length * 7.2 + 30);
+      })
+      .attr('height', 22).attr('rx', 6)
+      .attr('fill', d => getType(d.data.type).fill)
+      .attr('stroke', d => getType(d.data.type).stroke)
+      .attr('stroke-width', 1)
+      .attr('opacity', 0.85);
+
+    // Circle connector dot
+    nodeEnter.append('circle')
+      .attr('r', 5)
+      .attr('fill', d => getType(d.data.type).fill)
+      .attr('stroke', d => getType(d.data.type).stroke)
+      .attr('stroke-width', 1.5);
+
+    // Icon
+    nodeEnter.append('text')
+      .attr('class','tree-icon')
+      .attr('x', 8).attr('y', 4.5)
+      .attr('text-anchor','start')
+      .attr('dominant-baseline','middle')
+      .text(d => getType(d.data.type).icon);
+
+    // Label
+    nodeEnter.append('text')
+      .attr('class','tree-label')
+      .attr('x', 26).attr('y', 0)
+      .attr('dominant-baseline','middle')
+      .attr('fill', d => getType(d.data.type).color)
+      .attr('font-weight', d => d.data.type.startsWith('folder') ? 600 : 400)
+      .text(d => d.data.name);
+
+    // Expand/collapse toggle for folders with children
+    nodeEnter.filter(d => d.data.children && d.data.children.length)
+      .append('text')
+      .attr('class','node-btn')
+      .attr('x', d => Math.min(200, d.data.name.length * 7.2 + 26))
+      .attr('y', 0).attr('dominant-baseline','middle')
+      .attr('cursor','pointer')
+      .text(d => d.data._collapsed ? ' [+]' : ' [−]')
+      .on('click', (e, d) => {
+        e.stopPropagation();
+        d.data._collapsed = !d.data._collapsed;
+        update();
+      });
+
+    // Tooltip
+    nodeEnter.on('mouseover', (e, d) => {
+      if (d.data.desc) showTip(
+        `<b>${d.data.name}</b>${d.data.desc ? '<br>' + d.data.desc : ''}`, e);
+    }).on('mousemove', moveTip).on('mouseout', hideTip);
+
+    // Update existing
+    node.merge(nodeEnter).transition().duration(300)
+      .attr('transform', d => `translate(${d.y + offsetX},${d.x + offsetY})`);
+
+    // Update toggle text on existing nodes
+    nodesG.selectAll('g.tree-node').each(function(d) {
+      d3.select(this).select('text.node-btn')
+        .text(d.data._collapsed ? ' [+]' : ' [−]');
+    });
+
+    node.exit().remove();
+  }
+
+  buildHierarchy(treeData);
+  update();
+
+  // Expand / collapse all buttons
+  document.getElementById('tree-expand-all').addEventListener('click', () => {
+    function expand(d) { d._collapsed = false; if (d.children) d.children.forEach(expand); }
+    expand(treeData);
+    update();
+  });
+  document.getElementById('tree-collapse-all').addEventListener('click', () => {
+    function collapse(d, depth) {
+      if (depth >= 1 && d.children && d.children.length) d._collapsed = true;
+      if (d.children) d.children.forEach(c => collapse(c, depth + 1));
+    }
+    collapse(treeData, 0);
+    update();
+  });
 })();
 
 </script>
