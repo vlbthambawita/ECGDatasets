@@ -1,0 +1,111 @@
+{
+  "canonical_count": 21795,
+  "sources": {
+    "ptbxl_labels": {
+      "count": 21799,
+      "missing_from_canonical": 0,
+      "missing_examples": []
+    },
+    "12sl_labels": {
+      "count": 21799,
+      "missing_from_canonical": 0,
+      "missing_examples": []
+    },
+    "12sl_features": {
+      "count": 21799,
+      "missing_from_canonical": 38,
+      "missing_examples": [
+        21800,
+        21801,
+        21802,
+        21803,
+        21804,
+        21805,
+        21806,
+        21807,
+        21808,
+        21809,
+        21810,
+        21811,
+        21812,
+        21813,
+        21814,
+        21815,
+        21816,
+        21817,
+        21818,
+        21819
+      ]
+    },
+    "ecgdeli_features": {
+      "count": 21799,
+      "missing_from_canonical": 0,
+      "missing_examples": []
+    },
+    "unig_features": {
+      "count": 21795,
+      "missing_from_canonical": 42,
+      "missing_examples": [
+        21796,
+        21797,
+        21798,
+        21799,
+        21800,
+        21801,
+        21802,
+        21803,
+        21804,
+        21805,
+        21806,
+        21807,
+        21808,
+        21809,
+        21810,
+        21811,
+        21812,
+        21813,
+        21814,
+        21815
+      ]
+    },
+    "fiducial_ecgdeli": {
+      "count": 21795,
+      "missing_from_canonical": 0,
+      "missing_examples": []
+    },
+    "median_beats_12sl": {
+      "count": 20914,
+      "missing_from_canonical": 881,
+      "missing_examples": [
+        13108,
+        20957,
+        20958,
+        20959,
+        20960,
+        20961,
+        20962,
+        20963,
+        20964,
+        20965,
+        20966,
+        20967,
+        20968,
+        20969,
+        20970,
+        20971,
+        20972,
+        20973,
+        20974,
+        20975
+      ]
+    },
+    "median_beats_unig": {
+      "count": 21794,
+      "missing_from_canonical": 1,
+      "missing_examples": [
+        13507
+      ]
+    }
+  },
+  "present_in_all_sources": 20913
+}

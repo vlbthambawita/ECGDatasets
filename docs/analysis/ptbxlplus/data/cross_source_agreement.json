@@ -1,0 +1,455 @@
+{
+  "common_records": 21799,
+  "top_concepts": [
+    {
+      "snomed_id": 4008453,
+      "description": "SNOMED CT Concept",
+      "both": 21799,
+      "ptbxl_only": 0,
+      "12sl_only": 0,
+      "total": 21799,
+      "agreement_pct": 100.0
+    },
+    {
+      "snomed_id": 4117134,
+      "description": "Electrocardiogram finding",
+      "both": 21796,
+      "ptbxl_only": 0,
+      "12sl_only": 3,
+      "total": 21799,
+      "agreement_pct": 100.0
+    },
+    {
+      "snomed_id": 4010019,
+      "description": "EKG finding",
+      "both": 21796,
+      "ptbxl_only": 0,
+      "12sl_only": 3,
+      "total": 21799,
+      "agreement_pct": 100.0
+    },
+    {
+      "snomed_id": 40480457,
+      "description": "Evaluation finding",
+      "both": 21796,
+      "ptbxl_only": 0,
+      "12sl_only": 3,
+      "total": 21799,
+      "agreement_pct": 100.0
+    },
+    {
+      "snomed_id": 441840,
+      "description": "Clinical finding",
+      "both": 21799,
+      "ptbxl_only": 0,
+      "12sl_only": 0,
+      "total": 21799,
+      "agreement_pct": 100.0
+    },
+    {
+      "snomed_id": 4103183,
+      "description": "Cardiac finding",
+      "both": 21495,
+      "ptbxl_only": 38,
+      "12sl_only": 264,
+      "total": 21797,
+      "agreement_pct": 98.6
+    },
+    {
+      "snomed_id": 4042140,
+      "description": "Finding by site",
+      "both": 21495,
+      "ptbxl_only": 38,
+      "12sl_only": 264,
+      "total": 21797,
+      "agreement_pct": 98.6
+    },
+    {
+      "snomed_id": 4185503,
+      "description": "Finding of region of thorax",
+      "both": 21495,
+      "ptbxl_only": 38,
+      "12sl_only": 264,
+      "total": 21797,
+      "agreement_pct": 98.6
+    },
+    {
+      "snomed_id": 4117930,
+      "description": "Finding of trunk structure",
+      "both": 21495,
+      "ptbxl_only": 38,
+      "12sl_only": 264,
+      "total": 21797,
+      "agreement_pct": 98.6
+    },
+    {
+      "snomed_id": 43531057,
+      "description": "Finding of upper trunk",
+      "both": 21495,
+      "ptbxl_only": 38,
+      "12sl_only": 264,
+      "total": 21797,
+      "agreement_pct": 98.6
+    },
+    {
+      "snomed_id": 4227253,
+      "description": "Viscus structure finding",
+      "both": 21495,
+      "ptbxl_only": 38,
+      "12sl_only": 264,
+      "total": 21797,
+      "agreement_pct": 98.6
+    },
+    {
+      "snomed_id": 4023995,
+      "description": "Cardiovascular finding",
+      "both": 21495,
+      "ptbxl_only": 38,
+      "12sl_only": 264,
+      "total": 21797,
+      "agreement_pct": 98.6
+    },
+    {
+      "snomed_id": 4115390,
+      "description": "Mediastinal finding",
+      "both": 21495,
+      "ptbxl_only": 38,
+      "12sl_only": 264,
+      "total": 21797,
+      "agreement_pct": 98.6
+    },
+    {
+      "snomed_id": 4199402,
+      "description": "Finding of body region",
+      "both": 21495,
+      "ptbxl_only": 38,
+      "12sl_only": 264,
+      "total": 21797,
+      "agreement_pct": 98.6
+    },
+    {
+      "snomed_id": 4021775,
+      "description": "Cardiac rhythm AND/OR rate finding",
+      "both": 18298,
+      "ptbxl_only": 202,
+      "12sl_only": 1686,
+      "total": 20186,
+      "agreement_pct": 90.6
+    },
+    {
+      "snomed_id": 4094294,
+      "description": "Clinical history and observation findings",
+      "both": 18298,
+      "ptbxl_only": 202,
+      "12sl_only": 1686,
+      "total": 20186,
+      "agreement_pct": 90.6
+    },
+    {
+      "snomed_id": 4145513,
+      "description": "ECG: sinus rhythm",
+      "both": 18741,
+      "ptbxl_only": 237,
+      "12sl_only": 893,
+      "total": 19871,
+      "agreement_pct": 94.3
+    },
+    {
+      "snomed_id": 4114162,
+      "description": "Finding of heart rhythm",
+      "both": 14278,
+      "ptbxl_only": 2761,
+      "12sl_only": 1276,
+      "total": 18315,
+      "agreement_pct": 78.0
+    },
+    {
+      "snomed_id": 4091898,
+      "description": "Sinus rhythm",
+      "both": 13971,
+      "ptbxl_only": 2777,
+      "12sl_only": 1230,
+      "total": 17978,
+      "agreement_pct": 77.7
+    },
+    {
+      "snomed_id": 4274025,
+      "description": "Disease",
+      "both": 10281,
+      "ptbxl_only": 1885,
+      "12sl_only": 2879,
+      "total": 15045,
+      "agreement_pct": 68.3
+    },
+    {
+      "snomed_id": 4180628,
+      "description": "Disorder of body system",
+      "both": 10263,
+      "ptbxl_only": 1842,
+      "12sl_only": 2897,
+      "total": 15002,
+      "agreement_pct": 68.4
+    },
+    {
+      "snomed_id": 4047779,
+      "description": "Disorder by body site",
+      "both": 10263,
+      "ptbxl_only": 1842,
+      "12sl_only": 2897,
+      "total": 15002,
+      "agreement_pct": 68.4
+    },
+    {
+      "snomed_id": 4028071,
+      "description": "Disorder of trunk",
+      "both": 10263,
+      "ptbxl_only": 1842,
+      "12sl_only": 2897,
+      "total": 15002,
+      "agreement_pct": 68.4
+    },
+    {
+      "snomed_id": 134057,
+      "description": "Disorder of cardiovascular system",
+      "both": 10263,
+      "ptbxl_only": 1842,
+      "12sl_only": 2897,
+      "total": 15002,
+      "agreement_pct": 68.4
+    },
+    {
+      "snomed_id": 43531056,
+      "description": "Disorder of thoracic segment of trunk",
+      "both": 10263,
+      "ptbxl_only": 1842,
+      "12sl_only": 2897,
+      "total": 15002,
+      "agreement_pct": 68.4
+    },
+    {
+      "snomed_id": 440142,
+      "description": "Disorder of mediastinum",
+      "both": 10263,
+      "ptbxl_only": 1842,
+      "12sl_only": 2897,
+      "total": 15002,
+      "agreement_pct": 68.4
+    },
+    {
+      "snomed_id": 4043346,
+      "description": "Disorder of thorax",
+      "both": 10263,
+      "ptbxl_only": 1842,
+      "12sl_only": 2897,
+      "total": 15002,
+      "agreement_pct": 68.4
+    },
+    {
+      "snomed_id": 321588,
+      "description": "Heart disease",
+      "both": 10263,
+      "ptbxl_only": 1842,
+      "12sl_only": 2895,
+      "total": 15000,
+      "agreement_pct": 68.4
+    },
+    {
+      "snomed_id": 40484102,
+      "description": "Abnormal finding on evaluation procedure",
+      "both": 10434,
+      "ptbxl_only": 2430,
+      "12sl_only": 1470,
+      "total": 14334,
+      "agreement_pct": 72.8
+    },
+    {
+      "snomed_id": 320536,
+      "description": "Electrocardiogram abnormal",
+      "both": 10434,
+      "ptbxl_only": 2430,
+      "12sl_only": 1470,
+      "total": 14334,
+      "agreement_pct": 72.8
+    },
+    {
+      "snomed_id": 4142265,
+      "description": "ECG: normal sinus rhythm",
+      "both": 0,
+      "ptbxl_only": 0,
+      "12sl_only": 12631,
+      "total": 12631,
+      "agreement_pct": 0.0
+    },
+    {
+      "snomed_id": 4276669,
+      "description": "Normal sinus rhythm",
+      "both": 0,
+      "ptbxl_only": 0,
+      "12sl_only": 12631,
+      "total": 12631,
+      "agreement_pct": 0.0
+    },
+    {
+      "snomed_id": 4024571,
+      "description": "Sinus node rhythm",
+      "both": 0,
+      "ptbxl_only": 0,
+      "12sl_only": 12631,
+      "total": 12631,
+      "agreement_pct": 0.0
+    },
+    {
+      "snomed_id": 44784217,
+      "description": "Cardiac arrhythmia",
+      "both": 6568,
+      "ptbxl_only": 1443,
+      "12sl_only": 3660,
+      "total": 11671,
+      "agreement_pct": 56.3
+    },
+    {
+      "snomed_id": 4065279,
+      "description": "ECG normal",
+      "both": 7293,
+      "ptbxl_only": 2221,
+      "12sl_only": 1294,
+      "total": 10808,
+      "agreement_pct": 67.5
+    },
+    {
+      "snomed_id": 4273018,
+      "description": "ECG waveform - finding",
+      "both": 3288,
+      "ptbxl_only": 4177,
+      "12sl_only": 2525,
+      "total": 9990,
+      "agreement_pct": 32.9
+    },
+    {
+      "snomed_id": 4027255,
+      "description": "Structural disorder of heart",
+      "both": 5388,
+      "ptbxl_only": 2614,
+      "12sl_only": 1095,
+      "total": 9097,
+      "agreement_pct": 59.2
+    },
+    {
+      "snomed_id": 4108611,
+      "description": "Myocardial finding",
+      "both": 5058,
+      "ptbxl_only": 2273,
+      "12sl_only": 1371,
+      "total": 8702,
+      "agreement_pct": 58.1
+    },
+    {
+      "snomed_id": 4239975,
+      "description": "Myocardial disease",
+      "both": 5058,
+      "ptbxl_only": 2273,
+      "12sl_only": 1371,
+      "total": 8702,
+      "agreement_pct": 58.1
+    },
+    {
+      "snomed_id": 4103192,
+      "description": "Myocardial lesion",
+      "both": 4523,
+      "ptbxl_only": 2450,
+      "12sl_only": 939,
+      "total": 7912,
+      "agreement_pct": 57.2
+    },
+    {
+      "snomed_id": 4185932,
+      "description": "Ischemic heart disease",
+      "both": 4523,
+      "ptbxl_only": 2450,
+      "12sl_only": 939,
+      "total": 7912,
+      "agreement_pct": 57.2
+    },
+    {
+      "snomed_id": 43530877,
+      "description": "Traumatic and/or non-traumatic injury of anatomical site",
+      "both": 4523,
+      "ptbxl_only": 2450,
+      "12sl_only": 939,
+      "total": 7912,
+      "agreement_pct": 57.2
+    },
+    {
+      "snomed_id": 432795,
+      "description": "Traumatic AND/OR non-traumatic injury",
+      "both": 4523,
+      "ptbxl_only": 2450,
+      "12sl_only": 939,
+      "total": 7912,
+      "agreement_pct": 57.2
+    },
+    {
+      "snomed_id": 3655971,
+      "description": "Atrial cardiopathy",
+      "both": 2809,
+      "ptbxl_only": 570,
+      "12sl_only": 3851,
+      "total": 7230,
+      "agreement_pct": 38.9
+    },
+    {
+      "snomed_id": 4064609,
+      "description": "EKG: myocardial infarction",
+      "both": 3407,
+      "ptbxl_only": 2062,
+      "12sl_only": 931,
+      "total": 6400,
+      "agreement_pct": 53.2
+    },
+    {
+      "snomed_id": 4329847,
+      "description": "Myocardial infarction",
+      "both": 3375,
+      "ptbxl_only": 2094,
+      "12sl_only": 799,
+      "total": 6268,
+      "agreement_pct": 53.8
+    },
+    {
+      "snomed_id": 43530876,
+      "description": "Necrosis of anatomical site",
+      "both": 3375,
+      "ptbxl_only": 2094,
+      "12sl_only": 799,
+      "total": 6268,
+      "agreement_pct": 53.8
+    },
+    {
+      "snomed_id": 4354249,
+      "description": "Myocardial necrosis",
+      "both": 3375,
+      "ptbxl_only": 2094,
+      "12sl_only": 799,
+      "total": 6268,
+      "agreement_pct": 53.8
+    },
+    {
+      "snomed_id": 4248028,
+      "description": "Supraventricular arrhythmia",
+      "both": 2415,
+      "ptbxl_only": 351,
+      "12sl_only": 3499,
+      "total": 6265,
+      "agreement_pct": 38.5
+    },
+    {
+      "snomed_id": 4166245,
+      "description": "Disorder of cardiac ventricle",
+      "both": 2981,
+      "ptbxl_only": 2718,
+      "12sl_only": 530,
+      "total": 6229,
+      "agreement_pct": 47.9
+    }
+  ]
+}

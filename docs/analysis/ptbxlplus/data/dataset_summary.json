@@ -1,0 +1,34 @@
+{
+  "features": {
+    "12sl": {
+      "records": 21799,
+      "features": 783
+    },
+    "ecgdeli": {
+      "records": 21799,
+      "features": 532
+    },
+    "unig": {
+      "records": 21795,
+      "features": 749
+    }
+  },
+  "labels": {
+    "ptbxl_records": 21799,
+    "12sl_records": 21799
+  },
+  "snomed": {
+    "total_in_description": 287,
+    "unique_in_ptbxl": 204,
+    "unique_in_12sl": 259,
+    "unique_in_both": 176
+  },
+  "fiducial_points": {
+    "records_with_global": 21795
+  },
+  "median_beats": {
+    "12sl_records": 20914,
+    "unig_records": 21794
+  },
+  "canonical_records": 42708
+}

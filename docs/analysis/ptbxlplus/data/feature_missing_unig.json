@@ -1,0 +1,3753 @@
+{
+  "source": "unig",
+  "threshold_pct": 5.0,
+  "total_features": 749,
+  "flagged_count": 36,
+  "features": [
+    {
+      "feature": "QRS_NotchAmp_V1",
+      "missing_pct": 99.504,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchPeak_V1",
+      "missing_pct": 99.5,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchOn_V1",
+      "missing_pct": 99.5,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchAmp_V2",
+      "missing_pct": 99.44,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchAmp_V3",
+      "missing_pct": 99.436,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchOn_V2",
+      "missing_pct": 99.436,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchOn_V3",
+      "missing_pct": 99.436,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchPeak_V3",
+      "missing_pct": 99.436,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchPeak_V2",
+      "missing_pct": 99.436,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchAmp_V4",
+      "missing_pct": 98.651,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchPeak_V4",
+      "missing_pct": 98.646,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchOn_V4",
+      "missing_pct": 98.646,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchAmp_V5",
+      "missing_pct": 95.513,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchPeak_V5",
+      "missing_pct": 95.504,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchOn_V5",
+      "missing_pct": 95.504,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchAmp_III",
+      "missing_pct": 90.31,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchPeak_III",
+      "missing_pct": 90.305,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchOn_III",
+      "missing_pct": 90.305,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchAmp_V6",
+      "missing_pct": 88.63,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchPeak_V6",
+      "missing_pct": 88.63,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchOn_V6",
+      "missing_pct": 88.63,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchAmp_aVL",
+      "missing_pct": 88.497,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchOn_aVL",
+      "missing_pct": 88.488,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchPeak_aVL",
+      "missing_pct": 88.488,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchAmp_I",
+      "missing_pct": 87.236,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchOn_I",
+      "missing_pct": 87.231,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchPeak_I",
+      "missing_pct": 87.231,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchAmp_aVF",
+      "missing_pct": 86.891,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchOn_aVF",
+      "missing_pct": 86.878,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchPeak_aVF",
+      "missing_pct": 86.878,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchAmp_II",
+      "missing_pct": 84.148,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchPeak_II",
+      "missing_pct": 84.134,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchOn_II",
+      "missing_pct": 84.134,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchAmp_aVR",
+      "missing_pct": 78.743,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchPeak_aVR",
+      "missing_pct": 78.738,
+      "flagged": true
+    },
+    {
+      "feature": "QRS_NotchOn_aVR",
+      "missing_pct": 78.738,
+      "flagged": true
+    },
+    {
+      "feature": "RR_Mean_Global",
+      "missing_pct": 0.408,
+      "flagged": false
+    },
+    {
+      "feature": "HR_Sinus_Global",
+      "missing_pct": 0.408,
+      "flagged": false
+    },
+    {
+      "feature": "RR_StdDev_Global",
+      "missing_pct": 0.408,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "Delta_Conf_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "QT_Int_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "T_Area_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "Rpp_Amp_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Dur_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "P_Area_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "Rpp_Dur_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Dur_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "Spp_Dur_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "T_On_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "PR_Amp_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Amp_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "R_Notch_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Dur_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Dur_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Dur_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Amp_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "P_DurFull_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Amp_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "T_Amp_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Dur_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpAdj_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Amp_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Dur_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "S_Amp_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "R_Amp_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "T_DurFull_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AmpPP_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_IntDefl_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Area_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "T_Dur_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "P_On_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Amp_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Amp_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "P_Dur_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "P_Amp_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Dur_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Dur_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "T_Morph_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp28_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Dur_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp80ms_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Amp_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp38_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "P_Morph_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_On_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Slope_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Amp_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Dur_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "Spp_Amp_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Amp_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "S_Dur_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "R_Dur_V6",
+      "missing_pct": 0.05,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp80ms_V1",
+      "missing_pct": 0.046,
+      "flagged": false
+    },
+    {
+      "feature": "Delta_Conf_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Dur_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Dur_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "R_Dur_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "R_Notch_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp28_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp38_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp38_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "P_Amp_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Amp_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_On_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "P_Morph_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Area_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Amp_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Amp_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "T_Area_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Rpp_Dur_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "P_Term_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_Ang_QRS-T",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_Vel_MaxT",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_Vel_MaxQRS",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_Vel_-30msQRS",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Dur_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "T_Dur_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Amp_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Dur_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "T_Amp_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Amp_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "P_Dur_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "P_Amp_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Dur_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Dur_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Rpp_Dur_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Dur_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "PR_Amp_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Amp_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Amp_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "S_Dur_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Slope_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "S_Dur_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Delta_Conf_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Amp_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Amp_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Rpp_Amp_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "QT_Int_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Dur_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Dur_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "R_Dur_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp28_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Slope_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Rpp_Amp_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "QT_Int_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Spp_Amp_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Spp_Amp_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "P_On_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "T_Area_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "P_Dur_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "P_Morph_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "T_Morph_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Dur_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "P_DurFull_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Dur_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Dur_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Dur_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp80ms_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "T_Morph_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Amp_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Amp_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "R_Notch_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_Vel_+30msQRS",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_Vel_38QRS",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_Vel_48QRS",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_Vel_+10msQRS",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_Vel_-20msQRS",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "PR_Amp_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_Vel_+20msQRS",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Spp_Dur_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Spp_Dur_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_PV48SpatVel_Global",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "R_Amp_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_LenTrans_MaxQRS",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_AngTrans_MaxT",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Amp_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpAdj_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpAdj_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Dur_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_AngFront_MaxT",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_LenFront_MaxQRS",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_LenFront_MaxT",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_AngRSag_MaxQRS",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_AngRSag_MaxT",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_LenRSag_MaxQRS",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_LenRSag_MaxT",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_AngTrans_MaxQRS",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "T_On_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Dur_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Dur_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "T_DurFull_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "T_On_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "R_Amp_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "S_Amp_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_Vel_-10msQRS",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "S_Amp_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Amp_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_LenTrans_MaxT",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_Mag_MaxQRS",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_Mag_MaxT",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_Pos_MaxQRS",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_Pos_MaxT",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_Vel_18QRS",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_Vel_28QRS",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Dur_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Dur_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_Vel_78QRS",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_Vel_68QRS",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_Vel_58QRS",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Dur_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "VM_AngFront_MaxQRS",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "T_DurFull_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Dur_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_IntDefl_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Amp_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_PV68SpatVel_Global",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_IntDefl_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_PV78SpatVel_Global",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_PV58SpatVel_Global",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AmpPP_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AmpPP_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Area_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "P_Area_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Amp_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Amp_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Amp_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "P_On_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "P_Area_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Dur_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Amp_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "T_Dur_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "T_Amp_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_On_V1",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "P_DurFull_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Dur_V5",
+      "missing_pct": 0.041,
+      "flagged": false
+    },
+    {
+      "feature": "P_Area_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Area_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Amp_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "P_On_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Dur_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Dur_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AmpPP_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Amp_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpAdj_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_IntDefl_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "T_DurFull_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp28_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "R_Notch_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Dur_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "T_Dur_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "P_Amp_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "P_Dur_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Amp_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "T_Amp_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "Rpp_Amp_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Dur_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "QT_Int_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Amp_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "Spp_Amp_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Slope_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "R_Dur_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Dur_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Amp_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "Spp_Dur_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "Rpp_Dur_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "PR_Amp_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "R_Amp_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "S_Amp_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Dur_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Amp_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "T_On_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Dur_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Amp_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Dur_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "T_Area_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Amp_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_On_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Dur_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Dur_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "P_Morph_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "T_Morph_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "P_DurFull_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Dur_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp80ms_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "Delta_Conf_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "S_Dur_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Amp_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp38_V4",
+      "missing_pct": 0.037,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Area_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "P_On_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Amp_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AmpPP_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Amp_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "P_Area_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "P_Area_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Area_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "P_On_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AmpPP_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Dur_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpAdj_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_IntDefl_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Dur_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "P_Dur_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Amp_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "T_Amp_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Dur_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Dur_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "R_Amp_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "R_Amp_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpAdj_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Amp_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_IntDefl_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Amp_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Amp_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Dur_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "PR_Amp_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Amp_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "PR_Amp_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "R_Dur_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Amp_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Dur_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "S_Amp_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "T_DurFull_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Rpp_Dur_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Spp_Dur_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Dur_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Dur_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Rpp_Dur_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "S_Amp_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "T_On_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Amp_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "T_On_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "T_DurFull_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Dur_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "R_Notch_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp28_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp28_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "R_Notch_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Amp_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "T_Dur_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Dur_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Dur_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Dur_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "P_Amp_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "P_Dur_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Amp_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Slope_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Spp_Amp_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Amp_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Amp_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "R_Dur_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Dur_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Rpp_Amp_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Rpp_Amp_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "QT_Int_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "QT_Int_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Dur_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Dur_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "P_Amp_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Dur_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Dur_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "S_Dur_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Slope_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "S_Dur_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "P_Morph_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Amp_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Amp_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "T_Morph_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "T_Amp_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Dur_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp38_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp38_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Amp_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "T_Dur_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Delta_Conf_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Delta_Conf_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp80ms_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp80ms_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Dur_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Dur_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_On_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Dur_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "P_Morph_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_On_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "T_Morph_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Dur_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "P_DurFull_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "P_DurFull_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Amp_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Amp_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "T_Area_V3",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "T_Area_V2",
+      "missing_pct": 0.028,
+      "flagged": false
+    },
+    {
+      "feature": "T_AxisFront_Global",
+      "missing_pct": 0.023,
+      "flagged": false
+    },
+    {
+      "feature": "P_AxisFront_Global",
+      "missing_pct": 0.023,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AxisFront_Global",
+      "missing_pct": 0.023,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AxisFront_Global",
+      "missing_pct": 0.023,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp80ms_aVL",
+      "missing_pct": 0.014,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Dur_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Dur_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Dur_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Dur_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Dur_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp80ms_aVF",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp80ms_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp80ms_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp80ms_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "R_Dur_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "R_Dur_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "R_Dur_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P_Area_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P_Area_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P_Area_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P_Area_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Dur_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T_Amp_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Amp_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P_Dur_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P_Amp_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Dur_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Dur_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Dur_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T_Dur_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Area_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Area_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Area_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Area_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Amp_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Amp_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P_Morph_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P_Morph_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T_Area_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T_Area_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T_Area_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T_Area_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Amp_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Amp_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Amp_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Amp_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T_Morph_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T_Morph_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T_Morph_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T_Morph_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P_Morph_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P_Morph_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "R_Dur_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Dur_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Dur_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "S_Dur_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "S_Dur_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "S_Dur_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "S_Dur_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Dur_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Dur_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Dur_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp38_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp38_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp38_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp38_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "R_Notch_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "R_Notch_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "R_Notch_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "R_Notch_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Amp_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Amp_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp28_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp28_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp28_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp28_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Slope_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Slope_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Delta_Conf_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Delta_Conf_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Delta_Conf_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Delta_Conf_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Dur_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Dur_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Dur_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Dur_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T_Dur_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Amp_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Rpp_Dur_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Rpp_Dur_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Rpp_Dur_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Rpp_Dur_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Dur_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Dur_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Spp_Amp_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Spp_Amp_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Spp_Amp_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "QT_Int_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "QT_Int_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "QT_Int_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "QT_Int_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Slope_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Slope_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Amp_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Amp_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Amp_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Amp_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Amp_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Rpp_Amp_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Rpp_Amp_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Rpp_Amp_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Rpp_Amp_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Spp_Dur_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Spp_Dur_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Spp_Dur_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Dur_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T_Amp_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Amp_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P_Dur_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P_Amp_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Dur_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Dur_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Dur_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T_Dur_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Amp_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "S_Amp_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "S_Amp_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "S_Amp_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpAdj_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpAdj_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "PR_Amp_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "PR_Amp_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "PR_Amp_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "PR_Amp_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Amp_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Amp_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Amp_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AmpPP_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AmpPP_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AmpPP_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpAdj_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpAdj_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "R_Amp_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "R_Amp_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "R_Amp_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "R_Amp_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "S_Amp_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Amp_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Amp_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Amp_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Amp_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Amp_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Amp_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Amp_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Amp_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AmpPP_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Dur_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T_Amp_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Amp_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P_Dur_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P_Amp_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Dur_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Dur_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_IntDefl_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_IntDefl_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Dur_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Dur_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Dur_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Dur_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Amp_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Amp_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Amp_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Amp_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T_On_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T_On_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T_On_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T_On_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Dur_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Dur_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Dur_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Dur_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T_DurFull_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T_DurFull_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T_DurFull_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T_DurFull_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Dur_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Dur_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Dur_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Dur_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_IntDefl_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_IntDefl_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T_Dur_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Amp_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Dur_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_On_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_On_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_On_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_On_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P_DurFull_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P_DurFull_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Dur_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Dur_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Amp_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Dur_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "T_Amp_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Amp_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P_Dur_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P_Amp_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Dur_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P_DurFull_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P_DurFull_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P_On_aVL",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P_On_aVR",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P_On_III",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P_On_II",
+      "missing_pct": 0.009,
+      "flagged": false
+    },
+    {
+      "feature": "P_On_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "P_On_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "P_DurFull_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Dur_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "P_DurFull_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_On_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_On_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Dur_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Dur_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Dur_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "T_On_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "T_DurFull_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Dur_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "T_DurFull_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "T_On_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Amp_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "R_Amp_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Amp_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Amp_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "S_Amp_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Dur_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AmpPP_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Amp_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Amp_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "T_Dur_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Amp_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Dur_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "T_Amp_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Dur_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "P_Amp_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "P_Dur_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Amp_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_IntDefl_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Dur_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Amp_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Dur_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "R_Amp_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpAdj_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "PR_Amp_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "PR_Amp_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_IntDefl_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AmpPP_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Amp_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp28_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Slope_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Delta_Conf_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Dur_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Rpp_Dur_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Rpp_Dur_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Dur_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Spp_Amp_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Spp_Amp_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "QT_Int_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "QT_Int_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Slope_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp28_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Amp_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Amp_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Rpp_Amp_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Rpp_Amp_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Amp_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Dur_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Spp_Dur_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Spp_Dur_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "S_Amp_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpAdj_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Dur_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "S_Dur_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "S_Dur_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Dur_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "R_Dur_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Area_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "P_Morph_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "T_Morph_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "T_Morph_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Amp_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Amp_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "T_Area_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "P_Morph_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Amp_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Area_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "P_Area_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "P_Area_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "T_Area_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "R_Dur_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp80ms_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Dur_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Dur_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Dur_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Dur_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "P_Amp_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Amp_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "R_Notch_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "R_Notch_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp38_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp38_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Delta_Conf_I",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Dur_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Dur_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "P_Dur_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Amp_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "T_Amp_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "T_Dur_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Amp_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Dur_aVF",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "HR_Ventr_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_On_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "HR_Var_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Dur_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "HR__Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QT_IntFridericia_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QT_IntFramingham_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Found_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AxisIndet_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QT_IntCorr_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "LVH_Strain_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QT_IntHodge_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QT_IntBazett_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Off_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Dur_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_On_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Off_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_On_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Off_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Dur_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ecg_id",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Dur_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "PR_Int_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QT_Int_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QT_Disp_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    }
+  ]
+}
