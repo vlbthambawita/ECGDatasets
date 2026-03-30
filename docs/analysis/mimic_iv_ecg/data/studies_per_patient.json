@@ -1,0 +1,38 @@
+{
+  "total_patients": 161352,
+  "stats": {
+    "min": 1,
+    "max": 260,
+    "mean": 4.96,
+    "median": 2.0,
+    "p25": 1.0,
+    "p75": 5.0,
+    "p95": 18.0
+  },
+  "histogram": [
+    {
+      "bucket": "1",
+      "count": 57344
+    },
+    {
+      "bucket": "2\u20135",
+      "count": 65951
+    },
+    {
+      "bucket": "6\u201310",
+      "count": 19799
+    },
+    {
+      "bucket": "11\u201320",
+      "count": 11763
+    },
+    {
+      "bucket": "21\u201350",
+      "count": 5700
+    },
+    {
+      "bucket": "51+",
+      "count": 795
+    }
+  ]
+}

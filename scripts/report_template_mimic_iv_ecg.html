@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MIMIC-IV ECG Dataset Analysis Report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f4f6f9; color: #222; display: flex; min-height: 100vh; }
+
+  #sidebar {
+    width: 230px; min-width: 230px; background: #1a2233; color: #c8d0e0;
+    position: sticky; top: 0; height: 100vh; overflow-y: auto;
+    display: flex; flex-direction: column; padding: 0;
+  }
+  #sidebar .logo { padding: 24px 20px 16px; font-size: 0.95rem; font-weight: 700;
+    color: #fff; border-bottom: 1px solid #2d3a52; letter-spacing: .02em; line-height: 1.4; }
+  #sidebar .logo span { font-size: 0.72rem; font-weight: 400; color: #7a8baa; display: block; margin-top: 3px; }
+  #sidebar nav a { display: block; padding: 9px 20px; color: #9aa5bc; text-decoration: none;
+    font-size: 0.8rem; border-left: 3px solid transparent; transition: all .15s; }
+  #sidebar nav a:hover, #sidebar nav a.active { color: #fff; background: #243050; border-left-color: #4f8ef7; }
+  #sidebar nav .nav-section { padding: 12px 20px 4px; font-size: 0.68rem;
+    text-transform: uppercase; letter-spacing: .08em; color: #5a6580; }
+
+  #main { flex: 1; padding: 32px 36px; max-width: 1300px; }
+  #overview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(145px,1fr)); gap: 14px; margin-bottom: 36px; }
+  .stat-card { background: #fff; border-radius: 10px; padding: 18px 22px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+  .stat-card .val { font-size: 1.7rem; font-weight: 700; color: #1a2233; line-height: 1; }
+  .stat-card .lbl { font-size: 0.75rem; color: #666; margin-top: 6px; }
+  .stat-card .sub { font-size: 0.7rem; color: #999; margin-top: 2px; }
+
+  .section { margin-bottom: 52px; scroll-margin-top: 20px; }
+  .section h2 { font-size: 1.2rem; font-weight: 700; color: #1a2233; margin-bottom: 4px;
+    padding-bottom: 8px; border-bottom: 2px solid #e2e8f0; }
+  .section .subtitle { font-size: 0.82rem; color: #666; margin-bottom: 18px; }
+
+  .tab-bar { display: flex; gap: 4px; margin-bottom: 14px; flex-wrap: wrap; }
+  .tab-btn { padding: 5px 14px; border: 1px solid #d0d7e2; border-radius: 5px;
+    background: #f7f9fc; color: #556; cursor: pointer; font-size: 0.78rem; transition: all .12s; }
+  .tab-btn.active { background: #4f8ef7; border-color: #4f8ef7; color: #fff; }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+
+  .chart-card { background: #fff; border-radius: 10px; padding: 22px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.08); margin-bottom: 14px; }
+  .chart-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap; gap: 8px; }
+  .chart-title { font-size: 0.92rem; font-weight: 600; color: #333; }
+  .btn { font-size: 0.73rem; padding: 4px 11px; border: 1px solid #d0d7e2;
+    border-radius: 5px; background: #f7f9fc; color: #445; cursor: pointer; text-decoration: none; transition: background .12s; }
+  .btn:hover { background: #e8edf5; }
+  .btn-group { display: flex; gap: 6px; flex-wrap: wrap; }
+  svg { display: block; }
+
+  .table-wrap { overflow-x: auto; margin-top: 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.79rem; }
+  th { background: #f0f4fa; color: #445; font-weight: 600; padding: 7px 11px;
+    text-align: left; border-bottom: 2px solid #dde3ef; }
+  td { padding: 6px 11px; border-bottom: 1px solid #eef1f6; color: #334; }
+  tr:hover td { background: #f7f9fd; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+  .tooltip { position: absolute; background: rgba(20,30,50,.9); color: #fff;
+    padding: 6px 11px; border-radius: 6px; font-size: 0.76rem; pointer-events: none;
+    opacity: 0; transition: opacity .12s; white-space: nowrap; z-index: 999; }
+
+  .legend { display: flex; align-items: center; gap: 10px; font-size: 0.74rem; color: #667; margin-top: 8px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+  .legend-swatch { width: 14px; height: 12px; border-radius: 2px; }
+
+  .info-block { font-size: 0.82rem; line-height: 1.9; color: #334; padding: 10px 0; }
+  .badge-ok   { display:inline-block; padding:2px 8px; border-radius:10px; font-size:.7rem; font-weight:600; background:#dcfce7; color:#166534; }
+  .badge-warn { display:inline-block; padding:2px 8px; border-radius:10px; font-size:.7rem; font-weight:600; background:#fef9c3; color:#854d0e; }
+  .badge-flag { display:inline-block; padding:2px 8px; border-radius:10px; font-size:.7rem; font-weight:600; background:#fee2e2; color:#991b1b; }
+
+  @media (max-width: 960px) {
+    #sidebar { display: none; }
+    #main { padding: 18px; }
+    .two-col, .three-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div class="logo">MIMIC-IV ECG<span>Matched Subset v1.0</span></div>
+  <nav>
+    <div class="nav-section">Overview</div>
+    <a href="#summary">Summary</a>
+    <a href="#coverage">Record Coverage</a>
+    <div class="nav-section">Patients &amp; Time</div>
+    <a href="#temporal">Temporal Distribution</a>
+    <a href="#studies-per-patient">Studies per Patient</a>
+    <div class="nav-section">Measurements</div>
+    <a href="#measurements">Measurement Quality</a>
+    <a href="#intervals">Interval Distributions</a>
+    <a href="#axes">Axis Distributions</a>
+    <div class="nav-section">Labels &amp; Equipment</div>
+    <a href="#report-phrases">Report Phrases</a>
+    <a href="#equipment">Carts &amp; Equipment</a>
+    <div class="nav-section">Waveforms</div>
+    <a href="#note-links">Note Links</a>
+    <a href="#waveform-headers">Waveform Headers</a>
+    <a href="#lead-completeness">Lead Completeness</a>
+    <a href="#signal-quality">Signal Quality</a>
+  </nav>
+</aside>
+
+<main id="main">
+
+  <!-- ── SUMMARY ── -->
+  <section class="section" id="summary">
+    <h2>Dataset Summary</h2>
+    <p class="subtitle">MIMIC-IV ECG Diagnostic Electrocardiogram Matched Subset v1.0 — Beth Israel Deaconess Medical Center</p>
+    <div id="overview-grid"></div>
+  </section>
+
+  <!-- ── RECORD COVERAGE ── -->
+  <section class="section" id="coverage">
+    <h2>Record Coverage</h2>
+    <p class="subtitle">How many records from the canonical list appear in each data source.</p>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Records per Source</span>
+        <div class="btn-group">
+          <button class="btn" onclick="downloadSVG('coverage-svg','record_coverage')">Download SVG</button>
+          <button class="btn" onclick="downloadTableCSV('coverage-table','record_coverage')">Download CSV</button>
+        </div>
+      </div>
+      <svg id="coverage-svg"></svg>
+      <div class="table-wrap"><table id="coverage-table"></table></div>
+    </div>
+  </section>
+
+  <!-- ── TEMPORAL ── -->
+  <section class="section" id="temporal">
+    <h2>Temporal Distribution</h2>
+    <p class="subtitle">ECG study counts over time. Note: MIMIC-IV dates are shifted for de-identification — use relative patterns only.</p>
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('temporal','year',this)">By Year</button>
+      <button class="tab-btn" onclick="switchTab('temporal','hour',this)">By Hour of Day</button>
+      <button class="tab-btn" onclick="switchTab('temporal','dow',this)">By Day of Week</button>
+      <button class="tab-btn" onclick="switchTab('temporal','month',this)">By Month</button>
+    </div>
+    <div id="temporal-year" class="tab-pane active">
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-title">ECG Studies by Year</span>
+          <button class="btn" onclick="downloadSVG('temp-year-svg','temporal_year')">Download SVG</button>
+        </div>
+        <svg id="temp-year-svg"></svg>
+      </div>
+    </div>
+    <div id="temporal-hour" class="tab-pane">
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-title">ECG Studies by Hour of Day</span>
+          <button class="btn" onclick="downloadSVG('temp-hour-svg','temporal_hour')">Download SVG</button>
+        </div>
+        <svg id="temp-hour-svg"></svg>
+      </div>
+    </div>
+    <div id="temporal-dow" class="tab-pane">
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-title">ECG Studies by Day of Week</span>
+          <button class="btn" onclick="downloadSVG('temp-dow-svg','temporal_dow')">Download SVG</button>
+        </div>
+        <svg id="temp-dow-svg"></svg>
+      </div>
+    </div>
+    <div id="temporal-month" class="tab-pane">
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-title">ECG Studies by Month</span>
+          <button class="btn" onclick="downloadSVG('temp-month-svg','temporal_month')">Download SVG</button>
+        </div>
+        <svg id="temp-month-svg"></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STUDIES PER PATIENT ── -->
+  <section class="section" id="studies-per-patient">
+    <h2>Studies per Patient</h2>
+    <p class="subtitle">Distribution of how many ECG studies each patient has.</p>
+    <div class="two-col">
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-title">Studies per Patient Histogram</span>
+          <button class="btn" onclick="downloadSVG('spp-svg','studies_per_patient')">Download SVG</button>
+        </div>
+        <svg id="spp-svg"></svg>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title" style="margin-bottom:14px">Summary Statistics</div>
+        <div id="spp-stats" class="info-block"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MEASUREMENTS ── -->
+  <section class="section" id="measurements">
+    <h2>Measurement Quality</h2>
+    <p class="subtitle">Missing value rates and summary statistics for machine_measurements.csv columns.</p>
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('meas','missing',this)">Missing Values</button>
+      <button class="tab-btn" onclick="switchTab('meas','stats',this)">Summary Statistics</button>
+    </div>
+    <div id="meas-missing" class="tab-pane active">
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-title">Missing % per Column (all columns)</span>
+          <div class="btn-group">
+            <button class="btn" onclick="downloadSVG('miss-svg','measurement_missing')">Download SVG</button>
+            <button class="btn" onclick="downloadTableCSV('miss-table','measurement_missing')">Download CSV</button>
+          </div>
+        </div>
+        <svg id="miss-svg"></svg>
+        <div class="table-wrap"><table id="miss-table"></table></div>
+      </div>
+    </div>
+    <div id="meas-stats" class="tab-pane">
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-title">Numeric Field Summary Statistics</span>
+          <button class="btn" onclick="downloadTableCSV('mstats-table','measurement_stats')">Download CSV</button>
+        </div>
+        <div class="table-wrap"><table id="mstats-table"></table></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INTERVALS ── -->
+  <section class="section" id="intervals">
+    <h2>Interval Distributions</h2>
+    <p class="subtitle">Histograms of RR, PR, QRS, and QT intervals derived from machine measurements.</p>
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('intv','rr',this)">RR</button>
+      <button class="tab-btn" onclick="switchTab('intv','pr',this)">PR</button>
+      <button class="tab-btn" onclick="switchTab('intv','qrs',this)">QRS</button>
+      <button class="tab-btn" onclick="switchTab('intv','qt',this)">QT</button>
+    </div>
+    <div id="intv-rr"  class="tab-pane active"><div class="chart-card">
+      <div class="chart-header"><span class="chart-title">RR Interval (ms)</span><button class="btn" onclick="downloadSVG('hist-rr','rr_interval')">Download SVG</button></div>
+      <svg id="hist-rr"></svg>
+      <div id="stats-rr" class="info-block"></div>
+    </div></div>
+    <div id="intv-pr"  class="tab-pane"><div class="chart-card">
+      <div class="chart-header"><span class="chart-title">PR Interval (ms)</span><button class="btn" onclick="downloadSVG('hist-pr','pr_interval')">Download SVG</button></div>
+      <svg id="hist-pr"></svg>
+      <div id="stats-pr" class="info-block"></div>
+    </div></div>
+    <div id="intv-qrs" class="tab-pane"><div class="chart-card">
+      <div class="chart-header"><span class="chart-title">QRS Duration (ms)</span><button class="btn" onclick="downloadSVG('hist-qrs','qrs_duration')">Download SVG</button></div>
+      <svg id="hist-qrs"></svg>
+      <div id="stats-qrs" class="info-block"></div>
+    </div></div>
+    <div id="intv-qt"  class="tab-pane"><div class="chart-card">
+      <div class="chart-header"><span class="chart-title">QT Interval (ms)</span><button class="btn" onclick="downloadSVG('hist-qt','qt_interval')">Download SVG</button></div>
+      <svg id="hist-qt"></svg>
+      <div id="stats-qt" class="info-block"></div>
+    </div></div>
+  </section>
+
+  <!-- ── AXES ── -->
+  <section class="section" id="axes">
+    <h2>Electrical Axis Distributions</h2>
+    <p class="subtitle">Distribution of P-wave, QRS, and T-wave electrical axes (degrees, −180 to +180).</p>
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('axis','p',this)">P-wave Axis</button>
+      <button class="tab-btn" onclick="switchTab('axis','qrs',this)">QRS Axis</button>
+      <button class="tab-btn" onclick="switchTab('axis','t',this)">T-wave Axis</button>
+    </div>
+    <div id="axis-p"   class="tab-pane active"><div class="chart-card">
+      <div class="chart-header"><span class="chart-title">P-wave Axis (degrees)</span><button class="btn" onclick="downloadSVG('axis-svg-p','p_axis')">Download SVG</button></div>
+      <svg id="axis-svg-p"></svg>
+    </div></div>
+    <div id="axis-qrs" class="tab-pane"><div class="chart-card">
+      <div class="chart-header"><span class="chart-title">QRS Axis (degrees)</span><button class="btn" onclick="downloadSVG('axis-svg-qrs','qrs_axis')">Download SVG</button></div>
+      <svg id="axis-svg-qrs"></svg>
+    </div></div>
+    <div id="axis-t"   class="tab-pane"><div class="chart-card">
+      <div class="chart-header"><span class="chart-title">T-wave Axis (degrees)</span><button class="btn" onclick="downloadSVG('axis-svg-t','t_axis')">Download SVG</button></div>
+      <svg id="axis-svg-t"></svg>
+    </div></div>
+  </section>
+
+  <!-- ── REPORT PHRASES ── -->
+  <section class="section" id="report-phrases">
+    <h2>Machine Report Phrases</h2>
+    <p class="subtitle">Most frequent diagnostic phrases from machine-generated ECG reports (report_0 … report_17 columns).</p>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title" id="phrase-title">Top report phrases</span>
+        <div class="btn-group">
+          <button class="btn" onclick="downloadSVG('phrase-svg','report_phrases')">Download SVG</button>
+          <button class="btn" onclick="downloadTableCSV('phrase-table','report_phrases')">Download CSV</button>
+        </div>
+      </div>
+      <svg id="phrase-svg"></svg>
+      <div class="table-wrap"><table id="phrase-table"></table></div>
+    </div>
+  </section>
+
+  <!-- ── EQUIPMENT ── -->
+  <section class="section" id="equipment">
+    <h2>Carts &amp; Equipment</h2>
+    <p class="subtitle">ECG cart usage, bandwidth settings, and filter configurations.</p>
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('equip','carts',this)">Cart Usage</button>
+      <button class="tab-btn" onclick="switchTab('equip','bw',this)">Bandwidth</button>
+      <button class="tab-btn" onclick="switchTab('equip','filt',this)">Filtering</button>
+    </div>
+    <div id="equip-carts" class="tab-pane active">
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-title">Top ECG Carts by Study Count</span>
+          <div class="btn-group">
+            <button class="btn" onclick="downloadSVG('cart-svg','cart_usage')">Download SVG</button>
+            <button class="btn" onclick="downloadTableCSV('cart-table','cart_usage')">Download CSV</button>
+          </div>
+        </div>
+        <svg id="cart-svg"></svg>
+        <div class="table-wrap"><table id="cart-table"></table></div>
+      </div>
+    </div>
+    <div id="equip-bw" class="tab-pane">
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-title">Bandwidth Settings</span>
+          <button class="btn" onclick="downloadSVG('bw-svg','bandwidth')">Download SVG</button>
+        </div>
+        <svg id="bw-svg"></svg>
+      </div>
+    </div>
+    <div id="equip-filt" class="tab-pane">
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-title">Filter Settings</span>
+          <button class="btn" onclick="downloadSVG('filt-svg','filtering')">Download SVG</button>
+        </div>
+        <svg id="filt-svg"></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── NOTE LINKS ── -->
+  <section class="section" id="note-links">
+    <h2>Waveform–Note Links</h2>
+    <p class="subtitle">Coverage of ECG records linked to MIMIC-IV clinical notes via waveform_note_links.csv.</p>
+    <div id="notelink-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:20px;"></div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Notes-per-ECG Distribution</span>
+        <button class="btn" onclick="downloadSVG('notelink-svg','note_links')">Download SVG</button>
+      </div>
+      <svg id="notelink-svg"></svg>
+    </div>
+  </section>
+
+  <!-- ── WAVEFORM HEADERS ── -->
+  <section class="section" id="waveform-headers">
+    <h2>Waveform Header Stats</h2>
+    <p class="subtitle">Properties extracted from a random sample of .hea header files.</p>
+    <div id="hdr-cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:20px;"></div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Header Property Breakdown</span>
+        <button class="btn" onclick="downloadTableCSV('hdr-table','waveform_headers')">Download CSV</button>
+      </div>
+      <div class="table-wrap"><table id="hdr-table"></table></div>
+    </div>
+  </section>
+
+  <!-- ── LEAD COMPLETENESS ── -->
+  <section class="section" id="lead-completeness">
+    <h2>Lead Completeness</h2>
+    <p class="subtitle">How many records are missing each standard lead, based on full .hea file scan.</p>
+    <div id="lc-summary-cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:20px;"></div>
+    <div class="two-col">
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-title">Per-Lead Absence Rate</span>
+          <button class="btn" onclick="downloadSVG('lc-svg','lead_completeness')">Download SVG</button>
+        </div>
+        <svg id="lc-svg"></svg>
+      </div>
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-title">Incomplete Records (first 50)</span>
+          <button class="btn" onclick="downloadTableCSV('lc-table','lead_completeness')">Download CSV</button>
+        </div>
+        <div class="table-wrap"><table id="lc-table"></table></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SIGNAL QUALITY ── -->
+  <section class="section" id="signal-quality">
+    <h2>Signal Quality</h2>
+    <p class="subtitle">Flat-line, dropout, and clipping rates detected from a sampled set of .dat waveform files.</p>
+    <div id="sq-summary-cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:20px;"></div>
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('sq','flat',this)">Flat Leads</button>
+      <button class="tab-btn" onclick="switchTab('sq','dropout',this)">Dropout</button>
+      <button class="tab-btn" onclick="switchTab('sq','clip',this)">Clipping</button>
+      <button class="tab-btn" onclick="switchTab('sq','flagged',this)">Flagged Records</button>
+    </div>
+    <div id="sq-flat" class="tab-pane active"><div class="chart-card">
+      <div class="chart-header"><span class="chart-title">Flat Lead Rate per Lead (%)</span><button class="btn" onclick="downloadSVG('sq-flat-svg','sq_flat')">Download SVG</button></div>
+      <svg id="sq-flat-svg"></svg>
+    </div></div>
+    <div id="sq-dropout" class="tab-pane"><div class="chart-card">
+      <div class="chart-header"><span class="chart-title">Dropout Rate per Lead (%)</span><button class="btn" onclick="downloadSVG('sq-dropout-svg','sq_dropout')">Download SVG</button></div>
+      <svg id="sq-dropout-svg"></svg>
+    </div></div>
+    <div id="sq-clip" class="tab-pane"><div class="chart-card">
+      <div class="chart-header"><span class="chart-title">Clipping Rate per Lead (%)</span><button class="btn" onclick="downloadSVG('sq-clip-svg','sq_clip')">Download SVG</button></div>
+      <svg id="sq-clip-svg"></svg>
+    </div></div>
+    <div id="sq-flagged" class="tab-pane"><div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Flagged Records (first 200)</span>
+        <button class="btn" onclick="downloadTableCSV('sq-flag-table','signal_quality_flagged')">Download CSV</button>
+      </div>
+      <div class="table-wrap"><table id="sq-flag-table"></table></div>
+    </div></div>
+  </section>
+
+</main>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+// ── Inline JSON ──────────────────────────────────────────────────────────────
+const DATA = {
+{% for key, blob in json_blobs.items() %}
+  "{{ key }}": {{ blob }},
+{% endfor %}
+};
+</script>
+<script>{{ d3_source }}</script>
+<script>
+// ── Utilities ────────────────────────────────────────────────────────────────
+const tip = d3.select("#tooltip");
+function showTip(html, event) {
+  tip.style("opacity",1).html(html)
+    .style("left",(event.pageX+14)+"px").style("top",(event.pageY-28)+"px");
+}
+function hideTip() { tip.style("opacity",0); }
+
+function downloadSVG(svgId, filename) {
+  const svg = document.getElementById(svgId); if (!svg) return;
+  const clone = svg.cloneNode(true);
+  clone.setAttribute("xmlns","http://www.w3.org/2000/svg");
+  const styles = Array.from(document.styleSheets).flatMap(s=>{try{return Array.from(s.cssRules).map(r=>r.cssText)}catch{return[]}}).join("\n");
+  const styleEl = document.createElementNS("http://www.w3.org/2000/svg","style");
+  styleEl.textContent = styles; clone.prepend(styleEl);
+  const blob = new Blob(["<?xml version='1.0'?>\n"+clone.outerHTML],{type:"image/svg+xml"});
+  const a = document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=filename+".svg"; a.click();
+}
+function downloadTableCSV(tableId, filename) {
+  const tbl = document.getElementById(tableId); if (!tbl) return;
+  const rows=[];
+  for(const row of tbl.querySelectorAll("tr"))
+    rows.push(Array.from(row.querySelectorAll("th,td")).map(c=>JSON.stringify(c.textContent.trim())).join(","));
+  const blob=new Blob([rows.join("\n")],{type:"text/csv"});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=filename+".csv"; a.click();
+}
+function switchTab(group, tab, btn) {
+  document.querySelectorAll(`[id^="${group}-"]`).forEach(el=>el.classList.remove("active"));
+  document.getElementById(`${group}-${tab}`)?.classList.add("active");
+  btn.closest(".tab-bar").querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+}
+
+// ── Chart helpers ────────────────────────────────────────────────────────────
+function makeTable(tableId, columns, data) {
+  const tbl = document.getElementById(tableId); if (!tbl) return;
+  tbl.innerHTML = "";
+  const thead = tbl.createTHead(); const hr = thead.insertRow();
+  columns.forEach(c => { const th=document.createElement("th"); th.textContent=c.label; hr.appendChild(th); });
+  const tbody = tbl.createTBody();
+  (data||[]).forEach(d => {
+    const tr = tbody.insertRow();
+    columns.forEach(c => {
+      const td = tr.insertCell();
+      const val = d[c.key];
+      td.textContent = c.fmt ? c.fmt(val) : (val===null||val===undefined ? "—" : val);
+    });
+  });
+}
+
+function makeHBar(svgId, items, valueKey, labelKey, color, topN=40) {
+  const data = items.slice(0, topN);
+  const margin = {top:6,right:80,bottom:10,left:200};
+  const rowH = 22;
+  const container = document.getElementById(svgId)?.parentElement;
+  const W = Math.min(800, (container?.clientWidth||800) - 20);
+  const H = data.length * rowH + margin.top + margin.bottom;
+  const svg = d3.select(`#${svgId}`).attr("width",W).attr("height",H);
+  svg.selectAll("*").remove();
+  const g = svg.append("g").attr("transform",`translate(${margin.left},${margin.top})`);
+  const innerW = W - margin.left - margin.right;
+  const x = d3.scaleLinear().domain([0, d3.max(data,d=>d[valueKey])||1]).range([0,innerW]);
+  const y = d3.scaleBand().domain(data.map(d=>String(d[labelKey]))).range([0,H-margin.top-margin.bottom]).padding(0.2);
+  g.selectAll(".bar").data(data).join("rect")
+    .attr("fill", color||"#4f8ef7")
+    .attr("x",0).attr("y",d=>y(String(d[labelKey])))
+    .attr("width",d=>x(d[valueKey])).attr("height",y.bandwidth())
+    .on("mouseover",(event,d)=>showTip(`<b>${d[labelKey]}</b>: ${(d[valueKey]||0).toLocaleString()}`,event))
+    .on("mouseout",hideTip);
+  g.selectAll(".lbl").data(data).join("text")
+    .attr("x",d=>x(d[valueKey])+4).attr("y",d=>y(String(d[labelKey]))+y.bandwidth()/2+4)
+    .attr("font-size",10).attr("fill","#445")
+    .text(d=>(d[valueKey]||0).toLocaleString());
+  g.selectAll(".ylabel").data(data).join("text")
+    .attr("x",-4).attr("y",d=>y(String(d[labelKey]))+y.bandwidth()/2+4)
+    .attr("text-anchor","end").attr("font-size",11).attr("fill","#334")
+    .text(d=>{const s=String(d[labelKey]); return s.length>28?s.slice(0,27)+"…":s;});
+}
+
+function makeVBar(svgId, items, xKey, yKey, color) {
+  if (!items || items.length === 0) return;
+  const margin = {top:16,right:20,bottom:60,left:60};
+  const container = document.getElementById(svgId)?.parentElement;
+  const W = Math.min(700, (container?.clientWidth||700) - 20);
+  const H = 240;
+  const innerW = W-margin.left-margin.right, innerH = H-margin.top-margin.bottom;
+  const svg = d3.select(`#${svgId}`).attr("width",W).attr("height",H);
+  svg.selectAll("*").remove();
+  const g = svg.append("g").attr("transform",`translate(${margin.left},${margin.top})`);
+  const x = d3.scaleBand().domain(items.map(d=>String(d[xKey]))).range([0,innerW]).padding(0.15);
+  const y = d3.scaleLinear().domain([0,d3.max(items,d=>d[yKey])||1]).nice().range([innerH,0]);
+  g.selectAll(".bar").data(items).join("rect")
+    .attr("fill",color||"#4f8ef7").attr("x",d=>x(String(d[xKey]))).attr("y",d=>y(d[yKey]))
+    .attr("width",x.bandwidth()).attr("height",d=>innerH-y(d[yKey]))
+    .on("mouseover",(event,d)=>showTip(`<b>${d[xKey]}</b>: ${(d[yKey]||0).toLocaleString()}`,event))
+    .on("mouseout",hideTip);
+  g.append("g").attr("transform",`translate(0,${innerH})`).call(
+    d3.axisBottom(x).tickSize(0)
+  ).selectAll("text").attr("transform","rotate(-40)").attr("text-anchor","end").attr("font-size",10);
+  g.append("g").call(d3.axisLeft(y).ticks(5).tickFormat(d3.format(",d")));
+}
+
+function makeHistogram(svgId, bins, xLabel, color) {
+  if (!bins || bins.length === 0) return;
+  const margin = {top:16,right:20,bottom:50,left:65};
+  const container = document.getElementById(svgId)?.parentElement;
+  const W = Math.min(700, (container?.clientWidth||700) - 20);
+  const H = 230;
+  const innerW = W-margin.left-margin.right, innerH = H-margin.top-margin.bottom;
+  const svg = d3.select(`#${svgId}`).attr("width",W).attr("height",H);
+  svg.selectAll("*").remove();
+  const g = svg.append("g").attr("transform",`translate(${margin.left},${margin.top})`);
+  const x = d3.scaleLinear().domain([bins[0].x0, bins[bins.length-1].x1]).range([0,innerW]);
+  const y = d3.scaleLinear().domain([0,d3.max(bins,d=>d.count)||1]).nice().range([innerH,0]);
+  g.selectAll(".bar").data(bins).join("rect")
+    .attr("fill",color||"#4f8ef7").attr("x",d=>x(d.x0)+1)
+    .attr("y",d=>y(d.count)).attr("width",d=>Math.max(0,x(d.x1)-x(d.x0)-1))
+    .attr("height",d=>innerH-y(d.count))
+    .on("mouseover",(event,d)=>showTip(`${d.x0}–${d.x1}: ${d.count.toLocaleString()}`,event))
+    .on("mouseout",hideTip);
+  g.append("g").attr("transform",`translate(0,${innerH})`).call(d3.axisBottom(x).ticks(8));
+  g.append("g").call(d3.axisLeft(y).ticks(5).tickFormat(d3.format(",d")));
+  if (xLabel) g.append("text").attr("x",innerW/2).attr("y",innerH+38)
+    .attr("text-anchor","middle").attr("font-size",11).attr("fill","#556").text(xLabel);
+}
+
+function makeDonutBars(svgId, items, valueKey, labelKey, color) {
+  // Simple horizontal bar for bandwidth/filter (usually few items)
+  makeHBar(svgId, items, valueKey, labelKey, color, 20);
+}
+
+function makeLeadBar(svgId, data, valueKey, color) {
+  // Horizontal bar specifically for 12 leads
+  const items = data.map(d => ({lead: d.lead, val: d[valueKey]}));
+  makeHBar(svgId, items, "val", "lead", color, 12);
+}
+
+// ── Sidebar IntersectionObserver ─────────────────────────────────────────────
+const sections = document.querySelectorAll(".section");
+const navLinks = document.querySelectorAll("#sidebar nav a");
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove("active"));
+      const link = document.querySelector(`#sidebar nav a[href="#${e.target.id}"]`);
+      if (link) link.classList.add("active");
+    }
+  });
+}, { threshold: 0.2 });
+sections.forEach(s => observer.observe(s));
+
+// ────────────────────────────────────────────────────────────────────────────
+// Render sections
+// ────────────────────────────────────────────────────────────────────────────
+
+// ── Summary cards ────────────────────────────────────────────────────────────
+(function() {
+  const d = DATA["dataset_summary"]; if (!d) return;
+  const items = [
+    {val: (d.total_records||0).toLocaleString(),    lbl: "Total ECG Records",        sub: "from record_list.csv"},
+    {val: (d.unique_patients||0).toLocaleString(),  lbl: "Unique Patients",          sub: "subject IDs"},
+    {val: (d.unique_studies||0).toLocaleString(),   lbl: "Unique Studies",           sub: "study IDs"},
+    {val: (d.records_with_measurements||0).toLocaleString(), lbl: "With Measurements", sub: "machine_measurements.csv"},
+    {val: (d.records_with_note_links||0).toLocaleString(),   lbl: "With Note Links",  sub: "waveform_note_links.csv"},
+    {val: d.sampling_rate_hz + " Hz",               lbl: "Sampling Rate",            sub: `${d.duration_s}s · ${d.leads}-lead`},
+    {val: (d.patient_group_folders||0).toLocaleString(), lbl: "Patient Groups",      sub: "files/pXXXX folders"},
+  ];
+  const grid = document.getElementById("overview-grid");
+  items.forEach(item => {
+    const card = document.createElement("div"); card.className = "stat-card";
+    card.innerHTML = `<div class="val">${item.val}</div><div class="lbl">${item.lbl}</div><div class="sub">${item.sub}</div>`;
+    grid.appendChild(card);
+  });
+})();
+
+// ── Record Coverage ───────────────────────────────────────────────────────────
+(function() {
+  const d = DATA["record_coverage"]; if (!d || !d.sources) return;
+  const items = Object.entries(d.sources).map(([name, info]) => ({
+    name: name.replace(/_/g," "), count: info.count, missing: info.missing_from_canonical
+  })).sort((a,b)=>b.count-a.count);
+  makeVBar("coverage-svg", items, "name", "count", "#4f8ef7");
+  makeTable("coverage-table",
+    [{key:"name",label:"Source"},{key:"count",label:"Records",fmt:v=>v?.toLocaleString()},{key:"missing",label:"Missing vs Canonical",fmt:v=>v?.toLocaleString()}],
+    items);
+})();
+
+// ── Temporal ─────────────────────────────────────────────────────────────────
+(function() {
+  const d = DATA["temporal_distribution"]; if (!d) return;
+  if (d.by_year)  makeVBar("temp-year-svg",  d.by_year,  "year",  "count", "#4f8ef7");
+  if (d.by_hour)  makeVBar("temp-hour-svg",  d.by_hour,  "hour",  "count", "#22c55e");
+  if (d.by_dow)   makeVBar("temp-dow-svg",   d.by_dow,   "day",   "count", "#f59e0b");
+  if (d.by_month) makeVBar("temp-month-svg", d.by_month, "month", "count", "#a78bfa");
+})();
+
+// ── Studies per Patient ───────────────────────────────────────────────────────
+(function() {
+  const d = DATA["studies_per_patient"]; if (!d) return;
+  if (d.histogram) makeVBar("spp-svg", d.histogram, "bucket", "count", "#4f8ef7");
+  if (d.stats) {
+    const s = d.stats;
+    document.getElementById("spp-stats").innerHTML =
+      `<b>Total patients:</b> ${(d.total_patients||0).toLocaleString()}<br/>
+       <b>Min studies:</b> ${s.min} &nbsp; <b>Max:</b> ${s.max}<br/>
+       <b>Mean:</b> ${s.mean} &nbsp; <b>Median:</b> ${s.median}<br/>
+       <b>P25:</b> ${s.p25} &nbsp; <b>P75:</b> ${s.p75} &nbsp; <b>P95:</b> ${s.p95}`;
+  }
+})();
+
+// ── Measurement Missing ───────────────────────────────────────────────────────
+(function() {
+  const d = DATA["measurement_missing"]; if (!d || !d.fields) return;
+  const withMissing = d.fields.filter(f => f.missing_pct > 0);
+  makeHBar("miss-svg", withMissing, "missing_pct", "field", "#ef4444", 40);
+  makeTable("miss-table",
+    [{key:"field",label:"Column"},{key:"description",label:"Description"},
+     {key:"missing_pct",label:"Missing %",fmt:v=>v?.toFixed(2)+"%"},
+     {key:"flagged",label:"Flagged",fmt:v=>v?"⚠ Yes":""}],
+    d.fields.filter(f=>f.missing_pct>0).slice(0,100));
+})();
+
+// ── Measurement Stats ─────────────────────────────────────────────────────────
+(function() {
+  const d = DATA["measurement_stats"]; if (!d || !d.fields) return;
+  makeTable("mstats-table",
+    [{key:"field",label:"Field"},{key:"description",label:"Description"},{key:"unit",label:"Unit"},
+     {key:"count",label:"Count",fmt:v=>v?.toLocaleString()},{key:"missing_pct",label:"Missing %",fmt:v=>v?.toFixed(1)+"%"},
+     {key:"mean",label:"Mean",fmt:v=>v?.toFixed(1)},{key:"std",label:"Std",fmt:v=>v?.toFixed(1)},
+     {key:"min",label:"Min",fmt:v=>v?.toFixed(1)},{key:"p25",label:"P25",fmt:v=>v?.toFixed(1)},
+     {key:"p50",label:"Median",fmt:v=>v?.toFixed(1)},{key:"p75",label:"P75",fmt:v=>v?.toFixed(1)},
+     {key:"max",label:"Max",fmt:v=>v?.toFixed(1)}],
+    d.fields);
+})();
+
+// ── Intervals ────────────────────────────────────────────────────────────────
+(function() {
+  const d = DATA["interval_distributions"]; if (!d) return;
+  const ms = DATA["measurement_stats"]?.fields || [];
+  const statsMap = {};
+  ms.forEach(f => statsMap[f.field] = f);
+
+  const configs = [
+    {key:"rr_interval", svgId:"hist-rr",  statsId:"stats-rr",  color:"#4f8ef7"},
+    {key:"pr_interval", svgId:"hist-pr",  statsId:"stats-pr",  color:"#22c55e"},
+    {key:"qrs_duration",svgId:"hist-qrs", statsId:"stats-qrs", color:"#f59e0b"},
+    {key:"qt_interval", svgId:"hist-qt",  statsId:"stats-qt",  color:"#a78bfa"},
+  ];
+  configs.forEach(cfg => {
+    const info = d[cfg.key]; if (!info) return;
+    makeHistogram(cfg.svgId, info.bins, `${info.label} (${info.unit})`, cfg.color);
+    const statsField = cfg.key === "pr_interval" ? null : statsMap[cfg.key.replace("_interval","_interval").replace("_duration","")];
+    const statsEl = document.getElementById(cfg.statsId);
+    if (statsEl && info.bins && info.bins.length > 0) {
+      const total = info.bins.reduce((s,b)=>s+b.count,0);
+      statsEl.innerHTML = `<b>Total records:</b> ${total.toLocaleString()} &nbsp; <b>Range:</b> ${info.bins[0].x0}–${info.bins[info.bins.length-1].x1} ms`;
+    }
+  });
+})();
+
+// ── Axes ─────────────────────────────────────────────────────────────────────
+(function() {
+  const d = DATA["axis_distributions"]; if (!d) return;
+  const configs = [
+    {key:"p_axis",   svgId:"axis-svg-p",   color:"#4f8ef7"},
+    {key:"qrs_axis", svgId:"axis-svg-qrs", color:"#f59e0b"},
+    {key:"t_axis",   svgId:"axis-svg-t",   color:"#22c55e"},
+  ];
+  configs.forEach(cfg => {
+    const info = d[cfg.key]; if (!info) return;
+    makeHistogram(cfg.svgId, info.bins, `${info.label} (${info.unit})`, cfg.color);
+  });
+})();
+
+// ── Report Phrases ────────────────────────────────────────────────────────────
+(function() {
+  const d = DATA["report_text_freq"]; if (!d || !d.phrases) return;
+  document.getElementById("phrase-title").textContent =
+    `Top ${d.phrases.length} phrases (${(d.total_unique_phrases||0).toLocaleString()} unique across ${d.report_columns||0} report columns)`;
+  makeHBar("phrase-svg", d.phrases, "count", "text", "#4f8ef7", d.phrases.length);
+  makeTable("phrase-table",
+    [{key:"text",label:"Phrase"},{key:"count",label:"Count",fmt:v=>v?.toLocaleString()},{key:"pct",label:"% Records",fmt:v=>v?.toFixed(2)+"%"}],
+    d.phrases);
+})();
+
+// ── Cart Usage ───────────────────────────────────────────────────────────────
+(function() {
+  const d = DATA["cart_usage"]; if (!d) return;
+  if (d.top_carts) {
+    makeHBar("cart-svg", d.top_carts, "count", "cart_id", "#4f8ef7", d.top_carts.length);
+    makeTable("cart-table",
+      [{key:"cart_id",label:"Cart ID"},{key:"count",label:"Studies",fmt:v=>v?.toLocaleString()},{key:"pct",label:"% Total",fmt:v=>v?.toFixed(2)+"%"}],
+      d.top_carts);
+  }
+})();
+
+// ── Bandwidth / Filtering ────────────────────────────────────────────────────
+(function() {
+  const d = DATA["bandwidth_filtering"]; if (!d) return;
+  if (d.bandwidth) makeHBar("bw-svg",   d.bandwidth, "count", "value", "#4f8ef7", 20);
+  if (d.filtering) makeHBar("filt-svg", d.filtering, "count", "value", "#22c55e", 20);
+})();
+
+// ── Note Links ───────────────────────────────────────────────────────────────
+(function() {
+  const d = DATA["note_link_coverage"]; if (!d) return;
+  const cards = [
+    {val:(d.total_links||0).toLocaleString(),           lbl:"Total Links",             sub:"ECG–note pairs"},
+    {val:(d.records_with_links||0).toLocaleString(),    lbl:"ECGs with Links",         sub:"have ≥1 note"},
+    {val:(d.records_without_links||0).toLocaleString(), lbl:"ECGs without Links",      sub:"no note linked"},
+    {val:(d.patients_with_links||0).toLocaleString(),   lbl:"Patients with Links",     sub:"unique subjects"},
+  ];
+  const grid = document.getElementById("notelink-grid");
+  cards.forEach(c => {
+    const card = document.createElement("div"); card.className="stat-card";
+    card.innerHTML=`<div class="val">${c.val}</div><div class="lbl">${c.lbl}</div><div class="sub">${c.sub}</div>`;
+    grid.appendChild(card);
+  });
+  if (d.histogram) makeVBar("notelink-svg", d.histogram, "bucket", "count", "#4f8ef7");
+})();
+
+// ── Waveform Headers ──────────────────────────────────────────────────────────
+(function() {
+  const d = DATA["waveform_header_stats"]; if (!d) return;
+  const cards = [
+    {val:(d.sample_size||0).toLocaleString(), lbl:"Headers Sampled", sub:"random .hea files"},
+  ];
+  // Show dominant value for each property
+  for (const [propKey, label] of [["sampling_rates","Sampling Rate"],["leads_counts","Leads per Record"],["bit_depths","Bit Depth"]]) {
+    const obj = d[propKey]; if (!obj) continue;
+    const top = Object.entries(obj).sort((a,b)=>b[1]-a[1])[0];
+    if (top) cards.push({val: top[0], lbl: label, sub: `${top[1].toLocaleString()} records`});
+  }
+  const grid = document.getElementById("hdr-cards");
+  cards.forEach(c => {
+    const card = document.createElement("div"); card.className="stat-card";
+    card.innerHTML=`<div class="val">${c.val}</div><div class="lbl">${c.lbl}</div><div class="sub">${c.sub}</div>`;
+    grid.appendChild(card);
+  });
+  // Table of all property values
+  const rows = [];
+  for (const [propKey, label] of [["sampling_rates","Sampling Rate (Hz)"],["sample_counts","Sample Count"],["leads_counts","Lead Count"],["bit_depths","Bit Depth"],["resolutions","ADC Gain"]]) {
+    const obj = d[propKey]; if (!obj) continue;
+    for (const [val, cnt] of Object.entries(obj).sort((a,b)=>b[1]-a[1]))
+      rows.push({property: label, value: val, count: cnt});
+  }
+  makeTable("hdr-table",
+    [{key:"property",label:"Property"},{key:"value",label:"Value"},{key:"count",label:"Records",fmt:v=>v?.toLocaleString()}],
+    rows);
+})();
+
+// ── Lead Completeness ─────────────────────────────────────────────────────────
+(function() {
+  const d = DATA["lead_completeness"]; if (!d) return;
+  const cards = [
+    {val:(d.total_scanned||0).toLocaleString(),             lbl:"Records Scanned",        sub:".hea files parsed"},
+    {val:(d.records_with_12_leads||0).toLocaleString(),     lbl:"Complete (12 leads)",    sub:"standard 12-lead"},
+    {val:(d.records_with_fewer_leads||0).toLocaleString(),  lbl:"Incomplete (<12 leads)", sub:"missing ≥1 lead"},
+    {val:(d.nonstandard_lead_order_count||0).toLocaleString(), lbl:"Non-standard Order",  sub:"all 12 but reordered"},
+  ];
+  const grid = document.getElementById("lc-summary-cards");
+  cards.forEach(c => {
+    const card = document.createElement("div"); card.className="stat-card";
+    card.innerHTML=`<div class="val">${c.val}</div><div class="lbl">${c.lbl}</div><div class="sub">${c.sub}</div>`;
+    grid.appendChild(card);
+  });
+
+  if (d.per_lead_absence) {
+    const leads = ["I","II","III","aVR","aVF","aVL","V1","V2","V3","V4","V5","V6"];
+    const items = leads.map(l => ({lead: l, absent_pct: d.per_lead_absence[l]?.absent_pct || 0}));
+    makeHBar("lc-svg", items, "absent_pct", "lead", "#ef4444", 12);
+  }
+
+  if (d.incomplete_records) {
+    const rows = d.incomplete_records.slice(0, 50).map(r => ({
+      study_id: r.study_id,
+      leads_present: (r.leads_present||[]).join(", "),
+      leads_missing: (r.leads_missing||[]).join(", "),
+    }));
+    makeTable("lc-table",
+      [{key:"study_id",label:"Study ID"},{key:"leads_present",label:"Present"},{key:"leads_missing",label:"Missing"}],
+      rows);
+  }
+})();
+
+// ── Signal Quality ────────────────────────────────────────────────────────────
+(function() {
+  const d = DATA["signal_quality"]; if (!d) return;
+  const cards = [
+    {val:(d.sample_size||0).toLocaleString(),            lbl:"Records Sampled",       sub:"signal files read"},
+    {val:(d.records_with_any_issue||0).toLocaleString(), lbl:"Records with Issues",   sub:`${d.issue_pct||0}% of sample`},
+  ];
+  const grid = document.getElementById("sq-summary-cards");
+  cards.forEach(c => {
+    const card = document.createElement("div"); card.className="stat-card";
+    card.innerHTML=`<div class="val">${c.val}</div><div class="lbl">${c.lbl}</div><div class="sub">${c.sub}</div>`;
+    grid.appendChild(card);
+  });
+
+  if (d.per_lead_issues) {
+    const leads = ["I","II","III","aVR","aVF","aVL","V1","V2","V3","V4","V5","V6"];
+    const flatItems    = leads.map(l=>({lead:l, val:d.per_lead_issues[l]?.flat_pct||0}));
+    const dropItems    = leads.map(l=>({lead:l, val:d.per_lead_issues[l]?.dropout_pct||0}));
+    const clipItems    = leads.map(l=>({lead:l, val:d.per_lead_issues[l]?.clip_pct||0}));
+    makeHBar("sq-flat-svg",    flatItems,  "val","lead","#f59e0b",12);
+    makeHBar("sq-dropout-svg", dropItems,  "val","lead","#ef4444",12);
+    makeHBar("sq-clip-svg",    clipItems,  "val","lead","#a78bfa",12);
+  }
+
+  if (d.flagged_records) {
+    const rows = d.flagged_records.map(r => ({
+      study_id: r.study_id,
+      issues: Object.entries(r.issues||{}).map(([lead,types])=>`${lead}:${types.join("+")}` ).join(" | "),
+    }));
+    makeTable("sq-flag-table",
+      [{key:"study_id",label:"Study ID"},{key:"issues",label:"Issues (lead:type)"}],
+      rows);
+  }
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+{
+  "total_records": 789481,
+  "total_unique_phrases": 3773,
+  "report_columns": 18,
+  "phrases": [
+    {
+      "text": "Abnormal ECG",
+      "count": 349667,
+      "pct": 44.29
+    },
+    {
+      "text": "Sinus rhythm",
+      "count": 321720,
+      "pct": 40.75
+    },
+    {
+      "text": "Borderline ECG",
+      "count": 169054,
+      "pct": 21.41
+    },
+    {
+      "text": "Normal ECG",
+      "count": 116363,
+      "pct": 14.74
+    },
+    {
+      "text": "Left axis deviation",
+      "count": 74191,
+      "pct": 9.4
+    },
+    {
+      "text": "Sinus rhythm.",
+      "count": 61063,
+      "pct": 7.73
+    },
+    {
+      "text": "Sinus bradycardia",
+      "count": 59645,
+      "pct": 7.55
+    },
+    {
+      "text": "Sinus tachycardia",
+      "count": 41489,
+      "pct": 5.26
+    },
+    {
+      "text": "Inferior infarct - age undetermined",
+      "count": 40893,
+      "pct": 5.18
+    },
+    {
+      "text": "Low QRS voltages in precordial leads",
+      "count": 40037,
+      "pct": 5.07
+    },
+    {
+      "text": "Prolonged QT interval",
+      "count": 36603,
+      "pct": 4.64
+    },
+    {
+      "text": "Poor R wave progression - probable normal variant",
+      "count": 36380,
+      "pct": 4.61
+    },
+    {
+      "text": "Normal ECG except for rate",
+      "count": 35921,
+      "pct": 4.55
+    },
+    {
+      "text": "Possible anterior infarct - age undetermined",
+      "count": 33787,
+      "pct": 4.28
+    },
+    {
+      "text": "Right bundle branch block",
+      "count": 33091,
+      "pct": 4.19
+    },
+    {
+      "text": "Leftward axis",
+      "count": 32793,
+      "pct": 4.15
+    },
+    {
+      "text": "Atrial fibrillation",
+      "count": 32572,
+      "pct": 4.13
+    },
+    {
+      "text": "Left ventricular hypertrophy",
+      "count": 30380,
+      "pct": 3.85
+    },
+    {
+      "text": "Possible inferior infarct - age undetermined",
+      "count": 30198,
+      "pct": 3.83
+    },
+    {
+      "text": "Inferior T wave changes are nonspecific",
+      "count": 29125,
+      "pct": 3.69
+    },
+    {
+      "text": "IV conduction defect",
+      "count": 25190,
+      "pct": 3.19
+    },
+    {
+      "text": "Left bundle branch block",
+      "count": 23062,
+      "pct": 2.92
+    },
+    {
+      "text": "Lateral T wave changes are nonspecific",
+      "count": 21338,
+      "pct": 2.7
+    },
+    {
+      "text": "RBBB with left anterior fascicular block",
+      "count": 20705,
+      "pct": 2.62
+    },
+    {
+      "text": "Low QRS voltages in limb leads",
+      "count": 19226,
+      "pct": 2.44
+    },
+    {
+      "text": "rSr'(V1) - probable normal variant",
+      "count": 16989,
+      "pct": 2.15
+    },
+    {
+      "text": "Lateral ST-T changes are nonspecific",
+      "count": 16623,
+      "pct": 2.11
+    },
+    {
+      "text": "Anterior T wave changes are nonspecific",
+      "count": 16601,
+      "pct": 2.1
+    },
+    {
+      "text": "Possible left atrial abnormality",
+      "count": 14736,
+      "pct": 1.87
+    },
+    {
+      "text": "LVH with secondary repolarization abnormality",
+      "count": 14521,
+      "pct": 1.84
+    },
+    {
+      "text": "Lateral ST-T changes may be due to myocardial ischemia",
+      "count": 14318,
+      "pct": 1.81
+    },
+    {
+      "text": "Possible anteroseptal infarct - age undetermined",
+      "count": 13836,
+      "pct": 1.75
+    },
+    {
+      "text": "Pacemaker rhythm - no further analysis",
+      "count": 13503,
+      "pct": 1.71
+    },
+    {
+      "text": "Inferior/lateral ST-T changes are nonspecific",
+      "count": 13475,
+      "pct": 1.71
+    },
+    {
+      "text": "Sinus tachycardia.",
+      "count": 13470,
+      "pct": 1.71
+    },
+    {
+      "text": "Probable left atrial enlargement",
+      "count": 12930,
+      "pct": 1.64
+    },
+    {
+      "text": "Left anterior fascicular block",
+      "count": 12475,
+      "pct": 1.58
+    },
+    {
+      "text": "Sinus rhythm with borderline 1st degree A-V block",
+      "count": 12106,
+      "pct": 1.53
+    },
+    {
+      "text": "Possible left ventricular hypertrophy",
+      "count": 11713,
+      "pct": 1.48
+    },
+    {
+      "text": "Possible septal infarct - age undetermined",
+      "count": 11666,
+      "pct": 1.48
+    }
+  ]
+}

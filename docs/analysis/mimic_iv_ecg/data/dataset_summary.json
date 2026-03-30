@@ -1,0 +1,17 @@
+{
+  "total_records": 800035,
+  "unique_patients": 161352,
+  "unique_studies": 800035,
+  "records_with_measurements": 789481,
+  "records_without_measurements": 10554,
+  "records_with_note_links": 609265,
+  "records_without_note_links": 190770,
+  "patient_group_folders": 1000,
+  "ecg_time_range": {
+    "min": "2097-08-27 10:07:00",
+    "max": "2211-03-27 10:41:00"
+  },
+  "sampling_rate_hz": 500,
+  "duration_s": 10,
+  "leads": 12
+}

@@ -1,0 +1,236 @@
+{
+  "total_records": 789481,
+  "fields": [
+    {
+      "field": "report_15",
+      "description": "",
+      "missing_count": 789462,
+      "missing_pct": 100.0,
+      "flagged": true
+    },
+    {
+      "field": "report_16",
+      "description": "",
+      "missing_count": 789470,
+      "missing_pct": 100.0,
+      "flagged": true
+    },
+    {
+      "field": "report_17",
+      "description": "",
+      "missing_count": 789478,
+      "missing_pct": 100.0,
+      "flagged": true
+    },
+    {
+      "field": "report_13",
+      "description": "",
+      "missing_count": 789379,
+      "missing_pct": 99.99,
+      "flagged": true
+    },
+    {
+      "field": "report_14",
+      "description": "",
+      "missing_count": 789439,
+      "missing_pct": 99.99,
+      "flagged": true
+    },
+    {
+      "field": "report_12",
+      "description": "",
+      "missing_count": 789288,
+      "missing_pct": 99.98,
+      "flagged": true
+    },
+    {
+      "field": "report_11",
+      "description": "",
+      "missing_count": 789091,
+      "missing_pct": 99.95,
+      "flagged": true
+    },
+    {
+      "field": "report_10",
+      "description": "",
+      "missing_count": 788626,
+      "missing_pct": 99.89,
+      "flagged": true
+    },
+    {
+      "field": "report_9",
+      "description": "",
+      "missing_count": 787269,
+      "missing_pct": 99.72,
+      "flagged": true
+    },
+    {
+      "field": "report_8",
+      "description": "",
+      "missing_count": 782585,
+      "missing_pct": 99.13,
+      "flagged": true
+    },
+    {
+      "field": "report_7",
+      "description": "",
+      "missing_count": 767948,
+      "missing_pct": 97.27,
+      "flagged": true
+    },
+    {
+      "field": "report_6",
+      "description": "",
+      "missing_count": 735206,
+      "missing_pct": 93.13,
+      "flagged": true
+    },
+    {
+      "field": "report_5",
+      "description": "",
+      "missing_count": 670535,
+      "missing_pct": 84.93,
+      "flagged": true
+    },
+    {
+      "field": "report_4",
+      "description": "",
+      "missing_count": 567036,
+      "missing_pct": 71.82,
+      "flagged": true
+    },
+    {
+      "field": "report_3",
+      "description": "",
+      "missing_count": 403527,
+      "missing_pct": 51.11,
+      "flagged": true
+    },
+    {
+      "field": "report_2",
+      "description": "",
+      "missing_count": 271176,
+      "missing_pct": 34.35,
+      "flagged": true
+    },
+    {
+      "field": "report_1",
+      "description": "",
+      "missing_count": 198546,
+      "missing_pct": 25.15,
+      "flagged": true
+    },
+    {
+      "field": "subject_id",
+      "description": "",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "field": "study_id",
+      "description": "",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "field": "cart_id",
+      "description": "",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "field": "ecg_time",
+      "description": "",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "field": "report_0",
+      "description": "",
+      "missing_count": 1,
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "field": "bandwidth",
+      "description": "",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "field": "filtering",
+      "description": "",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "field": "rr_interval",
+      "description": "",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "field": "p_onset",
+      "description": "",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "field": "p_end",
+      "description": "",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "field": "qrs_onset",
+      "description": "",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "field": "qrs_end",
+      "description": "",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "field": "t_end",
+      "description": "",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "field": "p_axis",
+      "description": "",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "field": "qrs_axis",
+      "description": "",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "field": "t_axis",
+      "description": "",
+      "missing_count": 0,
+      "missing_pct": 0.0,
+      "flagged": false
+    }
+  ]
+}

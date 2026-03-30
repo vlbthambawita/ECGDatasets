@@ -1,0 +1,17 @@
+{
+  "canonical_count": 800035,
+  "sources": {
+    "record_list": {
+      "count": 800035,
+      "missing_from_canonical": 0
+    },
+    "measurements": {
+      "count": 789481,
+      "missing_from_canonical": 10554
+    },
+    "note_links": {
+      "count": 609265,
+      "missing_from_canonical": 190770
+    }
+  }
+}

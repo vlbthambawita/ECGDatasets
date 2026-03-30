@@ -1,0 +1,24 @@
+{
+  "total_links": 609272,
+  "records_with_links": 609265,
+  "records_without_links": 190770,
+  "patients_with_links": 105293,
+  "histogram": [
+    {
+      "bucket": "1",
+      "count": 609258
+    },
+    {
+      "bucket": "2\u20135",
+      "count": 7
+    },
+    {
+      "bucket": "6\u201310",
+      "count": 0
+    },
+    {
+      "bucket": "11+",
+      "count": 0
+    }
+  ]
+}

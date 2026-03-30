@@ -1,0 +1,41 @@
+{
+  "bandwidth": [
+    {
+      "value": "0.005-150 Hz",
+      "count": 627209,
+      "pct": 79.45
+    },
+    {
+      "value": "0.0005-150 Hz",
+      "count": 111178,
+      "pct": 14.08
+    },
+    {
+      "value": "0.05-150 Hz",
+      "count": 51094,
+      "pct": 6.47
+    }
+  ],
+  "filtering": [
+    {
+      "value": "60 Hz notch Baseline filter",
+      "count": 667172,
+      "pct": 84.51
+    },
+    {
+      "value": "<not specified>",
+      "count": 107398,
+      "pct": 13.6
+    },
+    {
+      "value": "Baseline filter",
+      "count": 12275,
+      "pct": 1.55
+    },
+    {
+      "value": "50 Hz notch Baseline filter",
+      "count": 2636,
+      "pct": 0.33
+    }
+  ]
+}

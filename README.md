@@ -125,7 +125,7 @@ Body Surface Potential Mapping (BSPM) and Electrocardiographic Imaging (ECGI) da
 
 This repository includes a Python script that analyses a downloaded dataset and produces an interactive HTML report with D3.js visualisations, plus a CSV of clean records.
 
-Currently supported: **PTB-XL**, **PTB-XL+**.
+Currently supported: **PTB-XL**, **PTB-XL+**, **MIMIC-IV-ECG**.
 
 ### Requirements
 
@@ -215,6 +215,54 @@ python scripts/analyse_ptbxlplus.py --config analysis/ptbxlplus/config.yaml
 - **Fiducial point coverage** — ECGDeli delineation annotation file counts per lead
 - **Median beat coverage** — waveform file availability for 12SL and UNIG algorithms
 - **Cross-source agreement** — comparison of PTB-XL cardiologist labels vs. 12SL algorithm statements via shared SNOMED CT concepts
+
+Every chart has a **Download SVG** button; every stats table has a **Download CSV** button.
+
+### Running the MIMIC-IV ECG analysis
+
+**1. Edit the config** to point at your local copy of the dataset:
+
+```bash
+nano analysis/mimic_iv_ecg/config.yaml
+```
+
+Key config options:
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `dataset.root` | `/work/…/mimic-iv-ecg-…-1.0` | Path to the dataset root directory |
+| `analysis.max_records` | `null` | Cap on records analysed — set e.g. `5000` for a quick test run |
+| `analysis.sample_signal_quality` | `2000` | Number of `.dat` files sampled for flat/dropout/clipping detection |
+| `analysis.flat_std_threshold` | `0.01` | Leads with std below this (mV) are treated as flat |
+
+**2. Run the script** from the repository root:
+
+```bash
+python scripts/analyse_mimic_iv_ecg.py --config analysis/mimic_iv_ecg/config.yaml
+```
+
+### MIMIC-IV ECG Outputs
+
+| File | Description |
+|------|-------------|
+| `docs/analysis/mimic_iv_ecg/report.html` | Self-contained interactive report (D3.js charts, works offline) |
+| `docs/analysis/mimic_iv_ecg/data/*.json` | Per-chart JSON data files consumed by the report |
+
+### What the MIMIC-IV ECG report covers
+
+- **Dataset summary** — 800K studies, 160K patients, date range, sampling rate, patient group folder count
+- **Record coverage** — alignment between record_list.csv, machine_measurements.csv, and waveform_note_links.csv
+- **Temporal distribution** — ECG study counts by year, hour of day, day of week, and month
+- **Studies per patient** — histogram and summary statistics of how many ECGs each patient has
+- **Measurement quality** — per-column missing value rates; summary statistics for all 9 numeric measurement fields
+- **Interval distributions** — histograms of RR, PR, QRS, and QT intervals (derived from onset/end columns)
+- **Axis distributions** — P-wave, QRS, and T-wave electrical axis distributions (−180° to +180°)
+- **Machine report phrases** — frequency of diagnostic text phrases from report_0…report_17 columns
+- **Carts & equipment** — top ECG cart usage, bandwidth settings, filter configurations
+- **Note link coverage** — fraction of ECGs linked to MIMIC-IV clinical notes; notes-per-ECG distribution
+- **Waveform headers** — sampling rate, lead count, bit depth, ADC gain from sampled .hea files
+- **Lead completeness** — per-lead absence rate from full scan of all 800K .hea files
+- **Signal quality** — flat-line, dropout, and clipping rates per lead from sampled .dat files
 
 Every chart has a **Download SVG** button; every stats table has a **Download CSV** button.
 

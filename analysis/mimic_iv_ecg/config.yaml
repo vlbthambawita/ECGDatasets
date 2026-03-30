@@ -1,0 +1,29 @@
+dataset:
+  root: /work/vajira/DATA/SEARCH/MIMIC_IV_ECG_raw_v1/mimic-iv-ecg-diagnostic-electrocardiogram-matched-subset-1.0
+  records_file: RECORDS
+
+  csv:
+    record_list:        record_list.csv
+    measurements:       machine_measurements.csv
+    measurements_orig:  machine_measurements_original.csv
+    data_dictionary:    machine_measurements_data_dictionary.csv
+    note_links:         waveform_note_links.csv
+
+  waveforms:
+    root: files
+
+output:
+  report_dir:  docs/analysis/mimic_iv_ecg
+  data_dir:    docs/analysis/mimic_iv_ecg/data
+  report_html: docs/analysis/mimic_iv_ecg/report.html
+
+analysis:
+  top_n_reports:          40      # top N machine-report phrases
+  top_n_carts:            30      # top N ECG cart IDs
+  max_records:            null    # null = all; set integer (e.g. 5000) for fast test runs
+  sample_waveforms:       200     # .hea files to read for header stats
+  sample_signal_quality:  2000    # .dat files to read for flat/missing lead detection
+  missing_threshold_pct:  5.0     # flag measurements with >N% missing values
+  flat_std_threshold:     0.01    # mV — lead std below this = flat
+  dropout_zero_pct:       50.0    # % — fraction of zero samples = dropout
+  clip_pct:               1.0     # % — fraction of extreme samples = clipping

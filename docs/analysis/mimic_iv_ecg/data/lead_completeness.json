@@ -1,0 +1,58 @@
+{
+  "total_scanned": 800035,
+  "records_with_12_leads": 800035,
+  "records_with_fewer_leads": 0,
+  "records_with_more_leads": 0,
+  "nonstandard_lead_order_count": 0,
+  "per_lead_absence": {
+    "I": {
+      "absent_count": 0,
+      "absent_pct": 0.0
+    },
+    "II": {
+      "absent_count": 0,
+      "absent_pct": 0.0
+    },
+    "III": {
+      "absent_count": 0,
+      "absent_pct": 0.0
+    },
+    "aVR": {
+      "absent_count": 0,
+      "absent_pct": 0.0
+    },
+    "aVF": {
+      "absent_count": 0,
+      "absent_pct": 0.0
+    },
+    "aVL": {
+      "absent_count": 0,
+      "absent_pct": 0.0
+    },
+    "V1": {
+      "absent_count": 0,
+      "absent_pct": 0.0
+    },
+    "V2": {
+      "absent_count": 0,
+      "absent_pct": 0.0
+    },
+    "V3": {
+      "absent_count": 0,
+      "absent_pct": 0.0
+    },
+    "V4": {
+      "absent_count": 0,
+      "absent_pct": 0.0
+    },
+    "V5": {
+      "absent_count": 0,
+      "absent_pct": 0.0
+    },
+    "V6": {
+      "absent_count": 0,
+      "absent_pct": 0.0
+    }
+  },
+  "incomplete_records": []
+}

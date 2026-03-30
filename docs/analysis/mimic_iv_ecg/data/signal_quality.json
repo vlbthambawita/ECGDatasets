@@ -1,0 +1,1612 @@
+{
+  "sample_size": 2000,
+  "records_with_any_issue": 114,
+  "issue_pct": 5.7,
+  "per_lead_issues": {
+    "I": {
+      "flat_count": 6,
+      "flat_pct": 0.3,
+      "dropout_count": 6,
+      "dropout_pct": 0.3,
+      "clip_count": 17,
+      "clip_pct": 0.85
+    },
+    "II": {
+      "flat_count": 5,
+      "flat_pct": 0.25,
+      "dropout_count": 5,
+      "dropout_pct": 0.25,
+      "clip_count": 23,
+      "clip_pct": 1.15
+    },
+    "III": {
+      "flat_count": 5,
+      "flat_pct": 0.25,
+      "dropout_count": 5,
+      "dropout_pct": 0.25,
+      "clip_count": 10,
+      "clip_pct": 0.5
+    },
+    "aVR": {
+      "flat_count": 5,
+      "flat_pct": 0.25,
+      "dropout_count": 5,
+      "dropout_pct": 0.25,
+      "clip_count": 33,
+      "clip_pct": 1.65
+    },
+    "aVF": {
+      "flat_count": 5,
+      "flat_pct": 0.25,
+      "dropout_count": 5,
+      "dropout_pct": 0.25,
+      "clip_count": 14,
+      "clip_pct": 0.7
+    },
+    "aVL": {
+      "flat_count": 5,
+      "flat_pct": 0.25,
+      "dropout_count": 5,
+      "dropout_pct": 0.25,
+      "clip_count": 22,
+      "clip_pct": 1.1
+    },
+    "V1": {
+      "flat_count": 7,
+      "flat_pct": 0.35,
+      "dropout_count": 7,
+      "dropout_pct": 0.35,
+      "clip_count": 23,
+      "clip_pct": 1.15
+    },
+    "V2": {
+      "flat_count": 7,
+      "flat_pct": 0.35,
+      "dropout_count": 7,
+      "dropout_pct": 0.35,
+      "clip_count": 10,
+      "clip_pct": 0.5
+    },
+    "V3": {
+      "flat_count": 6,
+      "flat_pct": 0.3,
+      "dropout_count": 6,
+      "dropout_pct": 0.3,
+      "clip_count": 11,
+      "clip_pct": 0.55
+    },
+    "V4": {
+      "flat_count": 6,
+      "flat_pct": 0.3,
+      "dropout_count": 6,
+      "dropout_pct": 0.3,
+      "clip_count": 8,
+      "clip_pct": 0.4
+    },
+    "V5": {
+      "flat_count": 7,
+      "flat_pct": 0.35,
+      "dropout_count": 7,
+      "dropout_pct": 0.35,
+      "clip_count": 20,
+      "clip_pct": 1.0
+    },
+    "V6": {
+      "flat_count": 6,
+      "flat_pct": 0.3,
+      "dropout_count": 6,
+      "dropout_pct": 0.3,
+      "clip_count": 28,
+      "clip_pct": 1.4
+    }
+  },
+  "flagged_records": [
+    {
+      "study_id": 45844224,
+      "issues": {
+        "III": [
+          "clipped"
+        ],
+        "aVL": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 48230118,
+      "issues": {
+        "aVL": [
+          "clipped"
+        ],
+        "V1": [
+          "clipped"
+        ],
+        "V2": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 44671545,
+      "issues": {
+        "III": [
+          "clipped"
+        ],
+        "V4": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 49043907,
+      "issues": {
+        "aVF": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 49832165,
+      "issues": {
+        "II": [
+          "clipped"
+        ],
+        "aVF": [
+          "clipped"
+        ],
+        "V4": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 43248107,
+      "issues": {
+        "V3": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 45520893,
+      "issues": {
+        "I": [
+          "flat",
+          "dropout"
+        ],
+        "II": [
+          "flat",
+          "dropout"
+        ],
+        "III": [
+          "flat",
+          "dropout"
+        ],
+        "aVR": [
+          "flat",
+          "dropout"
+        ],
+        "aVF": [
+          "flat",
+          "dropout"
+        ],
+        "aVL": [
+          "flat",
+          "dropout"
+        ],
+        "V1": [
+          "flat",
+          "dropout"
+        ],
+        "V2": [
+          "flat",
+          "dropout"
+        ],
+        "V3": [
+          "flat",
+          "dropout"
+        ],
+        "V4": [
+          "flat",
+          "dropout"
+        ],
+        "V5": [
+          "flat",
+          "dropout"
+        ],
+        "V6": [
+          "flat",
+          "dropout"
+        ]
+      }
+    },
+    {
+      "study_id": 49586234,
+      "issues": {
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 48151818,
+      "issues": {
+        "II": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 42959111,
+      "issues": {
+        "I": [
+          "flat",
+          "dropout"
+        ],
+        "II": [
+          "flat",
+          "dropout"
+        ],
+        "III": [
+          "flat",
+          "dropout"
+        ],
+        "aVR": [
+          "flat",
+          "dropout"
+        ],
+        "aVF": [
+          "flat",
+          "dropout"
+        ],
+        "aVL": [
+          "flat",
+          "dropout"
+        ],
+        "V1": [
+          "flat",
+          "dropout"
+        ],
+        "V2": [
+          "flat",
+          "dropout"
+        ],
+        "V3": [
+          "flat",
+          "dropout"
+        ],
+        "V4": [
+          "flat",
+          "dropout"
+        ],
+        "V5": [
+          "flat",
+          "dropout"
+        ],
+        "V6": [
+          "flat",
+          "dropout"
+        ]
+      }
+    },
+    {
+      "study_id": 44436190,
+      "issues": {
+        "V1": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 41580849,
+      "issues": {
+        "V5": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 48410711,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ],
+        "V1": [
+          "clipped"
+        ],
+        "V3": [
+          "clipped"
+        ],
+        "V5": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 48805430,
+      "issues": {
+        "V1": [
+          "clipped"
+        ],
+        "V4": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 49341404,
+      "issues": {
+        "aVF": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 46403266,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 41772969,
+      "issues": {
+        "I": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 47270945,
+      "issues": {
+        "aVL": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 41700775,
+      "issues": {
+        "II": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ],
+        "V2": [
+          "clipped"
+        ],
+        "V3": [
+          "clipped"
+        ],
+        "V5": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 42128342,
+      "issues": {
+        "II": [
+          "clipped"
+        ],
+        "V1": [
+          "clipped"
+        ],
+        "V3": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 46793849,
+      "issues": {
+        "V2": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 45272762,
+      "issues": {
+        "III": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 46511749,
+      "issues": {
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 42054760,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 48673136,
+      "issues": {
+        "V3": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 43264373,
+      "issues": {
+        "aVF": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 41382881,
+      "issues": {
+        "III": [
+          "clipped"
+        ],
+        "V5": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 43950700,
+      "issues": {
+        "aVF": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 47441939,
+      "issues": {
+        "V3": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 45076880,
+      "issues": {
+        "V2": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 48561685,
+      "issues": {
+        "I": [
+          "clipped"
+        ],
+        "aVL": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 45413000,
+      "issues": {
+        "II": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 41581142,
+      "issues": {
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 47966451,
+      "issues": {
+        "III": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 41745706,
+      "issues": {
+        "aVL": [
+          "clipped"
+        ],
+        "V1": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 48780212,
+      "issues": {
+        "I": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 42227281,
+      "issues": {
+        "II": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ],
+        "V1": [
+          "clipped"
+        ],
+        "V5": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 49194622,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 40692176,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 42946322,
+      "issues": {
+        "II": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 48405827,
+      "issues": {
+        "III": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ],
+        "V2": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 46086926,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 43431219,
+      "issues": {
+        "II": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 40422733,
+      "issues": {
+        "V4": [
+          "clipped"
+        ],
+        "V5": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 43126636,
+      "issues": {
+        "I": [
+          "clipped"
+        ],
+        "aVL": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 45066167,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 49571599,
+      "issues": {
+        "II": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 40041353,
+      "issues": {
+        "II": [
+          "clipped"
+        ],
+        "V1": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 46100062,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ],
+        "aVL": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 42028981,
+      "issues": {
+        "V1": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 49947865,
+      "issues": {
+        "I": [
+          "clipped"
+        ],
+        "aVL": [
+          "clipped"
+        ],
+        "V1": [
+          "clipped"
+        ],
+        "V3": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 40473735,
+      "issues": {
+        "I": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 47742527,
+      "issues": {
+        "II": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 44035465,
+      "issues": {
+        "V1": [
+          "clipped"
+        ],
+        "V2": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 40407448,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ],
+        "aVL": [
+          "clipped"
+        ],
+        "V2": [
+          "clipped"
+        ],
+        "V3": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 42135917,
+      "issues": {
+        "I": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 43923094,
+      "issues": {
+        "III": [
+          "clipped"
+        ],
+        "aVL": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 47272284,
+      "issues": {
+        "I": [
+          "clipped"
+        ],
+        "II": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ],
+        "aVL": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 45471031,
+      "issues": {
+        "I": [
+          "clipped"
+        ],
+        "II": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 48291800,
+      "issues": {
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 41362047,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ],
+        "aVF": [
+          "clipped"
+        ],
+        "V1": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 46287523,
+      "issues": {
+        "V5": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 40819000,
+      "issues": {
+        "III": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ],
+        "V1": [
+          "clipped"
+        ],
+        "V5": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 49564630,
+      "issues": {
+        "aVL": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 42162007,
+      "issues": {
+        "I": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 43128093,
+      "issues": {
+        "II": [
+          "clipped"
+        ],
+        "aVF": [
+          "clipped"
+        ],
+        "V5": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 44315495,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 49417757,
+      "issues": {
+        "I": [
+          "flat",
+          "dropout"
+        ],
+        "II": [
+          "flat",
+          "dropout"
+        ],
+        "III": [
+          "flat",
+          "dropout"
+        ],
+        "aVR": [
+          "flat",
+          "dropout"
+        ],
+        "aVF": [
+          "flat",
+          "dropout"
+        ],
+        "aVL": [
+          "flat",
+          "dropout"
+        ],
+        "V1": [
+          "flat",
+          "dropout"
+        ],
+        "V2": [
+          "flat",
+          "dropout"
+        ],
+        "V3": [
+          "flat",
+          "dropout"
+        ],
+        "V4": [
+          "flat",
+          "dropout"
+        ],
+        "V5": [
+          "flat",
+          "dropout"
+        ],
+        "V6": [
+          "flat",
+          "dropout"
+        ]
+      }
+    },
+    {
+      "study_id": 49087909,
+      "issues": {
+        "aVL": [
+          "clipped"
+        ],
+        "V1": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 46229429,
+      "issues": {
+        "II": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 42423829,
+      "issues": {
+        "V3": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 41860300,
+      "issues": {
+        "aVF": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 42417937,
+      "issues": {
+        "I": [
+          "flat",
+          "dropout"
+        ],
+        "aVL": [
+          "clipped"
+        ],
+        "V1": [
+          "flat",
+          "dropout"
+        ],
+        "V2": [
+          "flat",
+          "dropout"
+        ],
+        "V3": [
+          "flat",
+          "dropout"
+        ],
+        "V4": [
+          "flat",
+          "dropout"
+        ],
+        "V5": [
+          "flat",
+          "dropout"
+        ],
+        "V6": [
+          "flat",
+          "dropout"
+        ]
+      }
+    },
+    {
+      "study_id": 46801665,
+      "issues": {
+        "II": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 47655123,
+      "issues": {
+        "V5": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 47879476,
+      "issues": {
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 47951282,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ],
+        "V5": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 44092245,
+      "issues": {
+        "V5": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 45795434,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ],
+        "aVL": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 44451720,
+      "issues": {
+        "V5": [
+          "flat",
+          "dropout"
+        ]
+      }
+    },
+    {
+      "study_id": 40692046,
+      "issues": {
+        "aVF": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 44675900,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 45795436,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 48498166,
+      "issues": {
+        "V1": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 45384988,
+      "issues": {
+        "II": [
+          "clipped"
+        ],
+        "III": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ],
+        "V1": [
+          "clipped"
+        ],
+        "V2": [
+          "clipped"
+        ],
+        "V3": [
+          "clipped"
+        ],
+        "V5": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 43156875,
+      "issues": {
+        "I": [
+          "flat",
+          "dropout"
+        ],
+        "II": [
+          "flat",
+          "dropout"
+        ],
+        "III": [
+          "flat",
+          "dropout"
+        ],
+        "aVR": [
+          "flat",
+          "dropout"
+        ],
+        "aVF": [
+          "flat",
+          "dropout"
+        ],
+        "aVL": [
+          "flat",
+          "dropout"
+        ],
+        "V1": [
+          "flat",
+          "dropout"
+        ],
+        "V2": [
+          "flat",
+          "dropout"
+        ],
+        "V3": [
+          "flat",
+          "dropout"
+        ],
+        "V4": [
+          "flat",
+          "dropout"
+        ],
+        "V5": [
+          "flat",
+          "dropout"
+        ],
+        "V6": [
+          "flat",
+          "dropout"
+        ]
+      }
+    },
+    {
+      "study_id": 44050920,
+      "issues": {
+        "aVL": [
+          "clipped"
+        ],
+        "V2": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 47655544,
+      "issues": {
+        "I": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ],
+        "aVF": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 42785629,
+      "issues": {
+        "aVL": [
+          "clipped"
+        ],
+        "V3": [
+          "clipped"
+        ],
+        "V5": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 41336941,
+      "issues": {
+        "I": [
+          "clipped"
+        ],
+        "aVL": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 41526745,
+      "issues": {
+        "V1": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 47377797,
+      "issues": {
+        "I": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ],
+        "aVF": [
+          "clipped"
+        ],
+        "aVL": [
+          "clipped"
+        ],
+        "V5": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 49965260,
+      "issues": {
+        "I": [
+          "clipped"
+        ],
+        "V5": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 47180143,
+      "issues": {
+        "aVL": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 45109586,
+      "issues": {
+        "V1": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 44493296,
+      "issues": {
+        "aVL": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 49125816,
+      "issues": {
+        "V1": [
+          "flat",
+          "dropout"
+        ]
+      }
+    },
+    {
+      "study_id": 45739503,
+      "issues": {
+        "aVF": [
+          "clipped"
+        ],
+        "V2": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 45474118,
+      "issues": {
+        "aVL": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 44781270,
+      "issues": {
+        "II": [
+          "clipped"
+        ],
+        "V5": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 47718683,
+      "issues": {
+        "II": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 46601021,
+      "issues": {
+        "V1": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 41100535,
+      "issues": {
+        "I": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 41121789,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ],
+        "V5": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 40595756,
+      "issues": {
+        "I": [
+          "flat",
+          "dropout"
+        ],
+        "II": [
+          "flat",
+          "dropout"
+        ],
+        "III": [
+          "flat",
+          "dropout"
+        ],
+        "aVR": [
+          "flat",
+          "dropout"
+        ],
+        "aVF": [
+          "flat",
+          "dropout"
+        ],
+        "aVL": [
+          "flat",
+          "dropout"
+        ],
+        "V1": [
+          "flat",
+          "dropout"
+        ],
+        "V2": [
+          "flat",
+          "dropout"
+        ],
+        "V3": [
+          "flat",
+          "dropout"
+        ],
+        "V4": [
+          "flat",
+          "dropout"
+        ],
+        "V5": [
+          "flat",
+          "dropout"
+        ],
+        "V6": [
+          "flat",
+          "dropout"
+        ]
+      }
+    },
+    {
+      "study_id": 49380669,
+      "issues": {
+        "aVF": [
+          "clipped"
+        ],
+        "V4": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 40549037,
+      "issues": {
+        "II": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ],
+        "aVF": [
+          "clipped"
+        ],
+        "V1": [
+          "clipped"
+        ],
+        "V4": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 45469433,
+      "issues": {
+        "I": [
+          "clipped"
+        ],
+        "II": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ],
+        "V1": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 49665539,
+      "issues": {
+        "V2": [
+          "flat",
+          "dropout"
+        ]
+      }
+    },
+    {
+      "study_id": 43179981,
+      "issues": {
+        "II": [
+          "clipped"
+        ],
+        "V4": [
+          "clipped"
+        ],
+        "V5": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 44784976,
+      "issues": {
+        "I": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 47932831,
+      "issues": {
+        "V1": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 44362565,
+      "issues": {
+        "II": [
+          "clipped"
+        ],
+        "V4": [
+          "clipped"
+        ],
+        "V5": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 41293381,
+      "issues": {
+        "III": [
+          "clipped"
+        ],
+        "V1": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    }
+  ]
+}

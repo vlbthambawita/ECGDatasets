@@ -1,0 +1,18 @@
+{
+  "sample_size": 200,
+  "sampling_rates": {
+    "500": 200
+  },
+  "sample_counts": {
+    "5000": 200
+  },
+  "leads_counts": {
+    "12": 200
+  },
+  "bit_depths": {
+    "16": 200
+  },
+  "resolutions": {
+    "200.0": 200
+  }
+}
