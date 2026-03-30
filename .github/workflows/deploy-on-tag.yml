@@ -69,7 +69,7 @@ jobs:
           echo "Wrote docs/_version.json:"
           cat docs/_version.json
 
-      # ── Step 2: Upload clean CSVs to HF Dataset ───────────────────────────
+      # ── Step 2: Upload clean CSVs + dataset card to HF Dataset ──────────
       - name: Upload clean CSVs to HuggingFace Dataset
         env:
           HF_DATASET_TOKEN: ${{ secrets.HF_DATASET_TOKEN }}
@@ -77,7 +77,7 @@ jobs:
           DEPLOY_SHA: ${{ github.sha }}
         run: |
           python - <<'PYEOF'
-          import os, glob, sys
+          import io, os, glob, sys
           from huggingface_hub import HfApi
 
           HF_DATASET = "vlbthambawita/ecg-metadata-curated"
@@ -85,24 +85,71 @@ jobs:
           tag = os.environ.get("DEPLOY_TAG", "")
           sha = os.environ.get("DEPLOY_SHA", "")[:12]
 
+          # Ensure the dataset repo exists (no-op if it already does)
+          api.create_repo(repo_id=HF_DATASET, repo_type="dataset",
+                          exist_ok=True, private=False)
+
           csv_files = sorted(glob.glob("analysis/*/clean_records.csv"))
           if not csv_files:
               print("No clean_records.csv files found in analysis/ — nothing to upload.")
               sys.exit(1)
 
+          # Upload CSVs
+          rows = []
           for csv_path in csv_files:
               dataset_name = csv_path.split("/")[1]
               repo_path = f"{dataset_name}/clean_records.csv"
-              msg = f"Update {repo_path} [{tag}] sha:{sha}"
               print(f"Uploading {csv_path} → {HF_DATASET}/{repo_path} ...")
               api.upload_file(
                   path_or_fileobj=csv_path,
                   path_in_repo=repo_path,
                   repo_id=HF_DATASET,
                   repo_type="dataset",
-                  commit_message=msg,
+                  commit_message=f"Update {repo_path} [{tag}] sha:{sha}",
               )
-              print(f"  ✓ Done")
+              import csv as _csv
+              with open(csv_path) as f:
+                  n = sum(1 for _ in f) - 1  # subtract header
+              rows.append((dataset_name, repo_path, n))
+              print(f"  ✓ {n:,} records")
+
+          # Upload/update dataset card (README.md) so the HF page shows changes
+          table = "\n".join(
+              f"| {name} | [{rp}]({rp}) | {n:,} |"
+              for name, rp, n in rows
+          )
+          sep = "---"
+          readme = (
+              f"{sep}\n"
+              "license: cc-by-4.0\n"
+              "tags:\n"
+              "  - ecg\n"
+              "  - medical\n"
+              "  - biosignal\n"
+              "pretty_name: ECG Metadata - Clean Record Splits\n"
+              f"{sep}\n\n"
+              "# ECG Metadata - Clean Record Splits\n\n"
+              "Clean ECG record IDs curated from the "
+              "[ECGDatasets](https://github.com/vlbthambawita/ECGDatasets) catalogue.\n"
+              "Each CSV lists the record IDs that pass all quality filters.\n\n"
+              f"**Version:** {tag}  \n"
+              f"**Commit:** `{sha}`\n\n"
+              "## Files\n\n"
+              "| Dataset | File | Clean records |\n"
+              "|---------|------|---------------|\n"
+              f"{table}\n\n"
+              f"{sep}\n"
+              "*Generated automatically by "
+              "[ECGDatasets CI](https://github.com/vlbthambawita/ECGDatasets/actions).*\n"
+          )
+          api.upload_file(
+              path_or_fileobj=io.BytesIO(readme.encode()),
+              path_in_repo="README.md",
+              repo_id=HF_DATASET,
+              repo_type="dataset",
+              commit_message=f"Update dataset card [{tag}] sha:{sha}",
+          )
+          print("✓ Dataset card (README.md) updated")
           PYEOF
 
       # ── Step 3: Deploy docs/ to HF Space ─────────────────────────────────
