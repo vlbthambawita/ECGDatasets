@@ -4,227 +4,105 @@
   "issue_pct": 5.7,
   "per_lead_issues": {
     "I": {
-      "flat_count": 6,
-      "flat_pct": 0.3,
-      "dropout_count": 6,
-      "dropout_pct": 0.3,
+      "flat_count": 0,
+      "flat_pct": 0.0,
+      "dropout_count": 0,
+      "dropout_pct": 0.0,
+      "clip_count": 19,
+      "clip_pct": 0.95
+    },
+    "II": {
+      "flat_count": 0,
+      "flat_pct": 0.0,
+      "dropout_count": 0,
+      "dropout_pct": 0.0,
       "clip_count": 17,
       "clip_pct": 0.85
     },
-    "II": {
-      "flat_count": 5,
-      "flat_pct": 0.25,
-      "dropout_count": 5,
-      "dropout_pct": 0.25,
-      "clip_count": 23,
-      "clip_pct": 1.15
-    },
     "III": {
-      "flat_count": 5,
-      "flat_pct": 0.25,
-      "dropout_count": 5,
-      "dropout_pct": 0.25,
-      "clip_count": 10,
-      "clip_pct": 0.5
+      "flat_count": 0,
+      "flat_pct": 0.0,
+      "dropout_count": 0,
+      "dropout_pct": 0.0,
+      "clip_count": 11,
+      "clip_pct": 0.55
     },
     "aVR": {
-      "flat_count": 5,
-      "flat_pct": 0.25,
-      "dropout_count": 5,
-      "dropout_pct": 0.25,
+      "flat_count": 0,
+      "flat_pct": 0.0,
+      "dropout_count": 0,
+      "dropout_pct": 0.0,
       "clip_count": 33,
       "clip_pct": 1.65
     },
     "aVF": {
-      "flat_count": 5,
-      "flat_pct": 0.25,
-      "dropout_count": 5,
-      "dropout_pct": 0.25,
-      "clip_count": 14,
-      "clip_pct": 0.7
+      "flat_count": 0,
+      "flat_pct": 0.0,
+      "dropout_count": 0,
+      "dropout_pct": 0.0,
+      "clip_count": 18,
+      "clip_pct": 0.9
     },
     "aVL": {
-      "flat_count": 5,
-      "flat_pct": 0.25,
-      "dropout_count": 5,
-      "dropout_pct": 0.25,
+      "flat_count": 0,
+      "flat_pct": 0.0,
+      "dropout_count": 0,
+      "dropout_pct": 0.0,
       "clip_count": 22,
       "clip_pct": 1.1
     },
     "V1": {
-      "flat_count": 7,
-      "flat_pct": 0.35,
-      "dropout_count": 7,
-      "dropout_pct": 0.35,
-      "clip_count": 23,
-      "clip_pct": 1.15
+      "flat_count": 0,
+      "flat_pct": 0.0,
+      "dropout_count": 0,
+      "dropout_pct": 0.0,
+      "clip_count": 28,
+      "clip_pct": 1.4
     },
     "V2": {
-      "flat_count": 7,
-      "flat_pct": 0.35,
-      "dropout_count": 7,
-      "dropout_pct": 0.35,
+      "flat_count": 0,
+      "flat_pct": 0.0,
+      "dropout_count": 0,
+      "dropout_pct": 0.0,
       "clip_count": 10,
       "clip_pct": 0.5
     },
     "V3": {
-      "flat_count": 6,
-      "flat_pct": 0.3,
-      "dropout_count": 6,
-      "dropout_pct": 0.3,
-      "clip_count": 11,
-      "clip_pct": 0.55
+      "flat_count": 1,
+      "flat_pct": 0.05,
+      "dropout_count": 1,
+      "dropout_pct": 0.05,
+      "clip_count": 7,
+      "clip_pct": 0.35
     },
     "V4": {
-      "flat_count": 6,
-      "flat_pct": 0.3,
-      "dropout_count": 6,
-      "dropout_pct": 0.3,
-      "clip_count": 8,
-      "clip_pct": 0.4
+      "flat_count": 1,
+      "flat_pct": 0.05,
+      "dropout_count": 1,
+      "dropout_pct": 0.05,
+      "clip_count": 9,
+      "clip_pct": 0.45
     },
     "V5": {
-      "flat_count": 7,
-      "flat_pct": 0.35,
-      "dropout_count": 7,
-      "dropout_pct": 0.35,
-      "clip_count": 20,
-      "clip_pct": 1.0
+      "flat_count": 2,
+      "flat_pct": 0.1,
+      "dropout_count": 2,
+      "dropout_pct": 0.1,
+      "clip_count": 15,
+      "clip_pct": 0.75
     },
     "V6": {
-      "flat_count": 6,
-      "flat_pct": 0.3,
-      "dropout_count": 6,
-      "dropout_pct": 0.3,
-      "clip_count": 28,
-      "clip_pct": 1.4
+      "flat_count": 0,
+      "flat_pct": 0.0,
+      "dropout_count": 0,
+      "dropout_pct": 0.0,
+      "clip_count": 30,
+      "clip_pct": 1.5
     }
   },
   "flagged_records": [
     {
-      "study_id": 45844224,
-      "issues": {
-        "III": [
-          "clipped"
-        ],
-        "aVL": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 48230118,
-      "issues": {
-        "aVL": [
-          "clipped"
-        ],
-        "V1": [
-          "clipped"
-        ],
-        "V2": [
-          "clipped"
-        ],
-        "V6": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 44671545,
-      "issues": {
-        "III": [
-          "clipped"
-        ],
-        "V4": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 49043907,
-      "issues": {
-        "aVF": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 49832165,
-      "issues": {
-        "II": [
-          "clipped"
-        ],
-        "aVF": [
-          "clipped"
-        ],
-        "V4": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 43248107,
-      "issues": {
-        "V3": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 45520893,
-      "issues": {
-        "I": [
-          "flat",
-          "dropout"
-        ],
-        "II": [
-          "flat",
-          "dropout"
-        ],
-        "III": [
-          "flat",
-          "dropout"
-        ],
-        "aVR": [
-          "flat",
-          "dropout"
-        ],
-        "aVF": [
-          "flat",
-          "dropout"
-        ],
-        "aVL": [
-          "flat",
-          "dropout"
-        ],
-        "V1": [
-          "flat",
-          "dropout"
-        ],
-        "V2": [
-          "flat",
-          "dropout"
-        ],
-        "V3": [
-          "flat",
-          "dropout"
-        ],
-        "V4": [
-          "flat",
-          "dropout"
-        ],
-        "V5": [
-          "flat",
-          "dropout"
-        ],
-        "V6": [
-          "flat",
-          "dropout"
-        ]
-      }
-    },
-    {
-      "study_id": 49586234,
+      "study_id": 42421957,
       "issues": {
         "V6": [
           "clipped"
@@ -232,234 +110,9 @@
       }
     },
     {
-      "study_id": 48151818,
-      "issues": {
-        "II": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 42959111,
-      "issues": {
-        "I": [
-          "flat",
-          "dropout"
-        ],
-        "II": [
-          "flat",
-          "dropout"
-        ],
-        "III": [
-          "flat",
-          "dropout"
-        ],
-        "aVR": [
-          "flat",
-          "dropout"
-        ],
-        "aVF": [
-          "flat",
-          "dropout"
-        ],
-        "aVL": [
-          "flat",
-          "dropout"
-        ],
-        "V1": [
-          "flat",
-          "dropout"
-        ],
-        "V2": [
-          "flat",
-          "dropout"
-        ],
-        "V3": [
-          "flat",
-          "dropout"
-        ],
-        "V4": [
-          "flat",
-          "dropout"
-        ],
-        "V5": [
-          "flat",
-          "dropout"
-        ],
-        "V6": [
-          "flat",
-          "dropout"
-        ]
-      }
-    },
-    {
-      "study_id": 44436190,
-      "issues": {
-        "V1": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 41580849,
-      "issues": {
-        "V5": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 48410711,
+      "study_id": 40273444,
       "issues": {
         "aVR": [
-          "clipped"
-        ],
-        "V1": [
-          "clipped"
-        ],
-        "V3": [
-          "clipped"
-        ],
-        "V5": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 48805430,
-      "issues": {
-        "V1": [
-          "clipped"
-        ],
-        "V4": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 49341404,
-      "issues": {
-        "aVF": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 46403266,
-      "issues": {
-        "aVR": [
-          "clipped"
-        ],
-        "V6": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 41772969,
-      "issues": {
-        "I": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 47270945,
-      "issues": {
-        "aVL": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 41700775,
-      "issues": {
-        "II": [
-          "clipped"
-        ],
-        "aVR": [
-          "clipped"
-        ],
-        "V2": [
-          "clipped"
-        ],
-        "V3": [
-          "clipped"
-        ],
-        "V5": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 42128342,
-      "issues": {
-        "II": [
-          "clipped"
-        ],
-        "V1": [
-          "clipped"
-        ],
-        "V3": [
-          "clipped"
-        ],
-        "V6": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 46793849,
-      "issues": {
-        "V2": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 45272762,
-      "issues": {
-        "III": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 46511749,
-      "issues": {
-        "V6": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 42054760,
-      "issues": {
-        "aVR": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 48673136,
-      "issues": {
-        "V3": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 43264373,
-      "issues": {
-        "aVF": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 41382881,
-      "issues": {
-        "III": [
           "clipped"
         ],
         "V5": [
@@ -471,15 +124,7 @@
       }
     },
     {
-      "study_id": 43950700,
-      "issues": {
-        "aVF": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 47441939,
+      "study_id": 43903198,
       "issues": {
         "V3": [
           "clipped"
@@ -487,85 +132,24 @@
       }
     },
     {
-      "study_id": 45076880,
+      "study_id": 46562193,
       "issues": {
-        "V2": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 48561685,
-      "issues": {
-        "I": [
-          "clipped"
-        ],
-        "aVL": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 45413000,
-      "issues": {
-        "II": [
-          "clipped"
-        ],
-        "aVR": [
-          "clipped"
-        ],
-        "V6": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 41581142,
-      "issues": {
-        "V6": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 47966451,
-      "issues": {
-        "III": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 41745706,
-      "issues": {
-        "aVL": [
-          "clipped"
-        ],
         "V1": [
           "clipped"
         ]
       }
     },
     {
-      "study_id": 48780212,
+      "study_id": 49525611,
       "issues": {
-        "I": [
+        "aVR": [
           "clipped"
         ]
       }
     },
     {
-      "study_id": 42227281,
+      "study_id": 41018907,
       "issues": {
-        "II": [
-          "clipped"
-        ],
-        "aVR": [
-          "clipped"
-        ],
-        "V1": [
-          "clipped"
-        ],
         "V5": [
           "clipped"
         ],
@@ -575,68 +159,22 @@
       }
     },
     {
-      "study_id": 49194622,
+      "study_id": 46796347,
       "issues": {
-        "aVR": [
+        "V1": [
           "clipped"
         ]
       }
     },
     {
-      "study_id": 40692176,
-      "issues": {
-        "aVR": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 42946322,
-      "issues": {
-        "II": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 48405827,
-      "issues": {
-        "III": [
-          "clipped"
-        ],
-        "aVR": [
-          "clipped"
-        ],
-        "V2": [
-          "clipped"
-        ],
-        "V6": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 46086926,
-      "issues": {
-        "aVR": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 43431219,
+      "study_id": 44093022,
       "issues": {
         "II": [
           "clipped"
         ],
-        "V6": [
+        "aVF": [
           "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 40422733,
-      "issues": {
+        ],
         "V4": [
           "clipped"
         ],
@@ -646,9 +184,63 @@
       }
     },
     {
-      "study_id": 43126636,
+      "study_id": 40130520,
+      "issues": {
+        "II": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 49100245,
+      "issues": {
+        "aVL": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 44488308,
+      "issues": {
+        "aVL": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 49725185,
       "issues": {
         "I": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 44708082,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 46924691,
+      "issues": {
+        "V1": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 48063624,
+      "issues": {
+        "I": [
+          "clipped"
+        ],
+        "II": [
+          "clipped"
+        ],
+        "aVR": [
           "clipped"
         ],
         "aVL": [
@@ -657,103 +249,9 @@
       }
     },
     {
-      "study_id": 45066167,
+      "study_id": 43137693,
       "issues": {
-        "aVR": [
-          "clipped"
-        ],
-        "V6": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 49571599,
-      "issues": {
-        "II": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 40041353,
-      "issues": {
-        "II": [
-          "clipped"
-        ],
-        "V1": [
-          "clipped"
-        ],
-        "V6": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 46100062,
-      "issues": {
-        "aVR": [
-          "clipped"
-        ],
         "aVL": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 42028981,
-      "issues": {
-        "V1": [
-          "clipped"
-        ],
-        "V6": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 49947865,
-      "issues": {
-        "I": [
-          "clipped"
-        ],
-        "aVL": [
-          "clipped"
-        ],
-        "V1": [
-          "clipped"
-        ],
-        "V3": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 40473735,
-      "issues": {
-        "I": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 47742527,
-      "issues": {
-        "II": [
-          "clipped"
-        ],
-        "aVR": [
-          "clipped"
-        ],
-        "V6": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 44035465,
-      "issues": {
-        "V1": [
           "clipped"
         ],
         "V2": [
@@ -762,77 +260,7 @@
       }
     },
     {
-      "study_id": 40407448,
-      "issues": {
-        "aVR": [
-          "clipped"
-        ],
-        "aVL": [
-          "clipped"
-        ],
-        "V2": [
-          "clipped"
-        ],
-        "V3": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 42135917,
-      "issues": {
-        "I": [
-          "clipped"
-        ],
-        "aVR": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 43923094,
-      "issues": {
-        "III": [
-          "clipped"
-        ],
-        "aVL": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 47272284,
-      "issues": {
-        "I": [
-          "clipped"
-        ],
-        "II": [
-          "clipped"
-        ],
-        "aVR": [
-          "clipped"
-        ],
-        "aVL": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 45471031,
-      "issues": {
-        "I": [
-          "clipped"
-        ],
-        "II": [
-          "clipped"
-        ],
-        "aVR": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 48291800,
+      "study_id": 45421384,
       "issues": {
         "V6": [
           "clipped"
@@ -840,182 +268,49 @@
       }
     },
     {
-      "study_id": 41362047,
+      "study_id": 44523598,
       "issues": {
-        "aVR": [
+        "I": [
           "clipped"
-        ],
-        "aVF": [
-          "clipped"
-        ],
+        ]
+      }
+    },
+    {
+      "study_id": 43014657,
+      "issues": {
         "V1": [
           "clipped"
-        ],
-        "V6": [
-          "clipped"
         ]
       }
     },
     {
-      "study_id": 46287523,
-      "issues": {
-        "V5": [
-          "clipped"
-        ],
-        "V6": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 40819000,
-      "issues": {
-        "III": [
-          "clipped"
-        ],
-        "aVR": [
-          "clipped"
-        ],
-        "V1": [
-          "clipped"
-        ],
-        "V5": [
-          "clipped"
-        ],
-        "V6": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 49564630,
-      "issues": {
-        "aVL": [
-          "clipped"
-        ],
-        "V6": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 42162007,
-      "issues": {
-        "I": [
-          "clipped"
-        ],
-        "aVR": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 43128093,
+      "study_id": 46290754,
       "issues": {
         "II": [
           "clipped"
         ],
         "aVF": [
           "clipped"
-        ],
-        "V5": [
-          "clipped"
         ]
       }
     },
     {
-      "study_id": 44315495,
+      "study_id": 41888534,
       "issues": {
-        "aVR": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 49417757,
-      "issues": {
-        "I": [
-          "flat",
-          "dropout"
-        ],
-        "II": [
-          "flat",
-          "dropout"
-        ],
-        "III": [
-          "flat",
-          "dropout"
-        ],
-        "aVR": [
-          "flat",
-          "dropout"
-        ],
-        "aVF": [
-          "flat",
-          "dropout"
-        ],
-        "aVL": [
-          "flat",
-          "dropout"
-        ],
-        "V1": [
-          "flat",
-          "dropout"
-        ],
-        "V2": [
-          "flat",
-          "dropout"
-        ],
-        "V3": [
-          "flat",
-          "dropout"
-        ],
         "V4": [
           "flat",
           "dropout"
-        ],
-        "V5": [
-          "flat",
-          "dropout"
-        ],
-        "V6": [
-          "flat",
-          "dropout"
         ]
       }
     },
     {
-      "study_id": 49087909,
+      "study_id": 41766150,
       "issues": {
-        "aVL": [
+        "III": [
           "clipped"
         ],
         "V1": [
           "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 46229429,
-      "issues": {
-        "II": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 42423829,
-      "issues": {
-        "V3": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 41860300,
-      "issues": {
-        "aVF": [
-          "clipped"
         ],
         "V6": [
           "clipped"
@@ -1023,93 +318,27 @@
       }
     },
     {
-      "study_id": 42417937,
+      "study_id": 47650998,
+      "issues": {
+        "aVF": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 49702273,
+      "issues": {
+        "aVL": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 42066335,
       "issues": {
         "I": [
-          "flat",
-          "dropout"
-        ],
-        "aVL": [
           "clipped"
         ],
-        "V1": [
-          "flat",
-          "dropout"
-        ],
-        "V2": [
-          "flat",
-          "dropout"
-        ],
-        "V3": [
-          "flat",
-          "dropout"
-        ],
-        "V4": [
-          "flat",
-          "dropout"
-        ],
-        "V5": [
-          "flat",
-          "dropout"
-        ],
-        "V6": [
-          "flat",
-          "dropout"
-        ]
-      }
-    },
-    {
-      "study_id": 46801665,
-      "issues": {
-        "II": [
-          "clipped"
-        ],
-        "aVR": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 47655123,
-      "issues": {
-        "V5": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 47879476,
-      "issues": {
-        "V6": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 47951282,
-      "issues": {
-        "aVR": [
-          "clipped"
-        ],
-        "V5": [
-          "clipped"
-        ],
-        "V6": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 44092245,
-      "issues": {
-        "V5": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 45795434,
-      "issues": {
         "aVR": [
           "clipped"
         ],
@@ -1119,16 +348,15 @@
       }
     },
     {
-      "study_id": 44451720,
+      "study_id": 40523488,
       "issues": {
-        "V5": [
-          "flat",
-          "dropout"
+        "I": [
+          "clipped"
         ]
       }
     },
     {
-      "study_id": 40692046,
+      "study_id": 41872452,
       "issues": {
         "aVF": [
           "clipped"
@@ -1136,7 +364,7 @@
       }
     },
     {
-      "study_id": 44675900,
+      "study_id": 44238363,
       "issues": {
         "aVR": [
           "clipped"
@@ -1144,15 +372,64 @@
       }
     },
     {
-      "study_id": 45795436,
+      "study_id": 41696032,
       "issues": {
-        "aVR": [
+        "aVF": [
           "clipped"
         ]
       }
     },
     {
-      "study_id": 48498166,
+      "study_id": 45961263,
+      "issues": {
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 45176000,
+      "issues": {
+        "I": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 49577230,
+      "issues": {
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 47383729,
+      "issues": {
+        "V1": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 47185925,
+      "issues": {
+        "I": [
+          "clipped"
+        ],
+        "aVL": [
+          "clipped"
+        ],
+        "V3": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 43815856,
       "issues": {
         "V1": [
           "clipped"
@@ -1160,7 +437,67 @@
       }
     },
     {
-      "study_id": 45384988,
+      "study_id": 42535951,
+      "issues": {
+        "V5": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 44764199,
+      "issues": {
+        "aVL": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 45341982,
+      "issues": {
+        "aVL": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 45210198,
+      "issues": {
+        "I": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 44272235,
+      "issues": {
+        "I": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ],
+        "aVF": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 49222546,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ],
+        "V4": [
+          "clipped"
+        ],
+        "V5": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 43496414,
       "issues": {
         "II": [
           "clipped"
@@ -1171,128 +508,33 @@
         "aVR": [
           "clipped"
         ],
-        "V1": [
+        "aVF": [
           "clipped"
         ],
-        "V2": [
-          "clipped"
-        ],
-        "V3": [
-          "clipped"
-        ],
-        "V5": [
+        "V6": [
           "clipped"
         ]
       }
     },
     {
-      "study_id": 43156875,
+      "study_id": 47149046,
       "issues": {
-        "I": [
-          "flat",
-          "dropout"
-        ],
-        "II": [
-          "flat",
-          "dropout"
-        ],
-        "III": [
-          "flat",
-          "dropout"
-        ],
-        "aVR": [
-          "flat",
-          "dropout"
-        ],
-        "aVF": [
-          "flat",
-          "dropout"
-        ],
-        "aVL": [
-          "flat",
-          "dropout"
-        ],
-        "V1": [
-          "flat",
-          "dropout"
-        ],
         "V2": [
-          "flat",
-          "dropout"
-        ],
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 48309067,
+      "issues": {
         "V3": [
           "flat",
           "dropout"
-        ],
-        "V4": [
-          "flat",
-          "dropout"
-        ],
-        "V5": [
-          "flat",
-          "dropout"
-        ],
-        "V6": [
-          "flat",
-          "dropout"
         ]
       }
     },
     {
-      "study_id": 44050920,
-      "issues": {
-        "aVL": [
-          "clipped"
-        ],
-        "V2": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 47655544,
-      "issues": {
-        "I": [
-          "clipped"
-        ],
-        "aVR": [
-          "clipped"
-        ],
-        "aVF": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 42785629,
-      "issues": {
-        "aVL": [
-          "clipped"
-        ],
-        "V3": [
-          "clipped"
-        ],
-        "V5": [
-          "clipped"
-        ],
-        "V6": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 41336941,
-      "issues": {
-        "I": [
-          "clipped"
-        ],
-        "aVL": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 41526745,
+      "study_id": 48198642,
       "issues": {
         "V1": [
           "clipped"
@@ -1300,258 +542,7 @@
       }
     },
     {
-      "study_id": 47377797,
-      "issues": {
-        "I": [
-          "clipped"
-        ],
-        "aVR": [
-          "clipped"
-        ],
-        "aVF": [
-          "clipped"
-        ],
-        "aVL": [
-          "clipped"
-        ],
-        "V5": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 49965260,
-      "issues": {
-        "I": [
-          "clipped"
-        ],
-        "V5": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 47180143,
-      "issues": {
-        "aVL": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 45109586,
-      "issues": {
-        "V1": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 44493296,
-      "issues": {
-        "aVL": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 49125816,
-      "issues": {
-        "V1": [
-          "flat",
-          "dropout"
-        ]
-      }
-    },
-    {
-      "study_id": 45739503,
-      "issues": {
-        "aVF": [
-          "clipped"
-        ],
-        "V2": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 45474118,
-      "issues": {
-        "aVL": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 44781270,
-      "issues": {
-        "II": [
-          "clipped"
-        ],
-        "V5": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 47718683,
-      "issues": {
-        "II": [
-          "clipped"
-        ],
-        "aVR": [
-          "clipped"
-        ],
-        "V6": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 46601021,
-      "issues": {
-        "V1": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 41100535,
-      "issues": {
-        "I": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 41121789,
-      "issues": {
-        "aVR": [
-          "clipped"
-        ],
-        "V5": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 40595756,
-      "issues": {
-        "I": [
-          "flat",
-          "dropout"
-        ],
-        "II": [
-          "flat",
-          "dropout"
-        ],
-        "III": [
-          "flat",
-          "dropout"
-        ],
-        "aVR": [
-          "flat",
-          "dropout"
-        ],
-        "aVF": [
-          "flat",
-          "dropout"
-        ],
-        "aVL": [
-          "flat",
-          "dropout"
-        ],
-        "V1": [
-          "flat",
-          "dropout"
-        ],
-        "V2": [
-          "flat",
-          "dropout"
-        ],
-        "V3": [
-          "flat",
-          "dropout"
-        ],
-        "V4": [
-          "flat",
-          "dropout"
-        ],
-        "V5": [
-          "flat",
-          "dropout"
-        ],
-        "V6": [
-          "flat",
-          "dropout"
-        ]
-      }
-    },
-    {
-      "study_id": 49380669,
-      "issues": {
-        "aVF": [
-          "clipped"
-        ],
-        "V4": [
-          "clipped"
-        ],
-        "V6": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 40549037,
-      "issues": {
-        "II": [
-          "clipped"
-        ],
-        "aVR": [
-          "clipped"
-        ],
-        "aVF": [
-          "clipped"
-        ],
-        "V1": [
-          "clipped"
-        ],
-        "V4": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 45469433,
-      "issues": {
-        "I": [
-          "clipped"
-        ],
-        "II": [
-          "clipped"
-        ],
-        "aVR": [
-          "clipped"
-        ],
-        "V1": [
-          "clipped"
-        ],
-        "V6": [
-          "clipped"
-        ]
-      }
-    },
-    {
-      "study_id": 49665539,
-      "issues": {
-        "V2": [
-          "flat",
-          "dropout"
-        ]
-      }
-    },
-    {
-      "study_id": 43179981,
+      "study_id": 43894895,
       "issues": {
         "II": [
           "clipped"
@@ -1565,15 +556,42 @@
       }
     },
     {
-      "study_id": 44784976,
+      "study_id": 42714205,
       "issues": {
         "I": [
+          "clipped"
+        ],
+        "V6": [
           "clipped"
         ]
       }
     },
     {
-      "study_id": 47932831,
+      "study_id": 48209914,
+      "issues": {
+        "II": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 49501987,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 43098197,
+      "issues": {
+        "aVL": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 42717801,
       "issues": {
         "V1": [
           "clipped"
@@ -1581,9 +599,139 @@
       }
     },
     {
-      "study_id": 44362565,
+      "study_id": 46021782,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 46902809,
+      "issues": {
+        "III": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ],
+        "aVL": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 45665660,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 46906017,
+      "issues": {
+        "I": [
+          "clipped"
+        ],
+        "V1": [
+          "clipped"
+        ],
+        "V3": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 40282448,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ],
+        "aVL": [
+          "clipped"
+        ],
+        "V5": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 41752278,
+      "issues": {
+        "V1": [
+          "clipped"
+        ],
+        "V3": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 44635514,
+      "issues": {
+        "aVL": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 41310965,
       "issues": {
         "II": [
+          "clipped"
+        ],
+        "aVF": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 42649186,
+      "issues": {
+        "aVF": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 44351131,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ],
+        "V5": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 44549489,
+      "issues": {
+        "I": [
+          "clipped"
+        ],
+        "V1": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 42059797,
+      "issues": {
+        "II": [
+          "clipped"
+        ],
+        "V2": [
           "clipped"
         ],
         "V4": [
@@ -1595,14 +743,602 @@
       }
     },
     {
-      "study_id": 41293381,
+      "study_id": 47851443,
+      "issues": {
+        "aVF": [
+          "clipped"
+        ],
+        "V1": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 43822685,
       "issues": {
         "III": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 48681305,
+      "issues": {
+        "I": [
+          "clipped"
+        ],
+        "III": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ],
+        "aVF": [
+          "clipped"
+        ],
+        "V3": [
+          "clipped"
+        ],
+        "V4": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 47711968,
+      "issues": {
+        "I": [
+          "clipped"
+        ],
+        "III": [
+          "clipped"
+        ],
+        "aVR": [
           "clipped"
         ],
         "V1": [
           "clipped"
         ],
+        "V2": [
+          "clipped"
+        ],
+        "V3": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 46793051,
+      "issues": {
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 43364368,
+      "issues": {
+        "I": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 45581206,
+      "issues": {
+        "aVF": [
+          "clipped"
+        ],
+        "V1": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 41464841,
+      "issues": {
+        "V5": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 40952970,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 45643464,
+      "issues": {
+        "V1": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 45429488,
+      "issues": {
+        "V2": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 49434864,
+      "issues": {
+        "V1": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 43180812,
+      "issues": {
+        "II": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ],
+        "aVF": [
+          "clipped"
+        ],
+        "aVL": [
+          "clipped"
+        ],
+        "V1": [
+          "clipped"
+        ],
+        "V2": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 44999460,
+      "issues": {
+        "III": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 42737679,
+      "issues": {
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 47288617,
+      "issues": {
+        "aVL": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 49886320,
+      "issues": {
+        "III": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 46731116,
+      "issues": {
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 40536309,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ],
+        "V1": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 44302336,
+      "issues": {
+        "I": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ],
+        "V1": [
+          "clipped"
+        ],
+        "V2": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 43901830,
+      "issues": {
+        "V4": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 47607592,
+      "issues": {
+        "V1": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 47547047,
+      "issues": {
+        "aVF": [
+          "clipped"
+        ],
+        "V5": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 45721145,
+      "issues": {
+        "I": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 49163553,
+      "issues": {
+        "II": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ],
+        "aVF": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 48003808,
+      "issues": {
+        "V4": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 40905376,
+      "issues": {
+        "aVL": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 41490976,
+      "issues": {
+        "I": [
+          "clipped"
+        ],
+        "aVL": [
+          "clipped"
+        ],
+        "V2": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 43395556,
+      "issues": {
+        "V1": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 49583279,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ],
+        "V5": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 43376715,
+      "issues": {
+        "V4": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 46319863,
+      "issues": {
+        "II": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ],
+        "aVF": [
+          "clipped"
+        ],
+        "aVL": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 40392174,
+      "issues": {
+        "II": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ],
+        "aVF": [
+          "clipped"
+        ],
+        "V1": [
+          "clipped"
+        ],
+        "V5": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 43323395,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ],
+        "aVL": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 42038465,
+      "issues": {
+        "I": [
+          "clipped"
+        ],
+        "II": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ],
+        "V1": [
+          "clipped"
+        ],
+        "V5": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 40704875,
+      "issues": {
+        "aVL": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 47288201,
+      "issues": {
+        "V4": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 45785517,
+      "issues": {
+        "V5": [
+          "flat",
+          "dropout"
+        ]
+      }
+    },
+    {
+      "study_id": 40492569,
+      "issues": {
+        "V1": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 41560212,
+      "issues": {
+        "V2": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 40856072,
+      "issues": {
+        "II": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 48355545,
+      "issues": {
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 44970961,
+      "issues": {
+        "III": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ],
+        "aVL": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 47847294,
+      "issues": {
+        "II": [
+          "clipped"
+        ],
+        "III": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ],
+        "V1": [
+          "clipped"
+        ],
+        "V6": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 43712335,
+      "issues": {
+        "II": [
+          "clipped"
+        ],
+        "III": [
+          "clipped"
+        ],
+        "aVR": [
+          "clipped"
+        ],
+        "aVF": [
+          "clipped"
+        ],
+        "aVL": [
+          "clipped"
+        ],
+        "V1": [
+          "clipped"
+        ],
+        "V3": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 47901004,
+      "issues": {
+        "V5": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 45329322,
+      "issues": {
+        "aVR": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 41397465,
+      "issues": {
+        "V1": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 45351184,
+      "issues": {
+        "V2": [
+          "clipped"
+        ]
+      }
+    },
+    {
+      "study_id": 48494403,
+      "issues": {
+        "V5": [
+          "flat",
+          "dropout"
+        ]
+      }
+    },
+    {
+      "study_id": 46067005,
+      "issues": {
         "V6": [
           "clipped"
         ]
