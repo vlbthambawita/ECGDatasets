@@ -1,11 +1,9 @@
 name: Deploy to HuggingFace Space
 
 # Trigger rules:
-#   push to main         → deploy Space only  (paths-filtered)
-#   push tag v*          → deploy Space + Dataset
-#   push tag v*-space    → deploy Space only
-#   push tag v*-data     → deploy Dataset only
-#   workflow_dispatch    → choose target interactively
+#   push to main   → deploy Space only  (paths-filtered, no dataset upload)
+#   push tag v*    → handled by deploy-on-tag.yml  (Space + Dataset + GitHub Pages)
+#   workflow_dispatch → deploy Space (+ optionally Dataset)
 
 on:
   push:

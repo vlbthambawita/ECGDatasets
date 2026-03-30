@@ -1,16 +1,19 @@
 name: Deploy on Tag
 
-# Tag naming convention:
-#   v1.0.0          → deploy Space + Dataset
-#   v1.0.0-space    → deploy Space only
-#   v1.0.0-data     → deploy Dataset only
+# Any tag matching v* (e.g. v1.0.0) triggers a full deploy:
+#   → HF Space
+#   → HF Dataset (clean CSVs)
+#   → GitHub Pages (pushes docs/ to main with [skip ci])
 #
-# Tag name + date appear as a version badge in the website header and HF Space.
+# Tag name + date appear as a version badge in the website and HF Space.
 
 on:
   push:
     tags:
       - 'v[0-9]*'
+
+permissions:
+  contents: write   # needed to push docs/ back to main for GitHub Pages
 
 jobs:
   deploy:
@@ -22,42 +25,29 @@ jobs:
           fetch-depth: 0
           lfs: true
 
-      # ── Determine what to deploy ──────────────────────────────────────────
-      - name: Set deployment targets
-        id: targets
-        run: |
-          TAG="${GITHUB_REF#refs/tags/}"
-          DEPLOY_SPACE=false
-          DEPLOY_DATA=false
-
-          if [[ "${TAG}" == *-data ]]; then
-            DEPLOY_DATA=true
-          elif [[ "${TAG}" == *-space ]]; then
-            DEPLOY_SPACE=true
-          else
-            # plain vX.Y.Z tag → both
-            DEPLOY_SPACE=true
-            DEPLOY_DATA=true
-          fi
-
-          echo "tag=${TAG}"                    >> "$GITHUB_OUTPUT"
-          echo "deploy_space=${DEPLOY_SPACE}"  >> "$GITHUB_OUTPUT"
-          echo "deploy_data=${DEPLOY_DATA}"    >> "$GITHUB_OUTPUT"
-
-          echo "Tag     : ${TAG}"
-          echo "Space   : ${DEPLOY_SPACE}"
-          echo "Dataset : ${DEPLOY_DATA}"
+      - name: Get tag name
+        id: tag
+        run: echo "name=${GITHUB_REF#refs/tags/}" >> "$GITHUB_OUTPUT"
 
       - name: Validate HF_TOKEN secret
-        if: steps.targets.outputs.deploy_space == 'true'
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           if [ -z "${HF_TOKEN}" ]; then
-            echo "::error::HF_TOKEN secret is not set."
+            echo "::error::HF_TOKEN secret is not set. Go to Settings → Secrets → Actions."
             exit 1
           fi
           echo "HF_TOKEN is set (length: ${#HF_TOKEN})"
+
+      - name: Validate HF_DATASET_TOKEN secret
+        env:
+          HF_DATASET_TOKEN: ${{ secrets.HF_DATASET_TOKEN }}
+        run: |
+          if [ -z "${HF_DATASET_TOKEN}" ]; then
+            echo "::error::HF_DATASET_TOKEN secret is not set. Go to Settings → Secrets → Actions."
+            exit 1
+          fi
+          echo "HF_DATASET_TOKEN is set (length: ${#HF_DATASET_TOKEN})"
 
       - name: Install huggingface_hub
         run: pip install -q "huggingface_hub>=0.23"
@@ -65,28 +55,15 @@ jobs:
       # ── Step 1: Write _version.json into docs/ ────────────────────────────
       - name: Write _version.json
         run: |
-          TAG="${{ steps.targets.outputs.tag }}"
+          TAG="${{ steps.tag.outputs.name }}"
           SHA="${GITHUB_SHA:0:12}"
           DATE="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
-          DEPLOY_SPACE="${{ steps.targets.outputs.deploy_space }}"
-          DEPLOY_DATA="${{ steps.targets.outputs.deploy_data }}"
-
-          if [ "${DEPLOY_SPACE}" = "true" ] && [ "${DEPLOY_DATA}" = "true" ]; then
-            DEPLOY_TARGET="space+dataset"
-          elif [ "${DEPLOY_SPACE}" = "true" ]; then
-            DEPLOY_TARGET="space"
-          elif [ "${DEPLOY_DATA}" = "true" ]; then
-            DEPLOY_TARGET="dataset"
-          else
-            DEPLOY_TARGET="none"
-          fi
 
           cat > docs/_version.json <<EOF
           {
             "tag": "${TAG}",
             "sha": "${SHA}",
-            "date": "${DATE}",
-            "deploy": "${DEPLOY_TARGET}"
+            "date": "${DATE}"
           }
           EOF
           echo "Wrote docs/_version.json:"
@@ -94,17 +71,11 @@ jobs:
 
       # ── Step 2: Upload clean CSVs to HF Dataset ───────────────────────────
       - name: Upload clean CSVs to HuggingFace Dataset
-        if: steps.targets.outputs.deploy_data == 'true'
         env:
           HF_DATASET_TOKEN: ${{ secrets.HF_DATASET_TOKEN }}
-          DEPLOY_TAG: ${{ steps.targets.outputs.tag }}
+          DEPLOY_TAG: ${{ steps.tag.outputs.name }}
           DEPLOY_SHA: ${{ github.sha }}
         run: |
-          if [ -z "${HF_DATASET_TOKEN}" ]; then
-            echo "::warning::HF_DATASET_TOKEN not set — skipping CSV upload."
-            exit 0
-          fi
-
           python - <<'PYEOF'
           import os, glob, sys
           from huggingface_hub import HfApi
@@ -117,7 +88,7 @@ jobs:
           csv_files = sorted(glob.glob("analysis/*/clean_records.csv"))
           if not csv_files:
               print("No clean_records.csv files found in analysis/ — nothing to upload.")
-              sys.exit(0)
+              sys.exit(1)
 
           for csv_path in csv_files:
               dataset_name = csv_path.split("/")[1]
@@ -136,10 +107,9 @@ jobs:
 
       # ── Step 3: Deploy docs/ to HF Space ─────────────────────────────────
       - name: Deploy docs/ to HuggingFace Space
-        if: steps.targets.outputs.deploy_space == 'true'
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-          DEPLOY_TAG: ${{ steps.targets.outputs.tag }}
+          DEPLOY_TAG: ${{ steps.tag.outputs.name }}
           DEPLOY_SHA: ${{ github.sha }}
         run: |
           python - <<'PYEOF'
@@ -158,15 +128,41 @@ jobs:
           shutil.copytree("docs", staging)
           shutil.copy("hf_space/README.md", staging / "README.md")
 
-          msg = f"Deploy {tag} sha:{sha}"
-
           print(f"Uploading to https://huggingface.co/spaces/{HF_SPACE} ...")
           api.upload_folder(
               folder_path=str(staging),
               repo_id=HF_SPACE,
               repo_type="space",
-              commit_message=msg,
+              commit_message=f"Deploy {tag} sha:{sha}",
               delete_patterns=["*"],
           )
           print(f"✓ Successfully deployed to https://huggingface.co/spaces/{HF_SPACE}")
           PYEOF
+
+      # ── Step 4: Push docs/ to main so GitHub Pages updates ───────────────
+      - name: Push docs/ to main for GitHub Pages
+        run: |
+          TAG="${{ steps.tag.outputs.name }}"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Snapshot docs/ from the tag commit (including _version.json just written)
+          cp -r docs/ /tmp/docs_snapshot
+
+          # Switch to main
+          git fetch origin main
+          git checkout main
+
+          # Replace docs/ with the tag's version
+          rm -rf docs/
+          cp -r /tmp/docs_snapshot docs/
+
+          git add docs/
+          if git diff --staged --quiet; then
+            echo "docs/ on main already matches — no update needed"
+          else
+            git commit -m "chore: deploy docs for ${TAG} [skip ci]"
+            git push origin main
+            echo "✓ Pushed docs/ to main — GitHub Pages will update shortly"
+          fi

@@ -208,6 +208,3 @@ __marimo__/
 
 # Generated analysis outputs — CSVs live on HuggingFace dataset, not in this repo
 docs/analysis/*/clean_records.csv
-
-# Version info written by CI at deploy time — not stored in git
-docs/_version.json
