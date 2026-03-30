@@ -8,8 +8,9 @@ dataset:
 output:
   report_dir: docs/analysis/ptbxl
   data_dir: docs/analysis/ptbxl/data
-  clean_csv: docs/analysis/ptbxl/clean_records.csv
+  clean_csv: analysis/ptbxl/clean_records.csv
   report_html: docs/analysis/ptbxl/report.html
+  hf_dataset_csv_url: https://huggingface.co/datasets/vlbthambawita/ecg-metadata-curated/resolve/main/ptbxl/clean_records.csv
 
 signal_analysis:
   flat_threshold: 0.01            # mV; leads with std below this are "flat"
