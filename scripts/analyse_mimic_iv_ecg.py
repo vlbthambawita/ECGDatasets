@@ -564,8 +564,8 @@ def lead_completeness(root, records_df, out):
 # Phase 17 — Signal Quality (sampled .dat reads)
 # ─────────────────────────────────────────────────────────────────────────────
 
-def signal_quality(root, records_df, sample_n, flat_std_thresh,
-                   dropout_zero_pct, clip_pct_thresh, out):
+def signal_quality(root, records_df, sample_n, flat_threshold,
+                   nan_count_threshold, clip_pct_thresh, out):
     print(f"[Phase 17] Signal quality (sample={sample_n})...")
 
     try:
@@ -601,16 +601,17 @@ def signal_quality(root, records_df, sample_n, flat_std_thresh,
             clean = sig[~np.isnan(sig)]
             issue = []
 
-            if len(clean) == 0:
-                issue.append("dropout")
+            n_nan = int(np.sum(np.isnan(sig)))
+            if n_nan >= nan_count_threshold:
+                issue.append("nan")
                 per_lead_dropout[lead] += 1
+
+            if len(clean) == 0:
+                pass  # already flagged as nan above
             else:
-                if np.std(clean) < flat_std_thresh:
+                if np.std(clean) < flat_threshold:
                     issue.append("flat")
                     per_lead_flat[lead] += 1
-                if np.mean(clean == 0.0) * 100 > dropout_zero_pct:
-                    issue.append("dropout")
-                    per_lead_dropout[lead] += 1
                 lo, hi = clean.min(), clean.max()
                 if hi > lo and np.mean((clean == lo) | (clean == hi)) * 100 > clip_pct_thresh:
                     issue.append("clipped")
@@ -648,7 +649,97 @@ def signal_quality(root, records_df, sample_n, flat_std_thresh,
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Phase 18 — Render HTML Report
+# Phase 18 — Clean Record Identification
+# ─────────────────────────────────────────────────────────────────────────────
+
+def clean_records(records_df, meas_df, criteria, out):
+    print("[Phase 18] Clean record identification...")
+
+    import json as _json
+
+    all_ids = set(records_df["study_id"])
+    excluded = {}   # criterion_name -> set of study_ids excluded by that criterion
+
+    # ── require_all_12_leads ─────────────────────────────────────────────────
+    if criteria.get("require_all_12_leads", False):
+        lc_path = out / "lead_completeness.json"
+        if lc_path.exists():
+            lc = _json.loads(lc_path.read_text())
+            incomplete_ids = {r["study_id"] for r in lc.get("incomplete_records", [])}
+            excluded["missing_leads"] = incomplete_ids & all_ids
+        else:
+            print("  WARNING: lead_completeness.json not found; skipping require_all_12_leads")
+            excluded["missing_leads"] = set()
+
+    # ── no_flat_leads / no_nan_in_leads ──────────────────────────────────────
+    sq_path = out / "signal_quality.json"
+    if sq_path.exists():
+        sq = _json.loads(sq_path.read_text())
+        flat_ids = set()
+        nan_ids  = set()
+        for rec in sq.get("flagged_records", []):
+            issues = rec.get("issues", {})
+            all_types = [t for types in issues.values() for t in types]
+            if "flat" in all_types:
+                flat_ids.add(rec["study_id"])
+            if "nan" in all_types:
+                nan_ids.add(rec["study_id"])
+        if criteria.get("no_flat_leads", False):
+            excluded["flat_leads"] = flat_ids & all_ids
+        if criteria.get("no_nan_in_leads", False):
+            excluded["nan_leads"] = nan_ids & all_ids
+    else:
+        print("  WARNING: signal_quality.json not found; skipping flat/NaN criteria")
+
+    # ── no_missing_metadata ───────────────────────────────────────────────────
+    for field in criteria.get("no_missing_metadata", []):
+        if field in records_df.columns:
+            missing_ids = set(records_df.loc[records_df[field].isna(), "study_id"])
+        elif field in meas_df.columns:
+            # join on study_id: records not in meas_df at all also excluded
+            meas_indexed = meas_df.set_index("study_id")[field]
+            # records with no measurement row at all
+            no_row = all_ids - set(meas_df["study_id"])
+            # records in meas_df but field is null
+            null_in_meas = set(meas_indexed[pd.to_numeric(meas_indexed, errors="coerce").isna()
+                                            if pd.api.types.is_numeric_dtype(meas_indexed)
+                                            else meas_indexed.isna()].index)
+            missing_ids = (no_row | null_in_meas) & all_ids
+        else:
+            print(f"  WARNING: field '{field}' not found in records_df or meas_df; skipping")
+            continue
+        excluded[f"missing_{field}"] = missing_ids & all_ids
+
+    # ── Compute passing set ────────────────────────────────────────────────────
+    excluded_union = set().union(*excluded.values()) if excluded else set()
+    passing_ids    = all_ids - excluded_union
+
+    # ── Write clean_records.csv ───────────────────────────────────────────────
+    clean_df = records_df[records_df["study_id"].isin(passing_ids)][
+        ["study_id", "subject_id", "ecg_time", "path"]
+    ].copy()
+    csv_path = out.parent / "clean_records.csv"
+    clean_df.to_csv(csv_path, index=False)
+    print(f"  wrote {csv_path.relative_to(REPO_ROOT)}  ({len(clean_df):,} records)")
+
+    # ── Write summary JSON ────────────────────────────────────────────────────
+    summary = {
+        "total_records":       len(all_ids),
+        "passed_all_criteria": len(passing_ids),
+        "excluded_total":      len(excluded_union),
+        "exclusions":          {k: len(v) for k, v in excluded.items()},
+        "criteria_applied":    {k: bool(v) for k, v in criteria.items()
+                                if not isinstance(v, list)},
+        "signal_quality_note": (
+            "flat/NaN exclusions are based on the sampled signal_quality.json "
+            "and may not cover all records"
+        ),
+    }
+    write_json(summary, out / "clean_records_summary.json")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Phase 19 — Render HTML Report
 # ─────────────────────────────────────────────────────────────────────────────
 
 def render_report(data_dir, report_path, template_path, d3_path):
@@ -692,9 +783,13 @@ def main():
     top_n_reports = int(a.get("top_n_reports",          40))
     top_n_carts   = int(a.get("top_n_carts",            30))
     miss_thresh   = float(a.get("missing_threshold_pct", 5.0))
-    flat_std      = float(a.get("flat_std_threshold",    0.01))
-    dropout_pct   = float(a.get("dropout_zero_pct",     50.0))
-    clip_pct      = float(a.get("clip_pct",             1.0))
+
+    sa = cfg.get("signal_analysis", {})
+    flat_threshold       = float(sa.get("flat_threshold",      0.01))
+    nan_count_threshold  = int(sa.get("nan_count_threshold",   1))
+    clip_pct             = float(sa.get("clip_pct",            1.0))
+
+    criteria = cfg.get("clean_record_criteria", {})
 
     records_df, meas_df, dict_df, links_df = load_data(root, cfg, max_records)
 
@@ -712,9 +807,10 @@ def main():
     note_link_coverage(records_df, links_df, out)
     waveform_header_stats(root, records_df, sample_wf, out)
     lead_completeness(root, records_df, out)
-    signal_quality(root, records_df, sample_sq, flat_std, dropout_pct, clip_pct, out)
+    signal_quality(root, records_df, sample_sq, flat_threshold, nan_count_threshold, clip_pct, out)
+    clean_records(records_df, meas_df, criteria, out)
 
-    print("[Phase 18] Rendering HTML report...")
+    print("[Phase 19] Rendering HTML report...")
     template_path = REPO_ROOT / "scripts" / "report_template_mimic_iv_ecg.html"
     d3_path       = REPO_ROOT / "scripts" / "vendor" / "d3.min.js"
     report_path   = REPO_ROOT / cfg["output"]["report_html"]

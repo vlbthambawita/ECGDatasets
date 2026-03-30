@@ -88,7 +88,9 @@ docs/
         │   ├── note_link_coverage.json
         │   ├── waveform_header_stats.json
         │   ├── lead_completeness.json
-        │   └── signal_quality.json
+        │   ├── signal_quality.json
+        │   └── clean_records_summary.json
+        ├── clean_records.csv
         └── report.html
 ```
 
@@ -119,12 +121,29 @@ output:
   report_html: docs/analysis/mimic_iv_ecg/report.html
 
 analysis:
-  top_n_reports:     40        # top N machine-report phrases to include in frequency chart
-  top_n_carts:       30        # top N ECG cart IDs
-  max_records:       null      # null = all; set integer (e.g. 5000) for fast test runs
-  sample_waveforms:  200       # number of .hea files to read for waveform header stats
-  sample_signal_quality: 2000  # number of .dat files to read for flat/missing lead detection
-  missing_threshold_pct: 5.0   # flag measurements with >N% missing values
+  top_n_reports:          40      # top N machine-report phrases
+  top_n_carts:            30      # top N ECG cart IDs
+  max_records:            null    # null = all; set integer (e.g. 5000) for fast test runs
+  sample_waveforms:       200     # .hea files to read for header stats
+  sample_signal_quality:  2000    # .dat files to read for flat/missing lead detection
+  missing_threshold_pct:  5.0     # flag measurements with >N% missing values
+
+signal_analysis:
+  flat_threshold:       0.01   # mV; leads with std below this are "flat"
+  nan_count_threshold:  1      # samples with >= this many NaN values are flagged
+  check_500hz:          true   # MIMIC-IV ECG is always 500 Hz; set false to skip
+
+clean_record_criteria:
+  require_all_12_leads: true
+  no_flat_leads:        true
+  no_nan_in_leads:      true
+  no_missing_metadata:
+    - ecg_time          # recording datetime must be present
+    - rr_interval       # at least one interval measurement must be non-null
+    - report_0          # at least the first machine-generated report phrase must be present
+  # Note: MIMIC-IV ECG has no explicit quality-flag annotations (no equivalent of PTB-XL's
+  # baseline_drift / static_noise / burst_noise / electrodes_problems flags).
+  # Signal quality filtering is purely derived from flat_threshold and nan_count_threshold above.
 ```
 
 ---
@@ -287,23 +306,16 @@ Serialize to `data/lead_completeness.json`:
 ```
 > Note: `.hea` files are small text files (~600 bytes each); scanning all 800K is I/O-bound but feasible with `tqdm` progress. Use `wfdb.rdheader()` or plain text parsing. Limit `incomplete_records` list to first 500 cases to keep the JSON size reasonable.
 
-#### Phase 16 — Signal Quality: Flat & Missing Lead Detection (sampled)
-Read `sample_signal_quality` randomly selected `.dat` files (via `wfdb.rdsamp()`) and for each record inspect every lead signal:
+#### Phase 16 — Signal Quality: Flat & NaN Lead Detection (sampled)
+Read `sample_signal_quality` randomly selected `.dat` files (via `wfdb.rdsamp()`) and for each record inspect every lead signal using the thresholds from `signal_analysis` in config:
 
-**Flat-line detection:** a lead is considered flat if `np.std(signal) < flat_std_threshold` (default 0.01 mV equivalent after ADC scaling).
+**Flat-line detection:** a lead is flat if `np.std(signal) < signal_analysis.flat_threshold` (default 0.01 mV).
 
-**Near-zero / dropout detection:** a lead is considered dropped out if more than `dropout_zero_pct`% of samples are exactly 0 (after baseline subtraction).
+**NaN/dropout detection:** a lead is flagged if it contains `>= signal_analysis.nan_count_threshold` NaN samples (default 1).
 
-**Clipping detection:** a lead is clipped if more than `clip_pct`% of samples equal the ADC min or max value (−32768 or +32767 for 16-bit).
+**Clipping detection:** a lead is clipped if more than 1% of samples equal the physical signal min or max (heuristic for ADC rail saturation).
 
-Add these thresholds to `config.yaml`:
-```yaml
-  flat_std_threshold:  0.01    # mV — std below this = flat lead
-  dropout_zero_pct:    50.0    # % — fraction of zero samples = dropout
-  clip_pct:            1.0     # % — fraction of clipped samples = clipping
-```
-
-Per record, flag any leads that are flat, dropped-out, or clipped.
+Per record, flag any leads that are flat, NaN-affected, or clipped.
 
 Serialize to `data/signal_quality.json`:
 ```json
@@ -327,7 +339,41 @@ Serialize to `data/signal_quality.json`:
 ```
 > Limit `flagged_records` list to first 200 cases. Because this reads binary `.dat` files, use the `sample_signal_quality` cap (default 2000) to keep runtime reasonable — full 800K signal scan would take hours.
 
-#### Phase 17 — Generate HTML Report (D3.js)
+#### Phase 17 — Clean Record Identification
+Apply all `clean_record_criteria` from config to the full dataset and produce a list of study IDs that pass every criterion. This mirrors the `clean_records.csv` produced by the PTB-XL pipeline.
+
+**Criteria applied (all must pass):**
+
+| Criterion | Source | How to check |
+|-----------|--------|-------------|
+| `require_all_12_leads` | Phase 15 `.hea` scan | `lead_completeness.json` — `leads_missing` is empty |
+| `no_flat_leads` | Phase 16 signal quality | `signal_quality.json` — no lead flagged `"flat"` |
+| `no_nan_in_leads` | Phase 16 signal quality | `signal_quality.json` — no lead flagged `"nan"` |
+| `no_missing_metadata: ecg_time` | `record_list.csv` | `ecg_time` is not null |
+| `no_missing_metadata: rr_interval` | `machine_measurements.csv` | `rr_interval` is not null |
+| `no_missing_metadata: report_0` | `machine_measurements.csv` | `report_0` is not null |
+
+> **Important:** Phase 16 only samples `sample_signal_quality` records. For the clean-records pass, re-run signal quality checks on **all** records (or accept that the flat/NaN exclusion is based on the full `.hea` scan from Phase 15 plus sampled signal data). Document clearly in the JSON which criteria were applied exhaustively vs. from a sample.
+
+Serialize to `data/clean_records_summary.json`:
+```json
+{
+  "total_records":          800035,
+  "passed_all_criteria":    795000,
+  "excluded_missing_leads": 235,
+  "excluded_flat_leads":    120,
+  "excluded_nan_leads":     45,
+  "excluded_missing_ecg_time":    12,
+  "excluded_missing_rr_interval": 8800,
+  "excluded_missing_report_0":    0,
+  "signal_quality_source":  "sampled (2000 records) — flat/NaN exclusions are estimates",
+  "criteria_applied": { ... }
+}
+```
+
+Write `clean_records.csv` with columns: `study_id, subject_id, ecg_time, path` — one row per record that passed all criteria.
+
+#### Phase 19 — Generate HTML Report (D3.js)
 Produce a **self-contained** `report.html` (rendered from `scripts/report_template_mimic_iv_ecg.html` via Jinja2) that:
 - Bundles D3 v7 inline from `scripts/vendor/d3.min.js` (no CDN)
 - Inlines all JSON data blobs as JS variables (quoted keys — see PTB-XL+ fix)
@@ -351,10 +397,11 @@ Produce a **self-contained** `report.html` (rendered from `scripts/report_templa
 | Waveform–note link coverage | Stat cards + bar | `note_link_coverage.json` |
 | Waveform header stats | Stat cards + table | `waveform_header_stats.json` |
 | Lead completeness — per-lead absence rate | Horizontal bar | `lead_completeness.json` |
-| Signal quality — flat/dropout/clip per lead | Grouped bar (tabbed: flat / dropout / clip) | `signal_quality.json` |
+| Signal quality — flat/NaN/clip per lead | Grouped bar (tabbed: flat / NaN / clip) | `signal_quality.json` |
+| Clean record summary — exclusions per criterion | Horizontal bar + stat cards | `clean_records_summary.json` |
 
 - Each chart: tooltip on hover, "Download SVG" button, stats table below with "Download CSV" button
-- Sections (sidebar nav): Summary → Record Coverage → Temporal → Studies per Patient → Measurements → Report Phrases → Carts & Equipment → Note Links → Waveform Headers → Lead Completeness → Signal Quality
+- Sections (sidebar nav): Summary → Record Coverage → Temporal → Studies per Patient → Measurements → Report Phrases → Carts & Equipment → Note Links → Waveform Headers → Lead Completeness → Signal Quality → Clean Records
 - Responsive layout, sticky sidebar nav for section jumping
 
 ---
@@ -412,8 +459,9 @@ d3 v7     # vendored at scripts/vendor/d3.min.js — no CDN dependency
   - [ ] T4n — Waveform–note link coverage → `data/note_link_coverage.json`
   - [ ] T4o — Waveform header stats (sampled .hea reads) → `data/waveform_header_stats.json`
   - [ ] T4p — Lead completeness (full .hea scan, all records) → `data/lead_completeness.json`
-  - [ ] T4q — Signal quality: flat/dropout/clip detection (sampled .dat reads) → `data/signal_quality.json`
-  - [ ] T4r — HTML report generator: render `scripts/report_template_mimic_iv_ecg.html` via Jinja2
+  - [ ] T4q — Signal quality: flat/NaN/clip detection using `signal_analysis` thresholds (sampled .dat reads) → `data/signal_quality.json`
+  - [ ] T4r — Clean record identification using `clean_record_criteria` → `data/clean_records_summary.json` + `clean_records.csv`
+  - [ ] T4s — HTML report generator: render `scripts/report_template_mimic_iv_ecg.html` via Jinja2
 - [ ] **T5** Write `scripts/report_template_mimic_iv_ecg.html` (Jinja2 + D3 template):
   - [ ] T5a — Sidebar nav + responsive layout (reuse PTB-XL/PTB-XL+ template structure)
   - [ ] T5b — Summary stat cards
@@ -430,10 +478,11 @@ d3 v7     # vendored at scripts/vendor/d3.min.js — no CDN dependency
   - [ ] T5m — Note link coverage cards + bar
   - [ ] T5n — Waveform header stats cards + table
   - [ ] T5o — Lead completeness horizontal bar (per-lead absence rate) + table of incomplete records
-  - [ ] T5p — Signal quality grouped bar charts (tabbed: flat / dropout / clipped) + flagged records table
-  - [ ] T5q — Shared `downloadSVG()` utility + per-chart download button
-  - [ ] T5r — Shared `downloadTableCSV()` utility + per-table download button
-  - [ ] T5s — **Ensure all DATA keys are quoted strings in the Jinja2 template** (`"{{ key }}": {{ blob }},`) to avoid JS syntax errors from numeric-prefixed keys
+  - [ ] T5p — Signal quality grouped bar charts (tabbed: flat / NaN / clipped) + flagged records table
+  - [ ] T5q — Clean records section: exclusions-per-criterion horizontal bar + stat cards + download link for `clean_records.csv`
+  - [ ] T5r — Shared `downloadSVG()` utility + per-chart download button
+  - [ ] T5s — Shared `downloadTableCSV()` utility + per-table download button
+  - [ ] T5t — **Ensure all DATA keys are quoted strings in the Jinja2 template** (`"{{ key }}": {{ blob }},`) to avoid JS syntax errors from numeric-prefixed keys
 - [ ] **T6** Run the script end-to-end (first with `max_records: 5000` for a fast test, then `null` for full run)
 - [ ] **T7** Open `docs/analysis/mimic_iv_ecg/report.html` in a browser; verify all D3 charts render
 - [ ] **T8** Update `docs/index.html` — add MIMIC-IV ECG row with "View Report" link
@@ -451,7 +500,9 @@ d3 v7     # vendored at scripts/vendor/d3.min.js — no CDN dependency
 - **machine_measurements_original.csv vs machine_measurements.csv:** The "original" file contains pre-processed raw values; the standard file is the cleaned version. Prefer the standard file for analysis; note discrepancies in the summary
 - **waveform_note_links.csv covers only 609K of 800K records** — the missing ~191K have no linked clinical note; the note-link coverage section should highlight this gap
 - **Lead completeness scan (Phase 15):** Reading 800K `.hea` files is I/O-bound, not CPU-bound — plain text parsing (or `wfdb.rdheader()`) is faster than loading full signals. Expect ~5–15 min on a spinning disk, ~1–3 min on SSD. Cap `incomplete_records` list at 500 entries in the JSON.
-- **Signal quality scan (Phase 16):** Reading `.dat` binary signals is much slower than headers (~120 KB per file × 2000 = 240 MB of I/O). Default `sample_signal_quality: 2000` gives a statistically representative sample. The flat/dropout/clip thresholds are in `config.yaml` and tunable. Cap `flagged_records` list at 200 entries.
+- **Signal quality scan (Phase 16):** Reading `.dat` binary signals is much slower than headers (~120 KB per file × 2000 = 240 MB of I/O). Default `sample_signal_quality: 2000` gives a statistically representative sample. Thresholds live under `signal_analysis:` in config — `flat_threshold` (mV) and `nan_count_threshold` (samples). Cap `flagged_records` list at 200 entries.
+- **No explicit quality flags (Phase 17):** MIMIC-IV ECG has no PTB-XL-equivalent annotations (no `baseline_drift`, `static_noise`, `burst_noise`, `electrodes_problems` flags). The `clean_record_criteria` therefore has no `exclude_quality_flags` block — all quality filtering is purely signal-derived (flat leads, NaN samples) plus metadata nulls (`ecg_time`, `rr_interval`, `report_0`).
+- **Clean records are estimates for signal criteria:** Phase 17 applies `require_all_12_leads` and `no_missing_metadata` exhaustively (from full .hea scan + full CSV), but `no_flat_leads` and `no_nan_in_leads` are extrapolated from the `sample_signal_quality` sample. Document this caveat in `clean_records_summary.json`.
 - **Lead naming variations:** Some MIMIC-IV records may label leads differently (e.g., `AVR` vs `aVR`). Normalise to uppercase before matching against the expected 12-lead set.
 - **Quoted DATA keys in Jinja2 template:** Always use `"{{ key }}": {{ blob }},` (not `{{ key }}:`) — learned from PTB-XL+ bug where the bare key `12sl_label_freq` (starts with digit) caused a JS parse error that silently broke all charts
 - **D3 vendor:** Reuse `scripts/vendor/d3.min.js` — do not re-download

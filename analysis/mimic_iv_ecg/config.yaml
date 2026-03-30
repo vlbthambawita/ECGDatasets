@@ -24,6 +24,18 @@ analysis:
   sample_waveforms:       200     # .hea files to read for header stats
   sample_signal_quality:  2000    # .dat files to read for flat/missing lead detection
   missing_threshold_pct:  5.0     # flag measurements with >N% missing values
-  flat_std_threshold:     0.01    # mV — lead std below this = flat
-  dropout_zero_pct:       50.0    # % — fraction of zero samples = dropout
-  clip_pct:               1.0     # % — fraction of extreme samples = clipping
+
+signal_analysis:
+  flat_threshold:       0.01   # mV; leads with std below this are "flat"
+  nan_count_threshold:  1      # samples with >= this many NaN values are flagged
+  check_500hz:          true   # MIMIC-IV ECG is always 500 Hz; set false to skip
+  clip_pct:             1.0    # % of samples at physical min/max = clipping
+
+clean_record_criteria:
+  require_all_12_leads: true
+  no_flat_leads:        true
+  no_nan_in_leads:      true
+  no_missing_metadata:
+    - ecg_time          # recording datetime must be present
+    - rr_interval       # at least one interval measurement must be non-null
+    - report_0          # at least the first machine-generated report phrase must be present

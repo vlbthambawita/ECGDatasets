@@ -1,0 +1,19 @@
+{
+  "total_records": 800035,
+  "passed_all_criteria": 789479,
+  "excluded_total": 10556,
+  "exclusions": {
+    "missing_leads": 0,
+    "flat_leads": 1,
+    "nan_leads": 13,
+    "missing_ecg_time": 0,
+    "missing_rr_interval": 10554,
+    "missing_report_0": 10555
+  },
+  "criteria_applied": {
+    "require_all_12_leads": true,
+    "no_flat_leads": true,
+    "no_nan_in_leads": true
+  },
+  "signal_quality_note": "flat/NaN exclusions are based on the sampled signal_quality.json and may not cover all records"
+}
