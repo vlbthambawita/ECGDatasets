@@ -150,6 +150,9 @@ jobs:
           # Snapshot docs/ from the tag commit (including _version.json just written)
           cp -r docs/ /tmp/docs_snapshot
 
+          # Remove untracked files that would block the branch switch
+          git clean -fd docs/
+
           # Switch to main
           git fetch origin main
           git checkout main
