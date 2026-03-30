@@ -1,27 +1,16 @@
-name: Deploy to HuggingFace Space
+name: Deploy on Tag
 
-# Trigger rules:
-#   push to main         → deploy Space only  (paths-filtered)
-#   push tag v*          → deploy Space + Dataset
-#   push tag v*-space    → deploy Space only
-#   push tag v*-data     → deploy Dataset only
-#   workflow_dispatch    → choose target interactively
+# Tag naming convention:
+#   v1.0.0          → deploy Space + Dataset
+#   v1.0.0-space    → deploy Space only
+#   v1.0.0-data     → deploy Dataset only
+#
+# Tag name + date appear as a version badge in the website header and HF Space.
 
 on:
   push:
-    branches:
-      - main
-    paths:
-      - 'docs/**'
-      - 'hf_space/**'
-      - 'analysis/**'
-      - '.github/workflows/deploy-to-hf.yml'
-  workflow_dispatch:
-    inputs:
-      deploy_target:
-        description: 'Deploy target: space | data | both'
-        required: false
-        default: 'both'
+    tags:
+      - 'v[0-9]*'
 
 jobs:
   deploy:
@@ -37,36 +26,25 @@ jobs:
       - name: Set deployment targets
         id: targets
         run: |
-          REF="${GITHUB_REF}"
-          TAG=""
+          TAG="${GITHUB_REF#refs/tags/}"
           DEPLOY_SPACE=false
           DEPLOY_DATA=false
 
-          if [[ "${REF}" == refs/tags/* ]]; then
-            TAG="${REF#refs/tags/}"
-            if [[ "${TAG}" == *-data ]]; then
-              DEPLOY_DATA=true
-            elif [[ "${TAG}" == *-space ]]; then
-              DEPLOY_SPACE=true
-            else
-              # plain v* tag → both Space and Dataset
-              DEPLOY_SPACE=true
-              DEPLOY_DATA=true
-            fi
-          elif [[ "${REF}" == refs/heads/main ]]; then
-            DEPLOY_SPACE=true   # regular push to main → Space only
+          if [[ "${TAG}" == *-data ]]; then
+            DEPLOY_DATA=true
+          elif [[ "${TAG}" == *-space ]]; then
+            DEPLOY_SPACE=true
           else
-            # workflow_dispatch: honour input
-            TARGET="${{ github.event.inputs.deploy_target }}"
-            [[ "${TARGET}" == "space" || "${TARGET}" == "both" ]] && DEPLOY_SPACE=true
-            [[ "${TARGET}" == "data"  || "${TARGET}" == "both" ]] && DEPLOY_DATA=true
+            # plain vX.Y.Z tag → both
+            DEPLOY_SPACE=true
+            DEPLOY_DATA=true
           fi
 
           echo "tag=${TAG}"                    >> "$GITHUB_OUTPUT"
           echo "deploy_space=${DEPLOY_SPACE}"  >> "$GITHUB_OUTPUT"
           echo "deploy_data=${DEPLOY_DATA}"    >> "$GITHUB_OUTPUT"
 
-          echo "Tag     : ${TAG:-<none>}"
+          echo "Tag     : ${TAG}"
           echo "Space   : ${DEPLOY_SPACE}"
           echo "Dataset : ${DEPLOY_DATA}"
 
@@ -77,7 +55,6 @@ jobs:
         run: |
           if [ -z "${HF_TOKEN}" ]; then
             echo "::error::HF_TOKEN secret is not set."
-            echo "::error::Go to Settings → Secrets → Actions and add a HuggingFace write token for the Space."
             exit 1
           fi
           echo "HF_TOKEN is set (length: ${#HF_TOKEN})"
@@ -124,8 +101,7 @@ jobs:
           DEPLOY_SHA: ${{ github.sha }}
         run: |
           if [ -z "${HF_DATASET_TOKEN}" ]; then
-            echo "::warning::HF_DATASET_TOKEN not set — skipping CSV upload to vlbthambawita/ecg-metadata-curated."
-            echo "To enable: add HF_DATASET_TOKEN in Settings → Secrets → Actions."
+            echo "::warning::HF_DATASET_TOKEN not set — skipping CSV upload."
             exit 0
           fi
 
@@ -146,10 +122,7 @@ jobs:
           for csv_path in csv_files:
               dataset_name = csv_path.split("/")[1]
               repo_path = f"{dataset_name}/clean_records.csv"
-              msg = f"Update {repo_path}"
-              if tag:
-                  msg += f" [{tag}]"
-              msg += f" sha:{sha}"
+              msg = f"Update {repo_path} [{tag}] sha:{sha}"
               print(f"Uploading {csv_path} → {HF_DATASET}/{repo_path} ...")
               api.upload_file(
                   path_or_fileobj=csv_path,
@@ -179,16 +152,13 @@ jobs:
           tag = os.environ.get("DEPLOY_TAG", "")
           sha = os.environ.get("DEPLOY_SHA", "unknown")[:12]
 
-          # Build a staging folder: docs/ content + hf_space/README.md on top
           staging = Path("_hf_staging")
           if staging.exists():
               shutil.rmtree(staging)
           shutil.copytree("docs", staging)
           shutil.copy("hf_space/README.md", staging / "README.md")
 
-          msg = f"Deploy sha:{sha}"
-          if tag:
-              msg = f"Deploy {tag} sha:{sha}"
+          msg = f"Deploy {tag} sha:{sha}"
 
           print(f"Uploading to https://huggingface.co/spaces/{HF_SPACE} ...")
           api.upload_folder(
@@ -196,7 +166,7 @@ jobs:
               repo_id=HF_SPACE,
               repo_type="space",
               commit_message=msg,
-              delete_patterns=["*"],   # wipe stale files before uploading
+              delete_patterns=["*"],
           )
           print(f"✓ Successfully deployed to https://huggingface.co/spaces/{HF_SPACE}")
           PYEOF
