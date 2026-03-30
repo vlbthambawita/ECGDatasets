@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import ast
+import copy
 import json
 import os
 import sys
@@ -78,6 +79,37 @@ DATASET_TREE = {
         },
     ]
 }
+
+
+def _col_nodes(df: pd.DataFrame) -> list:
+    """Build column leaf nodes for a DataFrame, including its index column."""
+    nodes = []
+    if df.index.name:
+        nodes.append({
+            "name": df.index.name,
+            "type": "column",
+            "desc": f"index · dtype: {df.index.dtype}",
+        })
+    for col in df.columns:
+        nodes.append({
+            "name": col,
+            "type": "column",
+            "desc": f"dtype: {df[col].dtype}",
+        })
+    return nodes
+
+
+def build_dataset_tree(db: pd.DataFrame, scp: pd.DataFrame) -> dict:
+    """Return DATASET_TREE with CSV column headers injected as child nodes."""
+    col_map = {
+        "ptbxl_database.csv": _col_nodes(db),
+        "scp_statements.csv": _col_nodes(scp),
+    }
+    tree = copy.deepcopy(DATASET_TREE)
+    for node in tree["children"]:
+        if node["name"] in col_map:
+            node["children"] = col_map[node["name"]]
+    return tree
 
 
 # ---------------------------------------------------------------------------
@@ -256,8 +288,8 @@ def analyse_metadata(db: pd.DataFrame, scp: pd.DataFrame, cfg: dict) -> dict:
             flag_data.append({"flag": flag, "count": int(db[flag].sum())})
     _write_json(data_dir / "quality_flags.json", {"data": flag_data})
 
-    # Dataset tree structure
-    _write_json(data_dir / "dataset_tree.json", DATASET_TREE)
+    # Dataset tree structure (CSV nodes include column headers as children)
+    _write_json(data_dir / "dataset_tree.json", build_dataset_tree(db, scp))
 
     print(f"[Phase 3] Metadata analysis complete. {len(db)} records.")
     return results
