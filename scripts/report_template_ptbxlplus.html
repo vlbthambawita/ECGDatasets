@@ -382,7 +382,7 @@
 // ──────────────────────────────────────────────────────────
 const DATA = {
 {% for key, blob in json_blobs.items() %}
-  {{ key }}: {{ blob }},
+  "{{ key }}": {{ blob }},
 {% endfor %}
 };
 
