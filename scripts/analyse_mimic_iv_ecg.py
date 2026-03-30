@@ -8,6 +8,7 @@ Usage:
 """
 import argparse
 import json
+import os
 import random
 import sys
 from pathlib import Path
@@ -17,6 +18,13 @@ import numpy as np
 import pandas as pd
 import yaml
 from tqdm import tqdm
+
+# Load .env from repo root if present (provides HF_DATASET_TOKEN etc.)
+try:
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).resolve().parent.parent / ".env")
+except ImportError:
+    pass  # python-dotenv not installed; rely on env vars being set externally
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 EXPECTED_LEADS = ["I", "II", "III", "aVR", "aVF", "aVL", "V1", "V2", "V3", "V4", "V5", "V6"]
@@ -740,7 +748,33 @@ def clean_records(records_df, meas_df, criteria, out, csv_path):
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Phase 19 — Render HTML Report
+# Phase 19 — Push clean_records.csv to HuggingFace Dataset
+# ─────────────────────────────────────────────────────────────────────────────
+
+def push_to_hf(csv_path, repo_id, path_in_repo):
+    print("[Phase 19] Pushing clean_records.csv to HuggingFace Dataset...")
+    token = os.environ.get("HF_DATASET_TOKEN")
+    if not token:
+        print("  WARNING: HF_DATASET_TOKEN not set — skipping HF upload.")
+        print("           Add HF_DATASET_TOKEN=hf_... to your .env file.")
+        return
+    try:
+        from huggingface_hub import HfApi
+    except ImportError:
+        print("  WARNING: huggingface_hub not installed — skipping HF upload.")
+        print("           pip install huggingface-hub")
+        return
+    api = HfApi(token=token)
+    api.upload_file(
+        path_or_fileobj=str(csv_path),
+        path_in_repo=path_in_repo,
+        repo_id=repo_id,
+        repo_type="dataset",
+    )
+    print(f"  uploaded → hf://datasets/{repo_id}/{path_in_repo}")
+
+
+# Phase 20 — Render HTML Report
 # ─────────────────────────────────────────────────────────────────────────────
 
 def render_report(data_dir, report_path, template_path, d3_path):
@@ -812,7 +846,14 @@ def main():
     clean_csv = REPO_ROOT / cfg["output"]["clean_records"]
     clean_records(records_df, meas_df, criteria, out, clean_csv)
 
-    print("[Phase 19] Rendering HTML report...")
+    hf_cfg = cfg.get("huggingface", {})
+    push_to_hf(
+        clean_csv,
+        repo_id     = hf_cfg.get("dataset_repo", "vlbthambawita/ecg-metadata-curated"),
+        path_in_repo= hf_cfg.get("path_in_repo",  "mimic_iv_ecg/clean_records.csv"),
+    )
+
+    print("[Phase 20] Rendering HTML report...")
     template_path = REPO_ROOT / "scripts" / "report_template_mimic_iv_ecg.html"
     d3_path       = REPO_ROOT / "scripts" / "vendor" / "d3.min.js"
     report_path   = REPO_ROOT / cfg["output"]["report_html"]

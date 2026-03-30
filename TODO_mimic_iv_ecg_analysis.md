@@ -65,7 +65,7 @@ Build a configurable Python analysis script for the MIMIC-IV ECG (Diagnostic Ele
 analysis/
 └── mimic_iv_ecg/
     ├── config.yaml
-    └── clean_records.csv          ← filtered ECG IDs; pushed directly to HF Dataset repo (NOT committed to GitHub)
+    └── clean_records.csv          ← filtered ECG IDs; gitignored, pushed directly to HF Dataset by Phase 19 of the analysis script (token from .env)
 
 scripts/
 ├── analyse_mimic_iv_ecg.py
@@ -116,9 +116,10 @@ dataset:
     root: files
 
 output:
-  report_dir:  docs/analysis/mimic_iv_ecg
-  data_dir:    docs/analysis/mimic_iv_ecg/data
-  report_html: docs/analysis/mimic_iv_ecg/report.html
+  report_dir:    docs/analysis/mimic_iv_ecg
+  data_dir:      docs/analysis/mimic_iv_ecg/data
+  report_html:   docs/analysis/mimic_iv_ecg/report.html
+  clean_records: analysis/mimic_iv_ecg/clean_records.csv   # committed to GitHub; deploy-to-hf.yml uploads to HF Dataset
 
 analysis:
   top_n_reports:          40      # top N machine-report phrases
@@ -373,7 +374,19 @@ Serialize to `data/clean_records_summary.json`:
 
 Write `clean_records.csv` with columns: `study_id, subject_id, ecg_time, path` — one row per record that passed all criteria.
 
-#### Phase 19 — Generate HTML Report (D3.js)
+#### Phase 19 — Push clean_records.csv to HuggingFace Dataset
+Read `HF_DATASET_TOKEN` from the environment (loaded automatically from `.env` via `python-dotenv` at script startup). Use `huggingface_hub.HfApi.upload_file()` to push `analysis/mimic_iv_ecg/clean_records.csv` to `vlbthambawita/ecg-metadata-curated` at `mimic_iv_ecg/clean_records.csv`. Skip with a warning if token is missing.
+
+The file is **gitignored** — it is never committed to GitHub.
+
+Prerequisites:
+```
+cp .env.example .env
+# edit .env and set HF_DATASET_TOKEN=hf_...
+pip install python-dotenv huggingface-hub
+```
+
+#### Phase 20 — Generate HTML Report (D3.js)
 Produce a **self-contained** `report.html` (rendered from `scripts/report_template_mimic_iv_ecg.html` via Jinja2) that:
 - Bundles D3 v7 inline from `scripts/vendor/d3.min.js` (no CDN)
 - Inlines all JSON data blobs as JS variables (quoted keys — see PTB-XL+ fix)
@@ -422,12 +435,14 @@ Also update `README.md` to list MIMIC-IV ECG as an available dataset with its re
 
 ### Python
 ```
-wfdb>=4.1          # reading .hea headers and .dat waveforms
+wfdb>=4.1            # reading .hea headers and .dat waveforms
 pandas>=2.0
 numpy>=1.24
 pyyaml>=6.0
 tqdm>=4.65
-jinja2>=3.1        # HTML report templating
+jinja2>=3.1          # HTML report templating
+python-dotenv>=1.0   # loads HF_DATASET_TOKEN from .env
+huggingface-hub>=0.23  # uploads clean_records.csv to HF Dataset
 ```
 
 ### Front-end (bundled into report.html)
@@ -487,8 +502,8 @@ d3 v7     # vendored at scripts/vendor/d3.min.js — no CDN dependency
 - [ ] **T7** Open `docs/analysis/mimic_iv_ecg/report.html` in a browser; verify all D3 charts render
 - [ ] **T8** Update `docs/index.html` — add MIMIC-IV ECG row with "View Report" link
 - [ ] **T9** Update `README.md` to list MIMIC-IV ECG as an available dataset
-- [ ] **T10** Commit docs/scripts/analysis config outputs and push to `main` to deploy to GitHub Pages and HuggingFace Space
-- [ ] **T11** Push `analysis/mimic_iv_ecg/clean_records.csv` directly to the HuggingFace Dataset repo (`vlbthambawita/ecg-metadata-curated`) using the `huggingface_hub` Python library or the `huggingface-cli` — **do not commit this file to GitHub**
+- [ ] **T10** Copy `.env.example` → `.env`, set `HF_DATASET_TOKEN=hf_...`; run the analysis script — Phase 19 pushes `clean_records.csv` directly to HF Dataset (file is gitignored, never committed to GitHub)
+- [ ] **T11** Commit docs/scripts/config outputs (excluding clean_records.csv) and push to `main` to deploy GitHub Pages and HuggingFace Space
 
 ---
 
@@ -509,15 +524,4 @@ d3 v7     # vendored at scripts/vendor/d3.min.js — no CDN dependency
 - **D3 vendor:** Reuse `scripts/vendor/d3.min.js` — do not re-download
 - **docs/index.html and README.md must be updated together** (per CLAUDE.md) to stay in sync
 - **HuggingFace Space** is auto-deployed by `.github/workflows/deploy-to-hf.yml` on push to `main`
-- **`clean_records.csv` → HF Dataset directly:** Do NOT commit `analysis/mimic_iv_ecg/clean_records.csv` to GitHub. Instead push it straight to the HF Dataset repo:
-  ```python
-  from huggingface_hub import HfApi
-  api = HfApi()
-  api.upload_file(
-      path_or_fileobj="analysis/mimic_iv_ecg/clean_records.csv",
-      path_in_repo="mimic_iv_ecg/clean_records.csv",
-      repo_id="vlbthambawita/ecg-metadata-curated",
-      repo_type="dataset",
-  )
-  ```
-  Or via CLI: `huggingface-cli upload vlbthambawita/ecg-metadata-curated analysis/mimic_iv_ecg/clean_records.csv mimic_iv_ecg/clean_records.csv --repo-type dataset`
+- **`clean_records.csv` → HF Dataset directly (no GitHub):** The file is gitignored (`analysis/*/clean_records.csv`). Phase 19 of the analysis script loads `HF_DATASET_TOKEN` from `.env` (via `python-dotenv`) and calls `huggingface_hub.HfApi.upload_file()` immediately after generating the CSV. No size limit on HF Dataset repos. `.env.example` documents the required keys; `.env` itself is gitignored.

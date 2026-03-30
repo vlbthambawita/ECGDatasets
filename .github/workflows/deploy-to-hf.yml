@@ -1,7 +1,7 @@
 name: Deploy to HuggingFace Space
 
 # Trigger rules:
-#   push to main   → deploy Space only  (paths-filtered, no dataset upload)
+#   push to main   → deploy Space only  (clean_records.csv pushed directly to HF Dataset by analysis script)
 #   push tag v*    → handled by deploy-on-tag.yml  (Space + Dataset + GitHub Pages)
 #   workflow_dispatch → deploy Space (+ optionally Dataset)
 

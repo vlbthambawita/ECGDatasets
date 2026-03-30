@@ -32,6 +32,11 @@ signal_analysis:
   check_500hz:          true   # MIMIC-IV ECG is always 500 Hz; set false to skip
   clip_pct:             1.0    # % of samples at physical min/max = clipping
 
+huggingface:
+  dataset_repo: vlbthambawita/ecg-metadata-curated
+  path_in_repo: mimic_iv_ecg/clean_records.csv
+  # Token read from HF_DATASET_TOKEN in .env (never put the token value here)
+
 clean_record_criteria:
   require_all_12_leads: true
   no_flat_leads:        true
