@@ -14,19 +14,6 @@
     "V5": 21794,
     "V6": 21794
   },
-  "annotation_types_sample": [
-    "L point (for STEMI)",
-    "Q peak",
-    "QRS offset",
-    "QRS onset",
-    "R peak",
-    "S peak",
-    "p-wave offset",
-    "p-wave onset",
-    "p-wave peak",
-    "t-wave offset",
-    "t-wave onset",
-    "t-wave peak"
-  ],
+  "annotation_types_sample": [],
   "missing_from_canonical": 0
 }
