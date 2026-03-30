@@ -85,7 +85,7 @@ jobs:
           from pathlib import Path
           from huggingface_hub import HfApi
 
-          HF_SPACE = "SEARCH-IHI/ECGDatasets"
+          HF_SPACE = "vlbthambawita/ECGDatasets"
           api = HfApi(token=os.environ["HF_TOKEN"])
 
           # Build a staging folder: docs/ content + hf_space/README.md on top
