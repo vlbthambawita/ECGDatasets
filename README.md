@@ -125,7 +125,7 @@ Body Surface Potential Mapping (BSPM) and Electrocardiographic Imaging (ECGI) da
 
 This repository includes a Python script that analyses a downloaded dataset and produces an interactive HTML report with D3.js visualisations, plus a CSV of clean records.
 
-Currently supported: **PTB-XL**.
+Currently supported: **PTB-XL**, **PTB-XL+**.
 
 ### Requirements
 
@@ -184,3 +184,37 @@ open analysis/ptbxl/report.html            # macOS
 - **Clean record summary** — clean vs discarded records per fold (grouped bar)
 
 Every chart has a **Download SVG** button; every stats table has a **Download CSV** button.
+
+### Running the PTB-XL+ analysis
+
+**1. Edit the config** to point at your local copy of the dataset:
+
+```bash
+nano analysis/ptbxlplus/config.yaml
+```
+
+**2. Run the script** from the repository root:
+
+```bash
+python scripts/analyse_ptbxlplus.py --config analysis/ptbxlplus/config.yaml
+```
+
+### PTB-XL+ Outputs
+
+| File | Description |
+|------|-------------|
+| `docs/analysis/ptbxlplus/report.html` | Self-contained interactive report (D3.js charts, works offline) |
+| `docs/analysis/ptbxlplus/data/*.json` | Per-chart JSON data files consumed by the report |
+
+### What the PTB-XL+ report covers
+
+- **Dataset summary** — record counts across all 8 data sources (features, labels, fiducial points, median beats)
+- **Record coverage** — which ECG IDs are present in each source vs. the canonical RECORDS file
+- **Feature analysis** — missing value % per feature for 12SL, ECGDeli, and UNIG algorithms; summary statistics for key ECG intervals and amplitudes
+- **Label analysis** — frequency distributions for PTB-XL SCP codes and 12SL algorithm statements; label co-occurrence heatmaps; SNOMED CT concept coverage
+- **Fiducial point coverage** — ECGDeli delineation annotation file counts per lead
+- **Median beat coverage** — waveform file availability for 12SL and UNIG algorithms
+- **Cross-source agreement** — comparison of PTB-XL cardiologist labels vs. 12SL algorithm statements via shared SNOMED CT concepts
+
+Every chart has a **Download SVG** button; every stats table has a **Download CSV** button.
+

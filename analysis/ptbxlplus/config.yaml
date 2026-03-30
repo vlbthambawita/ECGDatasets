@@ -1,0 +1,35 @@
+dataset:
+  root: /work/vajira/DATA/ptbxl_plus/physionet.org/files/ptb-xl-plus/1.0.1
+  records_file: RECORDS
+
+  features:
+    12sl: features/12sl_features.csv
+    ecgdeli: features/ecgdeli_features.csv
+    unig: features/unig_features.csv
+    description: features/feature_description.csv
+
+  labels:
+    ptbxl: labels/ptbxl_statements.csv
+    12sl: labels/12sl_statements.csv
+    snomed: labels/snomed_description.csv
+    mapping_ptbxl: labels/mapping/ptbxlToSNOMED.csv
+    mapping_12sl: labels/mapping/12slv23ToSNOMED.csv
+
+  fiducial_points:
+    ecgdeli: fiducial_points/ecgdeli
+
+  median_beats:
+    12sl: median_beats/12sl
+    unig: median_beats/unig
+
+output:
+  report_dir: docs/analysis/ptbxlplus
+  data_dir: docs/analysis/ptbxlplus/data
+  report_html: docs/analysis/ptbxlplus/report.html
+
+analysis:
+  top_n_labels: 30
+  cooccurrence_top_n: 25
+  missing_threshold_pct: 5.0
+  max_records: null
+  sample_size_heatmap: 2000

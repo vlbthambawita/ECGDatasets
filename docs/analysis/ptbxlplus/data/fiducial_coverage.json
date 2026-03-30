@@ -1,0 +1,32 @@
+{
+  "total_with_global_atr": 21795,
+  "per_lead_counts": {
+    "I": 21795,
+    "II": 21795,
+    "III": 21795,
+    "aVR": 21795,
+    "aVL": 21795,
+    "aVF": 21795,
+    "V1": 21795,
+    "V2": 21795,
+    "V3": 21795,
+    "V4": 21794,
+    "V5": 21794,
+    "V6": 21794
+  },
+  "annotation_types_sample": [
+    "L point (for STEMI)",
+    "Q peak",
+    "QRS offset",
+    "QRS onset",
+    "R peak",
+    "S peak",
+    "p-wave offset",
+    "p-wave onset",
+    "p-wave peak",
+    "t-wave offset",
+    "t-wave onset",
+    "t-wave peak"
+  ],
+  "missing_from_canonical": 0
+}

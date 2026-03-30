@@ -1,0 +1,156 @@
+{
+  "source": "ptbxl",
+  "total_records": 21799,
+  "labels": [
+    {
+      "code": "SR",
+      "count": 16748,
+      "pct": 76.83
+    },
+    {
+      "code": "NORM",
+      "count": 9514,
+      "pct": 43.64
+    },
+    {
+      "code": "ABQRS",
+      "count": 3327,
+      "pct": 15.26
+    },
+    {
+      "code": "IMI",
+      "count": 2676,
+      "pct": 12.28
+    },
+    {
+      "code": "ASMI",
+      "count": 2357,
+      "pct": 10.81
+    },
+    {
+      "code": "LVH",
+      "count": 2132,
+      "pct": 9.78
+    },
+    {
+      "code": "NDT",
+      "count": 1825,
+      "pct": 8.37
+    },
+    {
+      "code": "LAFB",
+      "count": 1623,
+      "pct": 7.45
+    },
+    {
+      "code": "AFIB",
+      "count": 1514,
+      "pct": 6.95
+    },
+    {
+      "code": "ISC_",
+      "count": 1272,
+      "pct": 5.84
+    },
+    {
+      "code": "PVC",
+      "count": 1143,
+      "pct": 5.24
+    },
+    {
+      "code": "IRBBB",
+      "count": 1118,
+      "pct": 5.13
+    },
+    {
+      "code": "STD_",
+      "count": 1009,
+      "pct": 4.63
+    },
+    {
+      "code": "VCLVH",
+      "count": 875,
+      "pct": 4.01
+    },
+    {
+      "code": "STACH",
+      "count": 826,
+      "pct": 3.79
+    },
+    {
+      "code": "1AVB",
+      "count": 793,
+      "pct": 3.64
+    },
+    {
+      "code": "IVCD",
+      "count": 787,
+      "pct": 3.61
+    },
+    {
+      "code": "SARRH",
+      "count": 772,
+      "pct": 3.54
+    },
+    {
+      "code": "NST_",
+      "count": 767,
+      "pct": 3.52
+    },
+    {
+      "code": "ISCAL",
+      "count": 659,
+      "pct": 3.02
+    },
+    {
+      "code": "SBRAD",
+      "count": 637,
+      "pct": 2.92
+    },
+    {
+      "code": "QWAVE",
+      "count": 548,
+      "pct": 2.51
+    },
+    {
+      "code": "CRBBB",
+      "count": 541,
+      "pct": 2.48
+    },
+    {
+      "code": "CLBBB",
+      "count": 536,
+      "pct": 2.46
+    },
+    {
+      "code": "ILMI",
+      "count": 478,
+      "pct": 2.19
+    },
+    {
+      "code": "LOWT",
+      "count": 438,
+      "pct": 2.01
+    },
+    {
+      "code": "LAO/LAE",
+      "count": 426,
+      "pct": 1.95
+    },
+    {
+      "code": "NT_",
+      "count": 423,
+      "pct": 1.94
+    },
+    {
+      "code": "PAC",
+      "count": 398,
+      "pct": 1.83
+    },
+    {
+      "code": "AMI",
+      "count": 353,
+      "pct": 1.62
+    }
+  ]
+}

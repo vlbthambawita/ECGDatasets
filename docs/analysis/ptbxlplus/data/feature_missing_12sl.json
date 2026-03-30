@@ -1,0 +1,3923 @@
+{
+  "source": "12sl",
+  "threshold_pct": 5.0,
+  "total_features": 783,
+  "flagged_count": 6,
+  "features": [
+    {
+      "feature": "P_Off_Global",
+      "missing_pct": 9.322,
+      "flagged": true
+    },
+    {
+      "feature": "P_On_Global",
+      "missing_pct": 9.322,
+      "flagged": true
+    },
+    {
+      "feature": "P_Dur_Global",
+      "missing_pct": 9.322,
+      "flagged": true
+    },
+    {
+      "feature": "PR_Int_Global",
+      "missing_pct": 9.234,
+      "flagged": true
+    },
+    {
+      "feature": "P_AxisFront_Global",
+      "missing_pct": 9.147,
+      "flagged": true
+    },
+    {
+      "feature": "HR_Atrial_Global",
+      "missing_pct": 7.257,
+      "flagged": true
+    },
+    {
+      "feature": "T_AxisFront_Global",
+      "missing_pct": 0.018,
+      "flagged": false
+    },
+    {
+      "feature": "R_AxisFrontal_Global",
+      "missing_pct": 0.005,
+      "flagged": false
+    },
+    {
+      "feature": "P_Area_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Dur_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Amp_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Area_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_PeakTime_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_PeakTime_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Dur_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Amp_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Area_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpMax_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp116_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp18_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Amp_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpMin_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_AmpSpecial_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AmpPP_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Max_R_Amp_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Dur_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Dur_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Amp_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Off_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_AmpSpecial_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AmpPP_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Max_R_Amp_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Max_S_Amp_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Amp_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Dur_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Amp_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Dur_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Area_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_PeakTime_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_AreaFull_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Amp_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_AreaFull_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_OnsAmp_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Amp_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Dur_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Amp_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Dur_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Area_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_PeakTime_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Amp_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Dur_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Max_S_Amp_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Dur_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Dur_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_AmpSpecial_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Amp_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Dur_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Area_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_PeakTime_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp116_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp18_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpMax_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpMin_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AmpPP_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Amp_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Max_R_Amp_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Max_S_Amp_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Amp_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Dur_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Amp_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Dur_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Area_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_PeakTime_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Off_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_PeakTime_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Area_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Dur_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Amp_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpMax_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Area_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_PeakTime_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Off_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_AreaFull_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_AreaFull_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_OnsAmp_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Amp_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Dur_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Amp_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Dur_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Area_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_PeakTime_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Amp_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Dur_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Amp_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Dur_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Amp_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Dur_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpMin_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp18_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_AreaFull_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AmpPP_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Max_S_Amp_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Amp_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Dur_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Amp_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Dur_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Area_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_PeakTime_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Off_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_AreaFull_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_AreaFull_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_OnsAmp_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Amp_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Dur_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Amp_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Dur_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Area_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_PeakTime_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Amp_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Dur_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Amp_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Dur_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Max_R_Amp_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_AmpSpecial_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Dur_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpMin_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Dur_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Area_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_PeakTime_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Amp_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Dur_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Amp_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Dur_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Amp_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Dur_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Amp_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Dur_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Area_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_PeakTime_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Amp_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Dur_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Area_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_PeakTime_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp116_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp18_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpMax_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Amp_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Amp_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp116_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_AreaFull_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Amp_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Dur_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Amp_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Dur_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Area_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_PeakTime_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Amp_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Dur_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Amp_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Dur_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Amp_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Dur_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Amp_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Dur_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Area_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_PeakTime_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Amp_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Dur_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Area_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_PeakTime_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_OnsAmp_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_AreaFull_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Dur_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Off_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Area_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_PeakTime_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Amp_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Dur_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Area_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_PeakTime_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp116_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp18_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpMax_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpMin_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_AmpSpecial_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AmpPP_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Max_R_Amp_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Max_S_Amp_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Amp_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Dur_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Amp_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Dur_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Area_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_PeakTime_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_AreaFull_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Dur_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_OnsAmp_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Amp_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Morph_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Dur_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Dur_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Amp_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Amp_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Morph_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_DurFull_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_DurFull_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Dur_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Dur_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Amp_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Amp_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Morph_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Dur_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Dur_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Amp_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Amp_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Morph_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_DurFull_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_DurFull_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Dur_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Amp_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Amp_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Dur_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Dur_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Morph_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Dur_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Dur_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Amp_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Amp_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Morph_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_DurFull_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_DurFull_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Dur_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Amp_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Dur_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Amp_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Morph_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Dur_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Dur_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Amp_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Amp_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Morph_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_DurFull_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_DurFull_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Dur_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Amp_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Amp_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Amp_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Dur_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Dur_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Amp_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Amp_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Morph_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_DurFull_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_DurFull_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Dur_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Dur_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Amp_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Amp_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Morph_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Dur_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Dur_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Amp_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Amp_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Morph_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_DurFull_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Found_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "HR__Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Morph_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Amp_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Morph_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Amp_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Dur_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Dur_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Amp_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Amp_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Morph_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_DurFull_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_DurFull_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Dur_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Dur_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Amp_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Dur_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Morph_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Dur_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Dur_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Amp_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Amp_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Morph_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_DurFull_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_DurFull_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Dur_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Amp_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Amp_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Dur_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_PeakTime_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_AmpSpecial_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AmpPP_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Max_R_Amp_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Max_S_Amp_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Amp_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Dur_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Amp_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Dur_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Area_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Off_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpMax_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_AreaFull_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_AreaFull_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QT_IntCorr_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Count_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_On_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Off_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QT_IntFridericia_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QT_IntFramingham_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_DurFull_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpMin_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp18_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Dur_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Amp_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Dur_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Amp_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Dur_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Area_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_PeakTime_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Amp_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Dur_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Amp_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Dur_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Dur_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp116_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Amp_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Dur_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Area_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_PeakTime_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Amp_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Dur_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Area_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_PeakTime_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Dur_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Amp_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Dur_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Dur_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Morph_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Dur_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Dur_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Amp_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Amp_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Morph_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_DurFull_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_DurFull_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Dur_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Amp_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Amp_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Amp_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Morph_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Dur_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Dur_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Amp_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Amp_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Morph_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_DurFull_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_DurFull_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Amp_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Dur_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Amp_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Dur_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Morph_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Dur_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Dur_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Amp_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Amp_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Morph_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_DurFull_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_DurFull_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Dur_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Amp_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P+_Dur_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P-_Amp_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Morph_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Dur_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Dur_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T+_Amp_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T-_Amp_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Morph_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_DurFull_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_DurFull_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Amp_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_OnsAmp_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Amp_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_On_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_PeakTime_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Area_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_PeakTime_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Area_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_PeakTime_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Balance_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Area_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_PeakTime_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Area_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Area_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_PeakTime_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Area_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_PeakTime_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Area_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_PeakTime_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Area_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_PeakTime_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Balance_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Area_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_PeakTime_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Area_aVF",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Area_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_PeakTime_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Area_aVL",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Area_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_PeakTime_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Area_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_PeakTime_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Area_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_PeakTime_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Balance_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Area_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_PeakTime_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Area_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_PeakTime_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Area_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Area_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_PeakTime_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Area_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_PeakTime_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Area_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_PeakTime_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Balance_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Area_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_PeakTime_aVR",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ecg_id",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Off_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Amp_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_On_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Dur_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Area_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_PeakTime_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp116_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp18_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpMax_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpMin_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_AmpSpecial_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AmpPP_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Max_R_Amp_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Max_S_Amp_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Amp_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Dur_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Amp_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Dur_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Area_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_PeakTime_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Off_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_AreaFull_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_AreaFull_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Amp_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_PeakTime_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Area_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Amp_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Off_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Dur_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QT_Int_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QT_IntBazett_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "HR_Ventr_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "RR_Mean_Global",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_OnsAmp_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Amp_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Dur_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Dur_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Dur_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Area_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_PeakTime_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Amp_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Dur_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Amp_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Dur_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Amp_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Dur_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Amp_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Area_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_PeakTime_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Area_III",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Area_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Area_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_PeakTime_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Area_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_PeakTime_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Area_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_PeakTime_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Balance_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Area_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_PeakTime_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Area_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Area_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_PeakTime_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Area_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_PeakTime_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Area_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_PeakTime_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Area_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_PeakTime_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Balance_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Area_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_PeakTime_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_PeakTime_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Area_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Area_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Area_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Area_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_PeakTime_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Area_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_PeakTime_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Area_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_PeakTime_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Balance_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Area_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_PeakTime_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Area_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_PeakTime_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_PeakTime_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Area_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_PeakTime_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Area_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_PeakTime_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Area_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_PeakTime_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Balance_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Area_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Area_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Area_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_PeakTime_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Area_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_PeakTime_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Area_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_PeakTime_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Area_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_PeakTime_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Balance_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Area_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_PeakTime_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Area_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_PeakTime_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_PeakTime_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Area_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_PeakTime_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Area_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_PeakTime_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Area_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_PeakTime_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Balance_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Area_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_PeakTime_V6",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Area_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Area_V5",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Area_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Area_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_PeakTime_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Area_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_PeakTime_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Area_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_PeakTime_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Balance_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Area_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_PeakTime_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Area_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_PeakTime_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Area_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Area_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_PeakTime_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Area_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_PeakTime_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Area_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_PeakTime_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_Balance_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Area_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_PeakTime_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_OnsAmp_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Dur_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_PeakTime_I",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Amp_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Dur_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Amp_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Dur_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Amp_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Dur_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Amp_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Dur_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Area_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_PeakTime_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Amp_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Dur_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Area_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_PeakTime_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp116_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp18_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpMax_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpMin_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_AmpSpecial_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AmpPP_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Max_R_Amp_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Amp_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_PeakTime_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Area_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Amp_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp18_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpMax_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpMin_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_AmpSpecial_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AmpPP_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Max_R_Amp_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Max_S_Amp_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Amp_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Dur_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Dur_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Dur_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Area_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_PeakTime_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Off_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_AreaFull_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_AreaFull_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_OnsAmp_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Amp_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Dur_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Amp_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Max_S_Amp_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Dur_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Amp_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Amp_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Dur_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Area_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_PeakTime_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp116_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp18_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpMax_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpMin_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_AmpSpecial_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AmpPP_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Max_R_Amp_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Max_S_Amp_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Amp_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Dur_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Amp_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Dur_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Area_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_PeakTime_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Off_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_AreaFull_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_AreaFull_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Amp_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_PeakTime_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Area_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Amp_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Dur_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Area_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_PeakTime_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Off_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_AreaFull_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_AreaFull_V3",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_OnsAmp_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Amp_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Dur_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Dur_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Dur_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Area_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_PeakTime_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Amp_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Dur_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Amp_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Dur_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Amp_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Dur_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Amp_V4",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp116_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_PeakTime_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Area_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Max_R_Amp_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Max_S_Amp_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Amp_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Dur_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Amp_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Dur_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Area_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_PeakTime_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Off_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_AreaFull_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_AreaFull_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_OnsAmp_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Amp_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Dur_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Amp_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Dur_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Area_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_PeakTime_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Amp_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Dur_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Amp_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AmpPP_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_AmpSpecial_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpMin_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Amp_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Dur_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Area_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_PeakTime_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Amp_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Dur_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Amp_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Dur_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Amp_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Dur_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Dur_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpMax_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Area_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_PeakTime_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Amp_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Dur_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Area_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_PeakTime_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp116_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp18_II",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Dur_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Amp_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Dur_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Dur_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_AreaFull_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_OnsAmp_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Amp_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Dur_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Amp_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Dur_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_Area_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Pp_PeakTime_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Q_Amp_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Amp_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Off_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "R_Dur_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Amp_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "S_Dur_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Amp_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Dur_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Area_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_PeakTime_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Amp_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Dur_V2",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_AreaFull_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_PeakTime_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Amp_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp18_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Dur_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_Area_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Rp_PeakTime_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Amp_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Dur_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_Area_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Sp_PeakTime_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_Amp116_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpMax_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Area_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "ST_AmpMin_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_AmpSpecial_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "QRS_AmpPP_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Max_R_Amp_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Max_S_Amp_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Amp_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "T_Dur_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Amp_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "Tp_Dur_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    },
+    {
+      "feature": "P_Term_V1",
+      "missing_pct": 0.0,
+      "flagged": false
+    }
+  ]
+}

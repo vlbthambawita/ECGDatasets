@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PTB-XL+ ECG Dataset Analysis Report</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f4f6f9; color: #222; display: flex; min-height: 100vh; }
+
+  #sidebar {
+    width: 230px; min-width: 230px; background: #1a2233; color: #c8d0e0;
+    position: sticky; top: 0; height: 100vh; overflow-y: auto;
+    display: flex; flex-direction: column; padding: 0;
+  }
+  #sidebar .logo { padding: 24px 20px 16px; font-size: 0.95rem; font-weight: 700;
+    color: #fff; border-bottom: 1px solid #2d3a52; letter-spacing: .02em; line-height: 1.4; }
+  #sidebar .logo span { font-size: 0.72rem; font-weight: 400; color: #7a8baa; display: block; margin-top: 3px; }
+  #sidebar nav a {
+    display: block; padding: 9px 20px; color: #9aa5bc; text-decoration: none;
+    font-size: 0.8rem; border-left: 3px solid transparent; transition: all .15s;
+  }
+  #sidebar nav a:hover, #sidebar nav a.active { color: #fff; background: #243050; border-left-color: #4f8ef7; }
+  #sidebar nav .nav-section { padding: 12px 20px 4px; font-size: 0.68rem;
+    text-transform: uppercase; letter-spacing: .08em; color: #5a6580; }
+
+  #main { flex: 1; padding: 32px 36px; max-width: 1300px; }
+
+  #overview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
+    gap: 14px; margin-bottom: 36px; }
+  .stat-card { background: #fff; border-radius: 10px; padding: 18px 22px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+  .stat-card .val { font-size: 1.8rem; font-weight: 700; color: #1a2233; line-height: 1; }
+  .stat-card .lbl { font-size: 0.75rem; color: #666; margin-top: 6px; }
+  .stat-card .sub { font-size: 0.7rem; color: #999; margin-top: 2px; }
+
+  .section { margin-bottom: 52px; scroll-margin-top: 20px; }
+  .section h2 { font-size: 1.2rem; font-weight: 700; color: #1a2233;
+    margin-bottom: 4px; padding-bottom: 8px; border-bottom: 2px solid #e2e8f0; }
+  .section .subtitle { font-size: 0.82rem; color: #666; margin-bottom: 18px; }
+
+  .tab-bar { display: flex; gap: 4px; margin-bottom: 14px; }
+  .tab-btn { padding: 5px 14px; border: 1px solid #d0d7e2; border-radius: 5px;
+    background: #f7f9fc; color: #556; cursor: pointer; font-size: 0.78rem; transition: all .12s; }
+  .tab-btn.active { background: #4f8ef7; border-color: #4f8ef7; color: #fff; }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+
+  .chart-card { background: #fff; border-radius: 10px; padding: 22px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.08); margin-bottom: 14px; }
+  .chart-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .chart-title { font-size: 0.92rem; font-weight: 600; color: #333; }
+  .btn { font-size: 0.73rem; padding: 4px 11px; border: 1px solid #d0d7e2;
+    border-radius: 5px; background: #f7f9fc; color: #445; cursor: pointer;
+    text-decoration: none; transition: background .12s; }
+  .btn:hover { background: #e8edf5; }
+  .btn-group { display: flex; gap: 6px; }
+  svg { display: block; }
+
+  .table-wrap { overflow-x: auto; margin-top: 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.79rem; }
+  th { background: #f0f4fa; color: #445; font-weight: 600; padding: 7px 11px;
+    text-align: left; border-bottom: 2px solid #dde3ef; }
+  td { padding: 6px 11px; border-bottom: 1px solid #eef1f6; color: #334; }
+  tr:hover td { background: #f7f9fd; }
+
+  .bar-missing { fill: #ef4444; }
+  .bar-ok { fill: #4f8ef7; }
+  .bar-12sl { fill: #4f8ef7; }
+  .bar-sl12 { fill: #22c55e; }
+  .bar-fid { fill: #f59e0b; }
+  .bar-mb { fill: #a78bfa; }
+
+  .tooltip { position: absolute; background: rgba(20,30,50,.9); color: #fff;
+    padding: 6px 11px; border-radius: 6px; font-size: 0.76rem; pointer-events: none;
+    opacity: 0; transition: opacity .12s; white-space: nowrap; z-index: 999; }
+
+  .legend { display: flex; align-items: center; gap: 10px; font-size: 0.74rem; color: #667; margin-top: 8px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+  .legend-swatch { width: 14px; height: 12px; border-radius: 2px; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.7rem; font-weight: 600; }
+  .badge-ok { background: #dcfce7; color: #166534; }
+  .badge-warn { background: #fef9c3; color: #854d0e; }
+  .badge-flag { background: #fee2e2; color: #991b1b; }
+
+  @media (max-width: 960px) {
+    #sidebar { display: none; }
+    #main { padding: 18px; }
+    .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside id="sidebar">
+  <div class="logo">PTB-XL+ Analysis<span>v1.0.1 · physionet.org</span></div>
+  <nav>
+    <div class="nav-section">Overview</div>
+    <a href="#summary">Dataset Summary</a>
+    <a href="#coverage">Record Coverage</a>
+    <div class="nav-section">Features</div>
+    <a href="#feat-missing">Missing Values</a>
+    <a href="#feat-stats">Key Interval Stats</a>
+    <div class="nav-section">Labels</div>
+    <a href="#ptbxl-labels">PTB-XL Labels</a>
+    <a href="#sl12-labels">12SL Labels</a>
+    <a href="#cooccurrence">Co-occurrence</a>
+    <a href="#snomed">SNOMED Coverage</a>
+    <div class="nav-section">Signals</div>
+    <a href="#fiducial">Fiducial Points</a>
+    <a href="#median-beats">Median Beats</a>
+    <div class="nav-section">Cross-Source</div>
+    <a href="#agreement">Label Agreement</a>
+  </nav>
+</aside>
+
+<!-- MAIN -->
+<main id="main">
+  <h1 style="font-size:1.5rem;font-weight:800;color:#1a2233;margin-bottom:6px;">PTB-XL+ Dataset Analysis Report</h1>
+  <p style="font-size:0.85rem;color:#666;margin-bottom:28px;">
+    PTB-XL+: A Comprehensive Electrocardiographic Feature Dataset &nbsp;·&nbsp;
+    <a href="https://physionet.org/content/ptb-xl-plus/1.0.1/" style="color:#4f8ef7;" target="_blank">physionet.org ↗</a> &nbsp;·&nbsp;
+    <a href="https://doi.org/10.1038/s41597-023-02153-8" style="color:#4f8ef7;" target="_blank">Paper ↗</a>
+  </p>
+
+  <!-- ─── SUMMARY ─── -->
+  <section class="section" id="summary">
+    <h2>Dataset Summary</h2>
+    <p class="subtitle">High-level counts across all data sources in PTB-XL+ v1.0.1.</p>
+    <div id="overview-grid"></div>
+  </section>
+
+  <!-- ─── COVERAGE ─── -->
+  <section class="section" id="coverage">
+    <h2>Record Coverage by Source</h2>
+    <p class="subtitle">Number of ECG records available in each component versus the canonical RECORDS file.</p>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Records per data source</span>
+        <div class="btn-group">
+          <button class="btn" onclick="downloadSVG('coverage-svg','record_coverage')">Download SVG</button>
+          <button class="btn" onclick="downloadTableCSV('coverage-table','record_coverage')">Download CSV</button>
+        </div>
+      </div>
+      <svg id="coverage-svg"></svg>
+      <div class="table-wrap"><table id="coverage-table"></table></div>
+    </div>
+  </section>
+
+  <!-- ─── FEATURE MISSING ─── -->
+  <section class="section" id="feat-missing">
+    <h2>Feature Missing Values</h2>
+    <p class="subtitle">Percentage of missing values per feature, by algorithm source. Features above 5% threshold are flagged.</p>
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('miss','12sl',this)">12SL</button>
+      <button class="tab-btn" onclick="switchTab('miss','ecgdeli',this)">ECGDeli</button>
+      <button class="tab-btn" onclick="switchTab('miss','unig',this)">UNIG</button>
+    </div>
+    <div id="miss-12sl" class="tab-pane active">
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-title">12SL — top features by missing %</span>
+          <div class="btn-group">
+            <button class="btn" onclick="downloadSVG('miss-svg-12sl','feature_missing_12sl')">Download SVG</button>
+            <button class="btn" onclick="downloadTableCSV('miss-tbl-12sl','feature_missing_12sl')">Download CSV</button>
+          </div>
+        </div>
+        <svg id="miss-svg-12sl"></svg>
+        <div class="table-wrap"><table id="miss-tbl-12sl"></table></div>
+      </div>
+    </div>
+    <div id="miss-ecgdeli" class="tab-pane">
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-title">ECGDeli — top features by missing %</span>
+          <div class="btn-group">
+            <button class="btn" onclick="downloadSVG('miss-svg-ecgdeli','feature_missing_ecgdeli')">Download SVG</button>
+            <button class="btn" onclick="downloadTableCSV('miss-tbl-ecgdeli','feature_missing_ecgdeli')">Download CSV</button>
+          </div>
+        </div>
+        <svg id="miss-svg-ecgdeli"></svg>
+        <div class="table-wrap"><table id="miss-tbl-ecgdeli"></table></div>
+      </div>
+    </div>
+    <div id="miss-unig" class="tab-pane">
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-title">UNIG — top features by missing %</span>
+          <div class="btn-group">
+            <button class="btn" onclick="downloadSVG('miss-svg-unig','feature_missing_unig')">Download SVG</button>
+            <button class="btn" onclick="downloadTableCSV('miss-tbl-unig','feature_missing_unig')">Download CSV</button>
+          </div>
+        </div>
+        <svg id="miss-svg-unig"></svg>
+        <div class="table-wrap"><table id="miss-tbl-unig"></table></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FEATURE STATS ─── -->
+  <section class="section" id="feat-stats">
+    <h2>Key Interval &amp; Amplitude Statistics</h2>
+    <p class="subtitle">Summary statistics for clinically important ECG features (P/QRS/T durations, PR/QT intervals, amplitudes) across all records.</p>
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('fstats','12sl',this)">12SL</button>
+      <button class="tab-btn" onclick="switchTab('fstats','ecgdeli',this)">ECGDeli</button>
+      <button class="tab-btn" onclick="switchTab('fstats','unig',this)">UNIG</button>
+    </div>
+    <div id="fstats-12sl" class="tab-pane active">
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-title">12SL feature statistics</span>
+          <button class="btn" onclick="downloadTableCSV('fstats-tbl-12sl','feature_stats_12sl')">Download CSV</button>
+        </div>
+        <div class="table-wrap"><table id="fstats-tbl-12sl"></table></div>
+      </div>
+    </div>
+    <div id="fstats-ecgdeli" class="tab-pane">
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-title">ECGDeli feature statistics</span>
+          <button class="btn" onclick="downloadTableCSV('fstats-tbl-ecgdeli','feature_stats_ecgdeli')">Download CSV</button>
+        </div>
+        <div class="table-wrap"><table id="fstats-tbl-ecgdeli"></table></div>
+      </div>
+    </div>
+    <div id="fstats-unig" class="tab-pane">
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-title">UNIG feature statistics</span>
+          <button class="btn" onclick="downloadTableCSV('fstats-tbl-unig','feature_stats_unig')">Download CSV</button>
+        </div>
+        <div class="table-wrap"><table id="fstats-tbl-unig"></table></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PTB-XL LABELS ─── -->
+  <section class="section" id="ptbxl-labels">
+    <h2>PTB-XL Label Frequency (SCP Codes)</h2>
+    <p class="subtitle">Most common SCP diagnostic codes from cardiologist annotations in PTB-XL.</p>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Top SCP codes by record count</span>
+        <div class="btn-group">
+          <button class="btn" onclick="downloadSVG('ptbxl-lbl-svg','ptbxl_label_freq')">Download SVG</button>
+          <button class="btn" onclick="downloadTableCSV('ptbxl-lbl-tbl','ptbxl_label_freq')">Download CSV</button>
+        </div>
+      </div>
+      <svg id="ptbxl-lbl-svg"></svg>
+      <div class="table-wrap"><table id="ptbxl-lbl-tbl"></table></div>
+    </div>
+  </section>
+
+  <!-- ─── 12SL LABELS ─── -->
+  <section class="section" id="sl12-labels">
+    <h2>12SL Algorithm Statement Frequency</h2>
+    <p class="subtitle">Most common automated diagnostic statements from the 12SL algorithm.</p>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Top 12SL statements by record count</span>
+        <div class="btn-group">
+          <button class="btn" onclick="downloadSVG('sl12-lbl-svg','12sl_label_freq')">Download SVG</button>
+          <button class="btn" onclick="downloadTableCSV('sl12-lbl-tbl','12sl_label_freq')">Download CSV</button>
+        </div>
+      </div>
+      <svg id="sl12-lbl-svg"></svg>
+      <div class="table-wrap"><table id="sl12-lbl-tbl"></table></div>
+    </div>
+  </section>
+
+  <!-- ─── CO-OCCURRENCE ─── -->
+  <section class="section" id="cooccurrence">
+    <h2>Label Co-occurrence</h2>
+    <p class="subtitle">How often pairs of labels appear together in the same record (top labels shown).</p>
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('cooc','ptbxl',this)">PTB-XL</button>
+      <button class="tab-btn" onclick="switchTab('cooc','12sl',this)">12SL</button>
+    </div>
+    <div id="cooc-ptbxl" class="tab-pane active">
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-title">PTB-XL SCP code co-occurrence heatmap</span>
+          <button class="btn" onclick="downloadSVG('cooc-svg-ptbxl','cooc_ptbxl')">Download SVG</button>
+        </div>
+        <svg id="cooc-svg-ptbxl"></svg>
+      </div>
+    </div>
+    <div id="cooc-12sl" class="tab-pane">
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-title">12SL statement co-occurrence heatmap</span>
+          <button class="btn" onclick="downloadSVG('cooc-svg-12sl','cooc_12sl')">Download SVG</button>
+        </div>
+        <svg id="cooc-svg-12sl"></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SNOMED ─── -->
+  <section class="section" id="snomed">
+    <h2>SNOMED CT Coverage</h2>
+    <p class="subtitle">How many SNOMED CT concepts from the dataset description file are covered by each label source.</p>
+    <div class="two-col">
+      <div class="chart-card">
+        <div class="chart-header">
+          <span class="chart-title">SNOMED concept coverage</span>
+          <button class="btn" onclick="downloadSVG('snomed-svg','snomed_coverage')">Download SVG</button>
+        </div>
+        <svg id="snomed-svg"></svg>
+      </div>
+      <div class="chart-card" style="display:flex;flex-direction:column;justify-content:center;">
+        <div id="snomed-stats" style="font-size:0.85rem;line-height:2.1;color:#334;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FIDUCIAL POINTS ─── -->
+  <section class="section" id="fiducial">
+    <h2>Fiducial Point Coverage (ECGDeli)</h2>
+    <p class="subtitle">Number of records with ECGDeli delineation annotations per lead.</p>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Records with .atr annotation files per lead</span>
+        <div class="btn-group">
+          <button class="btn" onclick="downloadSVG('fid-svg','fiducial_coverage')">Download SVG</button>
+          <button class="btn" onclick="downloadTableCSV('fid-tbl','fiducial_coverage')">Download CSV</button>
+        </div>
+      </div>
+      <svg id="fid-svg"></svg>
+      <div class="table-wrap"><table id="fid-tbl"></table></div>
+    </div>
+  </section>
+
+  <!-- ─── MEDIAN BEATS ─── -->
+  <section class="section" id="median-beats">
+    <h2>Median Beat Coverage</h2>
+    <p class="subtitle">Number of records with median beat waveform files (.dat/.hea) for each algorithm.</p>
+    <div class="two-col">
+      <div class="chart-card">
+        <div class="chart-header"><span class="chart-title">12SL median beats</span></div>
+        <div id="mb-12sl-stats" style="font-size:0.85rem;line-height:2;color:#334;padding:8px 0;"></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-header"><span class="chart-title">UNIG median beats</span></div>
+        <div id="mb-unig-stats" style="font-size:0.85rem;line-height:2;color:#334;padding:8px 0;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── AGREEMENT ─── -->
+  <section class="section" id="agreement">
+    <h2>Cross-Source Label Agreement</h2>
+    <p class="subtitle">
+      Agreement between PTB-XL cardiologist annotations and 12SL algorithm statements, compared via shared SNOMED CT concepts.
+      "Both" = concept flagged by both sources in the same record.
+    </p>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Top SNOMED concepts — agreement breakdown</span>
+        <div class="btn-group">
+          <button class="btn" onclick="downloadSVG('agree-svg','cross_source_agreement')">Download SVG</button>
+          <button class="btn" onclick="downloadTableCSV('agree-tbl','cross_source_agreement')">Download CSV</button>
+        </div>
+      </div>
+      <svg id="agree-svg"></svg>
+      <div class="table-wrap"><table id="agree-tbl"></table></div>
+    </div>
+  </section>
+
+</main>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+// ──────────────────────────────────────────────────────────
+// Inline JSON data
+// ──────────────────────────────────────────────────────────
+const DATA = {
+{% for key, blob in json_blobs.items() %}
+  {{ key }}: {{ blob }},
+{% endfor %}
+};
+
+// ──────────────────────────────────────────────────────────
+// D3 source
+// ──────────────────────────────────────────────────────────
+</script>
+<script>{{ d3_source }}</script>
+<script>
+// ──────────────────────────────────────────────────────────
+// Utilities
+// ──────────────────────────────────────────────────────────
+const tip = d3.select("#tooltip");
+
+function showTip(html, event) {
+  tip.style("opacity", 1).html(html)
+    .style("left", (event.pageX + 14) + "px")
+    .style("top",  (event.pageY - 28) + "px");
+}
+function hideTip() { tip.style("opacity", 0); }
+
+function downloadSVG(svgId, filename) {
+  const svg = document.getElementById(svgId);
+  if (!svg) return;
+  const clone = svg.cloneNode(true);
+  clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  const styles = Array.from(document.styleSheets).flatMap(s => {
+    try { return Array.from(s.cssRules).map(r => r.cssText); } catch { return []; }
+  }).join("\n");
+  const styleEl = document.createElementNS("http://www.w3.org/2000/svg","style");
+  styleEl.textContent = styles;
+  clone.prepend(styleEl);
+  const blob = new Blob(["<?xml version='1.0'?>\n" + clone.outerHTML], {type:"image/svg+xml"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = filename + ".svg";
+  a.click();
+}
+
+function downloadTableCSV(tableId, filename) {
+  const tbl = document.getElementById(tableId);
+  if (!tbl) return;
+  const rows = [];
+  for (const row of tbl.querySelectorAll("tr")) {
+    rows.push(Array.from(row.querySelectorAll("th,td")).map(c => JSON.stringify(c.textContent.trim())).join(","));
+  }
+  const blob = new Blob([rows.join("\n")], {type:"text/csv"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = filename + ".csv";
+  a.click();
+}
+
+function switchTab(group, tab, btn) {
+  document.querySelectorAll(`[id^="${group}-"]`).forEach(el => el.classList.remove("active"));
+  document.querySelectorAll(`#${group}-${tab}`).forEach(el => el.classList.add("active"));
+  btn.closest(".tab-bar").querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+}
+
+// ──────────────────────────────────────────────────────────
+// Sidebar active state
+// ──────────────────────────────────────────────────────────
+const sections = document.querySelectorAll(".section");
+const navLinks = document.querySelectorAll("#sidebar nav a");
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove("active"));
+      const link = document.querySelector(`#sidebar nav a[href="#${e.target.id}"]`);
+      if (link) link.classList.add("active");
+    }
+  });
+}, { threshold: 0.25 });
+sections.forEach(s => observer.observe(s));
+
+// ──────────────────────────────────────────────────────────
+// Helper: make a simple horizontal bar chart
+// ──────────────────────────────────────────────────────────
+function makeHBar(svgId, items, valueKey, labelKey, colorClass, topN = 30) {
+  const data = items.slice(0, topN);
+  const margin = {top: 6, right: 80, bottom: 10, left: 180};
+  const rowH = 22;
+  const W = Math.min(800, document.getElementById(svgId).parentElement.clientWidth - 20);
+  const H = data.length * rowH + margin.top + margin.bottom;
+
+  const svg = d3.select(`#${svgId}`).attr("width", W).attr("height", H);
+  svg.selectAll("*").remove();
+  const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+  const innerW = W - margin.left - margin.right;
+  const x = d3.scaleLinear().domain([0, d3.max(data, d => d[valueKey]) || 1]).range([0, innerW]);
+  const y = d3.scaleBand().domain(data.map(d => d[labelKey])).range([0, H - margin.top - margin.bottom]).padding(0.2);
+
+  g.selectAll(".bar")
+    .data(data).join("rect")
+    .attr("class", colorClass)
+    .attr("x", 0)
+    .attr("y", d => y(d[labelKey]))
+    .attr("width", d => x(d[valueKey]))
+    .attr("height", y.bandwidth())
+    .on("mouseover", (event, d) => showTip(`<b>${d[labelKey]}</b><br/>${valueKey}: ${d[valueKey]}`, event))
+    .on("mouseout", hideTip);
+
+  g.selectAll(".val-label")
+    .data(data).join("text")
+    .attr("x", d => x(d[valueKey]) + 4)
+    .attr("y", d => y(d[labelKey]) + y.bandwidth() / 2 + 4)
+    .attr("font-size", 10)
+    .attr("fill", "#556")
+    .text(d => d[valueKey].toLocaleString());
+
+  g.selectAll(".y-label")
+    .data(data).join("text")
+    .attr("x", -6)
+    .attr("y", d => y(d[labelKey]) + y.bandwidth() / 2 + 4)
+    .attr("text-anchor", "end")
+    .attr("font-size", 11)
+    .attr("fill", "#334")
+    .text(d => {
+      const s = String(d[labelKey]);
+      return s.length > 24 ? s.slice(0, 23) + "…" : s;
+    });
+}
+
+// ──────────────────────────────────────────────────────────
+// Helper: make a simple vertical bar chart
+// ──────────────────────────────────────────────────────────
+function makeVBar(svgId, items, xKey, yKey, colorClass) {
+  const margin = {top: 16, right: 20, bottom: 80, left: 70};
+  const W = Math.min(900, document.getElementById(svgId).parentElement.clientWidth - 20);
+  const H = 300;
+  const svg = d3.select(`#${svgId}`).attr("width", W).attr("height", H);
+  svg.selectAll("*").remove();
+  const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+  const innerW = W - margin.left - margin.right;
+  const innerH = H - margin.top - margin.bottom;
+
+  const x = d3.scaleBand().domain(items.map(d => d[xKey])).range([0, innerW]).padding(0.25);
+  const y = d3.scaleLinear().domain([0, d3.max(items, d => d[yKey]) || 1]).nice().range([innerH, 0]);
+
+  g.append("g").attr("transform", `translate(0,${innerH})`).call(d3.axisBottom(x))
+    .selectAll("text").attr("transform","rotate(-40)").attr("text-anchor","end").attr("font-size", 10);
+  g.append("g").call(d3.axisLeft(y).ticks(5));
+
+  g.selectAll(".bar").data(items).join("rect")
+    .attr("class", colorClass)
+    .attr("x", d => x(d[xKey])).attr("y", d => y(d[yKey]))
+    .attr("width", x.bandwidth()).attr("height", d => innerH - y(d[yKey]))
+    .on("mouseover", (event, d) => showTip(`<b>${d[xKey]}</b><br/>${d[yKey].toLocaleString()}`, event))
+    .on("mouseout", hideTip);
+}
+
+// ──────────────────────────────────────────────────────────
+// Helper: make table
+// ──────────────────────────────────────────────────────────
+function makeTable(tableId, columns, rows) {
+  const tbl = document.getElementById(tableId);
+  if (!tbl) return;
+  tbl.innerHTML = "";
+  const thead = tbl.createTHead();
+  const hr = thead.insertRow();
+  columns.forEach(c => { const th = document.createElement("th"); th.textContent = c.label; hr.appendChild(th); });
+  const tbody = tbl.createTBody();
+  rows.slice(0, 100).forEach(row => {
+    const tr = tbody.insertRow();
+    columns.forEach(c => {
+      const td = tr.insertCell();
+      td.textContent = c.fmt ? c.fmt(row[c.key]) : (row[c.key] ?? "");
+    });
+  });
+}
+
+// ──────────────────────────────────────────────────────────
+// Helper: co-occurrence heatmap
+// ──────────────────────────────────────────────────────────
+function makeCoocHeatmap(svgId, labels, matrix) {
+  const N = labels.length;
+  const cellSize = Math.max(14, Math.min(28, Math.floor((800 - 160) / N)));
+  const margin = {top: 140, right: 20, bottom: 10, left: 140};
+  const W = cellSize * N + margin.left + margin.right;
+  const H = cellSize * N + margin.top + margin.bottom;
+
+  const svg = d3.select(`#${svgId}`).attr("width", W).attr("height", H);
+  svg.selectAll("*").remove();
+  const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+  const maxVal = d3.max(matrix.flat()) || 1;
+  const color = d3.scaleSequential(d3.interpolateBlues).domain([0, maxVal]);
+
+  // cells
+  for (let i = 0; i < N; i++) {
+    for (let j = 0; j < N; j++) {
+      const v = matrix[i][j];
+      g.append("rect")
+        .attr("x", j * cellSize).attr("y", i * cellSize)
+        .attr("width", cellSize - 1).attr("height", cellSize - 1)
+        .attr("fill", color(v))
+        .on("mouseover", event => showTip(`<b>${labels[i]}</b> ∩ <b>${labels[j]}</b><br/>Co-occur: ${v}`, event))
+        .on("mouseout", hideTip);
+    }
+  }
+
+  // col labels (rotated)
+  g.selectAll(".col-label").data(labels).join("text")
+    .attr("class", "col-label")
+    .attr("x", (d, i) => i * cellSize + cellSize / 2)
+    .attr("y", -4)
+    .attr("transform", (d, i) => `rotate(-45,${i * cellSize + cellSize / 2},-4)`)
+    .attr("text-anchor", "start")
+    .attr("font-size", Math.min(10, cellSize - 2))
+    .attr("fill", "#334")
+    .text(d => d.length > 10 ? d.slice(0, 9) + "…" : d);
+
+  // row labels
+  g.selectAll(".row-label").data(labels).join("text")
+    .attr("class", "row-label")
+    .attr("x", -4).attr("y", (d, i) => i * cellSize + cellSize / 2 + 4)
+    .attr("text-anchor", "end")
+    .attr("font-size", Math.min(10, cellSize - 2))
+    .attr("fill", "#334")
+    .text(d => d.length > 16 ? d.slice(0, 15) + "…" : d);
+}
+
+// ──────────────────────────────────────────────────────────
+// Render sections
+// ──────────────────────────────────────────────────────────
+
+// ── Summary cards ──
+(function() {
+  const d = DATA.dataset_summary;
+  if (!d) return;
+  const items = [
+    {val: d.canonical_records?.toLocaleString() || "—", lbl: "Canonical Records", sub: "from RECORDS file"},
+    {val: d.features?.["12sl"]?.features || "—", lbl: "12SL Features", sub: `${(d.features?.["12sl"]?.records||0).toLocaleString()} records`},
+    {val: d.features?.ecgdeli?.features || "—", lbl: "ECGDeli Features", sub: `${(d.features?.ecgdeli?.records||0).toLocaleString()} records`},
+    {val: d.features?.unig?.features || "—", lbl: "UNIG Features", sub: `${(d.features?.unig?.records||0).toLocaleString()} records`},
+    {val: d.labels?.ptbxl_records?.toLocaleString() || "—", lbl: "PTB-XL Labels", sub: "SCP codes"},
+    {val: d.labels?.["12sl_records"]?.toLocaleString() || "—", lbl: "12SL Labels", sub: "algorithm statements"},
+    {val: d.snomed?.total_in_description?.toLocaleString() || "—", lbl: "SNOMED Concepts", sub: "in description file"},
+    {val: d.fiducial_points?.records_with_global?.toLocaleString() || "—", lbl: "Fiducial Records", sub: "ECGDeli .atr files"},
+    {val: d.median_beats?.["12sl_records"]?.toLocaleString() || "—", lbl: "12SL Median Beats", sub: ".dat/.hea pairs"},
+    {val: d.median_beats?.unig_records?.toLocaleString() || "—", lbl: "UNIG Median Beats", sub: ".dat/.hea pairs"},
+  ];
+  const grid = document.getElementById("overview-grid");
+  items.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "stat-card";
+    card.innerHTML = `<div class="val">${item.val}</div><div class="lbl">${item.lbl}</div><div class="sub">${item.sub}</div>`;
+    grid.appendChild(card);
+  });
+})();
+
+// ── Record coverage ──
+(function() {
+  const d = DATA.record_coverage;
+  if (!d || !d.sources) return;
+  const canonical = d.canonical_count || 0;
+  const items = Object.entries(d.sources).map(([name, info]) => ({
+    name: name.replace(/_/g, " "),
+    count: info.count,
+    missing: info.missing_from_canonical,
+  }));
+  items.sort((a, b) => b.count - a.count);
+
+  makeVBar("coverage-svg", items, "name", "count", "bar-12sl");
+  makeTable("coverage-table",
+    [{key:"name",label:"Source"},{key:"count",label:"Records",fmt:v=>v?.toLocaleString()},{key:"missing",label:"Missing vs Canonical",fmt:v=>v?.toLocaleString()}],
+    items);
+})();
+
+// ── Feature missing ──
+["12sl", "ecgdeli", "unig"].forEach(src => {
+  const key = `feature_missing_${src}`;
+  const d = DATA[key];
+  if (!d || !d.features) return;
+  const flagged = d.features.filter(f => f.flagged);
+  const top = flagged.length > 0 ? flagged : d.features.filter(f => f.missing_pct > 0);
+  const show = top.slice(0, 30);
+  if (show.length === 0) {
+    d3.select(`#miss-svg-${src}`).attr("height", 40).append("text").attr("x",10).attr("y",26)
+      .attr("fill","#22c55e").attr("font-size",13).text("✓ No features exceed the missing threshold.");
+  } else {
+    makeHBar(`miss-svg-${src}`, show, "missing_pct", "feature", "bar-missing", 30);
+  }
+  makeTable(`miss-tbl-${src}`,
+    [{key:"feature",label:"Feature"},{key:"missing_pct",label:"Missing %",fmt:v=>v?.toFixed(2)+"%"},{key:"flagged",label:"Flagged",fmt:v=>v?"⚠ Yes":""}],
+    d.features.filter(f => f.missing_pct > 0).slice(0, 100));
+});
+
+// ── Feature stats ──
+["12sl", "ecgdeli", "unig"].forEach(src => {
+  const key = `feature_stats_${src}`;
+  const d = DATA[key];
+  if (!d || !d.features) return;
+  makeTable(`fstats-tbl-${src}`,
+    [
+      {key:"feature",label:"Feature"},
+      {key:"count",label:"Count",fmt:v=>v?.toLocaleString()},
+      {key:"missing_pct",label:"Missing %",fmt:v=>v?.toFixed(1)+"%"},
+      {key:"mean",label:"Mean",fmt:v=>v?.toFixed(3)},
+      {key:"std",label:"Std",fmt:v=>v?.toFixed(3)},
+      {key:"min",label:"Min",fmt:v=>v?.toFixed(3)},
+      {key:"p25",label:"P25",fmt:v=>v?.toFixed(3)},
+      {key:"p50",label:"Median",fmt:v=>v?.toFixed(3)},
+      {key:"p75",label:"P75",fmt:v=>v?.toFixed(3)},
+      {key:"max",label:"Max",fmt:v=>v?.toFixed(3)},
+    ],
+    d.features);
+});
+
+// ── PTB-XL label freq ──
+(function() {
+  const d = DATA.ptbxl_label_freq;
+  if (!d || !d.labels) return;
+  makeHBar("ptbxl-lbl-svg", d.labels, "count", "code", "bar-12sl", 30);
+  makeTable("ptbxl-lbl-tbl",
+    [{key:"code",label:"SCP Code"},{key:"count",label:"Records",fmt:v=>v?.toLocaleString()},{key:"pct",label:"% of Dataset",fmt:v=>v?.toFixed(1)+"%"}],
+    d.labels);
+})();
+
+// ── 12SL label freq ──
+(function() {
+  const d = DATA["12sl_label_freq"];
+  if (!d || !d.labels) return;
+  makeHBar("sl12-lbl-svg", d.labels, "count", "code", "bar-sl12", 30);
+  makeTable("sl12-lbl-tbl",
+    [{key:"code",label:"Statement"},{key:"count",label:"Records",fmt:v=>v?.toLocaleString()},{key:"pct",label:"% of Dataset",fmt:v=>v?.toFixed(1)+"%"}],
+    d.labels);
+})();
+
+// ── Co-occurrence ──
+(function() {
+  const d = DATA.label_cooccurrence;
+  if (!d) return;
+  if (d.ptbxl) makeCoocHeatmap("cooc-svg-ptbxl", d.ptbxl.labels, d.ptbxl.matrix);
+  if (d["12sl"]) makeCoocHeatmap("cooc-svg-12sl", d["12sl"].labels, d["12sl"].matrix);
+})();
+
+// ── SNOMED coverage ──
+(function() {
+  const d = DATA.snomed_coverage;
+  if (!d) return;
+  // Donut chart
+  const margin = {top: 10, right: 10, bottom: 10, left: 10};
+  const W = 280, H = 220;
+  const radius = Math.min(W, H) / 2 - 20;
+  const svg = d3.select("#snomed-svg").attr("width", W).attr("height", H);
+  const g = svg.append("g").attr("transform", `translate(${W/2},${H/2})`);
+
+  const slices = [
+    {label: "Both (PTB-XL ∩ 12SL)", value: d.both_unique, color: "#4f8ef7"},
+    {label: "PTB-XL only", value: d.ptbxl_only, color: "#a78bfa"},
+    {label: "12SL only",   value: d["12sl_only"], color: "#22c55e"},
+  ];
+
+  const pie = d3.pie().value(dd => dd.value).sort(null);
+  const arc = d3.arc().innerRadius(radius * 0.55).outerRadius(radius);
+
+  g.selectAll(".slice").data(pie(slices)).join("path")
+    .attr("class","slice").attr("d", arc)
+    .attr("fill", d => d.data.color)
+    .on("mouseover", (event, d) => showTip(`<b>${d.data.label}</b>: ${d.data.value}`, event))
+    .on("mouseout", hideTip);
+
+  // Stats panel
+  const stats = document.getElementById("snomed-stats");
+  stats.innerHTML = `
+    <b>Total SNOMED concepts (description file):</b> ${d.total_in_description}<br/>
+    <b>Used by PTB-XL:</b> ${d.ptbxl_unique} (${d.ptbxl_pct_of_desc}%)<br/>
+    <b>Used by 12SL:</b> ${d["12sl_unique"]} (${d["12sl_pct_of_desc"]}%)<br/>
+    <b>Used by both:</b> ${d.both_unique}<br/>
+    <b>PTB-XL only:</b> ${d.ptbxl_only}<br/>
+    <b>12SL only:</b> ${d["12sl_only"]}
+  `;
+})();
+
+// ── Fiducial coverage ──
+(function() {
+  const d = DATA.fiducial_coverage;
+  if (!d) return;
+  const leads = Object.entries(d.per_lead_counts || {}).map(([lead, count]) => ({lead, count}));
+  makeVBar("fid-svg", leads, "lead", "count", "bar-fid");
+  makeTable("fid-tbl",
+    [{key:"lead",label:"Lead"},{key:"count",label:"Records with .atr",fmt:v=>v?.toLocaleString()}],
+    leads);
+  // Append annotation types info
+  if (d.annotation_types_sample && d.annotation_types_sample.length > 0) {
+    const card = document.getElementById("fid-svg").closest(".chart-card");
+    const info = document.createElement("p");
+    info.style.cssText = "font-size:0.78rem;color:#556;margin-top:10px;";
+    info.textContent = `Annotation types (sample): ${d.annotation_types_sample.join(", ")}`;
+    card.appendChild(info);
+  }
+})();
+
+// ── Median beats ──
+(function() {
+  const d = DATA.median_beat_coverage;
+  if (!d) return;
+  ["12sl", "unig"].forEach(src => {
+    const info = d[src];
+    if (!info) return;
+    const el = document.getElementById(`mb-${src}-stats`);
+    if (!el) return;
+    el.innerHTML = `
+      <b>Records:</b> ${info.record_count?.toLocaleString()}<br/>
+      <b>Leads:</b> ${(info.leads || []).join(", ")}<br/>
+      <b>Sampling rate:</b> ${info.sampling_rate_hz} Hz<br/>
+      <b>Signal length:</b> ${info.signal_length_samples} samples (${info.duration_ms} ms)<br/>
+      <b>Missing vs canonical:</b> ${info.missing_from_canonical?.toLocaleString()}
+    `;
+  });
+})();
+
+// ── Cross-source agreement ──
+(function() {
+  const d = DATA.cross_source_agreement;
+  if (!d || !d.top_concepts) return;
+
+  const data = d.top_concepts.slice(0, 25);
+  const margin = {top: 10, right: 20, bottom: 10, left: 260};
+  const rowH = 24;
+  const W = Math.min(900, document.getElementById("agree-svg").parentElement.clientWidth - 20);
+  const H = data.length * rowH + margin.top + margin.bottom;
+  const svg = d3.select("#agree-svg").attr("width", W).attr("height", H);
+  svg.selectAll("*").remove();
+  const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+  const innerW = W - margin.left - margin.right;
+
+  const maxTotal = d3.max(data, dd => dd.total) || 1;
+  const x = d3.scaleLinear().domain([0, maxTotal]).range([0, innerW]);
+  const y = d3.scaleBand().domain(data.map(dd => dd.description || String(dd.snomed_id))).range([0, H - margin.top - margin.bottom]).padding(0.2);
+
+  // Stacked bars: both | ptbxl_only | 12sl_only
+  const colors = {both: "#4f8ef7", ptbxl_only: "#a78bfa", "12sl_only": "#22c55e"};
+  const keys = ["both", "ptbxl_only", "12sl_only"];
+
+  data.forEach(dd => {
+    const label = dd.description || String(dd.snomed_id);
+    let xOffset = 0;
+    keys.forEach(k => {
+      const w = x(dd[k] || 0);
+      g.append("rect")
+        .attr("x", xOffset).attr("y", y(label))
+        .attr("width", w).attr("height", y.bandwidth())
+        .attr("fill", colors[k])
+        .on("mouseover", event => showTip(`<b>${label}</b><br/>${k.replace("_"," ")}: ${dd[k]}`, event))
+        .on("mouseout", hideTip);
+      xOffset += w;
+    });
+    // row label
+    g.append("text")
+      .attr("x", -6).attr("y", y(label) + y.bandwidth() / 2 + 4)
+      .attr("text-anchor","end").attr("font-size", 10).attr("fill","#334")
+      .text(label.length > 36 ? label.slice(0,35)+"…" : label);
+
+    // agreement % label
+    g.append("text")
+      .attr("x", x(dd.total) + 4).attr("y", y(label) + y.bandwidth() / 2 + 4)
+      .attr("font-size", 10).attr("fill","#556")
+      .text(`${dd.agreement_pct}%`);
+  });
+
+  // Legend
+  const leg = g.append("g").attr("transform", `translate(0,${H - margin.top - margin.bottom + 8})`);
+  const legItems = [{k:"both",label:"Both sources"},{k:"ptbxl_only",label:"PTB-XL only"},{k:"12sl_only",label:"12SL only"}];
+  legItems.forEach((item, i) => {
+    leg.append("rect").attr("x", i * 140).attr("y", 0).attr("width", 12).attr("height", 12).attr("fill", colors[item.k]);
+    leg.append("text").attr("x", i * 140 + 16).attr("y", 10).attr("font-size", 10).attr("fill","#556").text(item.label);
+  });
+
+  // Summary line above chart
+  const summaryP = document.getElementById("agree-svg").closest(".chart-card");
+  const infoP = document.createElement("p");
+  infoP.style.cssText = "font-size:0.78rem;color:#556;margin-top:10px;";
+  infoP.textContent = `Common records compared: ${d.common_records?.toLocaleString()} · Showing top 25 SNOMED concepts by total occurrence.`;
+  summaryP.appendChild(infoP);
+
+  makeTable("agree-tbl",
+    [
+      {key:"description",label:"SNOMED Description"},
+      {key:"snomed_id",label:"SNOMED ID"},
+      {key:"both",label:"Both",fmt:v=>v?.toLocaleString()},
+      {key:"ptbxl_only",label:"PTB-XL Only",fmt:v=>v?.toLocaleString()},
+      {key:"12sl_only",label:"12SL Only",fmt:v=>v?.toLocaleString()},
+      {key:"total",label:"Total",fmt:v=>v?.toLocaleString()},
+      {key:"agreement_pct",label:"Agreement %",fmt:v=>v?.toFixed(1)+"%"},
+    ],
+    d.top_concepts);
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+{
+  "source": "12sl",
+  "total_records": 21799,
+  "labels": [
+    {
+      "code": "NSR",
+      "count": 12631,
+      "pct": 57.94
+    },
+    {
+      "code": "AB",
+      "count": 11508,
+      "pct": 52.79
+    },
+    {
+      "code": "NML",
+      "count": 6012,
+      "pct": 27.58
+    },
+    {
+      "code": "AU",
+      "count": 4537,
+      "pct": 20.81
+    },
+    {
+      "code": "LPAREN",
+      "count": 4108,
+      "pct": 18.84
+    },
+    {
+      "code": "RPAREN",
+      "count": 4108,
+      "pct": 18.84
+    },
+    {
+      "code": "SBRAD",
+      "count": 3378,
+      "pct": 15.5
+    },
+    {
+      "code": "SRTH",
+      "count": 2570,
+      "pct": 11.79
+    },
+    {
+      "code": "ABR",
+      "count": 2553,
+      "pct": 11.71
+    },
+    {
+      "code": "QRSV",
+      "count": 2464,
+      "pct": 11.3
+    },
+    {
+      "code": "IMI",
+      "count": 2305,
+      "pct": 10.57
+    },
+    {
+      "code": "CORNPROD",
+      "count": 2080,
+      "pct": 9.54
+    },
+    {
+      "code": "LAD3",
+      "count": 1943,
+      "pct": 8.91
+    },
+    {
+      "code": "BORDE",
+      "count": 1726,
+      "pct": 7.92
+    },
+    {
+      "code": "COMMA",
+      "count": 1698,
+      "pct": 7.79
+    },
+    {
+      "code": "SOKOLYON",
+      "count": 1673,
+      "pct": 7.67
+    },
+    {
+      "code": "RAVL",
+      "count": 1618,
+      "pct": 7.42
+    },
+    {
+      "code": "AFIB",
+      "count": 1396,
+      "pct": 6.4
+    },
+    {
+      "code": "FAV",
+      "count": 1240,
+      "pct": 5.69
+    },
+    {
+      "code": "LVH2",
+      "count": 1240,
+      "pct": 5.69
+    },
+    {
+      "code": "SAR",
+      "count": 1195,
+      "pct": 5.48
+    },
+    {
+      "code": "NST",
+      "count": 1133,
+      "pct": 5.2
+    },
+    {
+      "code": "PVC",
+      "count": 1132,
+      "pct": 5.19
+    },
+    {
+      "code": "ST&",
+      "count": 1103,
+      "pct": 5.06
+    },
+    {
+      "code": "$SWITH",
+      "count": 1084,
+      "pct": 4.97
+    },
+    {
+      "code": "PO",
+      "count": 1058,
+      "pct": 4.85
+    },
+    {
+      "code": "NT",
+      "count": 958,
+      "pct": 4.39
+    },
+    {
+      "code": "STACH",
+      "count": 957,
+      "pct": 4.39
+    },
+    {
+      "code": "NSTT",
+      "count": 929,
+      "pct": 4.26
+    },
+    {
+      "code": "OCC",
+      "count": 837,
+      "pct": 3.84
+    }
+  ]
+}

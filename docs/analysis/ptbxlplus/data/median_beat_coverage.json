@@ -1,0 +1,44 @@
+{
+  "12sl": {
+    "record_count": 20914,
+    "leads": [
+      "I",
+      "II",
+      "III",
+      "aVR",
+      "aVL",
+      "aVF",
+      "V1",
+      "V2",
+      "V3",
+      "V4",
+      "V5",
+      "V6"
+    ],
+    "sampling_rate_hz": 500,
+    "signal_length_samples": 600,
+    "duration_ms": 1200.0,
+    "missing_from_canonical": 881
+  },
+  "unig": {
+    "record_count": 21794,
+    "leads": [
+      "I",
+      "II",
+      "III",
+      "aVR",
+      "aVL",
+      "aVF",
+      "V1",
+      "V2",
+      "V3",
+      "V4",
+      "V5",
+      "V6"
+    ],
+    "sampling_rate_hz": 500,
+    "signal_length_samples": 600,
+    "duration_ms": 1200.0,
+    "missing_from_canonical": 1
+  }
+}
