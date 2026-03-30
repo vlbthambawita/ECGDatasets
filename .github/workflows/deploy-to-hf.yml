@@ -22,12 +22,14 @@ jobs:
           fetch-depth: 0
           lfs: true
 
+      # ── Validate Space token (required) ──────────────────────────────────
       - name: Validate HF_TOKEN secret
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           if [ -z "${HF_TOKEN}" ]; then
-            echo "::error::HF_TOKEN secret is not set. Go to Settings → Secrets → Actions and add a HuggingFace write token."
+            echo "::error::HF_TOKEN secret is not set."
+            echo "::error::Go to Settings → Secrets → Actions and add a HuggingFace write token for the Space."
             exit 1
           fi
           echo "HF_TOKEN is set (length: ${#HF_TOKEN})"
@@ -38,70 +40,75 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global http.postBuffer 157286400
 
-      # ── Step 1: Upload clean_records CSVs to HF Dataset ──────────────────
+      # ── Step 1: Upload clean CSVs to HF Dataset (optional) ───────────────
+      # Requires a separate secret HF_DATASET_TOKEN with write access to
+      # SEARCH-IHI/ECGData_clean_splits. If not set, this step is skipped
+      # and the Space deploy continues normally.
       - name: Upload clean CSVs to HuggingFace Dataset
         env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_DATASET_TOKEN: ${{ secrets.HF_DATASET_TOKEN }}
         run: |
+          if [ -z "${HF_DATASET_TOKEN}" ]; then
+            echo "::warning::HF_DATASET_TOKEN is not set — skipping CSV upload to SEARCH-IHI/ECGData_clean_splits."
+            echo "To enable: go to Settings → Secrets → Actions → New secret, name it HF_DATASET_TOKEN,"
+            echo "and paste a HuggingFace write token that has access to SEARCH-IHI/ECGData_clean_splits."
+            exit 0
+          fi
+
           pip install -q huggingface_hub
           python - <<'PYEOF'
-          import os, glob
+          import os, glob, sys
           from huggingface_hub import HfApi
 
           HF_DATASET = "SEARCH-IHI/ECGData_clean_splits"
-          token = os.environ["HF_TOKEN"]
+          token = os.environ["HF_DATASET_TOKEN"]
           api = HfApi()
 
           csv_files = sorted(glob.glob("analysis/*/clean_records.csv"))
           if not csv_files:
-              print("No clean_records.csv files found in analysis/ — skipping dataset upload.")
-          else:
-              for csv_path in csv_files:
-                  dataset_name = csv_path.split("/")[1]   # e.g. "ptbxl"
-                  repo_path = f"{dataset_name}/clean_records.csv"
-                  print(f"Uploading {csv_path} → {HF_DATASET}/{repo_path} ...")
-                  api.upload_file(
-                      path_or_fileobj=csv_path,
-                      path_in_repo=repo_path,
-                      repo_id=HF_DATASET,
-                      repo_type="dataset",
-                      token=token,
-                      commit_message=f"Update {repo_path} from GitHub Actions",
-                  )
-                  print(f"  ✓ Done")
+              print("No clean_records.csv files found in analysis/ — nothing to upload.")
+              sys.exit(0)
+
+          for csv_path in csv_files:
+              dataset_name = csv_path.split("/")[1]   # e.g. "ptbxl"
+              repo_path = f"{dataset_name}/clean_records.csv"
+              print(f"Uploading {csv_path} → {HF_DATASET}/{repo_path} ...")
+              api.upload_file(
+                  path_or_fileobj=csv_path,
+                  path_in_repo=repo_path,
+                  repo_id=HF_DATASET,
+                  repo_type="dataset",
+                  token=token,
+                  commit_message=f"Update {repo_path} from GitHub Actions",
+              )
+              print(f"  ✓ Done")
           PYEOF
 
       # ── Step 2: Deploy docs/ to HF Space ─────────────────────────────────
       - name: Clone HuggingFace Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-          HF_SPACE: vlbthambawita/ECGDatasets
+          HF_SPACE: SEARCH-IHI/ECGDatasets
         run: |
           set -e
           echo "Cloning https://huggingface.co/spaces/${HF_SPACE} ..."
-          git clone "https://vlbthambawita:${HF_TOKEN}@huggingface.co/spaces/${HF_SPACE}" hf_repo
-          echo "Clone successful. Current HF Space contents:"
+          git clone "https://user:${HF_TOKEN}@huggingface.co/spaces/${HF_SPACE}" hf_repo
+          echo "Clone successful."
           ls -lh hf_repo/
 
       - name: Sync docs/ to HF Space
         run: |
           set -e
-          # Clear existing content (keep .git)
           find hf_repo -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
-
-          # Copy docs/ content to Space root
           cp -r docs/. hf_repo/
-
-          # Overwrite README with HF Space metadata (frontmatter controls Space settings)
           cp hf_space/README.md hf_repo/README.md
-
           echo "Files to be deployed:"
           find hf_repo -not -path '*/.git/*' -type f | sort
 
       - name: Commit and push to HuggingFace Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-          HF_SPACE: vlbthambawita/ECGDatasets
+          HF_SPACE: SEARCH-IHI/ECGDatasets
         run: |
           set -e
           cd hf_repo
@@ -109,9 +116,8 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to deploy — HF Space is already up to date."
           else
-            echo "Changes staged:"
             git diff --cached --stat
             git commit -m "Deploy from GitHub: ${{ github.sha }}"
-            git push "https://vlbthambawita:${HF_TOKEN}@huggingface.co/spaces/${HF_SPACE}"
+            git push "https://user:${HF_TOKEN}@huggingface.co/spaces/${HF_SPACE}"
             echo "Successfully deployed to https://huggingface.co/spaces/${HF_SPACE}"
           fi
