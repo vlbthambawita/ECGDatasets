@@ -492,6 +492,7 @@ d3 v7     # vendored at scripts/vendor/d3.min.js — no CDN dependency
   - [x] T4t — Phase 20: HTML report generator: render `scripts/report_template_mimic_iv_ecg.html` via Jinja2
 - [x] **T5** Write `scripts/report_template_mimic_iv_ecg.html` (Jinja2 + D3 template):
   - [x] T5a — Sidebar nav + responsive layout (reuse PTB-XL/PTB-XL+ template structure)
+  - [x] T5a2 — Dataset structure D3 collapsible tree (first section at top of page): color-coded by node type (dir/CSV/WFDB), expand/collapse all buttons, tooltip on hover, Download SVG
   - [x] T5b — Summary stat cards
   - [x] T5c — Record coverage grouped bar chart
   - [x] T5d — Temporal distribution charts (by year, by hour-of-day)

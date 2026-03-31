@@ -86,6 +86,8 @@
 <aside id="sidebar">
   <div class="logo">MIMIC-IV ECG<span>Matched Subset v1.0</span></div>
   <nav>
+    <div class="nav-section">Structure</div>
+    <a href="#dataset-structure">Dataset Structure</a>
     <div class="nav-section">Overview</div>
     <a href="#summary">Summary</a>
     <a href="#coverage">Record Coverage</a>
@@ -108,6 +110,31 @@
 </aside>
 
 <main id="main">
+
+  <!-- ── DATASET STRUCTURE ── -->
+  <section class="section" id="dataset-structure">
+    <h2>Dataset Structure</h2>
+    <p class="subtitle">Interactive file-tree of the MIMIC-IV ECG dataset directory. Click any folder node to expand or collapse its children.</p>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Directory &amp; File Hierarchy</span>
+        <div class="btn-group">
+          <button class="btn" id="tree-expand-all">Expand All</button>
+          <button class="btn" id="tree-collapse-all">Collapse All</button>
+          <button class="btn" onclick="downloadSVG('ds-tree-svg','dataset_structure')">Download SVG</button>
+        </div>
+      </div>
+      <div id="ds-tree-container" style="overflow-x:auto;">
+        <svg id="ds-tree-svg"></svg>
+      </div>
+      <div class="legend" style="margin-top:14px;">
+        <div class="legend-item"><span class="legend-swatch" style="background:#1a2233;border-radius:50%;"></span> Root / Directory</div>
+        <div class="legend-item"><span class="legend-swatch" style="background:#4f8ef7;"></span> CSV Metadata File</div>
+        <div class="legend-item"><span class="legend-swatch" style="background:#10b981;"></span> WFDB Waveform File (.hea / .dat)</div>
+        <div class="legend-item"><span class="legend-swatch" style="background:#94a3b8;"></span> Other File</div>
+      </div>
+    </div>
+  </section>
 
   <!-- ── SUMMARY ── -->
   <section class="section" id="summary">
@@ -5757,6 +5784,231 @@ sections.forEach(s => observer.observe(s));
       [{key:"study_id",label:"Study ID"},{key:"issues",label:"Issues (lead:type)"}],
       rows);
   }
+})();
+
+// ── Dataset Structure Tree ────────────────────────────────────────────────────
+(function() {
+  const treeData = {
+    name: "mimic-iv-ecg-v1.0/", type: "root", desc: "Root dataset directory (800,035 studies)",
+    children: [
+      { name: "record_list.csv",                          type: "csv",  desc: "800,035 rows — all ECG record paths + subject/study IDs + ecg_time" },
+      { name: "machine_measurements.csv",                 type: "csv",  desc: "789,481 rows × 33 cols — automated interval measurements + text report phrases" },
+      { name: "machine_measurements_original.csv",        type: "csv",  desc: "789,481 rows — pre-processed raw measurement values" },
+      { name: "machine_measurements_data_dictionary.csv", type: "csv",  desc: "18 rows — variable descriptions and units" },
+      { name: "waveform_note_links.csv",                  type: "csv",  desc: "609,272 rows — links ECG studies to MIMIC-IV clinical notes" },
+      { name: "RECORDS",                                  type: "file", desc: "1000 patient-group directory names (p1000–p1999)" },
+      { name: "SHA256SUMS.txt",                           type: "file", desc: "File integrity checksums (SHA-256)" },
+      { name: "LICENSE.txt",                              type: "file", desc: "ODC Open Database License (ODbL)" },
+      {
+        name: "files/", type: "dir", desc: "Waveform data organised in a 4-level hierarchy",
+        _collapsed: false,
+        children: [{
+          name: "pXXXX/", type: "dir", desc: "1,000 patient-group folders (p1000–p1999)",
+          _collapsed: false,
+          children: [{
+            name: "pNNNNNNNN/", type: "dir", desc: "Individual patient directory (subject_id — 160,862 unique patients)",
+            _collapsed: false,
+            children: [{
+              name: "sNNNNNNNN/", type: "dir", desc: "Study directory (study_id — one per ECG acquisition)",
+              _collapsed: false,
+              children: [
+                { name: "NNNNNNNN.hea", type: "hea", desc: "WFDB header — 12 leads, 500 Hz, 10 s (plain text, ~600 B)" },
+                { name: "NNNNNNNN.dat", type: "dat", desc: "WFDB signal — 16-bit signed binary, 5,000 samples/lead (~120 KB)" }
+              ]
+            }]
+          }]
+        }]
+      }
+    ]
+  };
+
+  const nodeColor = n => {
+    if (n.data.type === "root" || n.data.type === "dir") return "#1a2233";
+    if (n.data.type === "csv")  return "#4f8ef7";
+    if (n.data.type === "hea" || n.data.type === "dat") return "#10b981";
+    return "#94a3b8";
+  };
+  const nodeShape = n => (n.data.type === "root" || n.data.type === "dir") ? "diamond" : "rect";
+
+  const margin = {top: 20, right: 320, bottom: 20, left: 160};
+  const baseWidth  = 1100;
+  let   svgHeight  = 600;
+
+  const svg = d3.select("#ds-tree-svg")
+    .attr("width", baseWidth + margin.left + margin.right)
+    .attr("height", svgHeight + margin.top + margin.bottom)
+    .style("font", "13px 'Segoe UI', system-ui, sans-serif");
+
+  const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+  // link path generator
+  const linkPath = d3.linkHorizontal().x(d => d.y).y(d => d.x);
+
+  // Build hierarchy with collapse state
+  function buildHierarchy(data) {
+    const root = d3.hierarchy(data, d => d._collapsed ? null : d.children);
+    root.x0 = 0; root.y0 = 0;
+    return root;
+  }
+
+  // Collapse/expand node
+  function toggle(d) {
+    if (!d.data.children) return;
+    if (d.children) {
+      d.data._collapsed = true;
+    } else {
+      d.data._collapsed = false;
+    }
+  }
+
+  function setAllCollapsed(node, collapsed) {
+    if (node.children) node.data.children = node.children.map(c => c.data);
+    if (collapsed) node.data._collapsed = true;
+    else           node.data._collapsed = false;
+    (node.children || node._children || []).forEach(c => setAllCollapsed(c, collapsed));
+  }
+
+  let root = buildHierarchy(treeData);
+
+  function update() {
+    root = buildHierarchy(treeData);
+
+    const treeLayout = d3.tree().nodeSize([34, 220]);
+    treeLayout(root);
+
+    // centre vertically
+    const nodes = root.descendants();
+    const minX = d3.min(nodes, d => d.x);
+    const maxX = d3.max(nodes, d => d.x);
+    svgHeight = Math.max(400, maxX - minX + margin.top + margin.bottom + 40);
+    svg.attr("height", svgHeight);
+    const offsetY = margin.top - minX;
+
+    g.selectAll("*").remove();
+
+    // Links
+    g.selectAll(".link")
+      .data(root.links())
+      .join("path")
+        .attr("class","link")
+        .attr("fill","none")
+        .attr("stroke","#c8d0e0")
+        .attr("stroke-width",1.5)
+        .attr("d", d => linkPath({
+          source: {x: d.source.x + offsetY, y: d.source.y},
+          target: {x: d.target.x + offsetY, y: d.target.y}
+        }));
+
+    // Nodes
+    const node = g.selectAll(".node")
+      .data(nodes)
+      .join("g")
+        .attr("class","node")
+        .attr("transform", d => `translate(${d.y},${d.x + offsetY})`)
+        .style("cursor", d => d.data.children ? "pointer" : "default")
+        .on("click", (event, d) => {
+          if (!d.data.children) return;
+          toggle(d);
+          update();
+        })
+        .on("mouseenter", (event, d) => {
+          const icon = d.data.type === "dir" || d.data.type === "root" ? "📁" :
+                       d.data.type === "csv" ? "📄" :
+                       d.data.type === "hea" ? "📋" :
+                       d.data.type === "dat" ? "💾" : "📎";
+          showTip(`<b>${icon} ${d.data.name}</b><br>${d.data.desc}`, event);
+        })
+        .on("mousemove", (event) => {
+          tip.style("left",(event.pageX+14)+"px").style("top",(event.pageY-28)+"px");
+        })
+        .on("mouseleave", () => hideTip());
+
+    // Shape: diamond for dirs, rect for files
+    node.each(function(d) {
+      const sel = d3.select(this);
+      const color = nodeColor(d);
+      if (d.data.type === "root" || d.data.type === "dir") {
+        sel.append("polygon")
+          .attr("points", "-9,0 0,-9 9,0 0,9")
+          .attr("fill", color)
+          .attr("stroke", "#fff")
+          .attr("stroke-width", 1.5);
+      } else {
+        sel.append("rect")
+          .attr("x", -7).attr("y", -7)
+          .attr("width", 14).attr("height", 14)
+          .attr("rx", 3)
+          .attr("fill", color)
+          .attr("stroke", "#fff")
+          .attr("stroke-width", 1.5);
+      }
+    });
+
+    // Collapse indicator (+ / -)
+    node.filter(d => d.data.children)
+      .append("text")
+        .attr("dy", "0.35em")
+        .attr("text-anchor", "middle")
+        .attr("fill", "#fff")
+        .attr("font-size", "11px")
+        .attr("font-weight", "700")
+        .attr("pointer-events", "none")
+        .text(d => d.children ? "−" : "+");
+
+    // Labels
+    node.append("text")
+      .attr("dy", "0.35em")
+      .attr("x", d => (d.data.type === "root" || d.data.type === "dir") ? 14 : 12)
+      .attr("text-anchor", "start")
+      .attr("fill", d => (d.data.type === "root" || d.data.type === "dir") ? "#1a2233" : "#334")
+      .attr("font-weight", d => (d.data.type === "root" || d.data.type === "dir") ? "700" : "400")
+      .attr("font-size", "12.5px")
+      .text(d => d.data.name)
+      .clone(true).lower()
+        .attr("stroke","#f4f6f9")
+        .attr("stroke-width",3)
+        .attr("stroke-linejoin","round");
+
+    // Description labels (grey, smaller)
+    node.append("text")
+      .attr("dy", "0.35em")
+      .attr("x", d => (d.data.type === "root" || d.data.type === "dir") ? 14 : 12)
+      .attr("dx", d => {
+        // approximate label width (7px/char)
+        const nameLen = (d.data.name || "").length;
+        return nameLen * 7 + 6;
+      })
+      .attr("text-anchor", "start")
+      .attr("fill", "#888")
+      .attr("font-size", "11px")
+      .text(d => "— " + d.data.desc)
+      .clone(true).lower()
+        .attr("stroke","#f4f6f9")
+        .attr("stroke-width",3)
+        .attr("stroke-linejoin","round");
+
+    // update container height
+    document.getElementById("ds-tree-container").style.minHeight = svgHeight + "px";
+  }
+
+  update();
+
+  document.getElementById("tree-expand-all").addEventListener("click", () => {
+    function expandAll(n) {
+      n.data._collapsed = false;
+      if (n.data.children) n.data.children.forEach(c => expandAll({data: c}));
+    }
+    expandAll({data: treeData});
+    update();
+  });
+  document.getElementById("tree-collapse-all").addEventListener("click", () => {
+    function collapseAll(n, depth) {
+      if (depth > 0) n.data._collapsed = true;
+      if (n.data.children) n.data.children.forEach(c => collapseAll({data: c}, depth + 1));
+    }
+    collapseAll({data: treeData}, 0);
+    update();
+  });
 })();
 
 </script>
