@@ -64,29 +64,33 @@ Build a configurable Python analysis script for the MIMIC-IV ECG (Diagnostic Ele
 ```
 analysis/
 └── mimic_iv_ecg/
-    ├── config.yaml                   ← analysis + HF upload configuration
-    ├── data/                         ← JSON data files consumed by D3 charts
-    │   ├── dataset_summary.json
-    │   ├── record_coverage.json
-    │   ├── temporal_distribution.json
-    │   ├── studies_per_patient.json
-    │   ├── measurement_stats.json
-    │   ├── measurement_missing.json
-    │   ├── interval_distributions.json
-    │   ├── axis_distributions.json
-    │   ├── report_text_freq.json
-    │   ├── cart_usage.json
-    │   ├── bandwidth_filtering.json
-    │   ├── note_link_coverage.json
-    │   ├── waveform_header_stats.json
-    │   ├── lead_completeness.json
-    │   ├── signal_quality.json
-    │   └── clean_records_summary.json
-    ├── report.html                   ← self-contained report (D3 charts inline, no CDN)
-    └── clean_records.csv             ← gitignored; pushed to HF Dataset by Phase 19 (HF_DATASET_TOKEN from .env)
+    ├── config.yaml          ← analysis + HF upload configuration
+    └── clean_records.csv    ← gitignored; pushed to HF Dataset by Phase 19 (HF_DATASET_TOKEN from .env)
 
-docs/analysis/mimic_iv_ecg/          ← mirror of report.html + data/ for GitHub Pages (auto-copied by script)
+docs/
+└── analysis/
+    └── mimic_iv_ecg/
+        ├── data/            ← JSON data files consumed by D3 charts
+        │   ├── dataset_summary.json
+        │   ├── record_coverage.json
+        │   ├── temporal_distribution.json
+        │   ├── studies_per_patient.json
+        │   ├── measurement_stats.json
+        │   ├── measurement_missing.json
+        │   ├── interval_distributions.json
+        │   ├── axis_distributions.json
+        │   ├── report_text_freq.json
+        │   ├── cart_usage.json
+        │   ├── bandwidth_filtering.json
+        │   ├── note_link_coverage.json
+        │   ├── waveform_header_stats.json
+        │   ├── lead_completeness.json
+        │   ├── signal_quality.json
+        │   └── clean_records_summary.json
+        └── report.html      ← self-contained report (D3 charts inline, no CDN)
 ```
+
+> **Same pattern as PTB-XL and PTB-XL+:** `analysis/<dataset>/` holds only config + clean_records.csv; `docs/analysis/<dataset>/` holds the report and JSON data served via GitHub Pages.
 
 > **Scripts:**
 > ```
@@ -119,11 +123,10 @@ dataset:
     root: files
 
 output:
-  report_dir:    analysis/mimic_iv_ecg
-  data_dir:      analysis/mimic_iv_ecg/data
-  report_html:   analysis/mimic_iv_ecg/report.html
+  report_dir:    docs/analysis/mimic_iv_ecg
+  data_dir:      docs/analysis/mimic_iv_ecg/data
+  report_html:   docs/analysis/mimic_iv_ecg/report.html
   clean_records: analysis/mimic_iv_ecg/clean_records.csv   # gitignored; pushed to HF Dataset by Phase 19
-  docs_dir:      docs/analysis/mimic_iv_ecg               # mirror for GitHub Pages (auto-copied by script)
 
 analysis:
   top_n_reports:          40      # top N machine-report phrases

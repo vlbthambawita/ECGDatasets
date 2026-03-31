@@ -13,11 +13,10 @@ dataset:
     root: files
 
 output:
-  report_dir:    analysis/mimic_iv_ecg
-  data_dir:      analysis/mimic_iv_ecg/data
-  report_html:   analysis/mimic_iv_ecg/report.html
+  report_dir:    docs/analysis/mimic_iv_ecg
+  data_dir:      docs/analysis/mimic_iv_ecg/data
+  report_html:   docs/analysis/mimic_iv_ecg/report.html
   clean_records: analysis/mimic_iv_ecg/clean_records.csv
-  docs_dir:      docs/analysis/mimic_iv_ecg   # mirror for GitHub Pages (report.html + data/ copied here)
 
 analysis:
   top_n_reports:          40      # top N machine-report phrases

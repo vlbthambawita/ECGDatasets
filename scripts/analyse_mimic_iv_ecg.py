@@ -859,17 +859,6 @@ def main():
     report_path   = REPO_ROOT / cfg["output"]["report_html"]
     render_report(out, report_path, template_path, d3_path)
 
-    # Mirror report.html + data/ to docs/ for GitHub Pages
-    if "docs_dir" in cfg["output"]:
-        import shutil
-        docs_dir = REPO_ROOT / cfg["output"]["docs_dir"]
-        docs_data = docs_dir / "data"
-        docs_data.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(report_path, docs_dir / "report.html")
-        for jf in out.glob("*.json"):
-            shutil.copy2(jf, docs_data / jf.name)
-        print(f"  mirrored to {docs_dir.relative_to(REPO_ROOT)}/")
-
     print("\nDone.")
 
 
