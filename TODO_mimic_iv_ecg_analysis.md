@@ -64,35 +64,38 @@ Build a configurable Python analysis script for the MIMIC-IV ECG (Diagnostic Ele
 ```
 analysis/
 └── mimic_iv_ecg/
-    ├── config.yaml
-    └── clean_records.csv          ← filtered ECG IDs; gitignored, pushed directly to HF Dataset by Phase 19 of the analysis script (token from .env)
+    ├── config.yaml                   ← analysis + HF upload configuration
+    ├── data/                         ← JSON data files consumed by D3 charts
+    │   ├── dataset_summary.json
+    │   ├── record_coverage.json
+    │   ├── temporal_distribution.json
+    │   ├── studies_per_patient.json
+    │   ├── measurement_stats.json
+    │   ├── measurement_missing.json
+    │   ├── interval_distributions.json
+    │   ├── axis_distributions.json
+    │   ├── report_text_freq.json
+    │   ├── cart_usage.json
+    │   ├── bandwidth_filtering.json
+    │   ├── note_link_coverage.json
+    │   ├── waveform_header_stats.json
+    │   ├── lead_completeness.json
+    │   ├── signal_quality.json
+    │   └── clean_records_summary.json
+    ├── report.html                   ← self-contained report (D3 charts inline, no CDN)
+    └── clean_records.csv             ← gitignored; pushed to HF Dataset by Phase 19 (HF_DATASET_TOKEN from .env)
 
-scripts/
-├── analyse_mimic_iv_ecg.py
-└── report_template_mimic_iv_ecg.html
-
-docs/
-└── analysis/
-    └── mimic_iv_ecg/
-        ├── data/
-        │   ├── dataset_summary.json
-        │   ├── record_coverage.json
-        │   ├── temporal_distribution.json
-        │   ├── studies_per_patient.json
-        │   ├── measurement_stats.json
-        │   ├── measurement_missing.json
-        │   ├── interval_distributions.json
-        │   ├── axis_distributions.json
-        │   ├── report_text_freq.json
-        │   ├── cart_usage.json
-        │   ├── bandwidth_filtering.json
-        │   ├── note_link_coverage.json
-        │   ├── waveform_header_stats.json
-        │   ├── lead_completeness.json
-        │   ├── signal_quality.json
-        │   └── clean_records_summary.json
-        └── report.html
+docs/analysis/mimic_iv_ecg/          ← mirror of report.html + data/ for GitHub Pages (auto-copied by script)
 ```
+
+> **Scripts:**
+> ```
+> scripts/
+> ├── analyse_mimic_iv_ecg.py            ← main analysis script (20 phases)
+> ├── report_template_mimic_iv_ecg.html  ← Jinja2 + D3 report template
+> └── vendor/d3.min.js                   ← bundled D3 v7 (no CDN)
+> ```
+> **Secrets:** `.env` (gitignored) holds `HF_DATASET_TOKEN`; copy from `.env.example`.
 
 ---
 
@@ -116,10 +119,11 @@ dataset:
     root: files
 
 output:
-  report_dir:    docs/analysis/mimic_iv_ecg
-  data_dir:      docs/analysis/mimic_iv_ecg/data
-  report_html:   docs/analysis/mimic_iv_ecg/report.html
-  clean_records: analysis/mimic_iv_ecg/clean_records.csv   # committed to GitHub; deploy-to-hf.yml uploads to HF Dataset
+  report_dir:    analysis/mimic_iv_ecg
+  data_dir:      analysis/mimic_iv_ecg/data
+  report_html:   analysis/mimic_iv_ecg/report.html
+  clean_records: analysis/mimic_iv_ecg/clean_records.csv   # gitignored; pushed to HF Dataset by Phase 19
+  docs_dir:      docs/analysis/mimic_iv_ecg               # mirror for GitHub Pages (auto-copied by script)
 
 analysis:
   top_n_reports:          40      # top N machine-report phrases
@@ -128,6 +132,11 @@ analysis:
   sample_waveforms:       200     # .hea files to read for header stats
   sample_signal_quality:  2000    # .dat files to read for flat/missing lead detection
   missing_threshold_pct:  5.0     # flag measurements with >N% missing values
+
+huggingface:
+  dataset_repo: vlbthambawita/ecg-metadata-curated
+  path_in_repo: mimic_iv_ecg/clean_records.csv
+  # Token read from HF_DATASET_TOKEN in .env — never put the token value here
 
 signal_analysis:
   flat_threshold:       0.01   # mV; leads with std below this are "flat"
@@ -454,56 +463,57 @@ d3 v7     # vendored at scripts/vendor/d3.min.js — no CDN dependency
 
 ## Tasks (in order)
 
-- [ ] **T1** Create output directories: `analysis/mimic_iv_ecg/`, `docs/analysis/mimic_iv_ecg/`, `docs/analysis/mimic_iv_ecg/data/`
-- [ ] **T2** Write `analysis/mimic_iv_ecg/config.yaml` with all parameters above
-- [ ] **T3** Confirm `scripts/vendor/d3.min.js` exists (reuse from PTB-XL pipeline)
-- [ ] **T4** Write `scripts/analyse_mimic_iv_ecg.py`:
-  - [ ] T4a — CLI entry point + config loader + path validation
-  - [ ] T4b — Data loaders: record_list, measurements, note_links CSVs; parse ecg_time as datetime
-  - [ ] T4c — Dataset summary → `data/dataset_summary.json`
-  - [ ] T4d — Record coverage analysis → `data/record_coverage.json`
-  - [ ] T4e — Temporal distribution (year / month / hour / dow) → `data/temporal_distribution.json`
-  - [ ] T4f — Studies-per-patient distribution → `data/studies_per_patient.json`
-  - [ ] T4g — Measurement summary statistics → `data/measurement_stats.json`
-  - [ ] T4h — Missing value analysis → `data/measurement_missing.json`
-  - [ ] T4i — Interval distributions (RR, PR, QRS, QT) → `data/interval_distributions.json`
-  - [ ] T4j — Axis distributions (p_axis, qrs_axis, t_axis) → `data/axis_distributions.json`
-  - [ ] T4k — Machine report text frequency (top-N phrases) → `data/report_text_freq.json`
-  - [ ] T4l — ECG cart usage → `data/cart_usage.json`
-  - [ ] T4m — Bandwidth & filter profiles → `data/bandwidth_filtering.json`
-  - [ ] T4n — Waveform–note link coverage → `data/note_link_coverage.json`
-  - [ ] T4o — Waveform header stats (sampled .hea reads) → `data/waveform_header_stats.json`
-  - [ ] T4p — Lead completeness (full .hea scan, all records) → `data/lead_completeness.json`
-  - [ ] T4q — Signal quality: flat/NaN/clip detection using `signal_analysis` thresholds (sampled .dat reads) → `data/signal_quality.json`
-  - [ ] T4r — Clean record identification using `clean_record_criteria` → `data/clean_records_summary.json` + `clean_records.csv`
-  - [ ] T4s — HTML report generator: render `scripts/report_template_mimic_iv_ecg.html` via Jinja2
-- [ ] **T5** Write `scripts/report_template_mimic_iv_ecg.html` (Jinja2 + D3 template):
-  - [ ] T5a — Sidebar nav + responsive layout (reuse PTB-XL/PTB-XL+ template structure)
-  - [ ] T5b — Summary stat cards
-  - [ ] T5c — Record coverage grouped bar chart
-  - [ ] T5d — Temporal distribution charts (by year, by hour-of-day)
-  - [ ] T5e — Studies-per-patient histogram
-  - [ ] T5f — Measurement missing values horizontal bar
-  - [ ] T5g — Measurement stats table
-  - [ ] T5h — Interval distributions histograms (tabbed: RR / PR / QRS / QT)
-  - [ ] T5i — Axis distributions bar histograms (P / QRS / T axes, tabbed)
-  - [ ] T5j — Machine report phrase frequency horizontal bar
-  - [ ] T5k — Cart usage bar chart
-  - [ ] T5l — Bandwidth & filter donut charts
-  - [ ] T5m — Note link coverage cards + bar
-  - [ ] T5n — Waveform header stats cards + table
-  - [ ] T5o — Lead completeness horizontal bar (per-lead absence rate) + table of incomplete records
-  - [ ] T5p — Signal quality grouped bar charts (tabbed: flat / NaN / clipped) + flagged records table
-  - [ ] T5q — Clean records section: exclusions-per-criterion horizontal bar + stat cards + download link for `clean_records.csv`
-  - [ ] T5r — Shared `downloadSVG()` utility + per-chart download button
-  - [ ] T5s — Shared `downloadTableCSV()` utility + per-table download button
-  - [ ] T5t — **Ensure all DATA keys are quoted strings in the Jinja2 template** (`"{{ key }}": {{ blob }},`) to avoid JS syntax errors from numeric-prefixed keys
-- [ ] **T6** Run the script end-to-end (first with `max_records: 5000` for a fast test, then `null` for full run)
-- [ ] **T7** Open `docs/analysis/mimic_iv_ecg/report.html` in a browser; verify all D3 charts render
-- [ ] **T8** Update `docs/index.html` — add MIMIC-IV ECG row with "View Report" link
-- [ ] **T9** Update `README.md` to list MIMIC-IV ECG as an available dataset
-- [ ] **T10** Copy `.env.example` → `.env`, set `HF_DATASET_TOKEN=hf_...`; run the analysis script — Phase 19 pushes `clean_records.csv` directly to HF Dataset (file is gitignored, never committed to GitHub)
-- [ ] **T11** Commit docs/scripts/config outputs (excluding clean_records.csv) and push to `main` to deploy GitHub Pages and HuggingFace Space
+- [x] **T1** Create output directories: `analysis/mimic_iv_ecg/`, `docs/analysis/mimic_iv_ecg/`, `docs/analysis/mimic_iv_ecg/data/`
+- [x] **T2** Write `analysis/mimic_iv_ecg/config.yaml` with all parameters above (includes `huggingface:` block for HF Dataset push)
+- [x] **T3** Confirm `scripts/vendor/d3.min.js` exists (reuse from PTB-XL pipeline)
+- [x] **T4** Write `scripts/analyse_mimic_iv_ecg.py`:
+  - [x] T4a — CLI entry point + config loader + path validation
+  - [x] T4b — Data loaders: record_list, measurements, note_links CSVs; parse ecg_time as datetime; load `.env` via `python-dotenv`
+  - [x] T4c — Dataset summary → `data/dataset_summary.json`
+  - [x] T4d — Record coverage analysis → `data/record_coverage.json`
+  - [x] T4e — Temporal distribution (year / month / hour / dow) → `data/temporal_distribution.json`
+  - [x] T4f — Studies-per-patient distribution → `data/studies_per_patient.json`
+  - [x] T4g — Measurement summary statistics → `data/measurement_stats.json`
+  - [x] T4h — Missing value analysis → `data/measurement_missing.json`
+  - [x] T4i — Interval distributions (RR, PR, QRS, QT) → `data/interval_distributions.json`
+  - [x] T4j — Axis distributions (p_axis, qrs_axis, t_axis) → `data/axis_distributions.json`
+  - [x] T4k — Machine report text frequency (top-N phrases) → `data/report_text_freq.json`
+  - [x] T4l — ECG cart usage → `data/cart_usage.json`
+  - [x] T4m — Bandwidth & filter profiles → `data/bandwidth_filtering.json`
+  - [x] T4n — Waveform–note link coverage → `data/note_link_coverage.json`
+  - [x] T4o — Waveform header stats (sampled .hea reads) → `data/waveform_header_stats.json`
+  - [x] T4p — Lead completeness (full .hea scan, all records) → `data/lead_completeness.json`
+  - [x] T4q — Signal quality: flat/NaN/clip detection using `signal_analysis` thresholds (sampled .dat reads) → `data/signal_quality.json`
+  - [x] T4r — Clean record identification using `clean_record_criteria` → `data/clean_records_summary.json` + `analysis/mimic_iv_ecg/clean_records.csv` (Phase 18)
+  - [x] T4s — Phase 19: push `clean_records.csv` to HF Dataset using `HF_DATASET_TOKEN` from `.env`
+  - [x] T4t — Phase 20: HTML report generator: render `scripts/report_template_mimic_iv_ecg.html` via Jinja2
+- [x] **T5** Write `scripts/report_template_mimic_iv_ecg.html` (Jinja2 + D3 template):
+  - [x] T5a — Sidebar nav + responsive layout (reuse PTB-XL/PTB-XL+ template structure)
+  - [x] T5b — Summary stat cards
+  - [x] T5c — Record coverage grouped bar chart
+  - [x] T5d — Temporal distribution charts (by year, by hour-of-day)
+  - [x] T5e — Studies-per-patient histogram
+  - [x] T5f — Measurement missing values horizontal bar
+  - [x] T5g — Measurement stats table
+  - [x] T5h — Interval distributions histograms (tabbed: RR / PR / QRS / QT)
+  - [x] T5i — Axis distributions bar histograms (P / QRS / T axes, tabbed)
+  - [x] T5j — Machine report phrase frequency horizontal bar
+  - [x] T5k — Cart usage bar chart
+  - [x] T5l — Bandwidth & filter donut charts
+  - [x] T5m — Note link coverage cards + bar
+  - [x] T5n — Waveform header stats cards + table
+  - [x] T5o — Lead completeness horizontal bar (per-lead absence rate) + table of incomplete records
+  - [x] T5p — Signal quality grouped bar charts (tabbed: flat / NaN / clipped) + flagged records table
+  - [x] T5q — Clean records section: exclusions-per-criterion horizontal bar + stat cards
+  - [x] T5r — Shared `downloadSVG()` utility + per-chart download button
+  - [x] T5s — Shared `downloadTableCSV()` utility + per-table download button
+  - [x] T5t — All DATA keys quoted in Jinja2 template (`"{{ key }}": {{ blob }},`) to avoid JS syntax errors
+- [x] **T6** Run the script end-to-end (test with `max_records: 5000`, then full run with `null`) — 800,035 records, 789,478 clean
+- [x] **T7** Verify `docs/analysis/mimic_iv_ecg/report.html` renders correctly (395 KB, all D3 charts)
+- [x] **T8** Update `docs/index.html` — added MIMIC-IV ECG row with "View Report" link
+- [x] **T9** Update `README.md` to list MIMIC-IV ECG as an available dataset
+- [ ] **T10** Set `HF_DATASET_TOKEN` in `.env`, re-run the analysis script — Phase 19 will push `analysis/mimic_iv_ecg/clean_records.csv` (789,478 rows, ~60 MB) directly to `hf://datasets/vlbthambawita/ecg-metadata-curated/mimic_iv_ecg/clean_records.csv`
+- [ ] **T11** Commit all outputs (excluding `clean_records.csv` — gitignored) and push to `main` to deploy GitHub Pages and HuggingFace Space
 
 ---
 
