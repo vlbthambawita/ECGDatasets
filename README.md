@@ -1,5 +1,7 @@
 # ECGDatasets
 
+# NOTE: This repository will be moved to here: [ECGBench](https://github.com/vlbthambawita/ECGBench) 
+
 > ### Browse the interactive dataset catalogue at [vajira.info/ECGDatasets](https://vajira.info/ECGDatasets/)
 
 A curated, community-maintained catalogue of publicly available ECG (electrocardiogram) datasets — spanning clinical hospitals, challenge competitions, and research institutions worldwide. Datasets are organised by lead configuration and include key metadata: recording format, patient/record counts, access requirements, geographic origin, and the primary publication.
