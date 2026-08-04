@@ -1,6 +1,6 @@
 # ECGDatasets
 
-# NOTE: This repository will be moved to here: [ECGBench](https://github.com/vlbthambawita/ECGBench) 
+# NOTE: This repository is moved here: [ECGBench](https://github.com/vlbthambawita/ECGBench) 
 
 > ### Browse the interactive dataset catalogue at [vajira.info/ECGDatasets](https://vajira.info/ECGDatasets/)
 
